@@ -1,9 +1,11 @@
+import { DefaultTheme } from 'styled-components/dist/types';
+
 export const size = {
   mobile: '420px',
   mobileS: '350px',
 };
 
-export const theme = {
+export const theme: DefaultTheme = {
   margin: {
     small: '.5rem',
     base: '1rem',
