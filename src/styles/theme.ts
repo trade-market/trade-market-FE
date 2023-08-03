@@ -1,8 +1,6 @@
 export const size = {
-  pc: '1200px',
-  tab: '900px',
-  mobile: '480px',
-  mobileS: '370px',
+  mobile: '420px',
+  mobileS: '350px',
 };
 
 export const theme = {
@@ -19,6 +17,27 @@ export const theme = {
     large: '2rem',
     xLarge: '3rem',
   },
+  color: {
+    white: '#fff',
+  },
+  font: {
+    family: {
+      NotoSansKR_Thin: 'NotoSansKR_Thin',
+      NotoSansKR_Light: 'NotoSansKR_Light',
+      NotoSansKR_Regular: 'NotoSansKR_Regular ',
+      NotoSansKR_Medium: 'NotoSansKR_Medium',
+      NotoSansKR_Bold: 'NotoSansKR_Bold',
+      NotoSansKR_Black: 'NotoSansKR_Black',
+      Pretendard_Thin: 'Pretendard_Thin',
+      Pretendard_ExtraLight: 'Pretendard_ExtraLight',
+      Pretendard_Light: 'Pretendard_Light',
+      Pretendard_Regular: 'Pretendard_Regular',
+      Pretendard_Medium: 'Pretendard_Medium',
+      Pretendard_SemiBold: 'Pretendard_SemiBold',
+      Pretendard_ExtraBold: 'Pretendard_ExtraBold',
+    },
+  },
+
   // device: {
   //   pc: `@media screen and (max-width: ${size.pc})`,
   //   tab: `@media screen and (max-width: ${size.tab})`,

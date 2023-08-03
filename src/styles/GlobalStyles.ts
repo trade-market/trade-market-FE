@@ -1,7 +1,7 @@
-import * as styled from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
-const GlobalStyle = styled.createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${reset};
 
   * {
@@ -9,21 +9,18 @@ const GlobalStyle = styled.createGlobalStyle`
   }
 
   ${({ theme }) => {
-    return styled.css`
+    return css`
       body {
-        background-color: ${theme.color.mainBackground};
-        font-family: ${theme.font.family.base};
-        font-size: ${theme.font.size.small};
-        color: ${theme.color.mainFontColor};
-        user-select: none;
-        transition: all 0.25s linear;
+        background: gray;
+        font-family: ${theme.font.family.Pretendard_Regular};
       }
     `;
-}}
-  
+  }}
+
   a {
     text-decoration: none;
     color: inherit;
   }
 `;
+
 export default GlobalStyle;
