@@ -22,19 +22,8 @@ export const theme = {
   },
   font: {
     family: {
-      NotoSansKR_Thin: 'NotoSansKR_Thin',
-      NotoSansKR_Light: 'NotoSansKR_Light',
-      NotoSansKR_Regular: 'NotoSansKR_Regular ',
-      NotoSansKR_Medium: 'NotoSansKR_Medium',
-      NotoSansKR_Bold: 'NotoSansKR_Bold',
-      NotoSansKR_Black: 'NotoSansKR_Black',
-      Pretendard_Thin: 'Pretendard_Thin',
-      Pretendard_ExtraLight: 'Pretendard_ExtraLight',
-      Pretendard_Light: 'Pretendard_Light',
-      Pretendard_Regular: 'Pretendard_Regular',
-      Pretendard_Medium: 'Pretendard_Medium',
-      Pretendard_SemiBold: 'Pretendard_SemiBold',
-      Pretendard_ExtraBold: 'Pretendard_ExtraBold',
+      NotoSansKR: 'NotoSansKR',
+      Pretendard: 'Pretendard',
     },
   },
 

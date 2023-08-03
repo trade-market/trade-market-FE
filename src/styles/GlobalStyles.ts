@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     return css`
       body {
         background: gray;
-        font-family: ${theme.font.family.Pretendard_Regular};
+        font-family: ${theme.font.family.Pretendard};
       }
     `;
   }}

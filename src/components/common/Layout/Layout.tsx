@@ -1,3 +1,4 @@
+import GlobalFont from '../../../styles/GlobalFont';
 import GlobalStyle from '../../../styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 
@@ -9,6 +10,7 @@ function Layout({ children }: ILayoutProps) {
   return (
     <Wrapper>
       <GlobalStyle />
+      <GlobalFont />
       {children}
     </Wrapper>
   );
