@@ -56,27 +56,27 @@ export default createGlobalStyle`
   }
   @font-face {
     font-family: "Pretendard_Light";
-        src: url("Pretendard"), url(${Pretendard_Light}) format('otf');
+    src: url("Pretendard"), url(${Pretendard_Light}) format('otf');
     font-weight: 300;
   }
   @font-face {
     font-family: "Pretendard_Regular";
-        src: url("Pretendard"), url(${Pretendard_Regular}) format('otf');
+    src: url("Pretendard"), url(${Pretendard_Regular}) format('otf');
     font-weight: 400;
   }
   @font-face {
     font-family: "Pretendard_Medium";
-        src: url("Pretendard"), url(${Pretendard_Medium}) format('otf');
+    src: url("Pretendard"), url(${Pretendard_Medium}) format('otf');
     font-weight: 500;
   }
   @font-face {
     font-family: "Pretendard_SemiBold";
-        src: url("Pretendard"), url(${Pretendard_SemiBold}) format('otf');
+    src: url("Pretendard"), url(${Pretendard_SemiBold}) format('otf');
     font-weight: 600;
   }
   @font-face {
     font-family: "Pretendard_ExtraBold";
-        src: url("Pretendard"), url(${Pretendard_ExtraBold}) format('otf');
+    src: url("Pretendard"), url(${Pretendard_ExtraBold}) format('otf');
     font-weight: 700;
   }
 `;
