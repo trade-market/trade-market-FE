@@ -15,32 +15,32 @@ import Pretendard_ExtraBold from "../Assets/Fonts/Pretendard_ExtraBold.otf";
 
 export default createGlobalStyle`
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Thin";
     src: local("NotoSansKR"), url(${NotoSansKR_Thin}) format('otf');
     font-weight: 100;
   }
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Light";
     src: local("NotoSansKR"), url(${NotoSansKR_Light}) format('otf');
     font-weight: 300;
   }
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Regular";
     src: local("NotoSansKR"), url(${NotoSansKR_Regular}) format('otf');
     font-weight: 400;
   }
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Medium";
     src: local("NotoSansKR"), url(${NotoSansKR_Medium}) format('otf');
     font-weight: 500;
   }
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Bold";
     src: local("NotoSansKR"), url(${NotoSansKR_Bold}) format('otf');
     font-weight: 700;
   }
   @font-face {
-    font-family: "NotoSansKR";
+    font-family: "NotoSansKR_Black";
     src: local("NotoSansKR"), url(${NotoSansKR_Black}) format('otf');
     font-weight: 900;
   }
