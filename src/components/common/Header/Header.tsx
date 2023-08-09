@@ -1,14 +1,14 @@
 import CommonHeader from '../CommonHeader/CommonHeader';
-import { Wrapper } from "./HeaderStyles";
+import { Container } from "./HeaderStyles";
 
 const Header = () => {
   return (
     <CommonHeader>
-      <Wrapper>
-        <div className='location'>
-          상수동
-        </div>
-      </Wrapper>
+      <Container>
+          <div className='location'>
+            상수동
+          </div>
+        </Container>
     </CommonHeader>
   );
 };

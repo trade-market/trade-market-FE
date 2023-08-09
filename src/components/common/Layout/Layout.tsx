@@ -1,7 +1,7 @@
 import GlobalFont from '../../../styles/GlobalFont';
 import GlobalStyle from '../../../styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
-import Header from '../Header';
+import Header from '../Header/Header';
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 interface ILayoutProps {
