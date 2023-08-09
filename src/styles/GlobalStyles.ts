@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   ${({ theme }) => {
     return css`
       body {
-        background: gray;
+        background: #cbcbcb;
         font-family: ${theme.font.family.Pretendard};
       }
     `;

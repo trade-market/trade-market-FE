@@ -21,6 +21,7 @@ export const theme: DefaultTheme = {
   },
   color: {
     white: '#fff',
+    bgColor : '#fdfdfd', // 메인 배경색
   },
   font: {
     family: {
