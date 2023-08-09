@@ -29,7 +29,7 @@ export const SignUpContainer = styled.div``;
 
 export const SmallTitle = styled.div`
   font-size: ${({ theme }) => theme.font.size.small};
-  color: ${({ theme }) => theme.color.darkGray};
+  color: ${({ theme }) => theme.color.lightGray};
   margin-bottom: 12px;
 `;
 
@@ -37,10 +37,10 @@ export const SignUpButton = styled.button`
   width: 100%;
   padding: 17px 0px;
   font-weight: 600;
-  color: ${({ theme }) => theme.color.mainBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
   font-family: ${({ theme }) => theme.font.family.Pretendard};
   background-color: inherit;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.mainBlue};
+  border: 1px solid ${({ theme }) => theme.color.activeBlue};
   cursor: pointer;
 `;
