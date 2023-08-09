@@ -11,7 +11,7 @@ const NavigationBar = () => {
         <div>채팅</div>
       </div>
       <div className="item">
-        <img className="icon" src={require('./src_assets/logo192.png').default}  />
+        <img className="icon" src={home}  />
         <div>홈</div>
       </div>
       <div className="item">
