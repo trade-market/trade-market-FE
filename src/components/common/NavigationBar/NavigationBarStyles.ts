@@ -15,4 +15,18 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.bgColor};
   font-weight: 100;
   font-size: 12px;
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .icon {
+    width: 21px;
+    height: 21px;
+    margin-bottom: 3px;
+  }
+
 `;
