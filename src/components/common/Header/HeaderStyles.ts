@@ -14,7 +14,7 @@ export const Container = styled.div`
   }
   .item {
     flex-basis: auto;
-
+    cursor: pointer;
   }
   .item:nth-child(1) {
     font-size: 16px;
@@ -23,7 +23,7 @@ export const Container = styled.div`
   .item:nth-child(2), .item:nth-child(3) {
     margin-left: 15px;
     width: 22px;
-    height: 22px;
+    height: 20px;
   }
 `;
 
