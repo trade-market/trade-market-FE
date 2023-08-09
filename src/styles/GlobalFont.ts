@@ -14,7 +14,7 @@ import Pretendard_SemiBold from '../Assets/Fonts/Pretendard_SemiBold.otf';
 import Pretendard_ExtraBold from '../Assets/Fonts/Pretendard_ExtraBold.otf';
 
 export default createGlobalStyle`
-   @font-face {
+  @font-face {
     font-family: "Noto Sans KR";
     src: local("Noto Sans KR Thin"), url(${NotoSansKR_Thin}) format('opentype');
     font-weight: 100;
