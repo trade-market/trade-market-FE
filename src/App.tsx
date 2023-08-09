@@ -6,7 +6,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <div>안녕하세요</div>
       </Layout>
     </ThemeProvider>
   );
