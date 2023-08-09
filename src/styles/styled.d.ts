@@ -17,12 +17,20 @@ declare module 'styled-components' {
     };
     color: {
       white: string;
+      black: string;
+      darkGray: string;
       bgColor: string;
+      mainBlue: string;
     };
     font: {
       family: {
         NotoSansKR: string;
         Pretendard: string;
+      };
+      size: {
+        small: string;
+        base: string;
+        large: string;
       };
     };
 
