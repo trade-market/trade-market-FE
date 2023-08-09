@@ -6,9 +6,10 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: ${size.mobile};
-  min-height: 60px;
+  min-height: 55px;
   z-index: 10;
-  position: fixed;
+  position: sticky;
+  /* position: fixed; */
   top: 0;
   font-weight: 500;
   background-color: ${({ theme }) => theme.color.bgColor};
