@@ -23,6 +23,11 @@ function Auth() {
           ImageSrc={navermage}
         />
       </A.ButtonsContainer>
+      <A.DividedLine />
+      <A.SignUpContainer>
+        <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
+        <A.SignUpButton>회원가입</A.SignUpButton>
+      </A.SignUpContainer>
     </A.Container>
   );
 }

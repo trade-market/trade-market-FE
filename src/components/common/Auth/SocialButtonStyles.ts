@@ -13,7 +13,7 @@ export const Button = styled.button<{
   height: 52px;
   border-radius: 8px;
   border: ${({ border, theme }) =>
-    border ? `0.2px solid ${theme.color.darkGray}` : 'none'};
+    border ? `0.2px solid ${theme.color.black}` : 'none'};
   &:not(:last-child) {
     margin-bottom: 12px;
   }
