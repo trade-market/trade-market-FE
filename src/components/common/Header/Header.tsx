@@ -1,7 +1,7 @@
 import CommonHeader from '../CommonHeader/CommonHeader';
 import { Container } from './HeaderStyles';
-import search from '../../../Assets/Icons/HomeScreen/Search.svg';
-import temp from '../../../Assets/Icons/HomeScreen/MY_Black.svg';
+import search from '../../../Assets/Icons/Home/Search.svg';
+import Notification from '../../../Assets/Icons/Home/Notification.svg';
 
 const Header = () => {
   return (
@@ -10,7 +10,7 @@ const Header = () => {
         <div className="head">
           <div className="item">상수동</div>
           <img className="item" src={search} />
-          <img className="item" src={temp} />
+          <img className="item" src={Notification} />
         </div>
       </Container>
     </CommonHeader>

@@ -17,10 +17,11 @@ declare module 'styled-components' {
     };
     color: {
       white: string;
-      black: string;
-      darkGray: string;
       bgColor: string;
-      mainBlue: string;
+      black: string;
+      Mainblue: string;
+      lightGray: string;
+      activeBlue: string;
     };
     font: {
       family: {
