@@ -18,7 +18,9 @@ declare module 'styled-components' {
     color: {
       white: string;
       bgColor: string;
-      blue: string;
+      Mainblue: string;
+      lightGray: string;
+      activeBlue: string;
     };
     font: {
       family: {

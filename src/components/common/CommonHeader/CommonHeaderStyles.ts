@@ -8,7 +8,8 @@ export const Container = styled.div`
   max-width: ${size.mobile};
   min-height: 60px;
   z-index: 10;
-  position: fixed;
+  position: sticky;
+  /* position: fixed; */
   top: 0;
   font-weight: 500;
   background-color: ${({ theme }) => theme.color.bgColor};
