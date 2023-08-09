@@ -9,7 +9,7 @@ function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const toggleSignUp = () => {
-    setIsSignUp(!isSignUp);
+    setIsSignUp(true);
   };
 
   return (
