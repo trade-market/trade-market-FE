@@ -1,6 +1,6 @@
 import * as H from "./HomeStyles";
 import Swiper from "./Swiper/Swiper";
-import Exchange from "./Exchange/Exchange";
+import Exchange from "./Exchange/ExchangeMenu/Exchange";
 import WriteButton from "./WriteButton/WriteButton";
 
 const Main = () => {

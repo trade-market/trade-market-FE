@@ -1,4 +1,4 @@
-import ExchangeMenu from './ExchangeMenu/ExchangeMenu';
+import ExchangeMenu from './ExchangeMenu';
 
 const Exchange = () => {
 
