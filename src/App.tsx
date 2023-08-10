@@ -8,14 +8,14 @@ import Auth from './Pages/Auth/Auth';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Layout>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-          </Routes>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/auth" element={<Auth />} />
+            </Routes>
+        </Layout>
         </BrowserRouter>
-      </Layout>
     </ThemeProvider>
   );
 }

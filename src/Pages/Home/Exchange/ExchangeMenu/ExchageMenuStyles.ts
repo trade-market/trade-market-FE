@@ -47,14 +47,9 @@ export const ExchangeContainer = styled.div`
     padding: 12px 10px;
     cursor: pointer;
   }
-
   .iconName {
     font-size: 12px;
     font-weight: 300;
     margin-top: 7px;
   }
-  
-  
-  /* background-color: yellow; */
-
 `;
