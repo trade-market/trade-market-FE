@@ -1,22 +1,35 @@
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Container } from './NavigationBarStyles';
-import chat from '../../../Assets/Icons/Home/Chat_Disable.svg';
-import home from '../../../Assets/Icons/Home/Home_Disable.svg';
-import my from '../../../Assets/Icons/Home/MY_Disable.svg';
+import NaviChat from './NaviMenu/NaviChat';
+import NaviHome from './NaviMenu/NaviHome';
+import NaviMy from "./NaviMenu/NaviMy";
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
+  const [activeNav, setActiveNav] = useState(2);
+  
+  if (window.location.pathname === '/auth') return null;
+  
   return (
     <Container>
-      <div className="item">
-        <img className="icon" src={chat} />
-        <div>채팅</div>
+      <div className="item" onClick={() => {
+        navigate("/");
+        setActiveNav(1); }}>
+        <NaviChat
+        activeNav={activeNav} />
       </div>
-      <div className="item">
-        <img className="icon" src={home} />
-        <div>홈</div>
+      <div className="item" onClick={() => {
+        navigate("/");
+        setActiveNav(2); }}>
+        <NaviHome
+        activeNav={activeNav} />
       </div>
-      <div className="item">
-        <img className="icon" src={my} />
-        <div>MY</div>
+      <div className="item" onClick={() => {
+        navigate("/");
+        setActiveNav(3); }}>
+        <NaviMy
+        activeNav={activeNav} />
       </div>
     </Container>
   );
