@@ -43,7 +43,7 @@ export const ExchangeContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 12px 10px;
+    margin: 12px 10px;
     cursor: pointer;
   }
   .iconName {
