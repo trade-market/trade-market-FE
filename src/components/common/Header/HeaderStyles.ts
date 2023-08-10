@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding: 0 30px;
   margin: 0 auto;
 
-  .head {
+  .header {
     display: flex;
     align-items: center;
     width: 100%;
@@ -14,16 +14,23 @@ export const Container = styled.div`
   }
   .item {
     flex-basis: auto;
-    cursor: pointer;
   }
   .item:nth-child(1) {
-    font-size: 16px;
     flex-grow: 1;
   }
   .item:nth-child(2), .item:nth-child(3) {
     margin-left: 15px;
     width: 22px;
     height: 20px;
+    cursor: pointer;
+    flex-grow: 0;
+    cursor: pointer;
+  }
+  .location {
+    display: flex;
+    width : max-content;
+    cursor: pointer;
+    font-size: 16px;
   }
 `;
 
