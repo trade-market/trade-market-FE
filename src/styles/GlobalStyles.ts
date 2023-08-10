@@ -14,13 +14,17 @@ const GlobalStyle = createGlobalStyle`
         background: #cbcbcb;
         font-family: ${theme.font.family.Pretendard};
       }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        font-family: ${theme.font.family.Pretendard};
+      }
     `;
   }}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+
 `;
 
 export default GlobalStyle;
