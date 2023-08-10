@@ -28,7 +28,7 @@ export const Memubar = styled.div`
 
     &.active {
       color : ${({ theme }) => theme.color.activeBlue}; 
-      border-bottom: 1.5px solid ${({ theme }) => theme.color.activeBlue}; 
+      border-bottom: 1.7px solid ${({ theme }) => theme.color.activeBlue}; 
     } 
   }
 `;

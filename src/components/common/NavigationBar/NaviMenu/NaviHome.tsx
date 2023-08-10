@@ -11,12 +11,12 @@ const NaviIcon = ({ activeNav, }: INaviIconnProps) => {
       {activeNav === 2 ?
         <>
           <img className="icon" src={Home_able} />
-          <div className='active'>채팅</div>
+          <div className='active'>홈</div>
         </>
         :
         <>
           <img className="icon" src={Home_Disable} />
-          <div>채팅</div>
+          <div>홈</div>
         </>
       } 
     </>
