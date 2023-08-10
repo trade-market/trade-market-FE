@@ -1,11 +1,11 @@
 import MY_able from '../../../../Assets/Icons/Home/MY_able.svg';
 import MY_Disable from '../../../../Assets/Icons/Home/MY_Disable.svg';
 
-interface INaviIconnProps {
+interface INaviIconProps {
   activeNav: Number;
 }
 
-const NaviIcon = ({ activeNav, }: INaviIconnProps) => {
+const NaviIcon = ({ activeNav, }: INaviIconProps) => {
   return (
     <> 
       {activeNav === 3 ?

@@ -1,11 +1,11 @@
 import Chat_able from "../../../../Assets/Icons/Home/Chat_able.svg";
 import Chat_Disable from '../../../../Assets/Icons/Home/Chat_Disable.svg';
 
-interface INaviIconnProps {
+interface INaviIconProps {
   activeNav: Number;
 }
 
-const NaviIcon = ({ activeNav, }: INaviIconnProps) => {
+const NaviIcon = ({ activeNav, }: INaviIconProps) => {
   return (
     <>
       {activeNav === 1 ?
