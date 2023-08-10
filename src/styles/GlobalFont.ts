@@ -46,37 +46,37 @@ export default createGlobalStyle`
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_Thin"), url(${Pretendard_Thin}) format('opentype');
+    src: local("Pretendard_Thin"), url(${Pretendard_Thin}) format('opentype');
     font-weight: 100;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_ExtraLight"), url(${Pretendard_ExtraLight}) format('opentype');
+    src: local("Pretendard_ExtraLight"), url(${Pretendard_ExtraLight}) format('opentype');
     font-weight: 200;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_Light"), url(${Pretendard_Light}) format('opentype');
+    src: local("Pretendard_Light"), url(${Pretendard_Light}) format('opentype');
     font-weight: 300;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_Regular"), url(${Pretendard_Regular}) format('opentype');
+    src: local("Pretendard_Regular"), url(${Pretendard_Regular}) format('opentype');
     font-weight: 400;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_Medium"), url(${Pretendard_Medium}) format('opentype');
+    src: local("Pretendard_Medium"), url(${Pretendard_Medium}) format('opentype');
     font-weight: 500;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_SemiBold"), url(${Pretendard_SemiBold}) format('opentype');
+    src: local("Pretendard_SemiBold"), url(${Pretendard_SemiBold}) format('opentype');
     font-weight: 600;
   }
   @font-face {
     font-family: "Pretendard";
-    src: url("Pretendard_ExtraBold"), url(${Pretendard_ExtraBold}) format('opentype');
+    src: local("Pretendard_ExtraBold"), url(${Pretendard_ExtraBold}) format('opentype');
     font-weight: 700;
   }
 `;
