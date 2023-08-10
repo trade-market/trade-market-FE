@@ -4,7 +4,7 @@ import SebSection from "./SebSection";
 
 interface IPostComponentProps {
   post: {
-    type: string;
+    type: number;
     image: string;
     title: string;
     want: string;
