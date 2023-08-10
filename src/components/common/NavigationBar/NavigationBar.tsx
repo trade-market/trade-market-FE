@@ -8,7 +8,9 @@ import NaviMy from "./NaviMenu/NaviMy";
 const NavigationBar = () => {
   const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState(2);
-
+  
+  if (window.location.pathname === '/auth') return null;
+  
   return (
     <Container>
       <div className="item" onClick={() => {
