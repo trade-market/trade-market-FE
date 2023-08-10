@@ -22,3 +22,5 @@ const SebSection = ({ like, location, date }: ISebSectionProps) => {
 };
 
 export default SebSection;
+
+// todo : 기능 구현 시 like 상태를 가져와 API를 통해 true, false 를 송신하고 다시 값을 가져와 렌더링한다.

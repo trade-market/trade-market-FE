@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { Wrapper, PostContainer } from "./OurTownPostStyles";
 import PostComponent from "./PostComponents/PostComponent";
 import { Data } from "./DumyData";
