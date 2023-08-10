@@ -13,7 +13,7 @@ export const Container = styled.div`
   z-index: 10;
   bottom: 0;
   background-color: ${({ theme }) => theme.color.bgColor};
-  font-weight: 100;
+  font-weight: 300;
   font-size: 12px;
 
   .item {
@@ -22,6 +22,9 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    .active {
+      color : ${({ theme }) => theme.color.Mainblue};
+    }
   }
   .icon {
     width: 21px;

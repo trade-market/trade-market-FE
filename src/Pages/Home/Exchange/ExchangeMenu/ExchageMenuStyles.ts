@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  /* background-color: lavender; */
   display: flex;
   flex-direction: column;
-  height: 500px;
+  /* height: 500px; */
   width: 100%;
 `;
 
@@ -28,7 +27,7 @@ export const Memubar = styled.div`
 
     &.active {
       color : ${({ theme }) => theme.color.activeBlue}; 
-      border-bottom: 1.5px solid ${({ theme }) => theme.color.activeBlue}; 
+      border-bottom: 1.7px solid ${({ theme }) => theme.color.activeBlue}; 
     } 
   }
 `;
@@ -47,14 +46,9 @@ export const ExchangeContainer = styled.div`
     padding: 12px 10px;
     cursor: pointer;
   }
-
   .iconName {
     font-size: 12px;
     font-weight: 300;
     margin-top: 7px;
   }
-  
-  
-  /* background-color: yellow; */
-
 `;
