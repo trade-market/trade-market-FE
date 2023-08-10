@@ -1,12 +1,12 @@
 import * as H from "./HomeStyles";
-import Swiper from "./Swiper/Swiper";
+import SwiperBanner from "./Swiper/SwiperBanner";
 import ExchangeMenu from "./Exchange/ExchangeMenu/ExchangeMenu";
 import WriteButton from "./WriteButton/WriteButton";
 
 const Main = () => {
   return (
     <H.Wrapper>
-      <Swiper />
+      <SwiperBanner />
       <ExchangeMenu />
       
       <WriteButton />
