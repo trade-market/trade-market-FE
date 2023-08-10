@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as A from './AuthStyles';
-import SocialButton from '../../components/common/Auth/SocialButton';
+import SocialButton from '../../components/Auth/SocialButton';
 import kakaoImage from '../../Assets/Images/kakao.png';
 import googleImage from '../../Assets/Images/google.png';
 import navermage from '../../Assets/Images/naver.png';
