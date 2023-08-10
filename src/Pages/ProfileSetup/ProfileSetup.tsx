@@ -1,5 +1,7 @@
+import BigTitle from '../../components/common/BigTitle';
+
 function ProfileSetup() {
-  return <div>ProfileSetup</div>;
+  return <BigTitle>ProfileSetup</BigTitle>;
 }
 
 export default ProfileSetup;

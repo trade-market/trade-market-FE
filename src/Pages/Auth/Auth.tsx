@@ -4,6 +4,7 @@ import SocialButton from '../../components/Auth/SocialButton';
 import kakaoImage from '../../Assets/Images/kakao.png';
 import googleImage from '../../Assets/Images/google.png';
 import navermage from '../../Assets/Images/naver.png';
+import BigTitle from '../../components/common/BigTitle';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,7 +15,7 @@ function Auth() {
 
   return (
     <A.Container>
-      <A.Title>{isSignUp ? '회원 가입하기' : '로그인하기'}</A.Title>
+      <BigTitle>{isSignUp ? '회원 가입하기' : '로그인하기'}</BigTitle>
       <A.ButtonsContainer>
         <SocialButton
           text="구글"
