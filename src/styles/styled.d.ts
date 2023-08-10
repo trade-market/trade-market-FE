@@ -18,6 +18,7 @@ declare module 'styled-components' {
     color: {
       white: string;
       bgColor: string;
+      black: string;
       Mainblue: string;
       lightGray: string;
       activeBlue: string;
@@ -26,6 +27,11 @@ declare module 'styled-components' {
       family: {
         NotoSansKR: string;
         Pretendard: string;
+      };
+      size: {
+        small: string;
+        base: string;
+        large: string;
       };
     };
 

@@ -24,12 +24,18 @@ export const theme: DefaultTheme = {
     bgColor: '#fdfdfd', // 메인 배경색
     Mainblue: '#007af7',
     lightGray: '#797979',
-    activeBlue : '#2156F2'
+    black: '#0B0B0B',
+    activeBlue: '#2156F2',
   },
   font: {
     family: {
       NotoSansKR: 'NotoSansKR',
       Pretendard: 'Pretendard',
+    },
+    size: {
+      small: '12px',
+      base: '14px',
+      large: '18px',
     },
   },
 
