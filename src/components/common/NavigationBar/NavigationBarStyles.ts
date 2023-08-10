@@ -28,5 +28,4 @@ export const Container = styled.div`
     height: 21px;
     margin-bottom: 3px;
   }
-
 `;
