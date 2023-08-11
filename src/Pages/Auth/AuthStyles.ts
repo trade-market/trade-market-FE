@@ -38,7 +38,6 @@ export const SignUpButton = styled.button`
   padding: 17px 0px;
   font-weight: 600;
   color: ${({ theme }) => theme.color.activeBlue};
-  font-family: ${({ theme }) => theme.font.family.Pretendard};
   background-color: inherit;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.color.activeBlue};

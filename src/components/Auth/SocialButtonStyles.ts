@@ -18,7 +18,6 @@ export const Button = styled.button<{
     margin-bottom: 12px;
   }
   background-color: ${({ bgColor }) => bgColor};
-  font-family: ${({ theme }) => theme.font.family.Pretendard};
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 600;
   color: ${({ fontColor }) => fontColor && '#fff'};
