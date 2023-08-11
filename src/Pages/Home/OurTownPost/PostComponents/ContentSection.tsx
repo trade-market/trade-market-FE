@@ -1,4 +1,4 @@
-import Icon_exchang from "../../../../Assets/Icons/Home/Post/Icon_exchang.svg";
+import Icon_exchang from '@Assets/Icons/Home/Post/Icon_exchang.svg';
 
 interface IContentSectionProps {
   title: string;
@@ -8,12 +8,12 @@ interface IContentSectionProps {
 
 const ContentSection = ({ title, want, category }: IContentSectionProps) => {
   return (
-      <section className="content-section">
-        <div>
-          <div className='item'>{title}</div>
-          <img className='item' src={Icon_exchang} />
-          <div className='item'>{want}</div>
-        </div>
+    <section className="content-section">
+      <div>
+        <div className="item">{title}</div>
+        <img className="item" src={Icon_exchang} />
+        <div className="item">{want}</div>
+      </div>
       <div className="item">{category}</div>
     </section>
   );

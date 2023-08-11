@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import 'swiper/css'; 
-import { Container } from "./SwiperBannerStyles";
-import banner from "../../../Assets/Icons/Home/Banner.svg";
+import 'swiper/css';
+import { Container } from './SwiperBannerStyles';
+import banner from '@Assets/Icons/Home/Banner.svg';
 
 const SwiperBanner = () => {
   const banners = [banner, banner, banner];
@@ -16,15 +16,13 @@ const SwiperBanner = () => {
         loop={true}
         modules={[Autoplay]}
       >
-      {
-        banners.map((banner, index) => {
+        {banners.map((banner, index) => {
           return (
-            <SwiperSlide className='slide-item' key={index}>
+            <SwiperSlide className="slide-item" key={index}>
               <img src={banner} />
             </SwiperSlide>
-          )
-        })
-      }
+          );
+        })}
       </Swiper>
     </Container>
   );

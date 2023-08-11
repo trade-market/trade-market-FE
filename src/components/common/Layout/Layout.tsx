@@ -1,7 +1,7 @@
-import GlobalStyle from '../../../styles/GlobalStyles';
+import GlobalStyle from '@/styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
-import Header from '../Header/Header';
-import NavigationBar from '../NavigationBar/NavigationBar';
+import Header from '@components/common/Header/Header';
+import NavigationBar from '@components/common/NavigationBar/NavigationBar';
 
 interface ILayoutProps {
   children: React.ReactNode;
