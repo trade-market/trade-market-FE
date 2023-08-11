@@ -8,7 +8,6 @@ export const Container = styled.div`
   max-width: ${size.mobile};
   min-height: 48px;
   z-index: 10;
-  /* position: sticky; */
   position: fixed;
   top: 0;
   font-size: ${({ theme }) => theme.font.size.large};
