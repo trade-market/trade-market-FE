@@ -40,6 +40,13 @@ export const Input = styled.input`
   }
 `;
 
+export const ErrorText = styled.div`
+  margin-top: 12px;
+  font-size: ${({ theme }) => theme.font.size.small};
+  color: red;
+  text-align: center;
+`;
+
 export const Button = styled.button<{ disabled: boolean }>`
   width: 100%;
   max-width: 135px;
