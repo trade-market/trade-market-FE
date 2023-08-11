@@ -1,4 +1,3 @@
-import GlobalFont from '../../../styles/GlobalFont';
 import GlobalStyle from '../../../styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 import Header from '../Header/Header';
@@ -15,7 +14,6 @@ function Layout({ children }: ILayoutProps) {
   return (
     <Wrapper>
       <GlobalStyle />
-      <GlobalFont />
       {!hideComponents && <Header />}
       {children}
       {!hideComponents && <NavigationBar />}
