@@ -1,6 +1,6 @@
 import React from 'react';
-import BigTitle from '../../components/common/BigTitle';
-import * as P from '../../Pages/ProfileSetup/ProfileSetupStyles';
+import BigTitle from '@components/common/BigTitle';
+import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
 
 interface NicknameSettingProps {
   nickname: string;

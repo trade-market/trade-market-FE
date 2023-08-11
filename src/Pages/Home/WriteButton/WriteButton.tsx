@@ -1,5 +1,5 @@
-import { Container } from "./WriteButtonStyles";
-import WriteBtn from '../../../Assets/Icons/Home/WriteBtn.svg';
+import { Container } from './WriteButtonStyles';
+import WriteBtn from '@Assets/Icons/Home/WriteBtn.svg';
 
 const WriteButton = () => {
   return (
