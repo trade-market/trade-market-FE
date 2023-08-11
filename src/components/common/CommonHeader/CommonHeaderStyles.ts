@@ -13,4 +13,5 @@ export const Container = styled.div`
   font-size: ${({ theme }) => theme.font.size.large};
   font-weight: 600;
   background-color: ${({ theme }) => theme.color.bgColor};
+  justify-content: center;
 `;
