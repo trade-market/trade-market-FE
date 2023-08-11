@@ -6,13 +6,12 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: ${size.mobile};
-  min-height: 55px;
+  min-height: 48px;
   z-index: 10;
-  position: sticky;
-  /* position: fixed; */
+  /* position: sticky; */
+  position: fixed;
   top: 0;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: 600;
   background-color: ${({ theme }) => theme.color.bgColor};
 `;
-
-

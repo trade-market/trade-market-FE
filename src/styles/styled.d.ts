@@ -20,8 +20,11 @@ declare module 'styled-components' {
       bgColor: string;
       black: string;
       Mainblue: string;
+      gray: string;
       lightGray: string;
+      whiteGray: string;
       activeBlue: string;
+      disableBtn: string;
     };
     font: {
       family: {
