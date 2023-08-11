@@ -25,10 +25,7 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           value={nickname}
           onChange={handleNickname}
         />
-        <P.Button
-          disabled={nickname.length === 0}
-          onClick={handleNicknameCheck}
-        >
+        <P.Button disabled={nickname.length < 2} onClick={handleNicknameCheck}>
           중복확인
         </P.Button>
       </P.InputContainer>
