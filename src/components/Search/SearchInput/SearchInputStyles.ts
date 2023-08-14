@@ -5,6 +5,16 @@ export const InputContainer = styled.div`
   margin-top: 8px;
   display: flex;
   padding: 10px 20px;
+  position: relative;
+
+  img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 86.5%;
+    top: 35%;
+    cursor: pointer;
+  }
 `;
 
 export const Input = styled.input`

@@ -19,12 +19,11 @@ export const Wrapper = styled.div`
     display: flex;
     padding: 8px 0;
     align-items: center;
-    /* background-color: blueviolet; */
   }
 
   .no {
     font-weight: 600;
-    margin-right: 15px;
+    margin-right: 12px;
   }
   
   .content {
