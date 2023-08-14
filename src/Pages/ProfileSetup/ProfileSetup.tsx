@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import * as P from './ProfileSetupStyles';
-import CommonHeader from '../../components/common/CommonHeader/CommonHeader';
-import NicknameSetting from '../../components/ProfileSetup/NicknameSetting';
-import AddressSetting from '../../components/ProfileSetup/AddressSetting';
+import CommonHeader from '@components/common/CommonHeader/CommonHeader';
+import NicknameSetting from '@components/ProfileSetup/NicknameSetting';
+import AddressSetting from '@components/ProfileSetup/AddressSetting';
 
 function ProfileSetup() {
   const [nickname, setNickname] = useState('');
