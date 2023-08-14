@@ -5,6 +5,7 @@ import Layout from './components/common/Layout/Layout';
 import Home from './Pages/Home/Home';
 import Auth from './Pages/Auth/Auth';
 import ProfileSetup from './Pages/ProfileSetup/ProfileSetup';
+import Search from './Pages/Search/Search';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/profile-setup" element={<ProfileSetup />} />
+            <Route path='/search' element={ <Search /> } />
           </Routes>
         </Layout>
       </BrowserRouter>

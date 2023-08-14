@@ -9,14 +9,15 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const currentPath = window.location.pathname;
-  const hideComponents = ['/auth', '/profile-setup'].includes(currentPath);
+  const hideHeader = ['/auth', '/profile-setup', '/search'].includes(currentPath);
+  const hideNavigation = ['/auth', '/profile-setup'].includes(currentPath);
 
   return (
     <Wrapper>
       <GlobalStyle />
-      {!hideComponents && <Header />}
+      {!hideHeader && <Header />}
       {children}
-      {!hideComponents && <NavigationBar />}
+      {!hideNavigation && <NavigationBar />}
     </Wrapper>
   );
 }
