@@ -25,7 +25,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.color.whiteGray};
   font-family: ${({ theme }) => theme.font.family.Pretendard};
   font-size: ${({ theme }) => theme.font.size.small};
-  background-color: ${({ theme }) => theme.color.searchBg};
+  background-color: ${({ theme }) => theme.color.inputGray};
 
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
