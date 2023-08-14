@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import * as S from "./RecentSearchStyles";
 import Close from "@Assets/Icons/Search/Close.svg";
 import BigTitle from '@components/common/BigTitle';
