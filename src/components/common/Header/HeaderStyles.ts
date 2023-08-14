@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  padding: 0 30px;
+  padding: 0 10px 0 20px;
   margin: 0 auto;
 
   .header {
@@ -19,9 +19,9 @@ export const Container = styled.div`
     flex-grow: 1;
   }
   .item:nth-child(2), .item:nth-child(3) {
-    margin-left: 15px;
-    width: 22px;
-    height: 20px;
+    margin-left: 12px;
+    width: 23px;
+    height: 23px;
     cursor: pointer;
     flex-grow: 0;
     cursor: pointer;
