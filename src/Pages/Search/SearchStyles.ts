@@ -17,5 +17,5 @@ export const Container = styled.div`
 `;
 
 export const Line = styled.div`
-  border-bottom: 1.5px solid #eaeaeb;
+  border-bottom: 1.5px solid ${({ theme }) => theme.color.whiteGray};
 `

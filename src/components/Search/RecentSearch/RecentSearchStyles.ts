@@ -33,4 +33,12 @@ export const Container = styled.div`
     cursor: pointer;
     margin-left: 3px;
   }
+
+  .no-keyword {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0 0 0;
+    color: #b5b5b5;
+  }
 `;

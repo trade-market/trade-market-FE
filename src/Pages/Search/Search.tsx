@@ -9,16 +9,16 @@ const Search = () => {
     JSON.parse(localStorage.getItem('keywords') || '[]'),
     );
 
-  // const handleAddKeyword = (text) => {
-  //   const newKeyword = text;
-  //   setKeywords[...newKeyword, ...keywords];
-  // }
+  // // const handleAddKeyword = (text) => {
+  // //   const newKeyword = text;
+  // //   setKeywords[...newKeyword, ...keywords];
+  // // }
 
-  //keyword에 변화가 일어날때만 랜더링
-  useEffect(() => {
-    const keyword = JSON.stringify(keywords);
-    localStorage.setItem('keywords', JSON.stringify(keyword))
-  }, [keywords]);
+  // //keyword에 변화가 일어날때만 랜더링
+  // useEffect(() => {
+  //   const keyword = JSON.stringify(keywords);
+  //   localStorage.setItem('keywords', JSON.stringify(keyword))
+  // }, [keywords]);
 
   return (
     <S.Wrapper>
