@@ -1,8 +1,8 @@
 import * as H from "./HomeStyles";
-import SwiperBanner from "./Swiper/SwiperBanner";
-import ExchangeMenu from "./Exchange/ExchangeMenu/ExchangeMenu";
-import WriteButton from "./WriteButton/WriteButton";
-import OurTownPost from "./OurTownPost/OurTownPost";
+import SwiperBanner from "../../components/Home/Swiper/SwiperBanner";
+import ExchangeMenu from "../../components/Home/Exchange/ExchangeMenu/ExchangeMenu";
+import WriteButton from "../../components/Home/WriteButton/WriteButton";
+import OurTownPost from "../../components/Home/OurTownPost/OurTownPost";
 
 const Main = () => {
   return (
