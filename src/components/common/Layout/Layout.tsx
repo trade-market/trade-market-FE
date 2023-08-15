@@ -10,9 +10,22 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const currentPath = window.location.pathname;
-  const hideHeader = ['/auth', '/profile-setup', '/search'].includes(currentPath);
-  const hideNavigation = ['/auth', '/profile-setup'].includes(currentPath);
-  const hideWriteButton = ['/auth', '/profile-setup'].includes(currentPath);
+  const hideHeader = [
+    '/auth',
+    '/profile-setup',
+    '/profile-setup/set-location',
+    '/search',
+  ].includes(currentPath);
+  const hideNavigation = [
+    '/auth',
+    '/profile-setup',
+    '/profile-setup/set-location',
+  ].includes(currentPath);
+  const hideWriteButton = [
+    '/auth',
+    '/profile-setup',
+    '/profile-setup/set-location',
+  ].includes(currentPath);
 
   return (
     <Wrapper>

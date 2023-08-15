@@ -1,6 +1,7 @@
 import React from 'react';
-import BigTitle from '../../components/common/BigTitle';
-import * as P from '../../Pages/ProfileSetup/ProfileSetupStyles';
+import BigTitle from '@components/common/BigTitle';
+import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import { Link } from 'react-router-dom';
 
 interface AddressSettingProps {
   address: string;
@@ -24,7 +25,9 @@ const AddressSetting: React.FC<AddressSettingProps> = ({
         />
         <P.Button disabled={address.length === 0}>검색</P.Button>
       </P.InputContainer>
-      <P.CurrentLocationBtn>현재 위치로 설정</P.CurrentLocationBtn>
+      <Link to="set-location">
+        <P.CurrentLocationBtn>현재 위치로 설정</P.CurrentLocationBtn>
+      </Link>
     </P.Section>
   );
 };
