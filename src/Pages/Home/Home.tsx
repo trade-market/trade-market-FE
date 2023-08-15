@@ -1,7 +1,6 @@
 import * as H from "./HomeStyles";
 import SwiperBanner from "@components/Home/Swiper/SwiperBanner";
 import ExchangeMenu from "@components/Home/Exchange/ExchangeMenu/ExchangeMenu";
-import WriteButton from "@components/Home/WriteButton/WriteButton";
 import OurTownPost from "@components/Home/OurTownPost/OurTownPost";
 
 const Main = () => {
@@ -10,7 +9,6 @@ const Main = () => {
       <SwiperBanner />
       <ExchangeMenu />
       <OurTownPost />
-      <WriteButton />
     </H.Wrapper>
   );
 };

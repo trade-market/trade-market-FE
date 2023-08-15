@@ -6,6 +6,7 @@ import Home from '@Pages/Home/Home';
 import Auth from '@Pages/Auth/Auth';
 import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
 import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
+import Search from '@Pages/Search/Search';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               path="/profile-setup/set-location"
               element={<SetLocation />}
             />
+            <Route path="/search" element={<Search />} />
           </Routes>
         </Layout>
       </BrowserRouter>
