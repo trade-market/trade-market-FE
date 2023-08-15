@@ -3,19 +3,35 @@ import * as S from "./RecentSearchStyles";
 import Close from "@Assets/Icons/Search/Close.svg";
 import BigTitle from '@components/common/BigTitle';
 
-const RecentSearsh = () => {
-  const keywords = ['쿠첸 밥솥', '컨버스 운동화', '운동화', '보조배터리', '충전기'];
+//   interface IUser {
+//   id: number,
+//   text : string
+// }
+
+interface IRecentSearshProps {
+  keywords: any;
+  onClearKeywords: () => void;
+  onRemoveKeyword: (id: number) => void;
+}
+
+const RecentSearsh = ({keywords, onClearKeywords, onRemoveKeyword }: IRecentSearshProps) => {
+  const temp = ['쿠첸 밥솥', '컨버스 운동화', '운동화', '보조배터리', '충전기'];
+  console.log(keywords)
 
   return (
     <S.Container className="recent">
-        <BigTitle>최근 검색어</BigTitle>
+      <BigTitle>최근 검색어</BigTitle>
+      <button onClick={onClearKeywords}>전체 삭제</button>
         <div className="keywords">
-        {keywords.length > 0 ?
-          keywords.map((keword, i) => {
+        {temp.length > 0 ?
+          temp.map((keword, i) => {
             return (
               <div className="keyword" key={i}>
                 {keword}
-                <button className="deleteBtn">
+                <button
+                  className="deleteBtn"
+                  onClick={onRemoveKeyword}
+                >
                   <img src={Close} />
                 </button>
               </div>
