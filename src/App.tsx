@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styles/theme';
-import Layout from './components/common/Layout/Layout';
-import Home from './Pages/Home/Home';
-import Auth from './Pages/Auth/Auth';
-import ProfileSetup from './Pages/ProfileSetup/ProfileSetup';
+import { theme } from '@styles/theme';
+import Layout from '@components/common/Layout/Layout';
+import Home from '@Pages/Home/Home';
+import Auth from '@Pages/Auth/Auth';
+import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
+import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/profile-setup" element={<ProfileSetup />} />
+            <Route path="/profile-setup/" element={<ProfileSetup />} />
+            <Route
+              path="/profile-setup/set-location"
+              element={<SetLocation />}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>

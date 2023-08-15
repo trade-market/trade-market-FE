@@ -9,7 +9,11 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const currentPath = window.location.pathname;
-  const hideComponents = ['/auth', '/profile-setup'].includes(currentPath);
+  const hideComponents = [
+    '/auth',
+    '/profile-setup',
+    '/profile-setup/set-location',
+  ].includes(currentPath);
 
   return (
     <Wrapper>
