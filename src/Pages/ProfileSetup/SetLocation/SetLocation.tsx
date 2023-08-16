@@ -1,4 +1,4 @@
-import KakaoMap from '@components/ProfileSetup/SetLocation/KakaoMap';
+import KakaoMap from '@components/ProfileSetup/SetLocation/KakaoMap/KakaoMap';
 import * as S from './SetLocationStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 

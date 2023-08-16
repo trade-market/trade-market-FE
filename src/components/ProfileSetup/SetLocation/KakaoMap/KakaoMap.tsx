@@ -1,18 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import {
   setProfileAddress,
   setProfileCoordinates,
 } from '@store/slices/profileAddressSlice';
+import * as K from './KakaoMapStyles';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
 import CurrentLocation from '@components/ProfileSetup/SetLocation/CurrentLocation/CurrentLocation';
 import SetCurrentLocationBtn from '@components/ProfileSetup/SetLocation/SetCurrentLocationBtn';
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 function KakaoMap() {
   const container = useRef<HTMLDivElement>(null);
@@ -44,8 +39,6 @@ function KakaoMap() {
 
   const initializeMap = () => {
     if (container.current && currentPosition) {
-      console.log('render');
-
       const latLng = new kakao.maps.LatLng(
         currentPosition.latitude,
         currentPosition.longitude
@@ -73,10 +66,10 @@ function KakaoMap() {
   }, [initializeMap]);
 
   return (
-    <Container ref={container} style={{ width: '100%', height: '100%' }}>
+    <K.Container ref={container}>
       <SetCurrentLocationBtn onClick={initializeMap} />
       <CurrentLocation />
-    </Container>
+    </K.Container>
   );
 }
 
