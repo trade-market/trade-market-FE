@@ -1,7 +1,9 @@
-// src/components/KakaoMap.tsx
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setAddress } from '@store/slices/addressSlice';
+import {
+  setProfileAddress,
+  setProfileCoordinates,
+} from '@store/slices/profileAddressSlice';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
 
 interface IKakaoMapProps {
@@ -23,9 +25,15 @@ const KakaoMap = ({ width, height }: IKakaoMapProps) => {
         const { region_1depth_name, region_2depth_name, region_3depth_name } =
           result[0].address;
         dispatch(
-          setAddress(
+          setProfileAddress(
             `${region_1depth_name} ${region_2depth_name} ${region_3depth_name}`
           )
+        );
+        dispatch(
+          setProfileCoordinates({
+            latitude: coord.getLat(),
+            longitude: coord.getLng(),
+          })
         );
       }
     });

@@ -1,10 +1,9 @@
-// src/store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import addressSlice from './slices/addressSlice';
+import profileAddressSlice from './slices/profileAddressSlice';
 
 export const store = configureStore({
   reducer: {
-    address: addressSlice,
+    profileAddress: profileAddressSlice,
   },
   devTools: import.meta.env.DEV,
 });

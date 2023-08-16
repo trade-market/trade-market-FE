@@ -7,7 +7,9 @@ import SetCurrentLocationBtn from '../SetCurrentLocationBtn';
 import { useNavigate } from 'react-router-dom';
 
 function CurrentLocation() {
-  const address = useSelector((state: RootState) => state.address.value);
+  const address = useSelector(
+    (state: RootState) => state.profileAddress.address
+  );
   const navigate = useNavigate();
   const handleComplete = () => {
     navigate(-1);

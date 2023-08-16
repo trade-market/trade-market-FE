@@ -5,7 +5,9 @@ import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
 import { Link } from 'react-router-dom';
 
 function AddressSetting() {
-  const address = useSelector((state: RootState) => state.address.value);
+  const address = useSelector(
+    (state: RootState) => state.profileAddress.address
+  );
   return (
     <P.Section>
       <BigTitle>동네 설정</BigTitle>
