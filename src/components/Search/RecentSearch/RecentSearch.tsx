@@ -1,22 +1,17 @@
-// import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import f from "@Assets/Icons/Search/Close.svg"
 import * as S from "./RecentSearchStyles";
-import Close from "@Assets/Icons/Search/Close.svg";
 import BigTitle from '@components/common/BigTitle';
-
-//   interface IUser {
-//   id: number,
-//   text : string
-// }
+import { keyInterface } from "@Pages/Search/Search";
 
 interface IRecentSearshProps {
-  keywords: any;
+  keywords: keyInterface[];
   onClearKeywords: () => void;
   onRemoveKeyword: (id: number) => void;
 }
 
-const RecentSearsh = ({keywords, onClearKeywords, onRemoveKeyword }: IRecentSearshProps) => {
-  const temp = ['쿠첸 밥솥', '컨버스 운동화', '운동화', '보조배터리', '충전기'];
-  console.log(keywords)
+const RecentSearsh = ({ keywords, onClearKeywords, onRemoveKeyword }: IRecentSearshProps) => {
+  const navigate = useNavigate();
 
   return (
     <S.Container className="recent">
@@ -25,16 +20,17 @@ const RecentSearsh = ({keywords, onClearKeywords, onRemoveKeyword }: IRecentSear
         <button onClick={onClearKeywords}>전체 삭제</button>
       </div>
         <div className="keywords">
-        {temp.length > 0 ?
-          temp.map((keword, i) => {
+        {keywords?.length ?
+          keywords?.map((k) => {
             return (
-              <div className="keyword" key={i}>
-                {keword}
-                <button
+              //TODO 추후에 해당 게시물 검색 페이지 ('/')로 연결
+              <div className="keyword" key={k.id} onClick={() => navigate('/search')}>
+                {k.text}
+                <S.DeleteBtn
                   className="deleteBtn"
+                  onClick={() => onRemoveKeyword(k.id)}
                 >
-                  <img src={Close} />
-                </button>
+                </S.DeleteBtn>
               </div>
             )
           }) :

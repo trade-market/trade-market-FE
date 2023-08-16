@@ -4,23 +4,17 @@ import RecentSearsh from "@/components/Search/RecentSearch/RecentSearch";
 import NeighborhoodSearch from "@/components/Search/NeighborhoodSearch/NeighborhoodSearch";
 import SearchInput from "@/components/Search/SearchInput/SearchInput";
 
-interface keyInterface {
+export interface keyInterface {
   id: number
   text: string
 }
 
 const Search = () => {
-  const [keywords, setKeywords] = useState<keyInterface[]>([]);
+  const [keywords, setKeywords] = useState<keyInterface[]>(
+    JSON.parse(localStorage.getItem('keywords') || '[]'),
+  )
 
-  //* 1. window, 브라우저가 모두 렌더링된 상태에서 해당 함수를 실행할 수 있도록 한다.
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const result = localStorage.getItem('keywords') || '[]'
-      setKeywords(JSON.parse(result))
-    }
-  }, [])
-
-  //* 2. keywords가 변경될 경우 새롭게 localStroage의 아이템 'keywords'를 세팅한다.
+  //* 1. keywords가 변경될 경우 새롭게 localStroage의 아이템 'keywords'를 세팅한다.
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords))
   }, [keywords])
@@ -32,7 +26,6 @@ const Search = () => {
       text: text,
     }
     setKeywords([newKeyword, ...keywords]);
-    // setKeywords(keywords.unshift(newKeyword))
   }
 
   //* 단일 검색어 삭제
@@ -47,6 +40,13 @@ const Search = () => {
   const handleClearKeywords = () => {
     setKeywords([]);
   }
+
+  //* 2. 최근 검색어는 최대 5개씩만 노출 되도록 한다.
+  useEffect(() => {
+    if (keywords.length > 5) {
+      setKeywords(keywords.slice(0, 5))
+    }
+  }, [keywords])
 
   return (
     <S.Wrapper>
