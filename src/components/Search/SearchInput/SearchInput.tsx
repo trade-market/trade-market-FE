@@ -24,7 +24,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
   //* EnterKey로 검색
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (search && e.key === 'Enter') {
-      //엔터일때 부모의 onAddKeyword에 전달
+      // 엔터일때 부모의 onAddKeyword에 전달
       onAddKeyword(search)
       setSearch('')
     }
@@ -43,7 +43,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
           placeholder="검색"
           value={search}
           onChange={handleSearch}
-          onKeyUp={handleEnter}
+          onKeyPress={handleEnter}
           ref={inputRef}
           />
         <img src={searchIcon} onClick={handleClick}/>
