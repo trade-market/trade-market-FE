@@ -20,8 +20,10 @@ const RecentSearsh = ({keywords, onClearKeywords, onRemoveKeyword }: IRecentSear
 
   return (
     <S.Container className="recent">
-      <BigTitle>최근 검색어</BigTitle>
-      <button onClick={onClearKeywords}>전체 삭제</button>
+      <div className="menu">
+        <BigTitle>최근 검색어</BigTitle>
+        <button onClick={onClearKeywords}>전체 삭제</button>
+      </div>
         <div className="keywords">
         {temp.length > 0 ?
           temp.map((keword, i) => {
@@ -30,7 +32,6 @@ const RecentSearsh = ({keywords, onClearKeywords, onRemoveKeyword }: IRecentSear
                 {keword}
                 <button
                   className="deleteBtn"
-                  onClick={onRemoveKeyword}
                 >
                   <img src={Close} />
                 </button>

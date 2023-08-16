@@ -7,6 +7,22 @@ export const Container = styled.div`
   margin-top: 10px;
   flex-direction: column;
 
+  /* 최근 검색어 & 전체 삭제 */
+  .menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    > button {
+      background-color: transparent;
+      border: none;
+      padding-right: 12px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.color.gray};
+      font-size: ${({ theme }) => theme.font.size.small};
+    }
+  }
+
   .keywords {
     display: flex;
     flex-wrap: wrap;
