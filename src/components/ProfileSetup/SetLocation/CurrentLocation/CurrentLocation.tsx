@@ -1,9 +1,9 @@
 import * as C from './CurrentLocationStyles';
 import { useSelector } from 'react-redux';
+import { RootState } from '@store/types';
 import BigTitle from '@components/common/BigTitle';
 import { CompleteButton } from '@Pages/ProfileSetup/ProfileSetupStyles';
 import SetCurrentLocationBtn from '../SetCurrentLocationBtn';
-import { RootState } from '@/store/store';
 import { useNavigate } from 'react-router-dom';
 
 function CurrentLocation() {

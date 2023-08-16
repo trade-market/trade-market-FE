@@ -1,7 +1,7 @@
 // src/components/KakaoMap.tsx
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setAddress } from '@store/addressSlice';
+import { setAddress } from '@store/slices/addressSlice';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
 
 interface IKakaoMapProps {

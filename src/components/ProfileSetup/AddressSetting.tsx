@@ -1,4 +1,4 @@
-import { RootState } from '@/store/store';
+import { RootState } from '@store/types';
 import { useSelector } from 'react-redux';
 import BigTitle from '@components/common/BigTitle';
 import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
