@@ -15,13 +15,13 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
     setSearch(e.target.value);
   };
 
-  //* 클릭하여 검색
+  //* Click 검색
   const handleClick = () => {
     onAddKeyword(search);
     setSearch('');
   }
 
-  //* enterKey로 검색
+  //* EnterKey로 검색
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (search && e.key === 'Enter') {
       //엔터일때 부모의 onAddKeyword에 전달

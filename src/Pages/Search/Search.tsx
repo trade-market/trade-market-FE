@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import * as S from "./SearchStyles";
 import RecentSearsh from "@/components/Search/RecentSearch/RecentSearch";
 import NeighborhoodSearch from "@/components/Search/NeighborhoodSearch/NeighborhoodSearch";
@@ -45,7 +45,7 @@ const Search = () => {
   }
 
   //* 2. 최근 검색어는 최대 5개씩만 노출 되도록 한다.
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (keywords.length > 5) {
       setKeywords(keywords.slice(0, 5))
     }
