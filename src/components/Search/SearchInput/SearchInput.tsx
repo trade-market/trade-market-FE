@@ -1,30 +1,54 @@
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import * as S from "./SearchInputStyles";
 import searchIcon from "@Assets/Icons/Search/Search_active.svg";
 
-const SearchInput = () => {
+interface ISearchInputProps {
+  onAddKeyword: (string: string) => void
+}
+
+const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState<string>('');
-  
+
+  //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-  
+
+  //* Click 검색
+  const handleClick = () => {
+    onAddKeyword(search);
+    setSearch('');
+  }
+
+  //* EnterKey로 검색
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (search && e.key === 'Enter') {
+      // 엔터일때 부모의 onAddKeyword에 전달
+      onAddKeyword(search)
+      setSearch('')
+    }
+  }
+
+  //* 첫 rending시 input에 fucusing
   useLayoutEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
   });
 
   return (
-    <S.InputContainer>
-      <S.Input
-        type="text"
-        placeholder="검색"
-        value={search}
-        onChange={handleSearch}
-        ref={inputRef}
-      />
-      <img src={searchIcon}/>
-    </S.InputContainer>
+    <form>
+      <S.InputContainer>
+        <S.Input
+          type="text"
+          placeholder="검색"
+          value={search}
+          onChange={handleSearch}
+          onKeyPress={handleEnter}
+          ref={inputRef}
+          />
+        <img src={searchIcon} onClick={handleClick}/>
+      </S.InputContainer>
+    </form>
   );
 };
 

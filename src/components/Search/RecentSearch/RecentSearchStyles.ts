@@ -7,6 +7,22 @@ export const Container = styled.div`
   margin-top: 10px;
   flex-direction: column;
 
+  /* 최근 검색어 & 전체 삭제 */
+  .menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+  > button {
+      background-color: transparent;
+      border: none;
+      padding-right: 12px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.color.gray};
+      font-size: ${({ theme }) => theme.font.size.small};
+    }
+  }
+
   .keywords {
     display: flex;
     flex-wrap: wrap;
@@ -21,17 +37,9 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.color.activeBlue};
     font-size: ${({ theme }) => theme.font.size.small};
     border: 1px solid ${({ theme }) => theme.color.activeBlue};
-    padding: 5px 5px 5px 10px;
+    padding: 5px 5px 5px 8px;
     border-radius: 20px;
-    align-items: center;
-  }
-
-  .deleteBtn {
-    display: flex;
-    background-color: transparent;
-    border: none;
     cursor: pointer;
-    margin-left: 3px;
   }
 
   .no-keyword {
@@ -41,4 +49,16 @@ export const Container = styled.div`
     padding: 20px 0 0 0;
     color: #b5b5b5;
   }
+`;
+
+export const DeleteBtn = styled.button`
+  display: flex;
+  background-color: transparent;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  margin-left: 3px;
+  background: url('Close.svg') center no-repeat;
+  /* background: url('@Assets/Icons/Search/Close.svg') center no-repeat; */
+  background-size: 7px;
 `;
