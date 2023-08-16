@@ -25,7 +25,10 @@ const Search = () => {
       id: Date.now(),
       text: text,
     }
-    setKeywords([newKeyword, ...keywords]);
+    //! 빈 키워드는 추가 할 수 없게 제어
+    if (newKeyword.text !== "") {
+      setKeywords([newKeyword, ...keywords]);
+    }
   }
 
   //* 단일 검색어 삭제

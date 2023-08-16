@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import f from "@Assets/Icons/Search/Close.svg"
 import * as S from "./RecentSearchStyles";
 import BigTitle from '@components/common/BigTitle';
 import { keyInterface } from "@Pages/Search/Search";
@@ -29,8 +28,7 @@ const RecentSearsh = ({ keywords, onClearKeywords, onRemoveKeyword }: IRecentSea
                 <S.DeleteBtn
                   className="deleteBtn"
                   onClick={() => onRemoveKeyword(k.id)}
-                >
-                </S.DeleteBtn>
+                />
               </div>
             )
           }) :

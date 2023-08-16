@@ -39,7 +39,7 @@ export const Container = styled.div`
     border: 1px solid ${({ theme }) => theme.color.activeBlue};
     padding: 5px 5px 5px 8px;
     border-radius: 20px;
-    align-items: center;
+    cursor: pointer;
   }
 
   .no-keyword {

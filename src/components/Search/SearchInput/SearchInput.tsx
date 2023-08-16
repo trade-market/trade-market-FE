@@ -15,33 +15,40 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
     setSearch(e.target.value);
   };
 
-  //* enter 감지
+  //* 클릭하여 검색
+  const handleClick = () => {
+    onAddKeyword(search);
+    setSearch('');
+  }
+
+  //* enterKey로 검색
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    //엔터일때 부모의 addkeyword에 전달
     if (search && e.key === 'Enter') {
-      onAddKeyword(search);
-      setSearch('');
+      //엔터일때 부모의 onAddKeyword에 전달
+      onAddKeyword(search)
+      setSearch('')
     }
   }
-  
-  //* input에 fucusing
+
+  //* 첫 rending시 input에 fucusing
   useLayoutEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
   });
 
   return (
+    <form>
       <S.InputContainer>
         <S.Input
           type="text"
           placeholder="검색"
           value={search}
           onChange={handleSearch}
-          onKeyDown={handleEnter}
+          onKeyUp={handleEnter}
           ref={inputRef}
           />
-        <img src={searchIcon}/>
+        <img src={searchIcon} onClick={handleClick}/>
       </S.InputContainer>
-
+    </form>
   );
 };
 
