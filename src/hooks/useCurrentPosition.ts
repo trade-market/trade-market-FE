@@ -19,8 +19,6 @@ const useCurrentPosition = (): PositionType => {
 
   const handleSuccess = (pos: GeolocationPosition) => {
     const { latitude, longitude } = pos.coords;
-    console.log(pos.coords);
-
     setPosition({ latitude, longitude });
   };
 
