@@ -1,35 +1,28 @@
-import React from 'react';
+import { RootState } from '@/store/store';
+import { useSelector } from 'react-redux';
 import BigTitle from '@components/common/BigTitle';
 import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
 import { Link } from 'react-router-dom';
 
-interface AddressSettingProps {
-  address: string;
-  handleAddress: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const AddressSetting: React.FC<AddressSettingProps> = ({
-  address,
-  handleAddress,
-}) => {
-  // Todo: 현재 위치로 설정 버튼 클릭시 위치 설정하는 지도 페이지로 이동
+function AddressSetting() {
+  const address = useSelector((state: RootState) => state.address.value);
   return (
     <P.Section>
-      <BigTitle>지역 설정</BigTitle>
+      <BigTitle>동네 설정</BigTitle>
       <P.InputContainer>
         <P.Input
           type="text"
           placeholder="지번, 도로명, 건물명으로 검색"
           value={address}
-          onChange={handleAddress}
+          disabled={true}
         />
-        <P.Button disabled={address.length === 0}>검색</P.Button>
+        <P.Button disabled={false}>검색</P.Button>
       </P.InputContainer>
       <Link to="set-location">
-        <P.CurrentLocationBtn>현재 위치로 설정</P.CurrentLocationBtn>
+        <P.CurrentLocationBtn>현재 동네로 설정</P.CurrentLocationBtn>
       </Link>
     </P.Section>
   );
-};
+}
 
 export default AddressSetting;

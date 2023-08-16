@@ -14,7 +14,8 @@
       "@components/*": ["src/components/*"],
       "@Assets/*": ["src/Assets/*"],
       "@styles/*": ["src/styles/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@store/*": ["src/store/*"]
     },
 
     /* Bundler mode */
