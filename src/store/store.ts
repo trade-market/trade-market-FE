@@ -6,4 +6,5 @@ export const store = configureStore({
   reducer: {
     address: addressSlice,
   },
+  devTools: import.meta.env.DEV,
 });
