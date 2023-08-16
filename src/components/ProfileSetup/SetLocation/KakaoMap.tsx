@@ -1,17 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import {
   setProfileAddress,
   setProfileCoordinates,
 } from '@store/slices/profileAddressSlice';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
+import CurrentLocation from '@components/ProfileSetup/SetLocation/CurrentLocation/CurrentLocation';
+import SetCurrentLocationBtn from '@components/ProfileSetup/SetLocation/SetCurrentLocationBtn';
 
-interface IKakaoMapProps {
-  width: string;
-  height: string;
-}
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
-const KakaoMap = ({ width, height }: IKakaoMapProps) => {
+function KakaoMap() {
   const container = useRef<HTMLDivElement>(null);
   const currentPosition = useCurrentPosition();
   const dispatch = useDispatch();
@@ -39,8 +42,10 @@ const KakaoMap = ({ width, height }: IKakaoMapProps) => {
     });
   };
 
-  useEffect(() => {
+  const initializeMap = () => {
     if (container.current && currentPosition) {
+      console.log('render');
+
       const latLng = new kakao.maps.LatLng(
         currentPosition.latitude,
         currentPosition.longitude
@@ -61,9 +66,18 @@ const KakaoMap = ({ width, height }: IKakaoMapProps) => {
       displayCurrentLocationMarker();
       geoCoordToAddress(latLng);
     }
-  }, [currentPosition]);
+  };
 
-  return <div ref={container} style={{ width, height }} />;
-};
+  useEffect(() => {
+    initializeMap();
+  }, [initializeMap]);
+
+  return (
+    <Container ref={container} style={{ width: '100%', height: '100%' }}>
+      <SetCurrentLocationBtn onClick={initializeMap} />
+      <CurrentLocation />
+    </Container>
+  );
+}
 
 export default KakaoMap;

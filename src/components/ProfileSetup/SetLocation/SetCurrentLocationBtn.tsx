@@ -12,12 +12,17 @@ const Button = styled.div`
   background-color: none;
   position: absolute;
   right: 20px;
-  top: -68px;
+  bottom: 200px;
   cursor: pointer;
+  z-index: 99;
 `;
 
-function SetCurrentLocationBtn() {
-  return <Button />;
+interface ISetCurrentLocationBtnProps {
+  onClick: () => void;
+}
+
+function SetCurrentLocationBtn({ onClick }: ISetCurrentLocationBtnProps) {
+  return <Button onClick={onClick} />;
 }
 
 export default SetCurrentLocationBtn;
