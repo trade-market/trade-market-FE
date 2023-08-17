@@ -1,35 +1,44 @@
-import React from 'react';
+import { RootState } from '@store/types';
+import { useSelector } from 'react-redux';
 import BigTitle from '@components/common/BigTitle';
 import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-interface AddressSettingProps {
-  address: string;
-  handleAddress: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
+function AddressSetting() {
+  const address = useSelector(
+    (state: RootState) => state.profileAddress.address
+  );
+  const navigate = useNavigate();
+  const open = useDaumPostcodePopup();
 
-const AddressSetting: React.FC<AddressSettingProps> = ({
-  address,
-  handleAddress,
-}) => {
-  // Todo: 현재 위치로 설정 버튼 클릭시 위치 설정하는 지도 페이지로 이동
+  const handleComplete = (data: Address) => {
+    navigate('set-location', { state: { address: data.address } });
+  };
+
+  const handleSearchBtnClick = () => {
+    open({ onComplete: handleComplete });
+  };
+
   return (
     <P.Section>
-      <BigTitle>지역 설정</BigTitle>
+      <BigTitle>동네 설정</BigTitle>
       <P.InputContainer>
         <P.Input
           type="text"
           placeholder="지번, 도로명, 건물명으로 검색"
           value={address}
-          onChange={handleAddress}
+          disabled={true}
         />
-        <P.Button disabled={address.length === 0}>검색</P.Button>
+        <P.Button disabled={false} onClick={handleSearchBtnClick}>
+          검색
+        </P.Button>
       </P.InputContainer>
       <Link to="set-location">
-        <P.CurrentLocationBtn>현재 위치로 설정</P.CurrentLocationBtn>
+        <P.CurrentLocationBtn>현재 동네로 설정</P.CurrentLocationBtn>
       </Link>
     </P.Section>
   );
-};
+}
 
 export default AddressSetting;

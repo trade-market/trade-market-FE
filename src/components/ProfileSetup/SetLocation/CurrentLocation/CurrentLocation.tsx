@@ -1,17 +1,28 @@
 import * as C from './CurrentLocationStyles';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/types';
 import BigTitle from '@components/common/BigTitle';
 import { CompleteButton } from '@Pages/ProfileSetup/ProfileSetupStyles';
-import SetCurrentLocationBtn from '../SetCurrentLocationBtn';
+import { useNavigate } from 'react-router-dom';
 
 function CurrentLocation() {
+  const address = useSelector(
+    (state: RootState) => state.profileAddress.address
+  );
+  const navigate = useNavigate();
+  const handleComplete = () => {
+    navigate(-1);
+  };
+
   return (
     <C.Wrapper>
       <C.TitleContainer>
-        <C.SmallTitle>현재 위치</C.SmallTitle>
-        <BigTitle>서울특별시 용산구 서빙고로 17</BigTitle>
+        <C.SmallTitle>현재 동네</C.SmallTitle>
+        <BigTitle>{address}</BigTitle>
       </C.TitleContainer>
-      <SetCurrentLocationBtn />
-      <CompleteButton disabled={false}>이 위치로 주소 설정</CompleteButton>
+      <CompleteButton disabled={false} onClick={handleComplete}>
+        이 동네로 설정
+      </CompleteButton>
     </C.Wrapper>
   );
 }

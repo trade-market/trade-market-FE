@@ -14,6 +14,8 @@ export default defineConfig({
       },
       { find: '@Assets', replacement: path.resolve(__dirname, 'src/Assets') },
       { find: '@styles', replacement: path.resolve(__dirname, 'src/styles') },
+      { find: '@hooks', replacement: path.resolve(__dirname, 'src/hooks') },
+      { find: '@store', replacement: path.resolve(__dirname, 'src/store') },
     ],
   },
 });

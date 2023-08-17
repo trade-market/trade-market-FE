@@ -3,7 +3,7 @@ import { Wrapper } from './LayoutStyles';
 import Header from '@components/common/Header/Header';
 import NavigationBar from '@components/common/NavigationBar/NavigationBar';
 import WriteButton from '@/components/Home/WriteButton/WriteButton';
-
+import { useWindowSize } from '@hooks/useWindowDimensions';
 interface ILayoutProps {
   children: React.ReactNode;
 }
@@ -26,9 +26,10 @@ function Layout({ children }: ILayoutProps) {
     '/profile-setup',
     '/profile-setup/set-location',
   ].includes(currentPath);
+  const { height } = useWindowSize();
 
   return (
-    <Wrapper>
+    <Wrapper height={height}>
       <GlobalStyle />
       {!hideHeader && <Header />}
       {children}

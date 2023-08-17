@@ -7,7 +7,6 @@ import AddressSetting from '@components/ProfileSetup/AddressSetting';
 function ProfileSetup() {
   const [nickname, setNickname] = useState('');
   const [successNickname, setSuccessNickname] = useState(false); // 닉네임 중복확인 성공 여부
-  const [address, setAddress] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const handleNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +26,7 @@ function ProfileSetup() {
     // 성공시 닉네임 input 비활성화 + 중복확인 버튼 비활성화 + error 메시지 삭제
   };
 
-  const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress(e.target.value);
-    //Todo: 주소 검색 API 호출로 해야할 거 같음.
-  };
+  //Todo: 주소 검색 API로  호출
 
   // Todo: 완료 버튼 활성화 여부
   // 닉네임 중복확인 성공 && 주소 검색 성공
@@ -46,7 +42,7 @@ function ProfileSetup() {
             handleNickname={handleNickname}
             handleNicknameCheck={handleNicknameCheck}
           />
-          <AddressSetting address={address} handleAddress={handleAddress} />
+          <AddressSetting />
         </P.Section>
         <P.CompleteButton disabled={true}>완료</P.CompleteButton>
       </P.Wrapper>
