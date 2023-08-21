@@ -4,20 +4,23 @@ import Header from '@components/common/Header/Header';
 import NavigationBar from '@components/common/NavigationBar/NavigationBar';
 import WriteButton from '@/components/Home/WriteButton/WriteButton';
 import { useWindowSize } from '@hooks/useWindowDimensions';
+import { useLocation } from 'react-router-dom';
 
 interface ILayoutProps {
   children: React.ReactNode;
 }
 
 function Layout({ children }: ILayoutProps) {
-  const currentPath = window.location.pathname;
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const shouldHideComponent = (regex: RegExp) => regex.test(currentPath);
 
   const hiddenPaths = [
     /^\/auth/,
     /^\/profile-setup/,
     /^\/search/,
-    /^\/articles\/\d+$/, // /articles/:id
+    /^\/articles\/\w+$/, // /articles/:id
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
