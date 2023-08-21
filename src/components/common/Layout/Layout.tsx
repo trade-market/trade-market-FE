@@ -11,10 +11,9 @@ interface ILayoutProps {
 }
 
 function Layout({ children }: ILayoutProps) {
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const { pathname } = useLocation();
 
-  const shouldHideComponent = (regex: RegExp) => regex.test(currentPath);
+  const shouldHideComponent = (regex: RegExp) => regex.test(pathname);
 
   const hiddenPaths = [
     /^\/auth/,
