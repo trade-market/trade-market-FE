@@ -78,8 +78,3 @@ export const CurrentLocationBtn = styled.button`
   cursor: pointer;
   margin-top: 20px;
 `;
-
-export const CompleteButton = styled(Button)`
-  height: 52px;
-  max-width: 100%;
-`;

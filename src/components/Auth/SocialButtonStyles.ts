@@ -21,7 +21,6 @@ export const Button = styled.button<{
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 600;
   color: ${({ fontColor }) => fontColor && '#fff'};
-  cursor: pointer;
 `;
 
 export const Icon = styled.img`
