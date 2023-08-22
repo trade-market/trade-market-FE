@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
       body {
         background: #cbcbcb;
         font-family: ${theme.font.family.Pretendard};
+        font-size: ${theme.font.size.base};
       }
       a {
         text-decoration: none;
@@ -20,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
       }
       button {
         font-family: ${theme.font.family.Pretendard};
+        cursor: pointer;
       }
     `;
   }}

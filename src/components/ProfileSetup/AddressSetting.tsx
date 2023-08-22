@@ -1,10 +1,11 @@
 import { RootState } from '@store/types';
 import { useSelector } from 'react-redux';
-import BigTitle from '@components/common/BigTitle';
-import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
+import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import BigTitle from '@components/common/BigTitle';
+import BlueButton from '@/components/common/Buttons/BlueButton';
+
 function AddressSetting() {
   const address = useSelector(
     (state: RootState) => state.profileAddress.address
@@ -30,9 +31,9 @@ function AddressSetting() {
           value={address}
           disabled={true}
         />
-        <P.Button disabled={false} onClick={handleSearchBtnClick}>
+        <BlueButton disabled={false} onClick={handleSearchBtnClick}>
           검색
-        </P.Button>
+        </BlueButton>
       </P.InputContainer>
       <Link to="set-location">
         <P.CurrentLocationBtn>현재 동네로 설정</P.CurrentLocationBtn>

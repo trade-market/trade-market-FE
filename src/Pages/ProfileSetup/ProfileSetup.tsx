@@ -3,6 +3,7 @@ import * as P from './ProfileSetupStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import NicknameSetting from '@components/ProfileSetup/NicknameSetting';
 import AddressSetting from '@components/ProfileSetup/AddressSetting';
+import BlueButton from '@/components/common/Buttons/BlueButton';
 
 function ProfileSetup() {
   const [nickname, setNickname] = useState('');
@@ -44,7 +45,9 @@ function ProfileSetup() {
           />
           <AddressSetting />
         </P.Section>
-        <P.CompleteButton disabled={true}>완료</P.CompleteButton>
+        <BlueButton disabled={true} maxWidth="100%">
+          완료
+        </BlueButton>
       </P.Wrapper>
     </>
   );
