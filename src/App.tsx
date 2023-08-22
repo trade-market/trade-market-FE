@@ -9,6 +9,7 @@ import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
+import WriteOwnself from "@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
               path="/articles/:id/write-comment"
               element={<WriteComment />}
             />
+            {/* 오퍼페이지 작업용 임시 경로 생성 */}
+            <Route path='/articles/2' element={<WriteOwnself />} />
           </Routes>
         </Layout>
       </BrowserRouter>
