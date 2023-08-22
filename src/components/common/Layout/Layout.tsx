@@ -20,11 +20,13 @@ function Layout({ children }: ILayoutProps) {
     /^\/profile-setup/,
     /^\/search/,
     /^\/articles\/\w+$/, // /articles/:id
+    /^\/articles\/\w+\/write-comment$/, // /articles/:id/write-comment
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
     shouldHideComponent(pathRegex)
   );
+
   const { height } = useWindowSize();
 
   return (
