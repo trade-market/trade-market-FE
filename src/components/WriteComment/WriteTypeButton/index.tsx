@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const Container = styled.div<{ selected: boolean | null }>`
   position: relative;
-  width: 168px;
-  height: 168px;
+  width: 100%;
+  max-width: 168px;
+  min-height: 168px;
   padding: 20px;
   background-color: ${({ theme }) => theme.color.whiteGray};
   opacity: ${({ selected }) => (selected || selected === null ? 1 : 0.4)};
@@ -16,12 +17,14 @@ const Container = styled.div<{ selected: boolean | null }>`
 `;
 
 const Text = styled.div`
-  width: 110px;
+  max-width: 110px;
+  width: 100%;
   line-height: 130%;
 `;
 
 const ImageContainer = styled.img`
-  width: 48px;
+  max-width: 48px;
+  width: 100%;
   height: 48px;
   position: absolute;
   bottom: 20px;

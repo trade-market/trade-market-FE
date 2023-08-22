@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Line = styled.div<{ count: number; endcount: number }>`
+export const Wrapper = styled.div`
+  padding-top: 48px;
+`;
+
+export const Line = styled.div<{ number: number; total: number }>`
   position: relative;
   width: 100%;
   height: 1px;
@@ -8,25 +12,27 @@ export const Line = styled.div<{ count: number; endcount: number }>`
   margin-top: 36px;
 
   &::before {
-    content: ${({ count, endcount }) =>
-      count === endcount || count === endcount - 1 ? "''" : 'none'};
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: ${({ theme }) => theme.color.Mainblue};
+    background-color: ${({ theme, number, total }) =>
+      number > 1 ? theme.color.Mainblue : theme.color.whiteGray};
   }
 
   &::after {
-    content: ${({ count, endcount }) =>
-      count === 1 || count === endcount - 1 ? "''" : 'none'};
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
     width: 50%;
     height: 100%;
-    background-color: ${({ theme }) => theme.color.Mainblue};
+    background-color: ${({ theme, number, total }) =>
+      number !== total && number !== total
+        ? theme.color.Mainblue
+        : theme.color.whiteGray};
   }
 
   & > .count {
@@ -63,7 +69,7 @@ export const Icon = styled.div`
   }
 `;
 
-export const IconStart = styled.div<{ count: number; endcount: number }>`
+export const DotStart = styled.div<{ number: number; total: number }>`
   position: absolute;
   left: 5%;
   top: 50%;
@@ -72,15 +78,15 @@ export const IconStart = styled.div<{ count: number; endcount: number }>`
   height: 9px;
 
   & > img {
-    display: ${({ count, endcount }) =>
-      count === endcount || count >= 2 ? 'block' : 'none'};
+    display: ${({ number, total }) =>
+      number === total || number >= 2 ? 'block' : 'none'};
     width: 100%;
     height: 100%;
   }
   z-index: 1;
 `;
 
-export const IconEnd = styled.div<{ count: number; endcount: number }>`
+export const DotEnd = styled.div<{ number: number; total: number }>`
   position: absolute;
   right: 5%;
   top: 50%;
@@ -88,8 +94,7 @@ export const IconEnd = styled.div<{ count: number; endcount: number }>`
   width: 9px;
   height: 9px;
   & > img {
-    display: ${({ count, endcount }) =>
-      count !== endcount ? 'block' : 'none'};
+    display: ${({ number, total }) => (number !== total ? 'block' : 'none')};
     width: 100%;
     height: 100%;
   }

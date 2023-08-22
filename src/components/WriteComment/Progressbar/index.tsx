@@ -1,37 +1,36 @@
 import * as P from './ProgressbarStyles';
-
-import icon_pencil from '@Assets/icons/WriteComment/Pencil.svg';
 import icon_ellipse from '@Assets/icons/WriteComment/Ellipse.svg';
 
-interface ProgressbarProps {
-  count: number;
-  endCount: number;
+interface IProgressbarProps {
+  number: number;
+  total: number;
+  icon: string;
 }
 
-function Progressbar({ count, endCount }: ProgressbarProps) {
+function Progressbar({ number, total, icon }: IProgressbarProps) {
   return (
-    <>
-      <P.Line count={count} endcount={endCount}>
+    <P.Wrapper>
+      <P.Line number={number} total={total}>
         <P.Icon>
-          <img src={icon_pencil} />
+          <img src={icon} />
         </P.Icon>
         <div className="count">
-          {count === 1 ? (
+          {number === 1 ? (
             '1'
           ) : (
             <>
-              {count} <span>/ {endCount}</span>
+              {number} <span>/ {total}</span>
             </>
           )}
         </div>
-        <P.IconStart count={count} endcount={endCount}>
+        <P.DotStart number={number} total={total}>
           <img src={icon_ellipse} alt="Start Icon" />
-        </P.IconStart>
-        <P.IconEnd count={count} endcount={endCount}>
+        </P.DotStart>
+        <P.DotEnd number={number} total={total}>
           <img src={icon_ellipse} alt="End Icon" />
-        </P.IconEnd>
+        </P.DotEnd>
       </P.Line>
-    </>
+    </P.Wrapper>
   );
 }
 
