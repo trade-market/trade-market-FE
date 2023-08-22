@@ -7,7 +7,8 @@ import Auth from '@Pages/Auth/Auth';
 import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
 import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
-import CreateOwnOffer from '@/Pages/Offer/CreateOwnOffer/CreateOwnOffer';
+import Articles from '@Pages/Articles/Articles';
+import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
 
 function App() {
   return (
@@ -23,7 +24,11 @@ function App() {
               element={<SetLocation />}
             />
             <Route path="/search" element={<Search />} />
-            <Route path="/offer/create-own-offer" element={<CreateOwnOffer />} />
+            <Route path="/articles/:id" element={<Articles />} />
+            <Route
+              path="/articles/:id/write-comment"
+              element={<WriteComment />}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>

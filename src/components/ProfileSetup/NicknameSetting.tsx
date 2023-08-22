@@ -1,6 +1,7 @@
 import React from 'react';
 import BigTitle from '@components/common/BigTitle';
 import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface NicknameSettingProps {
   nickname: string;
@@ -25,9 +26,12 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           value={nickname}
           onChange={handleNickname}
         />
-        <P.Button disabled={nickname.length < 2} onClick={handleNicknameCheck}>
+        <BlueButton
+          disabled={nickname.length < 2}
+          onClick={handleNicknameCheck}
+        >
           중복확인
-        </P.Button>
+        </BlueButton>
       </P.InputContainer>
       {error && <P.ErrorText>{error}</P.ErrorText>}
     </P.Section>
