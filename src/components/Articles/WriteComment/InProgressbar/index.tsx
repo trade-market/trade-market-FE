@@ -16,7 +16,7 @@ const Line = styled.div`
     font-size: 10px;
     font-weight: 500;
 
-    .totalProgress  {
+    :nth-child(2) {
       color : ${({ theme }) => theme.color.lightGray};
     }
   }
@@ -75,11 +75,11 @@ function Progressbar({ progressNumber, progressTotal, progressIcon } :IProgressb
           <img src={icon_ellipse} />
         </Dot>
         <div className="count">
-          <span>{progressNumber}</span>
-          <span className='totalProgress'> / {progressTotal}</span>
+          <span>{progressNumber} / </span>
+          <span>{progressTotal}</span>
         </div>
         <Icon>
-          <img src={progressIcon} alt="progess_icon" />
+          <img src={progressIcon} alt="progess_icon"/>
         </Icon>
         <Dot position='right'>
           <img src={icon_ellipse} />
