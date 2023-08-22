@@ -39,7 +39,10 @@ const WriteOwnself = () => {
             <div>대표사진 1장</div>
           </W.Container>
           <W.ButtonsContainer>
-            <BlueButton onClick={handleClickNextProgress}>다음</BlueButton>
+        <BlueButton
+          onClick={handleClickNextProgress}
+          maxWidth='420px'
+        >다음</BlueButton>
           </W.ButtonsContainer>
     </>
   );
