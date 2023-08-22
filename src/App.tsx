@@ -7,6 +7,7 @@ import Auth from '@Pages/Auth/Auth';
 import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
 import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
+import CreateOwnOffer from '@/Pages/Offer/CreateOwnOffer/CreateOwnOffer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               element={<SetLocation />}
             />
             <Route path="/search" element={<Search />} />
+            <Route path="/offer/create-own-offer" element={<CreateOwnOffer />} />
           </Routes>
         </Layout>
       </BrowserRouter>
