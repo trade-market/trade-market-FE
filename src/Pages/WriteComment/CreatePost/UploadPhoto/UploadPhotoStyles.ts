@@ -9,19 +9,19 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 77px;
   padding: 0 20px 30px 20px;
   align-items: center;
   flex-direction: column;
 
   .title {
     font-weight: 600;
-    font-size : ${({ theme }) => theme.font.size.large};
-    padding-top: 30px;
+    font-size: ${({ theme }) => theme.font.size.large};
   }
 
-  .description, :nth-child(4) {
-    color : ${({ theme }) => theme.color.lightGray};
+  .description,
+  :nth-child(4) {
+    color: ${({ theme }) => theme.color.lightGray};
     padding-top: 20px;
   }
 
@@ -36,9 +36,13 @@ export const ButtonsContainer = styled.div`
   width: 100%;
   max-width: ${size.mobile};
   position: fixed;
-  bottom: 0;
-  padding: 18px 20px;
-  height: 82px;
+  bottom: 48px;
+  padding: 0 21px;
   align-items: center;
+<<<<<<< HEAD:src/Pages/WriteComment/CreatePost/UploadPhoto/UploadPhotoStyles.ts
   z-index: 2;
 `;
+=======
+  z-index: 99;
+`;
+>>>>>>> 7734dff3358bc6bc4e5ef065bff789c0d5add533:src/Pages/Articles/WriteComment/WriteOwnself/WriteOwnselfStyles.ts
