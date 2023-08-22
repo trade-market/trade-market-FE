@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: ${size.mobile};
   min-height: 48px;
-  z-index: 10;
+  z-index: 2;
   position: fixed;
   top: 0;
   font-size: ${({ theme }) => theme.font.size.large};

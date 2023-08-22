@@ -8,8 +8,8 @@ import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
 import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
-import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
-import WriteOwnself from "@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself";
+import WriteComment from '@/Pages/WriteComment/WriteComment';
+import WriteOwnself from "@/Pages/WriteComment/CreatePost/UploadPhoto/UploadPhoto";
 
 function App() {
   return (

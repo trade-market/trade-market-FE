@@ -40,5 +40,5 @@ export const ButtonsContainer = styled.div`
   padding: 18px 20px;
   height: 82px;
   align-items: center;
-  z-index: 99;
+  z-index: 2;
 `;

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import * as W from './WriteCommentStyles';
 import BigTitle from '@/components/common/BigTitle';
-import Progressbar from '@components/Articles/WriteComment/Progressbar';
+import Progressbar from '@/components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';
-import WriteTypeButton from '@components/Articles/WriteComment/WriteTypeButton';
+import WriteTypeButton from '@/components/WriteComment/WriteTypeButton';
 import emoji_clipboard from '@Assets/Icons/WriteComment/emoji_clipboard.svg';
 import emoji_pencil from '@Assets/Icons/WriteComment/emoji_Pencil.svg';
 import { useState } from 'react';
