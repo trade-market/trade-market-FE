@@ -9,29 +9,36 @@ import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
-import WriteOwnself from "@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself";
+import WriteOwnself from '@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself';
+import GetPost from './Pages/Articles/WriteComment/GetPost';
 
 function App() {
+  const routes = [
+    { path: '/', element: <Home /> },
+    { path: '/auth', element: <Auth /> },
+    { path: '/profile-setup/', element: <ProfileSetup /> },
+    { path: '/profile-setup/set-location', element: <SetLocation /> },
+    { path: '/search', element: <Search /> },
+    { path: '/articles/:id', element: <Articles /> },
+    { path: '/articles/:id/write-comment', element: <WriteComment /> },
+    {
+      path: '/articles/:id/write-comment/create-post/:number',
+      element: <WriteOwnself />,
+    },
+    {
+      path: '/articles/:id/write-comment/get-post/:number',
+      element: <GetPost />,
+    },
+  ];
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/profile-setup/" element={<ProfileSetup />} />
-            <Route
-              path="/profile-setup/set-location"
-              element={<SetLocation />}
-            />
-            <Route path="/search" element={<Search />} />
-            <Route path="/articles/:id" element={<Articles />} />
-            <Route
-              path="/articles/:id/write-comment"
-              element={<WriteComment />}
-            />
-            {/* 오퍼페이지 작업용 임시 경로 생성 */}
-            <Route path='/articles/2' element={<WriteOwnself />} />
+            {routes.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
           </Routes>
         </Layout>
       </BrowserRouter>
