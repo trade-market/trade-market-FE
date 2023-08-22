@@ -14,7 +14,7 @@ export const Container = styled.div`
   font-weight: 600;
   background-color: ${({ theme }) => theme.color.bgColor};
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 15px;
 
   .title {
     flex-basis: auto;

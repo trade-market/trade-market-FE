@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-  background-color: ${({ theme }) => theme.color.searchBg};
   width: 100%;
   height: 100vh;
   flex-direction: column;
