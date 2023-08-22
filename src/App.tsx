@@ -8,8 +8,8 @@ import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
 import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
-import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
-import WriteOwnself from '@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself';
+import WriteComment from '@Pages/WriteComment/WriteComment';
+import CreatePost from '@/Pages/Articles/WriteComment/CreatePost/UploadPhoto/UploadPhoto';
 import GetPost from './Pages/Articles/WriteComment/GetPost';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
     { path: '/articles/:id/write-comment', element: <WriteComment /> },
     {
       path: '/articles/:id/write-comment/create-post/:number',
-      element: <WriteOwnself />,
+      element: <CreatePost />,
     },
     {
       path: '/articles/:id/write-comment/get-post/:number',

@@ -39,10 +39,5 @@ export const ButtonsContainer = styled.div`
   bottom: 48px;
   padding: 0 21px;
   align-items: center;
-<<<<<<< HEAD:src/Pages/WriteComment/CreatePost/UploadPhoto/UploadPhotoStyles.ts
-  z-index: 2;
+  z-index: 1;
 `;
-=======
-  z-index: 99;
-`;
->>>>>>> 7734dff3358bc6bc4e5ef065bff789c0d5add533:src/Pages/Articles/WriteComment/WriteOwnself/WriteOwnselfStyles.ts

@@ -2,18 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as W from './WriteCommentStyles';
 import BigTitle from '@/components/common/BigTitle';
-<<<<<<< HEAD:src/Pages/WriteComment/WriteComment.tsx
-import Progressbar from '@/components/WriteComment/Progressbar';
-import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import BlueButton from '@components/common/Buttons/BlueButton';
-import WriteTypeButton from '@/components/WriteComment/WriteTypeButton';
-=======
 import Progressbar from '@components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';
 import WriteTypeButton from '@components/WriteComment/WriteTypeButton';
 import icon_pencil from '@Assets/icons/WriteComment/Pencil.svg';
->>>>>>> 7734dff3358bc6bc4e5ef065bff789c0d5add533:src/Pages/Articles/WriteComment/WriteComment.tsx
 import emoji_clipboard from '@Assets/Icons/WriteComment/emoji_clipboard.svg';
 import emoji_pencil from '@Assets/Icons/WriteComment/emoji_Pencil.svg';
 
@@ -24,7 +17,7 @@ function WriteComment() {
   const handleTypeButtonClick = (buttonId: string) =>
     setSelectedButton(buttonId);
 
-  const handleNextButtonClick = () => navigate(`${selectedButton}/1`);
+  const handleNextButtonClick = () => navigate(`${selectedButton}/2`);
 
   const renderWriteTypeButton = (
     buttonId: string,
