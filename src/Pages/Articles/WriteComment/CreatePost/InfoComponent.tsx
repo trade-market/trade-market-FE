@@ -12,9 +12,9 @@ interface IInfoComponentProps {
   description1: string;
   description2?: string;
   placeholder?: string;
-  maxWidth: string;
-  disabled?: boolean;
-  children: React.ReactNode;
+  maxWidth?: string;
+  disabled: boolean;
+  children?: React.ReactNode;
 }
 
 const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, placeholder,  maxWidth = '175px', disabled}: IInfoComponentProps) => {
@@ -28,6 +28,7 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
     <>
       <CommonHeader />
       <Progressbar number={n} total={6} icon={ProgessIcon} />
+
       <Container>
         <Info>
           <div className="title">{title}</div>
@@ -41,7 +42,9 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
           </div>
         </Info>
       </Container>
+
       {children}
+
       <ButtonsContainer>
         <BackButton
           onClick={handleBackButton}
@@ -90,7 +93,7 @@ export const Info = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 348px;
+  width: 330px;
   height: 48px;
   padding: 16px;
   margin-top: 15px; 
