@@ -11,13 +11,15 @@ interface IInfoComponentProps {
   title: string;
   description1: string;
   description2?: string;
+  inputRef?: React.RefObject<HTMLInputElement>;
+  handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string;
   maxWidth?: string;
   disabled: boolean;
   children?: React.ReactNode;
 }
 
-const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, placeholder, maxWidth='175px', disabled}: IInfoComponentProps) => {
+const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, inputRef, handleSearch, placeholder, maxWidth='175px', disabled}: IInfoComponentProps) => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
@@ -28,7 +30,7 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
     <>
       <CommonHeader />
       <Progressbar number={n} total={6} icon={ProgessIcon} />
-
+      {/*  */}
       <Container>
         <Info>
           <div className="title">{title}</div>
@@ -39,14 +41,16 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
               (<Input
                 type="text"
                 placeholder={placeholder}
+                ref={inputRef}
+                onChange={handleSearch}
               />) : (<></>)
             }
           </div>
         </Info>
       </Container>
-
+      {/*  */}
       {children}
-
+      {/*  */}
       <ButtonsContainer>
         {n !== 2 ? (
         <BackButton
@@ -80,7 +84,7 @@ export const Info = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
-  /* background-color: yellow; */
+
   
   .title {
     font-weight: 600;

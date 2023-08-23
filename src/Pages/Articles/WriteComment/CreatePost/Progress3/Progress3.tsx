@@ -1,19 +1,46 @@
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; 
 import InfoComponent from '../InfoComponent';
 import * as P from "./Progresss3Styles";
 import category from '@Assets/offer/Write-comment/[Progress]category.svg';
 
 const Progress3 = () => {
-  const { id } = useParams<{ id: string }>();
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  // const isGetimage = Object.keys(isCreatePost).includes('image');
-
-  // const handleClickNextProgress = () => {
-  //   navigate(`/articles/${id}/write-comment/create-post/3`)
-  // };
-
+  const { id } = useParams<{ id: string }>();
+  const [isCreatePost, setIsCreatePost] = useState({});
   const categories = ['전자기기', '생활가전', '가구', '식품', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓'];
+  // const setNext = Object.keys(isCreatePost).includes('category');
+  // const ssetNext = ['product', 'category'].some(v => Object.keys(isCreatePost).includes(v));
+
+  //* input 입력
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsCreatePost({
+      ...isCreatePost,
+      product : e.target.value
+    });
+  };
+
+  //* 카테고리 select
+  const handleSelectCategory = (e: React.MouseEvent<HTMLButtonElement | null>) => {
+    handleChangeCategory();
+    e.currentTarget.className = 'active';
+    setIsCreatePost({
+          ...isCreatePost,
+        category : e.currentTarget.innerText
+      });
+  };
+
+  //* 카테고리 하나만 선택
+  const handleChangeCategory = () => {
+    const actives = document.querySelectorAll('.active');
+    actives.forEach(c => c.classList.remove('active'))
+  }
+
+    //* 첫 rending시 input에 fucusing
+  useLayoutEffect(() => {
+    if (inputRef.current !== null) inputRef.current.focus();
+  }, [isCreatePost?.product]);
 
   return (
     <>
@@ -23,6 +50,8 @@ const Progress3 = () => {
         title={"희망 물품 및 카테고리 선정"}
         description1={"거래를 원하시는 물품을 작성하시고,"}
         description2={"물품이 해당하는 카테고리를 선택해주세요."}
+        inputRef={inputRef}
+        handleSearch={handleSearch}
         placeholder={'물품 작성'}
         disabled={true}
         />
@@ -32,7 +61,7 @@ const Progress3 = () => {
           {
             categories.map((c, i) => {
               return (
-                <div key={i}>{c}</div>
+                <button className="category" key={i} onClick={handleSelectCategory}>{c}</button>
               )
             })
           }

@@ -25,16 +25,17 @@ export const Categories = styled.div`
   padding: 0 20px;
   gap: 12px;
 
-  > div {
+  > button {
     display: flex;
     justify-content: center;
     font-size: ${({ theme }) => theme.font.size.small};
     margin-top: 5px;
     padding: 8px 20px;
+    background-color: transparent;
     border-radius: 20px;
-    cursor: pointer;
     color: ${({ theme }) => theme.color.lightGray};
     border: 1px solid #E5E7EB;
+    cursor: pointer;
   }
 
   .active {
