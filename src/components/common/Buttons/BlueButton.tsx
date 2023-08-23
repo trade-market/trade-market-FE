@@ -7,7 +7,7 @@ export const Button = styled.button<{ disabled: boolean; maxwidth: string }>`
   border-radius: 8px;
   border: none;
   background-color: ${({ theme, disabled }) =>
-    disabled ? theme.color.disableBtn : theme.color.activeBlue};
+  disabled ? theme.color.disableBtn : theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 600;
   color: ${({ theme, disabled }) =>

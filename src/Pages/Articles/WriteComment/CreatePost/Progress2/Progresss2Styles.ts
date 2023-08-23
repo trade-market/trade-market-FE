@@ -22,7 +22,7 @@ export const Container = styled.div`
   .description,
   :nth-child(4) {
     color: ${({ theme }) => theme.color.lightGray};
-    padding-top: 20px;
+    margin-top: 15px;
   }
 
   :nth-child(3) {

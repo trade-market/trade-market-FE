@@ -9,8 +9,12 @@ import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/WriteComment/WriteComment';
-import CreatePost from '@/Pages/Articles/WriteComment/CreatePost/UploadPhoto/CreatePost';
+import Progress2 from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progress2';
 import GetPost from './Pages/Articles/WriteComment/GetPost';
+import Progress3 from './Pages/Articles/WriteComment/CreatePost/Progress3/Progress3';
+import Progress4 from './Pages/Articles/WriteComment/CreatePost/Progress4/Progress4';
+import Progress5 from './Pages/Articles/WriteComment/CreatePost/Progress5/Progress5';
+import Progress6 from './Pages/Articles/WriteComment/CreatePost/Progress6/Progress6';
 
 function App() {
   const routes = [
@@ -20,10 +24,17 @@ function App() {
     { path: '/profile-setup/set-location', element: <SetLocation /> },
     { path: '/search', element: <Search /> },
     { path: '/articles/:id', element: <Articles /> },
-    { path: '/articles/:id/write-comment', element: <WriteComment /> },
+    { path: '/articles/:id/write-comment', element: <WriteComment />},
     {
       path: '/articles/:id/write-comment/create-post/:number',
-      element: <CreatePost />,
+      element: <Progress3 />,
+      children: [
+        { index: true, element: <Progress2 /> },
+        { path: '3', element: <Progress3 /> },
+        { path: '4', element: <Progress4 /> },
+        { path: '5', element: <Progress5 /> },
+        { path: '6', element: <Progress6 /> }
+      ]
     },
     {
       path: '/articles/:id/write-comment/get-post/:number',
@@ -36,7 +47,7 @@ function App() {
       <BrowserRouter>
         <Layout>
           <Routes>
-            {routes.map(({ path, element }, index) => (
+            {routes.map(({ path, element}, index) => (
               <Route key={index} path={path} element={element} />
             ))}
           </Routes>

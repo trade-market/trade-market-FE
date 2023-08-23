@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Progressbar from '@components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
-import * as W from "./CreatePostStyles";
+import * as W from "./Progresss2Styles";
 import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
 import BlueButton from '@/components/common/Buttons/BlueButton';
 import BottomSheet from "./BottomSheet/BottomSheet";
 
-const CreatePost = () => {
+const Progress2 = () => {
   const [isCreatePost, setIsCreatePost] = useState({});
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
@@ -32,13 +32,13 @@ const CreatePost = () => {
   return (
     <>
       <CommonHeader />
+      <Progressbar number={2} total={6} icon={photo} />
       {isModalOpen &&
         <BottomSheet
         closeModal={() => setIsModalOpen(false)}
         handleGetImage={handleGetImage}
         isCreatePost={isCreatePost}
         />}
-      <Progressbar number={2} total={6} icon={photo} />
       <W.Container>
         <div className="title">사진 업로드</div>
         <div className="description">거래하실 물품의 사진을 올려주세요.</div>
@@ -59,4 +59,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default Progress2;

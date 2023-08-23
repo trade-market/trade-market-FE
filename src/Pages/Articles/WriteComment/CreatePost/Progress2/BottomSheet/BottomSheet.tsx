@@ -15,12 +15,12 @@ function BottomSheet({ closeModal, handleGetImage, isCreatePost}: IBottomSheetPr
         <div>카메라</div>
           <label>
             사진 앨범
-          <input 
-          type='file'
-          id='file'
-          accept='image/*'
-          onChange={handleGetImage}
-          />
+            <input 
+            type='file'
+            id='file'
+            accept='image/*'
+            onChange={handleGetImage}
+            />
           </label>
         {!Object.keys(isCreatePost).includes('image')
           ? <div onClick={closeModal}>닫기</div>
