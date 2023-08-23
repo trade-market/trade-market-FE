@@ -13,12 +13,15 @@ function BottomSheet({ closeModal, handleGetImage, isCreatePost}: IBottomSheetPr
       <Background />
       <Container>
         <div>카메라</div>
-        <input 
+          <label>
+            사진 앨범
+          <input 
           type='file'
           id='file'
           accept='image/*'
           onChange={handleGetImage}
-        />
+          />
+          </label>
         {!Object.keys(isCreatePost).includes('image')
           ? <div onClick={closeModal}>닫기</div>
           : <div onClick={closeModal}>확인</div>}
@@ -92,6 +95,6 @@ const Container = styled.div`
   }
 
   #file {
-    /* display: none; */
+    display: none;
   }
 `;

@@ -26,8 +26,14 @@ export const Container = styled.div`
   }
 
   :nth-child(3) {
-    padding-top: 20px;
+    margin-top: 20px;
     cursor: pointer;
+  }
+
+  .get-image {
+    width: 204px;
+    height: 204px;
+    border-radius: 8px;
   }
 `;
 

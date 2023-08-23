@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Progressbar from '@components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
-import * as W from "./UploadPhotoStyles";
+import * as W from "./CreatePostStyles";
 import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
 import BlueButton from '@/components/common/Buttons/BlueButton';
 import BottomSheet from "./BottomSheet/BottomSheet";
 
-const WriteOwnself = () => {
+const CreatePost = () => {
   const [isCreatePost, setIsCreatePost] = useState({});
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
@@ -29,23 +29,23 @@ const WriteOwnself = () => {
     });
   }
 
-  // isCreatePost.image
-
   return (
     <>
+      <CommonHeader />
       {isModalOpen &&
         <BottomSheet
         closeModal={() => setIsModalOpen(false)}
         handleGetImage={handleGetImage}
         isCreatePost={isCreatePost}
         />}
-      
-      <CommonHeader />
       <Progressbar number={2} total={6} icon={photo} />
       <W.Container>
         <div className="title">사진 업로드</div>
         <div className="description">거래하실 물품의 사진을 올려주세요.</div>
-        <img src={PhotoSample} onClick={() => setIsModalOpen(true)} />
+        <img
+          className={!isGetimage ? 'sample' : 'get-image'}
+          src={!isGetimage ? PhotoSample : isCreatePost?.image}
+          onClick={() => setIsModalOpen(true)} />
         <div>대표사진 1장</div>
       </W.Container>
       <W.ButtonsContainer>
@@ -59,4 +59,4 @@ const WriteOwnself = () => {
   );
 };
 
-export default WriteOwnself;
+export default CreatePost;
