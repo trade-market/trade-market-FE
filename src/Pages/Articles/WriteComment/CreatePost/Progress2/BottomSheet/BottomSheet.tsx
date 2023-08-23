@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
+import { useEffect } from 'react';
 
 interface IBottomSheetProps {
   closeModal: () => void;
@@ -7,7 +8,16 @@ interface IBottomSheetProps {
   isCreatePost: {};
 }
 
-function BottomSheet({ closeModal, handleGetImage, isCreatePost}: IBottomSheetProps) {
+function BottomSheet({ closeModal, handleGetImage, isCreatePost }: IBottomSheetProps) {
+  const getImage = Object.keys(isCreatePost).includes('image');
+  console.log(getImage)
+
+  // useEffect(() => {
+  //   if (getImage) {
+  //     closeModal();
+  //   }
+  // }, [getImage]);
+
   return (
     <>
       <Background />
@@ -22,7 +32,7 @@ function BottomSheet({ closeModal, handleGetImage, isCreatePost}: IBottomSheetPr
             onChange={handleGetImage}
             />
           </label>
-        {!Object.keys(isCreatePost).includes('image')
+        {!getImage
           ? <div onClick={closeModal}>닫기</div>
           : <div onClick={closeModal}>확인</div>}
       </Container>
@@ -58,14 +68,15 @@ const Container = styled.div`
   height: 190px;
   animation: bottomUp 0.3s ease-out;
 
-@keyframes bottomUp {
-  0% {
-    transform: translateY(100%);
+  @keyframes bottomUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
   }
-  100% {
-    transform: translateY(0%);
-  }
-}
+
   :nth-child(1), :nth-child(2), :nth-child(3) {
     display: flex;
     justify-content: center;

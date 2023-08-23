@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; 
-import Progressbar from '@components/WriteComment/Progressbar';
-import CommonHeader from '@components/common/CommonHeader/CommonHeader';
+import InfoComponent from '../InfoComponent';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
 import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
-import BlueButton from '@/components/common/Buttons/BlueButton';
 import BottomSheet from "./BottomSheet/BottomSheet";
 
 const Progress2 = () => {
@@ -22,8 +20,7 @@ const Progress2 = () => {
     //* 이미지를 가져와 URL을 생성한다.
   const handleGetImage = (e: React.ChangeEvent) => {
     const targetFiles = (e.target as HTMLInputElement).files as FileList;
-    const targetFilesArray = Array.from(targetFiles);
-    const selectedFiles = targetFilesArray.map((file) => URL.createObjectURL(file)).toString();
+    const selectedFiles = URL.createObjectURL(targetFiles[0]);
     setIsCreatePost({
       image : selectedFiles
     });
@@ -31,30 +28,27 @@ const Progress2 = () => {
 
   return (
     <>
-      <CommonHeader />
-      <Progressbar number={2} total={6} icon={photo} />
-      {isModalOpen &&
-        <BottomSheet
-        closeModal={() => setIsModalOpen(false)}
-        handleGetImage={handleGetImage}
-        isCreatePost={isCreatePost}
-        />}
-      <W.Container>
-        <div className="title">사진 업로드</div>
-        <div className="description">거래하실 물품의 사진을 올려주세요.</div>
-        <img
-          className={!isGetimage ? 'sample' : 'get-image'}
-          src={!isGetimage ? PhotoSample : isCreatePost?.image}
-          onClick={() => setIsModalOpen(true)} />
-        <div>대표사진 1장</div>
-      </W.Container>
-      <W.ButtonsContainer>
-        <BlueButton
-          onClick={handleClickNextProgress}
-          maxWidth="100%"
-          disabled={isGetimage ? false : true}
-        >다음</BlueButton>
-      </W.ButtonsContainer>
+      <InfoComponent
+        n={2}
+        ProgessIcon={photo}
+        title={"사진 업로드"}
+        description1={"거래하실 물품의 사진을 올려주세요."}
+        disabled={isGetimage ? false : true}
+        maxWidth={'100%'}
+        />
+        <W.Container>
+          <img
+            className={!isGetimage ? 'sample' : 'get-image'}
+            src={!isGetimage ? PhotoSample : isCreatePost?.image}
+            onClick={() => setIsModalOpen(true)} />
+          <div>대표사진 1장</div>
+        </W.Container>
+        {isModalOpen &&
+          <BottomSheet
+            closeModal={() => setIsModalOpen(false)}
+            handleGetImage={handleGetImage}
+            isCreatePost={isCreatePost}
+            />}
     </>
   );
 };

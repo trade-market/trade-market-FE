@@ -17,7 +17,7 @@ interface IInfoComponentProps {
   children?: React.ReactNode;
 }
 
-const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, placeholder,  maxWidth = '175px', disabled}: IInfoComponentProps) => {
+const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, placeholder, maxWidth='175px', disabled}: IInfoComponentProps) => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
@@ -35,10 +35,12 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
           <div className="description">
             <span>{description1}</span>
             <span>{description2}</span>
-            <Input
-              type="text"
-              placeholder={placeholder}
-            />
+            { placeholder ?
+              (<Input
+                type="text"
+                placeholder={placeholder}
+              />) : (<></>)
+            }
           </div>
         </Info>
       </Container>
@@ -46,9 +48,12 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
       {children}
 
       <ButtonsContainer>
+        {n !== 2 ? (
         <BackButton
           onClick={handleBackButton}
-        >이전</BackButton>
+          >이전</BackButton>
+        ) : (<></>)
+      }
         <BlueButton
           maxWidth={maxWidth}
           disabled={disabled}
@@ -65,7 +70,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 77px;
-  padding: 0 20px 30px 20px;
+  padding: 0 20px 20px 20px;
   align-items: center;
   flex-direction: column;
 `;
@@ -75,6 +80,7 @@ export const Info = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
+  /* background-color: yellow; */
   
   .title {
     font-weight: 600;
