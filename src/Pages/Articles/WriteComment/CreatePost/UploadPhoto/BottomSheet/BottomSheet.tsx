@@ -2,17 +2,26 @@ import styled from 'styled-components';
 import { size } from '@/styles/theme';
 
 interface IBottomSheetProps {
-  closeModal?: () => void;
+  closeModal: () => void;
+  handleGetImage: (e: React.ChangeEvent) => void
+  isCreatePost: {};
 }
 
-function BottomSheet({closeModal}:IBottomSheetProps) {
+function BottomSheet({ closeModal, handleGetImage, isCreatePost}: IBottomSheetProps) {
   return (
     <>
       <Background />
       <Container>
         <div>카메라</div>
-        <div>사진 앨범</div>
-        <div onClick={closeModal}>닫기</div>
+        <input 
+          type='file'
+          id='file'
+          accept='image/*'
+          onChange={handleGetImage}
+        />
+        {!Object.keys(isCreatePost).includes('image')
+          ? <div onClick={closeModal}>닫기</div>
+          : <div onClick={closeModal}>확인</div>}
       </Container>
     </>
   );
@@ -32,7 +41,6 @@ const Background = styled.div`
   -webkit-backdrop-filter: blur(10px);
   background-color: rgba(150, 150, 150, 0.4);  
   transition: transform 650ms ease-out;
-
 `;
 
 const Container = styled.div`
@@ -66,7 +74,7 @@ const Container = styled.div`
     box-shadow:1px 1px 3px 0px ${({ theme }) => theme.color.gray};
     font-size:  ${({ theme }) => theme.font.size.base};
     font-weight: 500;
-    opacity: 0.8;
+    opacity: 0.9;
     cursor: pointer;
   }
 
@@ -81,5 +89,9 @@ const Container = styled.div`
   :nth-child(3) {
     margin-top: 10px;
     border-radius: 8px;
+  }
+
+  #file {
+    /* display: none; */
   }
 `;

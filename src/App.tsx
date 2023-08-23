@@ -9,7 +9,7 @@ import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/WriteComment/WriteComment';
-import CreatePost from '@/Pages/Articles/WriteComment/CreatePost/UploadPhoto/UploadPhoto';
+import CreatePost from '@/Pages/Articles/WriteComment/CreatePost/UploadPhoto/CreatePost';
 import GetPost from './Pages/Articles/WriteComment/GetPost';
 
 function App() {
