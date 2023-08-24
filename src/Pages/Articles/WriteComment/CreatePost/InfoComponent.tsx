@@ -1,10 +1,10 @@
+import { useLayoutEffect, useState, useCallback, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
 import BlueButton from '@/components/common/Buttons/BlueButton';
-import { useEffect } from 'react';
 
 interface IInfoComponentProps {
   n: number;
@@ -19,18 +19,12 @@ interface IInfoComponentProps {
 }
 
 const InfoComponent = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, maxWidth = '175px', disabled, price}: IInfoComponentProps) => {
+  children, n, ProgessIcon, text, inputRef, handleSearch, maxWidth = '175px', disabled, price }: IInfoComponentProps) => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
     navigate(-1);
   };
-
-  useEffect(() => {
-
-  }, [price])
-
-  console.log(price);
   
   return (
     <>
@@ -45,13 +39,14 @@ const InfoComponent = ({
             <span>{text[2]}</span>
             <Input
               type={n === 3 || n == 4 ?"text" : "hidden"}
-              placeholder={n === 3 ? "물품 작성" : n === 4 ? '원' : ''}
+              placeholder={n === 3 ? "물품 작성" : ''}
               className={n === 4 ? 'price-input' : ''}
               ref={inputRef}
               onChange={handleSearch}
               disabled={n === 4}
               defaultValue={n === 4 ? `${price[0]}~${price[1]}` : null}
-              />
+            />
+            {n === 4 ? <div className="currency">원</div> : <></>}
           </div>
         </Info>
       </Container>
@@ -88,11 +83,10 @@ export const Container = styled.div`
 
 export const Info = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   flex-direction: column;
   align-items: center;
-
-  
   .title {
     font-weight: 600;
     text-align: center;
@@ -106,6 +100,13 @@ export const Info = styled.div`
     > span {
       display: block;
     }
+  }
+  .currency {
+    position: absolute;
+    left: 85%;
+    top: 75%;
+    font-size: 15px;
+    color: ${({ theme }) => theme.color.lightGray};
   }
 `;
 
@@ -126,7 +127,7 @@ export const Input = styled.input`
 
   &.price-input {
     text-align: center;
-    color : ${({ theme }) => theme.color.Mainblue};
+    color : ${({ theme }) => theme.color.activeBlue};
     font-weight: 600;
     font-size: ${({ theme }) => theme.font.size.base};
 

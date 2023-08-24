@@ -1,5 +1,4 @@
-import { useState } from 'react';
-// import { useNavigate, useParams } from 'react-router-dom'; 
+import { useLayoutEffect, useState } from 'react';
 import InfoComponent from '../InfoComponent';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
 import * as P from "./Progress4Styles";
@@ -13,10 +12,12 @@ const Progress4 = () => {
 
   const  currentPrice = (p:number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
 
+  //* 최소값 가져오기
   const prcieRangeMinValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRangeMinValue(parseInt(e.target.value));
   };
 
+  //* 최대값 가져오기
   const prcieRangeMaxValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRangeMaxValue(parseInt(e.target.value));
   };
@@ -29,6 +30,10 @@ const Progress4 = () => {
     } 
   }
 
+  // useLayoutEffect(() => {
+  //   console.log('--------')
+  // }, [rangeMinValue, rangeMaxValue]);
+
   return (
     <>
       <InfoComponent
@@ -36,6 +41,7 @@ const Progress4 = () => {
         ProgessIcon={expect_price}
         text={["예상 가격대 책정", "물품의 예상 가격대를 말씀해주세요.", "제품 상태를 판단하는 데에 도움이 됩니다."]}
         disabled={false}
+        // price={[rangeMinValue, rangeMaxValue]}
         price={[currentPrice(rangeMinValue), currentPrice(rangeMaxValue)]}
         />
       <P.Container>
@@ -70,7 +76,7 @@ const Progress4 = () => {
           </P.PriceRangeWrap>
         </P.PriceSlide>
         <P.PriceTag>
-          <div>{fixedMinPrice}</div>
+          <div>{currentPrice(fixedMinPrice)}</div>
           <div>{currentPrice(fixedMaxPrice)}</div>
         </P.PriceTag>
       </P.Container>

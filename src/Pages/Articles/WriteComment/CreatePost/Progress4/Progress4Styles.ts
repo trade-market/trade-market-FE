@@ -24,7 +24,7 @@ export const PriceSlideBarInner = styled(Slide) <{ $left: number; $right: number
   position: absolute;
   left: ${props => props.$left}%;
   right: ${props => props.$right}%;
-  background-color: ${({ theme }) => theme.color.Mainblue};
+  background-color: ${({ theme }) => theme.color.activeBlue};
 `;
 
 export const PriceRangeWrap = styled.div`
@@ -34,8 +34,8 @@ export const PriceRangeWrap = styled.div`
 export const PriceRangeMin = styled.input`
   position: absolute;	
 	top: -2px;
-  left: -2px;
-  width: 100%;
+  left: -10px;
+  width: 104%;
   height: 8px;
   background: none;
   -webkit-appearance: none;
@@ -58,8 +58,15 @@ export const PriceTag = styled.div`
   display: flex;
   width: 100%;
   margin-top: 15px;
-  padding: 0 48px 0 53px;
+  padding: 0 45px 0 44px;
   justify-content: space-between;
-  color : ${({ theme }) => theme.color.Mainblue};
+  color : ${({ theme }) => theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.small};
+  > div {
+    display: flex;
+    width: 100%;
+  }
+  :nth-child(2) {
+    justify-content: flex-end;
+  }
 `;
