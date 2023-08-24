@@ -8,7 +8,7 @@ interface ICommonHeaderProps {
 
 const CommonHeader = ({ children, onClick }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
-  const hideGobackButton = ['/', '/auth'].includes(currentPath);
+  const hideGobackButton = ['/'].includes(currentPath);
 
   return (
     <Container>

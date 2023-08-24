@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Button = styled.button<{
-  bgColor: string;
-  fontColor?: string;
-  border?: boolean;
+  bgcolor: string;
+  fontcolor?: string;
+  border?: number;
 }>`
   position: relative;
   display: flex;
@@ -17,10 +17,10 @@ export const Button = styled.button<{
   &:not(:last-child) {
     margin-bottom: 12px;
   }
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ bgcolor }) => bgcolor};
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 600;
-  color: ${({ fontColor }) => fontColor && '#fff'};
+  color: ${({ fontcolor }) => fontcolor && '#fff'};
 `;
 
 export const Icon = styled.img`
