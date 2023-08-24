@@ -4,11 +4,20 @@ import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import NicknameSetting from '@components/ProfileSetup/NicknameSetting';
 import AddressSetting from '@components/ProfileSetup/AddressSetting';
 import BlueButton from '@/components/common/Buttons/BlueButton';
+import ProfileImgSetting from '@/components/ProfileSetup/ProfileImgSetting';
+import userDefaultImg from '@Assets/Images/user_default_img.svg';
 
 function ProfileSetup() {
+  const [imgSrc, setImgSrc] = useState(userDefaultImg);
+  const [imgFile, setImgFile] = useState<File | null>(null);
   const [nickname, setNickname] = useState('');
   const [successNickname, setSuccessNickname] = useState(false); // 닉네임 중복확인 성공 여부
   const [error, setError] = useState<string | null>(null);
+
+  const handleProfileImgSetting = (imgSrc: string, imgFile: File) => {
+    setImgSrc(imgSrc);
+    setImgFile(imgFile);
+  };
 
   const handleNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
@@ -27,8 +36,6 @@ function ProfileSetup() {
     // 성공시 닉네임 input 비활성화 + 중복확인 버튼 비활성화 + error 메시지 삭제
   };
 
-  //Todo: 주소 검색 API로  호출
-
   // Todo: 완료 버튼 활성화 여부
   // 닉네임 중복확인 성공 && 주소 검색 성공
 
@@ -37,6 +44,10 @@ function ProfileSetup() {
       <CommonHeader>기본 정보 입력</CommonHeader>
       <P.Wrapper>
         <P.Section>
+          <ProfileImgSetting
+            imgSrc={imgSrc}
+            handleProfileImgSetting={handleProfileImgSetting}
+          />
           <NicknameSetting
             nickname={nickname}
             error={error}
