@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import * as A from './AuthStyles';
-import SocialButton from '@components/Auth/SocialButton';
-import kakaoImage from '@Assets/Images/kakao.png';
-import googleImage from '@Assets/Images/google.png';
-import navermage from '@Assets/Images/naver.png';
 import BigTitle from '@components/common/BigTitle';
+import CommonHeader from '@/components/common/CommonHeader/CommonHeader';
+import GoogleLoginBtn from '@/components/Auth/Buttons/GoogleLoginBtn';
+import KakaoLoginBtn from '@/components/Auth/Buttons/KakaoLoginBtn';
+import NaverLoginBtn from '@/components/Auth/Buttons/NaverLoginBtn';
+import { Link } from 'react-router-dom';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,40 +15,30 @@ function Auth() {
   };
 
   return (
-    <A.Container>
-      <BigTitle>{isSignUp ? '회원 가입하기' : '로그인하기'}</BigTitle>
-      <A.ButtonsContainer>
-        <SocialButton
-          text="구글"
-          bgColor="#fff"
-          border={true}
-          ImageSrc={googleImage}
-          isSignUp={isSignUp}
-        />
-        <SocialButton
-          text="카카오"
-          bgColor="#FFEB3C"
-          ImageSrc={kakaoImage}
-          isSignUp={isSignUp}
-        />
-        <SocialButton
-          text="네이버"
-          fontColor="#fff"
-          bgColor="#00BF18"
-          ImageSrc={navermage}
-          isSignUp={isSignUp}
-        />
-      </A.ButtonsContainer>
-      {!isSignUp && (
-        <>
-          <A.DividedLine />
-          <A.SignUpContainer>
-            <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
-            <A.SignUpButton onClick={toggleSignUp}>회원가입</A.SignUpButton>
-          </A.SignUpContainer>
-        </>
-      )}
-    </A.Container>
+    <>
+      <CommonHeader />
+      <A.Container>
+        <BigTitle>{isSignUp ? '회원 가입하기' : '로그인하기'}</BigTitle>
+        <A.ButtonsContainer>
+          <GoogleLoginBtn isSignUp={isSignUp} />
+          <KakaoLoginBtn isSignUp={isSignUp} />
+          <NaverLoginBtn isSignUp={isSignUp} />
+        </A.ButtonsContainer>
+        {!isSignUp && (
+          <>
+            <A.DividedLine />
+            <A.SignUpContainer>
+              <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
+              <A.SignUpButton onClick={toggleSignUp}>회원가입</A.SignUpButton>
+            </A.SignUpContainer>
+          </>
+        )}
+      </A.Container>
+
+      <A.GoHomeText>
+        <Link to="/">홈으로 이동하기</Link>
+      </A.GoHomeText>
+    </>
   );
 }
 
