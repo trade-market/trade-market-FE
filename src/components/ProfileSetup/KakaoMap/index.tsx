@@ -1,25 +1,39 @@
-import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  setProfileAddress,
-  setProfileCoordinates,
-} from '@store/slices/profileAddressSlice';
+import { useEffect, useRef, useState } from 'react';
 import * as K from './KakaoMapStyles';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
-import CurrentLocation from '@components/ProfileSetup/SetLocation/CurrentLocation/CurrentLocation';
-import SetCurrentLocationBtn from '@components/ProfileSetup/SetLocation/SetCurrentLocationBtn';
-import { useLocation } from 'react-router-dom';
+import CurrentLocation from '@/components/ProfileSetup/CurrentLocation';
+import SetCurrentLocationBtn from '@/components/ProfileSetup/SetCurrentLocationBtn';
+import { Coordinates } from '@/Pages/ProfileSetup/ProfileSetup';
 
-interface LocationState {
-  address: string;
+interface IKakaoMapProps {
+  selectedAddress: string;
+  handleAddressSelect: (address: string) => void;
+  handleCoordinates: (coordinates: Coordinates) => void;
+  closeAddressModal: () => void;
 }
 
-function KakaoMap() {
+function KakaoMap({
+  selectedAddress,
+  handleAddressSelect,
+  handleCoordinates,
+  closeAddressModal,
+}: IKakaoMapProps) {
   const container = useRef<HTMLDivElement>(null);
   const currentPosition = useCurrentPosition();
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const locationState = location.state as LocationState | undefined;
+  const [addressInfo, setAddressInfo] = useState({
+    region_1depth_name: '',
+    region_2depth_name: '',
+    region_3depth_name: '',
+  });
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(null); // [경도, 위도
+
+  const handleCompleteBtn = () => {
+    handleAddressSelect(
+      `${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`
+    );
+    handleCoordinates(coordinates as Coordinates);
+    closeAddressModal();
+  };
 
   // 맵(지도) 생성
   const createMap = (coord: kakao.maps.LatLng) => {
@@ -47,12 +61,13 @@ function KakaoMap() {
       if (status === kakao.maps.services.Status.OK) {
         const { region_1depth_name, region_2depth_name, region_3depth_name } =
           result[0].address;
-        dispatch(
-          setProfileAddress(
-            `${region_1depth_name} ${region_2depth_name} ${region_3depth_name}`
-          )
-        );
-        dispatch(setProfileCoordinates({ longitude, latitude }));
+
+        setAddressInfo({
+          region_1depth_name,
+          region_2depth_name,
+          region_3depth_name,
+        });
+        setCoordinates({ longitude, latitude });
       }
     });
   };
@@ -88,12 +103,13 @@ function KakaoMap() {
           const latitude = Number(y);
           const longitude = Number(x);
           const coords = new kakao.maps.LatLng(latitude, longitude);
-          dispatch(
-            setProfileAddress(
-              `${region_1depth_name} ${region_2depth_name} ${region_3depth_name}`
-            )
-          );
-          dispatch(setProfileCoordinates({ latitude, longitude }));
+
+          setAddressInfo({
+            region_1depth_name,
+            region_2depth_name,
+            region_3depth_name,
+          });
+          setCoordinates({ longitude, latitude });
           resolve(coords);
         } else {
           resolve(null);
@@ -104,11 +120,7 @@ function KakaoMap() {
 
   // 사용자 입력 주소 기반으로 지도 표시
   const displayMapBasedOnAddress = async () => {
-    if (!locationState?.address) {
-      return;
-    }
-
-    const latLng = await getCoordinatesFromAddress(locationState.address);
+    const latLng = await getCoordinatesFromAddress(selectedAddress);
     if (!latLng) {
       console.error(
         'Failed to getLatLng, Function getCoordinatesFromAddress error'
@@ -121,17 +133,20 @@ function KakaoMap() {
   };
 
   useEffect(() => {
-    if (locationState?.address) {
+    if (selectedAddress.length > 0) {
       displayMapBasedOnAddress();
     } else {
       displayMapBasedOnCurrentPosition();
     }
-  }, [displayMapBasedOnCurrentPosition, displayMapBasedOnAddress]);
+  }, [currentPosition]);
 
   return (
     <K.Container ref={container}>
       <SetCurrentLocationBtn onClick={displayMapBasedOnCurrentPosition} />
-      <CurrentLocation />
+      <CurrentLocation
+        addressInfo={`${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`}
+        handleCompleteBtn={handleCompleteBtn}
+      />
     </K.Container>
   );
 }

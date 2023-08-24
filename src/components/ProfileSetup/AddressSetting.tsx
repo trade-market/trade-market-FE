@@ -1,20 +1,51 @@
-import { RootState } from '@store/types';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
+import styled from 'styled-components';
 import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
 import BigTitle from '@components/common/BigTitle';
 import BlueButton from '@/components/common/Buttons/BlueButton';
+import KakaoMap from './KakaoMap';
+import { size } from '@/styles/theme';
+import { Coordinates } from '@/Pages/ProfileSetup/ProfileSetup';
+import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 
-function AddressSetting() {
-  const address = useSelector(
-    (state: RootState) => state.profileAddress.address
-  );
-  const navigate = useNavigate();
+const MapContainer = styled.div`
+  position: absolute;
+  max-width: ${size.mobile};
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+`;
+
+interface IAddressSettingProps {
+  selectedAddress: string;
+  handleAddressSelect: (address: string) => void;
+  handleCoordinates: (coordinates: Coordinates) => void;
+}
+
+function AddressSetting({
+  selectedAddress,
+  handleAddressSelect,
+  handleCoordinates,
+}: IAddressSettingProps) {
   const open = useDaumPostcodePopup();
 
+  const [addressModalOpen, setAddressModalOpen] = useState(false);
+
+  const closeAddressModal = () => {
+    setAddressModalOpen(false);
+  };
+
+  const handelCurrentLocationBtnClick = () => {
+    handleAddressSelect('');
+    setAddressModalOpen(true);
+  };
+
   const handleComplete = (data: Address) => {
-    navigate('set-location', { state: { address: data.address } });
+    setAddressModalOpen(true);
+    handleAddressSelect(data.address);
   };
 
   const handleSearchBtnClick = () => {
@@ -28,16 +59,34 @@ function AddressSetting() {
         <P.Input
           type="text"
           placeholder="지번, 도로명, 건물명으로 검색"
-          value={address}
+          value={selectedAddress}
           disabled={true}
         />
         <BlueButton disabled={false} onClick={handleSearchBtnClick}>
           검색
         </BlueButton>
       </P.InputContainer>
-      <Link to="set-location">
-        <P.CurrentLocationBtn>현재 동네로 설정</P.CurrentLocationBtn>
-      </Link>
+      <P.CurrentLocationBtn onClick={handelCurrentLocationBtnClick}>
+        현재 동네로 설정
+      </P.CurrentLocationBtn>
+      {addressModalOpen && (
+        <MapContainer>
+          <CommonHeader
+            onClick={() => {
+              handleAddressSelect('');
+              closeAddressModal();
+            }}
+          >
+            현재 동네
+          </CommonHeader>
+          <KakaoMap
+            selectedAddress={selectedAddress}
+            handleAddressSelect={handleAddressSelect}
+            handleCoordinates={handleCoordinates}
+            closeAddressModal={closeAddressModal}
+          />
+        </MapContainer>
+      )}
     </P.Section>
   );
 }
