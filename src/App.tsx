@@ -5,7 +5,6 @@ import Layout from '@components/common/Layout/Layout';
 import Home from '@Pages/Home/Home';
 import Auth from '@Pages/Auth/Auth';
 import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
-import SetLocation from '@/Pages/ProfileSetup/SetLocation/SetLocation';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
@@ -17,7 +16,6 @@ function App() {
     { path: '/', element: <Home /> },
     { path: '/auth', element: <Auth /> },
     { path: '/profile-setup/', element: <ProfileSetup /> },
-    { path: '/profile-setup/set-location', element: <SetLocation /> },
     { path: '/search', element: <Search /> },
     { path: '/articles/:id', element: <Articles /> },
     { path: '/articles/:id/write-comment', element: <WriteComment /> },

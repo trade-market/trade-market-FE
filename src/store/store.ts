@@ -1,9 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import profileAddressSlice from './slices/profileAddressSlice';
 
 export const store = configureStore({
-  reducer: {
-    profileAddress: profileAddressSlice,
-  },
+  reducer: {},
   devTools: import.meta.env.DEV,
 });

@@ -7,12 +7,26 @@ import BlueButton from '@/components/common/Buttons/BlueButton';
 import ProfileImgSetting from '@/components/ProfileSetup/ProfileImgSetting';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
 
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+
 function ProfileSetup() {
   const [imgSrc, setImgSrc] = useState(userDefaultImg);
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [nickname, setNickname] = useState('');
   const [successNickname, setSuccessNickname] = useState(false); // 닉네임 중복확인 성공 여부
   const [error, setError] = useState<string | null>(null);
+  const [selectedAddress, setSelectedAddress] = useState<string>('');
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
+
+  const handleAddressSelect = (address: string) => {
+    setSelectedAddress(address);
+  };
+  const handleCoordinates = (coordinates: Coordinates) => {
+    setCoordinates(coordinates);
+  };
 
   const handleProfileImgSetting = (imgSrc: string, imgFile: File) => {
     setImgSrc(imgSrc);
@@ -54,7 +68,11 @@ function ProfileSetup() {
             handleNickname={handleNickname}
             handleNicknameCheck={handleNicknameCheck}
           />
-          <AddressSetting />
+          <AddressSetting
+            selectedAddress={selectedAddress}
+            handleAddressSelect={handleAddressSelect}
+            handleCoordinates={handleCoordinates}
+          />
         </P.Section>
         <BlueButton disabled={true} maxWidth="100%">
           완료
