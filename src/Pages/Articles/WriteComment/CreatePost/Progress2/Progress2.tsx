@@ -31,8 +31,7 @@ const Progress2 = () => {
       <InfoComponent
         n={2}
         ProgessIcon={photo}
-        title={"사진 업로드"}
-        description1={"거래하실 물품의 사진을 올려주세요."}
+        text={["사진 업로드", "거래하실 물품의 사진을 올려주세요."]}
         disabled={isGetimage ? false : true}
         maxWidth={'100%'}
         />

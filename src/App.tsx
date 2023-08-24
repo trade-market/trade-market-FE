@@ -27,14 +27,7 @@ function App() {
     { path: '/articles/:id/write-comment', element: <WriteComment />},
     {
       path: '/articles/:id/write-comment/create-post/:number',
-      element: <Progress3 />,
-      children: [
-        { index: true, element: <Progress2 /> },
-        { path: '3', element: <Progress3 /> },
-        { path: '4', element: <Progress4 /> },
-        { path: '5', element: <Progress5 /> },
-        { path: '6', element: <Progress6 /> }
-      ]
+      element: <Progress4 />,
     },
     {
       path: '/articles/:id/write-comment/get-post/:number',

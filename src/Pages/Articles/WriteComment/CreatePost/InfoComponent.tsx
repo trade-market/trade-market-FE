@@ -4,27 +4,33 @@ import { size } from '@/styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
 import BlueButton from '@/components/common/Buttons/BlueButton';
+import { useEffect } from 'react';
 
 interface IInfoComponentProps {
   n: number;
   ProgessIcon: string;
-  title: string;
-  description1: string;
-  description2?: string;
+  text: string[];
   inputRef?: React.RefObject<HTMLInputElement>;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  placeholder?: string;
   maxWidth?: string;
   disabled: boolean;
   children?: React.ReactNode;
+  price?: string[] | undefined;
 }
 
-const InfoComponent = ({children, n, ProgessIcon, title, description1, description2, inputRef, handleSearch, placeholder, maxWidth='175px', disabled}: IInfoComponentProps) => {
+const InfoComponent = ({
+  children, n, ProgessIcon, text, inputRef, handleSearch, maxWidth = '175px', disabled, price}: IInfoComponentProps) => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+
+  }, [price])
+
+  console.log(price);
   
   return (
     <>
@@ -33,18 +39,19 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
       {/*  */}
       <Container>
         <Info>
-          <div className="title">{title}</div>
+          <div className="title">{text[0]}</div>
           <div className="description">
-            <span>{description1}</span>
-            <span>{description2}</span>
-            { placeholder ?
-              (<Input
-                type="text"
-                placeholder={placeholder}
-                ref={inputRef}
-                onChange={handleSearch}
-              />) : (<></>)
-            }
+            <span>{text[1]}</span>
+            <span>{text[2]}</span>
+            <Input
+              type={n === 3 || n == 4 ?"text" : "hidden"}
+              placeholder={n === 3 ? "물품 작성" : n === 4 ? '원' : ''}
+              className={n === 4 ? 'price-input' : ''}
+              ref={inputRef}
+              onChange={handleSearch}
+              disabled={n === 4}
+              defaultValue={n === 4 ? `${price[0]}~${price[1]}` : null}
+              />
           </div>
         </Info>
       </Container>
@@ -57,10 +64,10 @@ const InfoComponent = ({children, n, ProgessIcon, title, description1, descripti
           onClick={handleBackButton}
           >이전</BackButton>
         ) : (<></>)
-      }
-        <BlueButton
-          maxWidth={maxWidth}
-          disabled={disabled}
+        }
+          <BlueButton
+            maxWidth={maxWidth}
+            disabled={disabled}
         >다음</BlueButton>
       </ButtonsContainer>
     </>
@@ -115,6 +122,17 @@ export const Input = styled.input`
 
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
+  }
+
+  &.price-input {
+    text-align: center;
+    color : ${({ theme }) => theme.color.Mainblue};
+    font-weight: 600;
+    font-size: ${({ theme }) => theme.font.size.base};
+
+    &::placeholder {
+      text-align: right;
+    }
   }
 `;
 
