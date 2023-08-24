@@ -49,6 +49,7 @@ const Progress3 = () => {
         ProgessIcon={category}
         text={["희망 물품 및 카테고리 선정", "거래를 원하시는 물품을 작성하시고,", "물품이 해당하는 카테고리를 선택해주세요."]}
         inputRef={inputRef}
+        placeholder={'물품 작성'}
         handleSearch={handleSearch}
         disabled={true}
         />

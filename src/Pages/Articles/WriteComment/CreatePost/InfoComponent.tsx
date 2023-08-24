@@ -1,4 +1,3 @@
-import { useLayoutEffect, useState, useCallback, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
@@ -7,25 +6,25 @@ import Progressbar from '@components/WriteComment/Progressbar';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface IInfoComponentProps {
+  children?: React.ReactNode;
   n: number;
   ProgessIcon: string;
   text: string[];
   inputRef?: React.RefObject<HTMLInputElement>;
-  handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  maxWidth?: string;
+  handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
   disabled: boolean;
-  children?: React.ReactNode;
   price?: string[] | undefined;
 }
 
 const InfoComponent = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, maxWidth = '175px', disabled, price }: IInfoComponentProps) => {
+  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder='', disabled, price }: IInfoComponentProps) => {
   const navigate = useNavigate();
 
   const handleBackButton = () => {
     navigate(-1);
   };
-  
+
   return (
     <>
       <CommonHeader />
@@ -39,14 +38,14 @@ const InfoComponent = ({
             <span>{text[2]}</span>
             <Input
               type={n === 3 || n == 4 ?"text" : "hidden"}
-              placeholder={n === 3 ? "물품 작성" : ''}
-              className={n === 4 ? 'price-input' : ''}
+              placeholder={placeholder}
               ref={inputRef}
               onChange={handleSearch}
               disabled={n === 4}
-              defaultValue={n === 4 ? `${price[0]}~${price[1]}` : null}
+              value={n === 4 ? price[0]+price[1]+price[2] : null}
+              className={n === 4 ? 'price-input' : ''}
             />
-            {n === 4 ? <div className="currency">원</div> : <></>}
+            {n === 4 ? <div className="currency">원</div> : null}
           </div>
         </Info>
       </Container>
@@ -61,7 +60,7 @@ const InfoComponent = ({
         ) : (<></>)
         }
           <BlueButton
-            maxWidth={maxWidth}
+            maxWidth={n === 2 ? '100%' : '175px'}
             disabled={disabled}
         >다음</BlueButton>
       </ButtonsContainer>
@@ -103,7 +102,7 @@ export const Info = styled.div`
   }
   .currency {
     position: absolute;
-    left: 85%;
+    left: 87%;
     top: 75%;
     font-size: 15px;
     color: ${({ theme }) => theme.color.lightGray};
@@ -111,7 +110,7 @@ export const Info = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 330px;
+  width: 348px; //330
   height: 48px;
   padding: 16px;
   margin-top: 15px; 
@@ -120,20 +119,16 @@ export const Input = styled.input`
   font-family: ${({ theme }) => theme.font.family.Pretendard};
   font-size: ${({ theme }) => theme.font.size.small};
   background-color: ${({ theme }) => theme.color.inputGray};
+  justify-content: center;
 
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
   }
-
   &.price-input {
     text-align: center;
     color : ${({ theme }) => theme.color.activeBlue};
     font-weight: 600;
     font-size: ${({ theme }) => theme.font.size.base};
-
-    &::placeholder {
-      text-align: right;
-    }
   }
 `;
 

@@ -16,7 +16,7 @@ const Slide = styled.div`
 
 export const PriceSlide = styled(Slide)`
   position: relative;
-  width: 330px;
+  width: 348px;
   background-color: #F2F2F2;
 `;
 
@@ -34,8 +34,8 @@ export const PriceRangeWrap = styled.div`
 export const PriceRangeMin = styled.input`
   position: absolute;	
 	top: -2px;
-  left: -10px;
-  width: 104%;
+  left: -8px;
+  width: 102%;
   height: 8px;
   background: none;
   -webkit-appearance: none;
@@ -58,7 +58,7 @@ export const PriceTag = styled.div`
   display: flex;
   width: 100%;
   margin-top: 15px;
-  padding: 0 45px 0 44px;
+  padding: 0 35px 0 35px;
   justify-content: space-between;
   color : ${({ theme }) => theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.small};

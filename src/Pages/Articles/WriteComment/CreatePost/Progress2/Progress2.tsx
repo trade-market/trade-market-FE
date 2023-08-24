@@ -33,7 +33,6 @@ const Progress2 = () => {
         ProgessIcon={photo}
         text={["사진 업로드", "거래하실 물품의 사진을 올려주세요."]}
         disabled={isGetimage ? false : true}
-        maxWidth={'100%'}
         />
         <W.Container>
           <img

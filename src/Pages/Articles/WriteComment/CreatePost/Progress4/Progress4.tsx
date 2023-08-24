@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import InfoComponent from '../InfoComponent';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
 import * as P from "./Progress4Styles";
@@ -25,14 +25,10 @@ const Progress4 = () => {
   //* PriceSlide가 뒤집히지 않도록 조정한다.
   const twoRangeHandler = () => {
     if (rangeMaxValue - rangeMinValue < priceGap) {
-    setRangeMaxValue(rangeMinValue + priceGap);
-    setRangeMinValue(rangeMaxValue - priceGap);
+      setRangeMaxValue(rangeMinValue + priceGap);
+      setRangeMinValue(rangeMaxValue - priceGap);
     } 
   }
-
-  // useLayoutEffect(() => {
-  //   console.log('--------')
-  // }, [rangeMinValue, rangeMaxValue]);
 
   return (
     <>
@@ -41,8 +37,7 @@ const Progress4 = () => {
         ProgessIcon={expect_price}
         text={["예상 가격대 책정", "물품의 예상 가격대를 말씀해주세요.", "제품 상태를 판단하는 데에 도움이 됩니다."]}
         disabled={false}
-        // price={[rangeMinValue, rangeMaxValue]}
-        price={[currentPrice(rangeMinValue), currentPrice(rangeMaxValue)]}
+        price={[currentPrice(rangeMinValue), '~', currentPrice(rangeMaxValue)]}
         />
       <P.Container>
         <P.PriceSlide>
