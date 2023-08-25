@@ -1,34 +1,32 @@
-import { useState, useRef, useLayoutEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; 
+import { useRef, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/types';
+import { setProductPost, setCategoryPost } from '@/store/slices/CreatePostSlice';
 import InfoComponent from '../InfoComponent';
 import * as P from "./Progresss3Styles";
 import category from '@Assets/offer/Write-comment/[Progress]category.svg';
 
 const Progress3 = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
   const categories = ['전자기기', '생활가전', '가구', '식품', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓'];
-  const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
-  const [isCreatePost, setIsCreatePost] = useState({});
-  // const setNext = Object.keys(isCreatePost).includes('category');
-  // const ssetNext = ['product', 'category'].some(v => Object.keys(isCreatePost).includes(v));
+  const { selectProduct, selectCategory } = useSelector((state: RootState) => ({
+    selectProduct: state.createPost.product,
+    selectCategory: state.createPost.category
+  }));
+
+  console.log(selectProduct, selectCategory)
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCreatePost({
-      ...isCreatePost,
-      product : e.target.value
-    });
+    dispatch(setProductPost(e.target.value))
   };
 
   //* 카테고리 select
   const handleSelectCategory = (e: React.MouseEvent<HTMLButtonElement | null>) => {
     handleChangeCategory();
     e.currentTarget.className = 'active';
-    setIsCreatePost({
-          ...isCreatePost,
-        category : e.currentTarget.innerText
-      });
+    dispatch(setCategoryPost(e.currentTarget.innerText))
   };
 
   //* 카테고리 하나만 선택
@@ -37,10 +35,10 @@ const Progress3 = () => {
     actives.forEach(c => c.classList.remove('active'))
   }
 
-    //* 첫 rending시 input에 fucusing
+    //* 첫 rending시 input에 focusing
   useLayoutEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
-  }, [isCreatePost?.product]);
+  }, []);
 
   return (
     <>
@@ -51,7 +49,7 @@ const Progress3 = () => {
         inputRef={inputRef}
         placeholder={'물품 작성'}
         handleSearch={handleSearch}
-        disabled={true}
+        disabled={!(selectProduct.length > 0) || !(selectCategory.length > 0)}
         />
         <P.Container>
           <P.Line />

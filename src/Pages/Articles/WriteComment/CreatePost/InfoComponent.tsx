@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -18,11 +18,17 @@ interface IInfoComponentProps {
 }
 
 const InfoComponent = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder='', disabled, price }: IInfoComponentProps) => {
+  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price }: IInfoComponentProps) => {
+  const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
   const handleBackButton = () => {
     navigate(-1);
+  };
+
+  const handleClickNextProgress = () => {
+    navigate(`/articles/${id}/write-comment/create-post/${n+1}`)
   };
 
   return (
@@ -50,18 +56,20 @@ const InfoComponent = ({
         </Info>
       </Container>
       {/*  */}
+      {/* {children} */}
       {children}
       {/*  */}
       <ButtonsContainer>
-        {n !== 6 ? (
+        {!onButton ? (
         <BackButton
           onClick={handleBackButton}
           >이전</BackButton>
         ) : (<></>)
         }
           <BlueButton
-            maxWidth={n === 2 || n === 6 ? '100%' : '175px'}
-            disabled={disabled}
+            maxWidth={onButton ? '100%' : '175px'}
+          disabled={disabled}
+          onClick={handleClickNextProgress}
         >다음</BlueButton>
       </ButtonsContainer>
     </>

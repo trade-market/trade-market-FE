@@ -24,10 +24,6 @@ function App() {
     { path: '/articles/:id', element: <Articles /> },
     { path: '/articles/:id/write-comment', element: <WriteComment />},
     {
-      path: '/articles/:id/write-comment/create-post/:number',
-      element: <Progress6 />,
-    },
-    {
       path: '/articles/:id/write-comment/get-post/:number',
       element: <GetPost />,
     },
@@ -41,7 +37,14 @@ function App() {
             {routes.map(({ path, element}, index) => (
               <Route key={index} path={path} element={element} />
             ))}
-          </Routes>
+              <Route path='/articles/:id/write-comment/create-post'>
+                <Route path='2' element={<Progress2 />} />
+                <Route path='3' element={<Progress3 />} />
+                <Route path='4' element={<Progress4 />} />
+                <Route path='5' element={<Progress5 />} />
+                <Route path='6' element={<Progress6 />} />
+              </Route>
+            </Routes>
         </Layout>
       </BrowserRouter>
     </ThemeProvider>

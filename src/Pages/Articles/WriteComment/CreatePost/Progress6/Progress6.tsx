@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/types';
 import InfoComponent from '../InfoComponent';
 import complete from "@Assets/offer/Write-comment/[Progress]complete.svg";
 import { Container, BlueContainer, PostContainer } from './Progress6Styles';
@@ -13,6 +15,16 @@ const Progress6 = () => {
   }
   const priceString = (arr: string[]) => arr.reduce((a, b) => a + b) + '원';
   const setCreatePost = [isCreatePost.image, isCreatePost.product, isCreatePost.category, priceString(isCreatePost.price), isCreatePost.information]
+
+  const { selectImage, selectProduct, selectCategory, selectPrice, selectInfo } = useSelector((state: RootState) => ({
+    selectImage: state.createPost.product,
+    selectProduct: state.createPost.category,
+    selectCategory: state.createPost.category,
+    selectPrice: state.createPost.category,
+    selectInfo: state.createPost.category,
+  }));
+
+  console.log(selectImage, selectProduct, selectCategory, selectCategory, selectPrice, selectInfo)
 
   //todo : 작성글의 n글자까지만 보여줄지 or 작성글 길이에 따라 container의 길이도 길어지게 할건지 
 

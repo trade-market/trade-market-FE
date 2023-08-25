@@ -1,14 +1,18 @@
-import { useState, useRef, useCallback } from "react";
+import { useRef, useCallback } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/types';
+import { setInfoPost } from '@/store/slices/CreatePostSlice';
 import InfoComponent from '../InfoComponent';
 import write_imformation from "@Assets/offer/Write-comment/[Progress]_write_imformation.svg";
 import { Container, BlueContainer } from './Progress5Styles';
 
 const Progress5 = () => {
-  const [information, setInfomation] = useState('');
   const textAreaRef = useRef<number | any>(0);
+  const dispatch = useDispatch();
+  const selectInfo = useSelector((state: RootState) => state.createPost.info);
 
   const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInfomation(e.target.value);
+    dispatch(setInfoPost(e.target.value))
   };
 
   //* TextArea 길이에 따라 일정 범위(400px)까지 Height가 늘어나다가 범위를 초과하면 Height가 고정된다.
@@ -25,13 +29,13 @@ const Progress5 = () => {
         n={5}
         ProgessIcon={write_imformation}
         text={["전달 사항 작성", "물품에 대한 간단한 설명 및", "상대방에게 전달해야 할 내용을 작성해주세요."]}
-        disabled={information.length < 10}
+        disabled={selectInfo.length < 10}
       />
       <Container>
         <BlueContainer
           placeholder="전달 사항 작성"
           ref={textAreaRef}
-          value={information}
+          value={selectInfo}
           onChange={handleTextArea}
           onInput={handleTextAreaHeight}
         />

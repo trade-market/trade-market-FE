@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Button = styled.button<{ disabled: boolean; maxwidth: string }>`
+export const Button = styled.button<{ disabled: boolean; $maxwidth: string }>`
   width: 100%;
-  max-width: ${({ maxwidth }) => maxwidth};
+  max-width: ${({ $maxwidth }) => $maxwidth};
   padding: 15px 42px;
   border-radius: 8px;
   border: none;
@@ -32,7 +32,7 @@ function BlueButton({
   maxWidth = '135px',
 }: IBlueButtonProps) {
   return (
-    <Button disabled={disabled} onClick={onClick} maxwidth={maxWidth}>
+    <Button disabled={disabled} onClick={onClick} $maxwidth={maxWidth}>
       {children}
     </Button>
   );

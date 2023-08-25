@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setPricePost } from '@/store/slices/CreatePostSlice';
 import InfoComponent from '../InfoComponent';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
 import * as P from "./Progress4Styles";
@@ -9,7 +11,7 @@ const Progress4 = () => {
   const priceGap = 0; // 최소 가격 차
   const [rangeMinValue, setRangeMinValue] = useState(fixedMinPrice); // 현재 최소값
   const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxPrice); // 현재 최대값
-
+  const dispatch = useDispatch(); 
   const  currentPrice = (p:number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
 
   //* 최소값 가져오기
@@ -29,6 +31,11 @@ const Progress4 = () => {
       setRangeMinValue(rangeMaxValue - priceGap);
     } 
   }
+  
+  // 금액 바뀔 때마다 dispatch 동기화
+  useEffect(() => {
+    dispatch(setPricePost([currentPrice(rangeMinValue), '~', currentPrice(rangeMaxValue)]))
+  }, [rangeMinValue, rangeMaxValue])
 
   return (
     <>

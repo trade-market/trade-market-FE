@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/types';
+import { setImagePost } from '@/store/slices/CreatePostSlice';
 import InfoComponent from '../InfoComponent';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
@@ -7,26 +9,19 @@ import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
 import BottomSheet from "./BottomSheet/BottomSheet";
 
 const Progress2 = () => {
-  const [isCreatePost, setIsCreatePost] = useState({});
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const isGetimage = Object.keys(isCreatePost).includes('image');
+  const dispatch = useDispatch();
+  const selectImage = useSelector(
+    (state: RootState) => state.createPost.image
+  );
 
-  const handleClickNextProgress = () => {
-    navigate(`/articles/${id}/write-comment/create-post/3`)
-  };
-
-    //* 이미지를 가져와 URL을 생성한다.
+  //* 이미지를 가져와 URL을 생성한다.
   const handleGetImage = (e: React.ChangeEvent) => {
     const targetFiles = (e.target as HTMLInputElement).files as FileList;
     const selectedFiles = URL.createObjectURL(targetFiles[0]);
-    setIsCreatePost({
-      image : selectedFiles
-    });
-    console.log(selectedFiles)
+    dispatch(setImagePost(selectedFiles))
     setIsModalOpen(false);
-  }
+  };
 
   return (
     <>
@@ -34,20 +29,20 @@ const Progress2 = () => {
         n={2}
         ProgessIcon={photo}
         text={["사진 업로드", "거래하실 물품의 사진을 올려주세요."]}
-        disabled={isGetimage ? false : true}
+        disabled={selectImage ? false : true}
         />
         <W.Container>
           <img
-            className={!isGetimage ? 'sample' : 'get-image'}
-            src={!isGetimage ? PhotoSample : isCreatePost?.image}
+            className={selectImage ? 'get-image' : 'sample' }
+            src={selectImage ? selectImage : PhotoSample}
             onClick={() => setIsModalOpen(true)} />
           <div>대표사진 1장</div>
         </W.Container>
         {isModalOpen &&
-        <BottomSheet
-          closeModal={() => setIsModalOpen(false)}
-          handleGetImage={handleGetImage}
-            />}
+          <BottomSheet
+            closeModal={() => setIsModalOpen(false)}
+            handleGetImage={handleGetImage}
+          />}
     </>
   );
 };
