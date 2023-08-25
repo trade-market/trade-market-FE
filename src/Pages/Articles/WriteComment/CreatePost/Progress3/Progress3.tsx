@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { setProductPost, setCategoryPost } from '@/store/slices/CreatePostSlice';
-import InfoComponent from '../InfoComponent';
+import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import * as P from "./Progresss3Styles";
 import category from '@Assets/offer/Write-comment/[Progress]category.svg';
 
@@ -14,8 +14,6 @@ const Progress3 = () => {
     selectProduct: state.createPost.product,
     selectCategory: state.createPost.category
   }));
-
-  console.log(selectProduct, selectCategory)
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +40,7 @@ const Progress3 = () => {
 
   return (
     <>
-      <InfoComponent
+      <ProcessCompo
         n={3}
         ProgessIcon={category}
         text={["희망 물품 및 카테고리 선정", "거래를 원하시는 물품을 작성하시고,", "물품이 해당하는 카테고리를 선택해주세요."]}

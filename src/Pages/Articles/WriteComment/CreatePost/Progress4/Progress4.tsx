@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPricePost } from '@/store/slices/CreatePostSlice';
-import InfoComponent from '../InfoComponent';
+import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
 import * as P from "./Progress4Styles";
 
@@ -39,7 +39,7 @@ const Progress4 = () => {
 
   return (
     <>
-      <InfoComponent
+      <ProcessCompo
         n={4}
         ProgessIcon={expect_price}
         text={["예상 가격대 책정", "물품의 예상 가격대를 말씀해주세요.", "제품 상태를 판단하는 데에 도움이 됩니다."]}

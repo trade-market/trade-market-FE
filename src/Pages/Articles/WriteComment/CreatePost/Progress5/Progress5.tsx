@@ -2,7 +2,7 @@ import { useRef, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { setInfoPost } from '@/store/slices/CreatePostSlice';
-import InfoComponent from '../InfoComponent';
+import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import write_imformation from "@Assets/offer/Write-comment/[Progress]_write_imformation.svg";
 import { Container, BlueContainer } from './Progress5Styles';
 
@@ -25,7 +25,7 @@ const Progress5 = () => {
 
   return (
     <>
-      <InfoComponent
+      <ProcessCompo
         n={5}
         ProgessIcon={write_imformation}
         text={["전달 사항 작성", "물품에 대한 간단한 설명 및", "상대방에게 전달해야 할 내용을 작성해주세요."]}

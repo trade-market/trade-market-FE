@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { setImagePost } from '@/store/slices/CreatePostSlice';
-import InfoComponent from '../InfoComponent';
+import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
 import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
@@ -25,7 +25,7 @@ const Progress2 = () => {
 
   return (
     <>
-      <InfoComponent
+      <ProcessCompo
         n={2}
         ProgessIcon={photo}
         text={["사진 업로드", "거래하실 물품의 사진을 올려주세요."]}
