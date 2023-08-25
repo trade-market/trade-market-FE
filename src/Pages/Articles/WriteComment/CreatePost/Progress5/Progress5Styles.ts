@@ -14,7 +14,6 @@ export const BlueContainer = styled.textarea`
   background-color: #2156F214;
   width: 348px;
   height: 268px;
-  /* max-height: 500px; */
   border: none;
   border-radius: 8px;
   padding: 30px 20px;

@@ -37,7 +37,7 @@ const InfoComponent = ({
             <span>{text[1]}</span>
             <span>{text[2]}</span>
             <Input
-              type={n === 3 || n == 4 ?"text" : "hidden"}
+              type={n === 3 || n == 4 ? "text" : "hidden"}
               placeholder={placeholder}
               ref={inputRef}
               onChange={handleSearch}
@@ -53,14 +53,14 @@ const InfoComponent = ({
       {children}
       {/*  */}
       <ButtonsContainer>
-        {n !== 2 ? (
+        {n !== 6 ? (
         <BackButton
           onClick={handleBackButton}
           >이전</BackButton>
         ) : (<></>)
         }
           <BlueButton
-            maxWidth={n === 2 ? '100%' : '175px'}
+            maxWidth={n === 2 || n === 6 ? '100%' : '175px'}
             disabled={disabled}
         >다음</BlueButton>
       </ButtonsContainer>

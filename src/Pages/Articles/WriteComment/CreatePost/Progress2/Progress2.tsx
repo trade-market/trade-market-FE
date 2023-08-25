@@ -24,7 +24,7 @@ const Progress2 = () => {
     setIsCreatePost({
       image : selectedFiles
     });
-
+    console.log(selectedFiles)
     setIsModalOpen(false);
   }
 

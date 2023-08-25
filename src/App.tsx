@@ -25,7 +25,7 @@ function App() {
     { path: '/articles/:id/write-comment', element: <WriteComment />},
     {
       path: '/articles/:id/write-comment/create-post/:number',
-      element: <Progress5 />,
+      element: <Progress6 />,
     },
     {
       path: '/articles/:id/write-comment/get-post/:number',

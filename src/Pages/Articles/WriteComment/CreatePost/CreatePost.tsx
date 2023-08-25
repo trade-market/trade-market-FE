@@ -6,7 +6,7 @@ import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 interface ICreatePostProps {
   children: any;
 }
-// { children }: ICreatePostProps
+
 const CreatePost = ({ children }: ICreatePostProps) => {
   const [isIcon, setIsIcon] = useState(photo)
   const [isCreatePost, setIsCreatePost] = useState({});
