@@ -7,9 +7,8 @@ import { Container, BlueContainer, PostContainer } from './Progress6Styles';
 const Progress6 = () => {
   const titles = ['이미지', '희망물품', '카테고리', '예상 가격대', '작성글'];
   const completePost = useSelector((state: RootState) => state.createPost);
-  const priceString = ([...arr]) => arr.reduce((a, b) => a + b) + '원';
-  const setCreatePost = [completePost.image, completePost.product, completePost.category, priceString(completePost.price), completePost.info]
-
+  const priceString = ([...arr]) => `${arr[0]}${arr[1]}${arr[2]}원`;
+  const SetCreatePost = [completePost.image, completePost.product, completePost.category, priceString(completePost.price), completePost.info];
 
   //todo : 작성글의 n글자까지만 보여줄지 or 작성글 길이에 따라 container의 길이도 길어지게 할건지 
 
@@ -24,13 +23,13 @@ const Progress6 = () => {
       <Container>
         <BlueContainer>
           <PostContainer>
-            { titles?.map((title, i) => {
+            {titles?.map((title, i) => {
               return (
                 <div key={i} className='row'>
                   <div className='title'>{title}</div>
                   {i === 0 ? 
-                    <img className='img' src={setCreatePost[i]} />
-                    : <div className='content'>{setCreatePost[i]}</div>
+                    <img className='img' src={SetCreatePost[i]} />
+                    : <div className='content'>{SetCreatePost[i]}</div>
                   }
                 </div>
               )

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
+import { ContainerTemplet } from '@Pages/Articles/WriteComment/CreatePost/Progress2/Progresss2Styles';
 
-export const Container = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  flex-direction: column;
+export const Container = styled(ContainerTemplet)`
 `;
 
 export const BlueContainer = styled.div`

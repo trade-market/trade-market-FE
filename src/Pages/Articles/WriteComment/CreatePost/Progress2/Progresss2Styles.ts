@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContainerTemplet = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
   align-items: center;
   flex-direction: column;
+`;
+
+export const Container = styled(ContainerTemplet)`
   color: ${({ theme }) => theme.color.lightGray};
 
   :nth-child(1) {

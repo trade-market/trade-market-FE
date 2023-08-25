@@ -14,20 +14,23 @@ interface IInfoComponentProps {
   placeholder?: string;
   disabled: boolean;
   price?: string[];
+  selectProduct?: string;
 }
 
 const InfoComponent = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price }: IInfoComponentProps) => {
+  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price, selectProduct }: IInfoComponentProps) => {
   const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-
+  
   const handleBackButton = () => {
     navigate(-1);
   };
 
   const handleClickNextProgress = () => {
-    navigate(`/articles/${id}/write-comment/create-post/${n+1}`)
+    let next = n + 1;
+    if (n === 6) next = 6;
+    navigate(`/articles/${id}/write-comment/create-post/${next}`)
   };
 
   return (
@@ -47,7 +50,7 @@ const InfoComponent = ({
               ref={inputRef}
               onChange={handleSearch}
               disabled={n === 4}
-              value={n === 4 && price ? price[0]+price[1]+price[2] : undefined}
+              value={n === 4 ? price[0]+price[1]+price[2] : n === 3 ? selectProduct : undefined}
               className={n === 4 ? 'price-input' : ''}
             />
             {n === 4 ? <div className="currency">원</div> : null}

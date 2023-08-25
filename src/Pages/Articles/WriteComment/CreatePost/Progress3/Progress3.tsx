@@ -10,10 +10,8 @@ const Progress3 = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const categories = ['전자기기', '생활가전', '가구', '식품', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓'];
-  const { selectProduct, selectCategory } = useSelector((state: RootState) => ({
-    selectProduct: state.createPost.product,
-    selectCategory: state.createPost.category
-  }));
+  const selectProduct = useSelector((state: RootState) => state.createPost.product);
+  const selectCategory = useSelector((state: RootState) => state.createPost.category);
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +46,7 @@ const Progress3 = () => {
         placeholder={'물품 작성'}
         handleSearch={handleSearch}
         disabled={!(selectProduct.length > 0) || !(selectCategory.length > 0)}
+        selectProduct={selectProduct}
         />
         <P.Container>
           <P.Line />
