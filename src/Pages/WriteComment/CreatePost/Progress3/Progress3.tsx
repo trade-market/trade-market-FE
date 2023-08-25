@@ -46,7 +46,7 @@ const Progress3 = () => {
         placeholder={'물품 작성'}
         handleSearch={handleSearch}
         disabled={!(selectProduct.length > 0) || !(selectCategory.length > 0)}
-        selectProduct={selectProduct}
+        value={selectProduct}
         />
         <P.Container>
           <P.Line />

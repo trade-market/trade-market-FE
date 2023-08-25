@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as P from './ProcessCompoStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
@@ -13,15 +13,15 @@ interface IInfoComponentProps {
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   disabled: boolean;
-  price?: string[];
-  selectProduct?: string;
+  price?: string[] | any;
+  value?: string;
 }
 
-const InfoComponent = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price, selectProduct }: IInfoComponentProps) => {
+const ProcessCompo = ({
+  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price, value = undefined }: IInfoComponentProps) => {
   const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const priceString = ([...arr]) => `${arr[0]}${arr[1]}${arr[2]}`;
   
   const handleBackButton = () => {
     navigate(-1);
@@ -30,7 +30,7 @@ const InfoComponent = ({
   const handleClickNextProgress = () => {
     let next = n + 1;
     if (n === 6) next = 6;
-    navigate(`/articles/${id}/write-comment/create-post/${next}`)
+    navigate(`/${next}`);
   };
 
   return (
@@ -50,7 +50,7 @@ const InfoComponent = ({
               ref={inputRef}
               onChange={handleSearch}
               disabled={n === 4}
-              value={n === 4 ? price[0]+price[1]+price[2] : n === 3 ? selectProduct : undefined}
+              value={n === 4 ? priceString(price) : value}
               className={n === 4 ? 'price-input' : ''}
             />
             {n === 4 ? <div className="currency">원</div> : null}
@@ -61,20 +61,20 @@ const InfoComponent = ({
       {children}
       {/*  */}
       <P.ButtonsContainer>
-        {!onButton ? (
-        <P.BackButton
-          onClick={handleBackButton}
-          >이전</P.BackButton>
-        ) : (<></>)
-        }
+        {!onButton ?
+          <P.BackButton
+            onClick={handleBackButton}
+            >이전</P.BackButton>
+            : null
+          }
           <BlueButton
             maxWidth={onButton ? '100%' : '175px'}
-          disabled={disabled}
-          onClick={handleClickNextProgress}
-        >다음</BlueButton>
+            disabled={disabled}
+            onClick={handleClickNextProgress}
+            >다음</BlueButton>
       </P.ButtonsContainer>
     </>
   );
 };
 
-export default InfoComponent;
+export default ProcessCompo;
