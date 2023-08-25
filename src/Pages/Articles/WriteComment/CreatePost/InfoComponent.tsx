@@ -42,7 +42,7 @@ const InfoComponent = ({
               ref={inputRef}
               onChange={handleSearch}
               disabled={n === 4}
-              value={n === 4 ? price[0]+price[1]+price[2] : null}
+              value={n === 4 ? price[0]+price[1]+price[2] : undefined}
               className={n === 4 ? 'price-input' : ''}
             />
             {n === 4 ? <div className="currency">원</div> : null}
