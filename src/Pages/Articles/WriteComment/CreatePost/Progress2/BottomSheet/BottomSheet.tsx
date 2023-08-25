@@ -1,23 +1,12 @@
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
-import { useEffect } from 'react';
 
 interface IBottomSheetProps {
-  closeModal: () => void;
   handleGetImage: (e: React.ChangeEvent) => void
-  isCreatePost: {};
+  closeModal: () => void;
 }
 
-function BottomSheet({ closeModal, handleGetImage, isCreatePost }: IBottomSheetProps) {
-  const getImage = Object.keys(isCreatePost).includes('image');
-  console.log(getImage)
-
-  // useEffect(() => {
-  //   if (getImage) {
-  //     closeModal();
-  //   }
-  // }, [getImage]);
-
+function BottomSheet({ handleGetImage, closeModal}: IBottomSheetProps) {
   return (
     <>
       <Background />
@@ -31,10 +20,8 @@ function BottomSheet({ closeModal, handleGetImage, isCreatePost }: IBottomSheetP
             accept='image/*'
             onChange={handleGetImage}
             />
-          </label>
-        {!getImage
-          ? <div onClick={closeModal}>닫기</div>
-          : <div onClick={closeModal}>확인</div>}
+        </label>
+        <div onClick={closeModal}>닫기</div>
       </Container>
     </>
   );

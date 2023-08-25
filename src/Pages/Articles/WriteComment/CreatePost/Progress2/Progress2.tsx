@@ -24,6 +24,8 @@ const Progress2 = () => {
     setIsCreatePost({
       image : selectedFiles
     });
+
+    setIsModalOpen(false);
   }
 
   return (
@@ -42,10 +44,9 @@ const Progress2 = () => {
           <div>대표사진 1장</div>
         </W.Container>
         {isModalOpen &&
-          <BottomSheet
-            closeModal={() => setIsModalOpen(false)}
-            handleGetImage={handleGetImage}
-            isCreatePost={isCreatePost}
+        <BottomSheet
+          closeModal={() => setIsModalOpen(false)}
+          handleGetImage={handleGetImage}
             />}
     </>
   );
