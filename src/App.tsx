@@ -9,7 +9,7 @@ import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
 import WriteOwnself from '@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself';
-import GetPost from './Pages/Articles/WriteComment/GetPost';
+import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
 
 function App() {
   const routes = [
@@ -24,8 +24,8 @@ function App() {
       element: <WriteOwnself />,
     },
     {
-      path: '/articles/:id/write-comment/get-post/:number',
-      element: <GetPost />,
+      path: '/articles/:id/write-comment/get-post/2',
+      element: <InsertPostLink />,
     },
   ];
 
