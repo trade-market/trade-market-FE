@@ -9,11 +9,18 @@ import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
 import WriteOwnself from '@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself';
-import GetPost from './Pages/Articles/WriteComment/GetPost';
+import GetPost from '@Pages/Articles/WriteComment/GetPost';
+import KakaoRedirectHandler from '@components/Auth/KakaoRedirectHandler';
+import GoogleRedirectHandler from '@components/Auth/GoogleRedirectHandler';
+import NaverRedirectHandler from '@components/Auth/NaverRedirectHandler';
 
 function App() {
   const routes = [
     { path: '/', element: <Home /> },
+    { path: '/auth', element: <Auth /> },
+    { path: '/oauth2/callback/kakao', element: <KakaoRedirectHandler /> },
+    { path: '/oauth2/callback/google', element: <GoogleRedirectHandler /> },
+    { path: '/oauth2/callback/naver', element: <NaverRedirectHandler /> },
     { path: '/auth', element: <Auth /> },
     { path: '/profile-setup/', element: <ProfileSetup /> },
     { path: '/search', element: <Search /> },

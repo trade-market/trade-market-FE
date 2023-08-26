@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as A from './AuthStyles';
 import BigTitle from '@components/common/BigTitle';
 import CommonHeader from '@/components/common/CommonHeader/CommonHeader';
 import GoogleLoginBtn from '@/components/Auth/Buttons/GoogleLoginBtn';
 import KakaoLoginBtn from '@/components/Auth/Buttons/KakaoLoginBtn';
 import NaverLoginBtn from '@/components/Auth/Buttons/NaverLoginBtn';
-import { Link } from 'react-router-dom';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);

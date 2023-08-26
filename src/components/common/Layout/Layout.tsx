@@ -23,6 +23,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/articles\/\w+\/write-comment$/, // /articles/:id/write-comment
     /^\/articles\/\w+\/write-comment\/create-post\/\w+$/, // /articles/:id/write-comment/create-post/:number
     /^\/articles\/\w+\/write-comment\/get-post\/\w+$/, // /articles/:id/write-comment/get-post/:number
+    /^\/oauth2\/callback/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
