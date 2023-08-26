@@ -5,6 +5,7 @@ import kakaoImage from '@Assets/Images/kakao.png';
 import googleImage from '@Assets/Images/google.png';
 import navermage from '@Assets/Images/naver.png';
 import BigTitle from '@components/common/BigTitle';
+import ActionButton from '@/components/common/Buttons/ActionButton';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -43,7 +44,13 @@ function Auth() {
           <A.DividedLine />
           <A.SignUpContainer>
             <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
-            <A.SignUpButton onClick={toggleSignUp}>회원가입</A.SignUpButton>
+            <ActionButton
+              onClick={toggleSignUp}
+              backgroundColor="white"
+              borderColor="Mainblue"
+            >
+              회원가입
+            </ActionButton>
           </A.SignUpContainer>
         </>
       )}
