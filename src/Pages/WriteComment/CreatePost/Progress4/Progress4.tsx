@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/types';
 import { setPricePost } from '@/store/slices/CreatePostSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
@@ -11,8 +12,9 @@ const Progress4 = () => {
   const priceGap = 0; // 최소 가격 차
   const [rangeMinValue, setRangeMinValue] = useState(fixedMinPrice); // 현재 최소값
   const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxPrice); // 현재 최대값
+  const selectPrice = useSelector((state: RootState) => state.createPost.price);
   const dispatch = useDispatch(); 
-  const  currentPrice = (p:number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
+  const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
 
   //* 최소값 가져오기
   const prcieRangeMinValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +36,16 @@ const Progress4 = () => {
   
   //* 금액 바뀔 때마다 dispatch 동기화
   useEffect(() => {
-    dispatch(setPricePost([currentPrice(rangeMinValue), '~', currentPrice(rangeMaxValue)]))     
+    dispatch(setPricePost([`${rangeMinValue}`, '~', `${rangeMaxValue}`]))
   }, [rangeMinValue, rangeMaxValue])
+
+  //* dispatch 값이 바뀌었을 경우, 두 stater값도 동기화해준다.
+  useEffect(() => {
+    if (selectPrice[0]) {
+      setRangeMinValue(Number(selectPrice[0]))
+      setRangeMaxValue(Number(selectPrice[2]))
+    }
+  }, []);
 
   return (
     <>
