@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Progressbar from '@/components/WriteComment/Progressbar';
 import CommonHeader from '@/components/common/CommonHeader/CommonHeader';
 import linkChain from '@/Assets/Icons/WriteComment/Link_Chain.svg';
@@ -24,8 +24,24 @@ const Input = styled.input`
   }
 `;
 
+const BASE_URL =
+  import.meta.env.MODE === 'development'
+    ? 'http://localhost:5173'
+    : '배포주소env';
+
 function InsertPostLink() {
+  const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleGoBackBtnClick = () => navigate(`/articles/${id}/write-comment`);
+
+  const handleGetPostLinkBtnClick = () => navigate('my-posts');
+
+  const handleNextBtnClick = () =>
+    navigate(`/articles/${id}/write-comment/get-post/3`, {
+      state: { selectedPostId: location.state?.selectedPostId },
+    });
 
   return (
     <>
@@ -41,17 +57,25 @@ function InsertPostLink() {
           disabled={true}
           value={
             location.state?.selectedPostId
-              ? `articles/${location.state.selectedPostId}`
+              ? `${BASE_URL}/articles/${location.state.selectedPostId}`
               : ''
           }
         />
-        <ActionButton backgroundColor="white" borderColor="Mainblue">
+        <ActionButton
+          backgroundColor="white"
+          borderColor="Mainblue"
+          onClick={handleGetPostLinkBtnClick}
+        >
           링크 가져오기
         </ActionButton>
       </ContentsSection>
       <BottomBtnSection>
-        <ActionButton>이전</ActionButton>
-        <BlueButton maxWidth="100%" disabled={!location.state?.selectedPostId}>
+        <ActionButton onClick={handleGoBackBtnClick}>이전</ActionButton>
+        <BlueButton
+          maxWidth="100%"
+          disabled={!location.state?.selectedPostId}
+          onClick={handleNextBtnClick}
+        >
           다음
         </BlueButton>
       </BottomBtnSection>

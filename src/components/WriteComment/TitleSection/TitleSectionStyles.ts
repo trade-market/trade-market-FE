@@ -10,4 +10,6 @@ export const Container = styled.div`
 
 export const SubTitle = styled.div`
   color: ${({ theme }) => theme.color.lightGray};
+  font-size: 16px;
+  text-align: center;
 `;
