@@ -17,12 +17,11 @@ export const Container = styled.div`
   padding: 0 15px;
 
   .title {
-    flex-basis: auto;
     display: flex;
     justify-content: center;
     flex-grow: 2;
     padding-right: 20px;
-
+    
     &.Only {
       padding: 0px;
     }
@@ -35,3 +34,9 @@ export const Container = styled.div`
     background-color: transparent;
   }
 `;
+
+export const CloseButton = styled.div<{ $display: string; }>`
+  display: ${({ $display }) => $display};
+  justify-content: flex-end;
+`
+
