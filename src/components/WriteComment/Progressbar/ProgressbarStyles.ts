@@ -59,13 +59,13 @@ export const Icon = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 36px;
-  border: 1px solid ${({ theme }) => theme.color.Mainblue};
+  /* border: 1px solid ${({ theme }) => theme.color.Mainblue}; */
   background-color: ${({ theme }) => theme.color.white};
   z-index: 1;
 
   & > img {
-    width: 16px;
-    height: 16px;
+    width: 35px;
+    height: 35px;
   }
 `;
 

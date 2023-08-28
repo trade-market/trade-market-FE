@@ -32,9 +32,9 @@ const Progress4 = () => {
     } 
   }
   
-  // 금액 바뀔 때마다 dispatch 동기화
+  //* 금액 바뀔 때마다 dispatch 동기화
   useEffect(() => {
-    dispatch(setPricePost([currentPrice(rangeMinValue), '~', currentPrice(rangeMaxValue)]))
+    dispatch(setPricePost([currentPrice(rangeMinValue), '~', currentPrice(rangeMaxValue)]))     
   }, [rangeMinValue, rangeMaxValue])
 
   return (

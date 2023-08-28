@@ -23,6 +23,7 @@ const Progress2 = () => {
     setIsModalOpen(false);
   };
 
+
   return (
     <>
       <ProcessCompo

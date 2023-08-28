@@ -22,7 +22,7 @@ function App() {
     { path: '/profile-setup/', element: <ProfileSetup /> },
     { path: '/search', element: <Search /> },
     { path: '/articles/:id', element: <Articles /> },
-    { path: '/articles/:id/write-comment', element: <WriteComment />},
+    { path: '/articles/:id/write-comment', element: <WriteComment /> },
     {
       path: '/articles/:id/write-comment/get-post/:number',
       element: <GetPost />,
@@ -37,7 +37,7 @@ function App() {
             {routes.map(({ path, element}, index) => (
               <Route key={index} path={path} element={element} />
             ))}
-              <Route path='/articles/:id/write-comment/create-post'>
+              <Route path='/articles/:id/write-comment/create-post' >
                 <Route path='2' element={<Progress2 />} />
                 <Route path='3' element={<Progress3 />} />
                 <Route path='4' element={<Progress4 />} />

@@ -1,12 +1,12 @@
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import WriterProfile from '@/components/Articles/WriterProfile/WriterProfile';
 import ProductInfo from '@components/Articles/ProductInfo/ProductInfo';
 import PostActions from '@components/Articles/PostActions/PostActions';
 
 function Articles() {
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   return (
     <>
       <CommonHeader>상세 페이지</CommonHeader>

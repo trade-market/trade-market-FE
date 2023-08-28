@@ -18,18 +18,12 @@ const Progress3 = () => {
     dispatch(setProductPost(e.target.value))
   };
 
-  //* 카테고리 select
-  const handleSelectCategory = (e: React.MouseEvent<HTMLButtonElement | null>) => {
-    handleChangeCategory();
-    e.currentTarget.className = 'active';
-    dispatch(setCategoryPost(e.currentTarget.innerText))
+  // //* 카테고리 select
+  const handleSelectCategory = (index: number) => {
+    const newCategories = Array(categories.length).fill(false);
+    newCategories[index] = true;
+    dispatch(setCategoryPost(categories[index]));
   };
-
-  //* 카테고리 하나만 선택
-  const handleChangeCategory = () => {
-    const actives = document.querySelectorAll('.active');
-    actives.forEach(c => c.classList.remove('active'))
-  }
 
     //* 첫 rending시 input에 focusing
   useLayoutEffect(() => {
@@ -54,7 +48,10 @@ const Progress3 = () => {
             {
               categories.map((c, i) => {
                 return (
-                  <button className="category" key={i} onClick={handleSelectCategory}>{c}</button>
+                  <button
+                    key={i}
+                    className={selectCategory === categories[i] ? 'active ' : ''}
+                    onClick={() => handleSelectCategory(i)}>{c}</button>
                 )
               })
             }

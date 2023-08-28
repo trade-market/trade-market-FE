@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as P from './ProcessCompoStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
@@ -21,16 +21,17 @@ const ProcessCompo = ({
   children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price, value = undefined }: IInfoComponentProps) => {
   const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
+  const location = useLocation();
   const priceString = ([...arr]) => `${arr[0]}${arr[1]}${arr[2]}`;
-  
+
   const handleBackButton = () => {
     navigate(-1);
   };
-
+  
   const handleClickNextProgress = () => {
     let next = n + 1;
     if (n === 6) next = 6;
-    navigate(`/${next}`);
+    navigate(`${location.pathname.slice(0, 37)}/${next}`);
   };
 
   return (
