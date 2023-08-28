@@ -11,7 +11,7 @@ function BottomSheet({ handleGetImage, closeModal}: IBottomSheetProps) {
     <>
       <Background />
       <Container>
-        <div>카메라</div>
+        {/* 항목 3개시 14라인에 div 추가 */}
           <label>
             사진 앨범
             <input 
@@ -52,7 +52,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 0;
   overflow-y: scroll;
-  height: 190px;
+  height: 130px;
   animation: bottomUp 0.3s ease-out;
 
   @keyframes bottomUp {
