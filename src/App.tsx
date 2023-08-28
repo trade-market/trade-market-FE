@@ -10,6 +10,8 @@ import Articles from '@Pages/Articles/Articles';
 import WriteComment from '@Pages/Articles/WriteComment/WriteComment';
 import WriteOwnself from '@Pages/Articles/WriteComment/WriteOwnself/WriteOwnself';
 import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
+import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
+import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 
 function App() {
   const routes = [
@@ -26,6 +28,14 @@ function App() {
     {
       path: '/articles/:id/write-comment/get-post/2',
       element: <InsertPostLink />,
+    },
+    {
+      path: '/articles/:id/write-comment/get-post/3',
+      element: <FinalCheck />,
+    },
+    {
+      path: '/articles/:id/write-comment/get-post/2/my-posts',
+      element: <MyPosts />,
     },
   ];
 
