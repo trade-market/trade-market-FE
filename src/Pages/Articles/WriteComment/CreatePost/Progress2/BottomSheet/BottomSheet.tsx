@@ -47,13 +47,17 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};
-  z-index: 12;
+  z-index: 100;
   flex-direction: column;
   position: fixed;
   bottom: 0;
   overflow-y: scroll;
   height: 130px;
   animation: bottomUp 0.3s ease-out;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @keyframes bottomUp {
     0% {
@@ -75,7 +79,6 @@ const Container = styled.div`
     box-shadow:1px 1px 3px 0px ${({ theme }) => theme.color.gray};
     font-size:  ${({ theme }) => theme.font.size.base};
     font-weight: 500;
-    opacity: 0.9;
     cursor: pointer;
   }
 

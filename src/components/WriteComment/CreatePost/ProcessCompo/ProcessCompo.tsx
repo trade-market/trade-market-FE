@@ -2,6 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as P from './ProcessCompoStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
+import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
+import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@components/common/Buttons/BlueButton';
 
 interface IInfoComponentProps {
@@ -71,19 +73,17 @@ const ProcessCompo = ({
       {/*  */}
       {children}
       {/*  */}
-      <P.ButtonsContainer>
+      <BottomBtnSection>
         {!onButton ?
-          <P.BackButton
-            onClick={handleBackButton}
-            >이전</P.BackButton>
+          <ActionButton onClick={handleBackButton}>이전</ActionButton>
             : null
           }
           <BlueButton
-            maxWidth={onButton ? '100%' : '135px'}
+            maxWidth={'100%'}
             disabled={disabled}
             onClick={handleNextButton}
             >다음</BlueButton>
-      </P.ButtonsContainer>
+      </BottomBtnSection>
     </>
   );
 };
