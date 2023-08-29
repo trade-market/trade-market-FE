@@ -4,7 +4,8 @@ interface Postcomment {
   image : string;
   product: string;
   category: string;
-  price: string[];
+  minPrice: number;
+  maxPrice: number;
   info: string;
 }
 
@@ -12,7 +13,8 @@ const initialState: Postcomment = {
   image : '',
   product: '',
   category: '', 
-  price: [],
+  minPrice: 0,
+  maxPrice: 0,
   info : ''
 }
 
@@ -30,8 +32,11 @@ export const createPostSlice = createSlice({
     setCategoryPost: (state, action: PayloadAction<string>) => {
       state.category = action.payload;
     },
-    setPricePost: (state, action: PayloadAction<string[]>) => {
-      state.price = action.payload;
+    setMinPricePost: (state, action: PayloadAction<number>) => {
+      state.minPrice = action.payload;
+    },
+    setMaxPricePost: (state, action: PayloadAction<number>) => {
+      state.maxPrice = action.payload;
     },
     setInfoPost: (state, action: PayloadAction<string>) => {
       state.info = action.payload;
@@ -39,7 +44,7 @@ export const createPostSlice = createSlice({
   }
 });
 
-export const { setImagePost, setProductPost, setCategoryPost, setPricePost, setInfoPost} =
+export const { setImagePost, setProductPost, setCategoryPost, setMinPricePost, setMaxPricePost, setInfoPost} =
   createPostSlice.actions;
 
 export default createPostSlice.reducer;

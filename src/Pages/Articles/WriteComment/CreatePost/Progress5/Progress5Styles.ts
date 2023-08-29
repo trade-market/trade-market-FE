@@ -8,7 +8,7 @@ export const BlueContainer = styled.textarea`
   display: flex;
   justify-content: center;
   background-color: #2156F214;
-  width: 348px;
+  width: 330px;
   height: 268px;
   border: none;
   border-radius: 8px;

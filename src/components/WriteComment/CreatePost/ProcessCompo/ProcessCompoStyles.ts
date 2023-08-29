@@ -32,7 +32,7 @@ export const Info = styled.div`
   }
   .currency {
     position: absolute;
-    left: 87%;
+    left: 85%;
     top: 75%;
     font-size: 15px;
     color: ${({ theme }) => theme.color.lightGray};
@@ -40,7 +40,7 @@ export const Info = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 348px; //330
+  width: 330px; //348
   height: 48px;
   padding: 16px;
   margin-top: 15px; 

@@ -7,7 +7,7 @@ export const Container = styled(ContainerTemplet)`
 export const BlueContainer = styled.div`
   display: flex;
   background-color: #2156F214;
-  width: 348px;
+  width: 330px;
   height: 268px;
   border: none;
   border-radius: 8px;

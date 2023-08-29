@@ -9,8 +9,8 @@ const Progress6 = () => {
   const completePost = useSelector((state: RootState) => state.createPost);
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
   const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b)+'원');
-  const SetCreatePost = [completePost.image, completePost.product, completePost.category, priceString(completePost.price), completePost.info];
-
+  const SetCreatePost = [completePost.image, completePost.product, completePost.category, priceString([completePost.minPrice, '~', completePost.maxPrice]), completePost.info];
+  
   //todo : 작성글의 n글자까지만 보여줄지 or 작성글 길이에 따라 container의 길이도 길어지게 할건지 
 
   return (
