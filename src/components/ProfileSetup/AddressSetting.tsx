@@ -18,6 +18,21 @@ const MapContainer = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 999;
+
+  animation: bottomUp 0.3s ease;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes bottomUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
 `;
 
 interface IAddressSettingProps {
