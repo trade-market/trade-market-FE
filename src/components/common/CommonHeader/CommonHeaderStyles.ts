@@ -38,5 +38,6 @@ export const Container = styled.div`
 export const CloseButton = styled.div<{ $display: string; }>`
   display: ${({ $display }) => $display};
   justify-content: flex-end;
+  padding-right: 3px;
 `
 
