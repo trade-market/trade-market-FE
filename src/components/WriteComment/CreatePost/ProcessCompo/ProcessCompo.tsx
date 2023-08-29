@@ -79,7 +79,7 @@ const ProcessCompo = ({
             : null
           }
           <BlueButton
-            maxWidth={onButton ? '100%' : '175px'}
+            maxWidth={onButton ? '100%' : '135px'}
             disabled={disabled}
             onClick={handleNextButton}
             >다음</BlueButton>
