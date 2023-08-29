@@ -59,6 +59,5 @@ export const DeleteBtn = styled.button`
   cursor: pointer;
   margin-left: 3px;
   background: url('Close.svg') center no-repeat;
-  /* background: url('@Assets/Icons/Search/Close.svg') center no-repeat; */
   background-size: 7px;
 `;

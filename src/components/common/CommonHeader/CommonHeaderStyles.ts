@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: ${size.mobile};
   min-height: 48px;
-  z-index: 10;
+  z-index: 2;
   position: fixed;
   top: 0;
   font-size: ${({ theme }) => theme.font.size.large};
@@ -17,12 +17,11 @@ export const Container = styled.div`
   padding: 0 15px;
 
   .title {
-    flex-basis: auto;
     display: flex;
     justify-content: center;
     flex-grow: 2;
     padding-right: 20px;
-
+    
     &.Only {
       padding: 0px;
     }
@@ -35,3 +34,10 @@ export const Container = styled.div`
     background-color: transparent;
   }
 `;
+
+export const CloseButton = styled.div<{ $display: string; }>`
+  display: ${({ $display }) => $display};
+  justify-content: flex-end;
+  padding-right: 5px;
+`
+

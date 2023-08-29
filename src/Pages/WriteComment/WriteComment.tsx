@@ -5,7 +5,7 @@ import Progressbar from '@components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';
 import WriteTypeButton from '@components/WriteComment/WriteTypeButton';
-import icon_pencil from '@Assets/icons/WriteComment/Pencil.svg';
+import icon_pencil from '@Assets/Icons/WriteComment/Pencil.svg';
 import emoji_clipboard from '@Assets/Icons/WriteComment/emoji_clipboard.svg';
 import emoji_pencil from '@Assets/Icons/WriteComment/emoji_Pencil.svg';
 import TitleSection from '@components/WriteComment/TitleSection';
