@@ -19,6 +19,7 @@ export const Section = styled.div`
 export const InputContainer = styled.div`
   width: 100%;
   margin-top: 8px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -64,17 +65,4 @@ export const Button = styled.button<{ disabled: boolean }>`
   transition:
     background-color 0.25s ease,
     color 0.25s ease;
-`;
-
-export const CurrentLocationBtn = styled.button`
-  width: 100%;
-  height: 52px;
-  padding: 17px 0px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.color.activeBlue};
-  background-color: inherit;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.activeBlue};
-  cursor: pointer;
-  margin-top: 20px;
 `;
