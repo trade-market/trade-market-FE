@@ -6,7 +6,7 @@ import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/Proce
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
 import PhotoSample from "@Assets/offer/Write-comment/PhotoSample.svg";
-import BottomSheet from "./BottomSheet/BottomSheet";
+import BottomSheet from '@/components/common/BottomSheet';
 
 const Progress2 = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -23,7 +23,6 @@ const Progress2 = () => {
     setIsModalOpen(false);
   };
 
-
   return (
     <>
       <ProcessCompo
@@ -39,11 +38,19 @@ const Progress2 = () => {
             onClick={() => setIsModalOpen(true)} />
           <div>대표사진 1장</div>
         </W.Container>
-        {isModalOpen &&
-          <BottomSheet
-            closeModal={() => setIsModalOpen(false)}
-            handleGetImage={handleGetImage}
-          />}
+      {isModalOpen &&
+        <BottomSheet height={'130px'} onClick={() => setIsModalOpen(false)}>
+            <label>
+              사진 앨범
+              <input 
+              type='file'
+              id='file'
+              accept='image/*'
+              onChange={handleGetImage}
+              />
+              </label>
+          </BottomSheet>
+          } 
     </>
   );
 };

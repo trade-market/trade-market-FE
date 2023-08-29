@@ -2,26 +2,18 @@ import styled from 'styled-components';
 import { size } from '@/styles/theme';
 
 interface IBottomSheetProps {
-  handleGetImage: (e: React.ChangeEvent) => void
-  closeModal: () => void;
+  children?: React.ReactNode;
+  onClick?: () => void;
+  height?: string;
 }
 
-function BottomSheet({ handleGetImage, closeModal}: IBottomSheetProps) {
+function BottomSheet({ children, onClick, height='190px' }: IBottomSheetProps) {
   return (
     <>
       <Background />
-      <Container>
-        {/* 항목 3개시 14라인에 div 추가 */}
-          <label>
-            사진 앨범
-            <input 
-            type='file'
-            id='file'
-            accept='image/*'
-            onChange={handleGetImage}
-            />
-        </label>
-        <div onClick={closeModal}>닫기</div>
+      <Container $height={height}>
+        {children}
+        <div onClick={onClick}>닫기</div>
       </Container>
     </>
   );
@@ -43,7 +35,7 @@ const Background = styled.div`
   transition: transform 650ms ease-out;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ $height?: string; }>`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};
@@ -52,7 +44,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 0;
   overflow-y: scroll;
-  height: 130px;
+  height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
   
   &::-webkit-scrollbar {
