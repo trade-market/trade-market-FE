@@ -90,6 +90,7 @@ function Articles() {
       <PostActions />
       {isModalOpen && (
         <BottomSheet height={'200px'} onClick={() => setIsModalOpen(false)}>
+          {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton>게시물 수정</A.CorrectionButton>
           <A.DeleteButton>삭제</A.DeleteButton>
         </BottomSheet>
