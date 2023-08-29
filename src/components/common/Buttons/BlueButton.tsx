@@ -23,6 +23,7 @@ interface IBlueButtonProps {
   children: React.ReactNode;
   maxWidth?: string;
   onClick?: () => void;
+  className?: string;
 }
 
 function BlueButton({
@@ -30,9 +31,15 @@ function BlueButton({
   children,
   onClick,
   maxWidth = '135px',
+  className,
 }: IBlueButtonProps) {
   return (
-    <Button disabled={disabled} onClick={onClick} $maxwidth={maxWidth}>
+    <Button
+      disabled={disabled}
+      onClick={onClick}
+      $maxwidth={maxWidth}
+      className={className}
+    >
       {children}
     </Button>
   );

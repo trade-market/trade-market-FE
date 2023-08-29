@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
         font-family: ${theme.font.family.Pretendard};
         cursor: pointer;
       }
+      input {
+        font-family: ${theme.font.family.Pretendard};
+      }
     `;
   }}
 
