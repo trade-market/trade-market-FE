@@ -9,19 +9,28 @@ interface ICommonHeaderProps {
   closeClick?: () => void;
 }
 
-const CommonHeader = ({ children, onClick, display='none', closeClick }: ICommonHeaderProps) => {
+const CommonHeader = ({
+  children,
+  onClick,
+  display = 'none',
+  closeClick,
+}: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
   const hideGobackButton = ['/', '/auth'].includes(currentPath);
 
   return (
     <Container>
       {!hideGobackButton && <GobackBtn onClick={onClick} />}
-        <div className={hideGobackButton ? 'title Only' : 'title'}>
-          {children}
-        </div>
-        <CloseButton className='closeButton' $display={display} onClick={closeClick}>
-          <img src={Close} />
-        </CloseButton>
+      <div className={hideGobackButton ? 'title Only' : 'title'}>
+        {children}
+      </div>
+      <CloseButton
+        className="closeButton"
+        $display={display}
+        onClick={closeClick}
+      >
+        <img src={Close} />
+      </CloseButton>
     </Container>
   );
 };

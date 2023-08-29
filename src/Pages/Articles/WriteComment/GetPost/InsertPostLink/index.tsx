@@ -43,9 +43,13 @@ function InsertPostLink() {
       state: { selectedPostId: location.state?.selectedPostId },
     });
 
+  const handleCloseButton = () => {
+    navigate(`/articles/${id}`, { replace: true });
+  };
+
   return (
     <>
-      <CommonHeader />
+      <CommonHeader display={'flex'} closeClick={handleCloseButton} />
       <Progressbar number={2} total={3} icon={linkChain} />
       <ContentsSection>
         <TitleSection
