@@ -10,7 +10,7 @@ interface IProgressbarProps {
 function Progressbar({ number, total, icon }: IProgressbarProps) {
   return (
     <P.Wrapper>
-      <P.Line number={number} total={total}>
+      <P.Line $number={number} $total={total}>
         <P.Icon>
           <img src={icon} />
         </P.Icon>
@@ -23,10 +23,10 @@ function Progressbar({ number, total, icon }: IProgressbarProps) {
             </>
           )}
         </div>
-        <P.DotStart number={number} total={total}>
+        <P.DotStart $number={number} $total={total}>
           <img src={icon_ellipse} alt="Start Icon" />
         </P.DotStart>
-        <P.DotEnd number={number} total={total}>
+        <P.DotEnd $number={number} $total={total}>
           <img src={icon_ellipse} alt="End Icon" />
         </P.DotEnd>
       </P.Line>

@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   padding-top: 48px;
 `;
 
-export const Line = styled.div<{ number: number; total: number }>`
+export const Line = styled.div<{ $number: number; $total: number }>`
   position: relative;
   width: 100%;
   height: 1px;
@@ -18,8 +18,8 @@ export const Line = styled.div<{ number: number; total: number }>`
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: ${({ theme, number, total }) =>
-      number > 1 ? theme.color.Mainblue : theme.color.whiteGray};
+    background-color: ${({ theme, $number }) =>
+      $number > 1 ? theme.color.Mainblue : theme.color.whiteGray};
   }
 
   &::after {
@@ -29,8 +29,8 @@ export const Line = styled.div<{ number: number; total: number }>`
     right: 0;
     width: 50%;
     height: 100%;
-    background-color: ${({ theme, number, total }) =>
-      number !== total && number !== total
+    background-color: ${({ theme, $number, $total }) =>
+      $number !== $total && $number !== $total
         ? theme.color.Mainblue
         : theme.color.whiteGray};
   }
@@ -59,17 +59,17 @@ export const Icon = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 36px;
-  border: 1px solid ${({ theme }) => theme.color.Mainblue};
+  /* border: 1px solid ${({ theme }) => theme.color.Mainblue}; */
   background-color: ${({ theme }) => theme.color.white};
   z-index: 1;
 
   & > img {
-    width: 16px;
-    height: 16px;
+    width: 35px;
+    height: 35px;
   }
 `;
 
-export const DotStart = styled.div<{ number: number; total: number }>`
+export const DotStart = styled.div<{ $number: number; $total: number }>`
   position: absolute;
   left: 5%;
   top: 50%;
@@ -78,15 +78,15 @@ export const DotStart = styled.div<{ number: number; total: number }>`
   height: 9px;
 
   & > img {
-    display: ${({ number, total }) =>
-      number === total || number >= 2 ? 'block' : 'none'};
+    display: ${({ $number, $total }) =>
+      $number === $total || $number >= 2 ? 'block' : 'none'};
     width: 100%;
     height: 100%;
   }
   z-index: 1;
 `;
 
-export const DotEnd = styled.div<{ number: number; total: number }>`
+export const DotEnd = styled.div<{ $number: number; $total: number }>`
   position: absolute;
   right: 5%;
   top: 50%;
@@ -94,7 +94,7 @@ export const DotEnd = styled.div<{ number: number; total: number }>`
   width: 9px;
   height: 9px;
   & > img {
-    display: ${({ number, total }) => (number !== total ? 'block' : 'none')};
+    display: ${({ $number, $total }) => ($number !== $total ? 'block' : 'none')};
     width: 100%;
     height: 100%;
   }
