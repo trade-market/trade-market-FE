@@ -15,3 +15,9 @@ export const ContentsContainer = styled.div`
   padding: 0 20px;
   margin-top: 20px;
 `;
+
+export const CorrectionButton = styled.div``;
+
+export const DeleteButton = styled.div`
+  color: red;
+`;

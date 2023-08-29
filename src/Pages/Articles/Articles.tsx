@@ -1,13 +1,14 @@
-import CommonHeader from '@components/common/CommonHeader/CommonHeader';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
+import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import WriterProfile from '@/components/Articles/WriterProfile/WriterProfile';
 import ProductInfo from '@components/Articles/ProductInfo/ProductInfo';
 import PostActions from '@components/Articles/PostActions/PostActions';
 import LikeAndComment from '@/components/Articles/LikeAndComment';
-import OfferItem from '@/components/Articles/OfferItem';
 import OfferItemLists from '@/components/Articles/OfferItemLists';
 import useTimeDiff from '@/hooks/useTimeDiff';
+import BottomSheet from '@/components/common/BottomSheet';
 
 // 더미데이터
 const offers = [
@@ -51,12 +52,17 @@ const offers = [
 ];
 
 function Articles() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
   // Todo: id를 통해 해당 게시글 정보 가져오기
+
+  const handleOptionBtnClick = () => setIsModalOpen(true);
   return (
     <>
-      <CommonHeader>상세 페이지</CommonHeader>
+      <CommonHeader isMyPost={true} optionClick={handleOptionBtnClick}>
+        상세 페이지
+      </CommonHeader>
       <A.Container>
         {/* Todo: Image slide 적용?  글쓰기시 사진 한장인지 여러장인지 확인 필요*/}
         <A.ProductImage src="https://health.chosun.com/site/data/img_dir/2021/06/08/2021060801363_0.jpg" />
@@ -82,6 +88,12 @@ function Articles() {
         </A.ContentsContainer>
       </A.Container>
       <PostActions />
+      {isModalOpen && (
+        <BottomSheet height={'200px'} onClick={() => setIsModalOpen(false)}>
+          <A.CorrectionButton>게시물 수정</A.CorrectionButton>
+          <A.DeleteButton>삭제</A.DeleteButton>
+        </BottomSheet>
+      )}
     </>
   );
 }

@@ -41,3 +41,7 @@ export const CloseButton = styled.div<{ $display: string }>`
   padding-right: 5px;
   cursor: pointer;
 `;
+
+export const OptionButton = styled.img`
+  cursor: pointer;
+`;

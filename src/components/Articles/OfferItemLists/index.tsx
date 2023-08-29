@@ -18,7 +18,9 @@ interface IOfferItemListsProps {
   offers: OfferTypes[];
 }
 
-const Container = styled.div`
+const Ul = styled.ul``;
+
+const Container = styled.li`
   &:not(:last-child) {
     margin-bottom: 12px;
   }
@@ -26,13 +28,13 @@ const Container = styled.div`
 
 function OfferItemLists({ offers }: IOfferItemListsProps) {
   return (
-    <>
+    <Ul>
       {offers.map((offers, i) => (
         <Container key={i}>
           <OfferItem {...offers} />
         </Container>
       ))}
-    </>
+    </Ul>
   );
 }
 
