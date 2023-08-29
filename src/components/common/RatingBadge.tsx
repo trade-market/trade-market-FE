@@ -10,11 +10,12 @@ const Container = styled.div`
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
+  line-height: 10px;
   border-radius: 2px 2px 0px 0px;
 `;
 
 interface IRatingBadgeProps {
-  rating: number;
+  rating: string;
 }
 
 function RatingBadge({ rating }: IRatingBadgeProps) {

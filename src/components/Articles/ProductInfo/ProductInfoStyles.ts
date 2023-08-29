@@ -54,7 +54,7 @@ export const InfoContainer = styled.div`
     align-items: center;
     border-radius: 8px;
     background-color: rgba(33, 86, 242, 0.08);
-    font-size: 10px;
+    font-size: ${({ theme }) => theme.font.size.xSmall};
     font-weight: 500;
     line-height: 130%;
     color: ${({ theme }) => theme.color.Mainblue};
