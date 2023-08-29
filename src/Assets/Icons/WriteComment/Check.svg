@@ -1,7 +1,5 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Check">
-<g id="check--check-form-validation-checkmark-success-add-addition-tick">
-<path id="Vector" d="M0.571411 9.77148L3.69141 13.7829C3.79591 13.9185 3.92952 14.0289 4.08239 14.1059C4.23526 14.1829 4.40347 14.2246 4.57461 14.2279C4.74575 14.2312 4.91545 14.196 5.07116 14.1249C5.22688 14.0538 5.36464 13.9487 5.47427 13.8172L15.4286 1.77148" stroke="#2156F2" stroke-width="1.14286" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="35" height="35" rx="17.5" fill="#FDFDFD"/>
+<path d="M10.5723 19.7715L13.6923 23.7829C13.7968 23.9185 13.9304 24.0289 14.0832 24.1059C14.2361 24.1829 14.4043 24.2246 14.5755 24.2279C14.7466 24.2312 14.9163 24.196 15.072 24.1249C15.2277 24.0538 15.3655 23.9487 15.4751 23.8172L25.4294 11.7715" stroke="#2156F2" stroke-width="1.14286" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="0.5" y="0.5" width="35" height="35" rx="17.5" stroke="#2156F2"/>
 </svg>
