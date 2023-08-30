@@ -30,8 +30,8 @@ const Exchange = () => {
           <MapIcons
           icons={Object.values(TalentIcons[0])}
           munus={TalentMenus}
-          />
-        }
+            />
+          }
       </E.ExchangeContainer>
     </E.Wrapper>
   );

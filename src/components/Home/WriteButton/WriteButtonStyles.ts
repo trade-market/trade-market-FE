@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: flex-end;
   padding: 0 15px;
   position: fixed;
-  z-index: 10;
+  z-index: 12;
   bottom: 80px;
 
   .btn {
