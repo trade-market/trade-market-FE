@@ -16,6 +16,7 @@ import Progress6 from './Pages/Articles/WriteComment/CreatePost/Progress6/Progre
 import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
+import WritePost from './Pages/WritePost/WritePost';
 
 function App() {
   const routes = [
@@ -36,6 +37,18 @@ function App() {
     {
       path: '/articles/:id/write-comment/get-post/2/my-posts',
       element: <MyPosts />,
+    },
+    {
+      path: '/write-post',
+      element: <WritePost />,
+    },
+    {
+      path: '/write-post/one-on-one',
+      element: <WritePost />,
+    },
+    {
+      path: '/write-post/offer',
+      element: <WritePost />,
     },
   ];
 

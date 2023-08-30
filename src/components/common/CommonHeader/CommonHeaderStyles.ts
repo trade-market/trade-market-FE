@@ -20,7 +20,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-grow: 2;
-    padding-right: 20px;
+    /* padding-right: 20px; */
 
     &.Only {
       padding: 0px;
