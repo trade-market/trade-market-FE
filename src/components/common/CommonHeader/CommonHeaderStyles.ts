@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: ${size.mobile};
-  min-height: 48px;
+  min-height: 60px;
   z-index: 2;
   position: fixed;
   top: 0;
