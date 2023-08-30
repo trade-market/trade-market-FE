@@ -32,18 +32,6 @@ export const SmallTitle = styled.div`
   color: ${({ theme }) => theme.color.lightGray};
   margin-bottom: 12px;
 `;
-
-export const SignUpButton = styled.button`
-  width: 100%;
-  padding: 17px 0px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.color.activeBlue};
-  background-color: inherit;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.activeBlue};
-  cursor: pointer;
-`;
-
 export const GoHomeText = styled.span`
   position: absolute;
   left: 50%;

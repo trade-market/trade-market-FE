@@ -33,6 +33,7 @@ declare module 'styled-components' {
         Pretendard: string;
       };
       size: {
+        xSmall: string;
         small: string;
         base: string;
         large: string;

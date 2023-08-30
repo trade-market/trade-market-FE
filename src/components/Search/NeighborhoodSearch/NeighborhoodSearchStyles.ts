@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     margin-top: 15px;
-    max-height: 180px;
+    max-height: 170px;
   }
   .item {
     display: flex;

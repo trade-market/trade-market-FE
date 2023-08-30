@@ -6,6 +6,7 @@ import CommonHeader from '@/components/common/CommonHeader/CommonHeader';
 import GoogleLoginBtn from '@/components/Auth/Buttons/GoogleLoginBtn';
 import KakaoLoginBtn from '@/components/Auth/Buttons/KakaoLoginBtn';
 import NaverLoginBtn from '@/components/Auth/Buttons/NaverLoginBtn';
+import ActionButton from '@/components/common/Buttons/ActionButton';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -29,7 +30,13 @@ function Auth() {
             <A.DividedLine />
             <A.SignUpContainer>
               <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
-              <A.SignUpButton onClick={toggleSignUp}>회원가입</A.SignUpButton>
+              <ActionButton
+                onClick={toggleSignUp}
+                backgroundColor="white"
+                borderColor="Mainblue"
+              >
+                회원가입
+              </ActionButton>
             </A.SignUpContainer>
           </>
         )}

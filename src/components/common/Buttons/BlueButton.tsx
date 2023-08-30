@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const Button = styled.button<{ disabled: boolean; maxwidth: string }>`
+export const Button = styled.button<{ disabled: boolean; $maxwidth: string }>`
   width: 100%;
-  max-width: ${({ maxwidth }) => maxwidth};
+  max-width: ${({ $maxwidth }) => $maxwidth};
   padding: 15px 42px;
   border-radius: 8px;
   border: none;
   background-color: ${({ theme, disabled }) =>
-    disabled ? theme.color.disableBtn : theme.color.activeBlue};
+  disabled ? theme.color.disableBtn : theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 600;
   color: ${({ theme, disabled }) =>
@@ -23,6 +23,7 @@ interface IBlueButtonProps {
   children: React.ReactNode;
   maxWidth?: string;
   onClick?: () => void;
+  className?: string;
 }
 
 function BlueButton({
@@ -30,9 +31,15 @@ function BlueButton({
   children,
   onClick,
   maxWidth = '135px',
+  className,
 }: IBlueButtonProps) {
   return (
-    <Button disabled={disabled} onClick={onClick} maxwidth={maxWidth}>
+    <Button
+      disabled={disabled}
+      onClick={onClick}
+      $maxwidth={maxWidth}
+      className={className}
+    >
       {children}
     </Button>
   );

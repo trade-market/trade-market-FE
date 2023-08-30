@@ -8,6 +8,7 @@ import KakaoMap from './KakaoMap';
 import { size } from '@/styles/theme';
 import { Coordinates } from '@/Pages/ProfileSetup/ProfileSetup';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
+import ActionButton from '@components/common/Buttons/ActionButton';
 
 const MapContainer = styled.div`
   position: absolute;
@@ -17,6 +18,21 @@ const MapContainer = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 999;
+
+  animation: bottomUp 0.3s ease;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes bottomUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
 `;
 
 interface IAddressSettingProps {
@@ -39,7 +55,9 @@ function AddressSetting({
   };
 
   const handelCurrentLocationBtnClick = () => {
-    handleAddressSelect('');
+    if (selectedAddress.length > 0) {
+      handleAddressSelect('');
+    }
     setAddressModalOpen(true);
   };
 
@@ -66,9 +84,13 @@ function AddressSetting({
           검색
         </BlueButton>
       </P.InputContainer>
-      <P.CurrentLocationBtn onClick={handelCurrentLocationBtnClick}>
+      <ActionButton
+        onClick={handelCurrentLocationBtnClick}
+        backgroundColor="white"
+        borderColor="Mainblue"
+      >
         현재 동네로 설정
-      </P.CurrentLocationBtn>
+      </ActionButton>
       {addressModalOpen && (
         <MapContainer>
           <CommonHeader

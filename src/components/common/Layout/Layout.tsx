@@ -19,11 +19,13 @@ function Layout({ children }: ILayoutProps) {
     /^\/auth/,
     /^\/profile-setup/,
     /^\/search/,
+    /^\/oauth2\/callback/,
     /^\/articles\/\w+$/, // /articles/:id
     /^\/articles\/\w+\/write-comment$/, // /articles/:id/write-comment
     /^\/articles\/\w+\/write-comment\/create-post\/\w+$/, // /articles/:id/write-comment/create-post/:number
     /^\/articles\/\w+\/write-comment\/get-post\/\w+$/, // /articles/:id/write-comment/get-post/:number
-    /^\/oauth2\/callback/,
+    /^\/articles\/\w+\/write-comment\/get-post\/\w+$/,
+    /^\/articles\/\w+\/write-comment\/get-post\/\w+\/my-posts$/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
