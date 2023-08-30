@@ -17,6 +17,9 @@ import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink'
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import WritePost from './Pages/WritePost/WritePost';
+import OneOnOne from './Pages/WritePost/OneOnOne/OneOnOne';
+import OfferItem from './components/Articles/OfferItem';
+import Offer from './Pages/WritePost/Offer/Offer';
 
 function App() {
   const routes = [
@@ -38,18 +41,9 @@ function App() {
       path: '/articles/:id/write-comment/get-post/2/my-posts',
       element: <MyPosts />,
     },
-    {
-      path: '/write-post',
-      element: <WritePost />,
-    },
-    {
-      path: '/write-post/one-on-one',
-      element: <WritePost />,
-    },
-    {
-      path: '/write-post/offer',
-      element: <WritePost />,
-    },
+    { path: '/write-post', element: <WritePost /> },
+    { path: '/write-post/one-on-one', element: <OneOnOne /> },
+    { path: '/write-post/offer',element: <Offer /> },
   ];
 
   return (
