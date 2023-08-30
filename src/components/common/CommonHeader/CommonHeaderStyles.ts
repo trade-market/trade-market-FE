@@ -21,7 +21,7 @@ export const Container = styled.div`
     justify-content: center;
     flex-grow: 2;
     padding-right: 20px;
-    
+
     &.Only {
       padding: 0px;
     }
@@ -35,9 +35,13 @@ export const Container = styled.div`
   }
 `;
 
-export const CloseButton = styled.div<{ $display: string; }>`
+export const CloseButton = styled.div<{ $display: string }>`
   display: ${({ $display }) => $display};
   justify-content: flex-end;
   padding-right: 5px;
-`
+  cursor: pointer;
+`;
 
+export const OptionButton = styled.img`
+  cursor: pointer;
+`;

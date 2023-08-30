@@ -1,3 +1,4 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import Progressbar from '@/components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import checkIcon from '@Assets/icons/WriteComment/Check.svg';
@@ -7,7 +8,6 @@ import styled from 'styled-components';
 import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 import { size } from '@/styles/theme';
-import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -43,14 +43,19 @@ const SBlueButton = styled(BlueButton)`
 `;
 
 function FinalCheck() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleReSelectBtnClick = () => navigate(-1);
 
   // Todo: 게시글 id로 정보 받아오는 API 받아오기
+
+  const handleCloseButton = () => {
+    navigate(`/articles/${id}`, { replace: true });
+  };
   return (
     <>
-      <CommonHeader />
+      <CommonHeader display={'flex'} closeClick={handleCloseButton} />
       <Progressbar number={3} total={3} icon={checkIcon} />
       <ContentsSection>
         <TitleSection

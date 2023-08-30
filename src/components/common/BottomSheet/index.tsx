@@ -7,7 +7,11 @@ interface IBottomSheetProps {
   height?: string;
 }
 
-function BottomSheet({ children, onClick, height='190px' }: IBottomSheetProps) {
+function BottomSheet({
+  children,
+  onClick,
+  height = '190px',
+}: IBottomSheetProps) {
   return (
     <>
       <Background />
@@ -28,14 +32,14 @@ const Background = styled.div`
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  z-index: 10;
-  backdrop-filter : blur(3px);
+  z-index: 99;
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(150, 150, 150, 0.4);  
+  background-color: rgba(150, 150, 150, 0.4);
   transition: transform 650ms ease-out;
 `;
 
-const Container = styled.div<{ $height?: string; }>`
+const Container = styled.div<{ $height?: string }>`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};
@@ -46,7 +50,7 @@ const Container = styled.div<{ $height?: string; }>`
   overflow-y: scroll;
   height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -60,7 +64,9 @@ const Container = styled.div<{ $height?: string; }>`
     }
   }
 
-  :nth-child(1), :nth-child(2), :nth-child(3) {
+  :nth-child(1),
+  :nth-child(2),
+  :nth-child(3) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,8 +74,8 @@ const Container = styled.div<{ $height?: string; }>`
     cursor: pointer;
     padding: 20px 0;
     margin: 0 20px;
-    box-shadow:1px 1px 3px 0px ${({ theme }) => theme.color.gray};
-    font-size:  ${({ theme }) => theme.font.size.base};
+    box-shadow: 1px 1px 3px 0px ${({ theme }) => theme.color.gray};
+    font-size: ${({ theme }) => theme.font.size.base};
     font-weight: 500;
     cursor: pointer;
   }
@@ -78,8 +84,8 @@ const Container = styled.div<{ $height?: string; }>`
     border-radius: 8px 8px 0 0;
   }
 
-    :nth-child(2) {
-    border-radius: 0 0 8px 8px; 
+  :nth-child(2) {
+    border-radius: 0 0 8px 8px;
   }
 
   :nth-child(3) {

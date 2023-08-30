@@ -29,7 +29,7 @@ export const theme: DefaultTheme = {
     black: '#0B0B0B',
     activeBlue: '#2156F2',
     disableBtn: '#E5E7EB',
-    inputGray : '#f9f8fb',
+    inputGray: '#f9f8fb',
   },
   font: {
     family: {
@@ -37,6 +37,7 @@ export const theme: DefaultTheme = {
       Pretendard: 'Pretendard',
     },
     size: {
+      xSmall: '10px',
       small: '12px',
       base: '14px',
       large: '18px',

@@ -5,16 +5,22 @@ interface IWriterInfoProps {
   profileImg: string;
   nickname: string;
   location: string;
+  rating: string;
 }
 
-function WriterInfo({ profileImg, nickname, location }: IWriterInfoProps) {
+function WriterInfo({
+  profileImg,
+  nickname,
+  location,
+  rating,
+}: IWriterInfoProps) {
   return (
     <W.Container>
       <W.ProfileImg src={profileImg} />
       <W.TextContainer>
         <W.NameContainer>
           <W.Nickname>{nickname}</W.Nickname>
-          <RatingBadge rating={3} />
+          <RatingBadge rating={rating} />
         </W.NameContainer>
         <W.Location>{location}</W.Location>
       </W.TextContainer>
