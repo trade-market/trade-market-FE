@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progresss2Styles';
-import { size } from '@/styles/theme';
 
 export const Container = styled(ContainerTemplet)`
   margin-top: 15px;
@@ -64,17 +63,17 @@ export const PriceTag = styled.div`
   }
 
   .min {
-    left: 10%; 
-    @media screen and (min-width: ${size.mobileS}) {
+    left: 11%; 
+    @media screen and (max-width: 390px) {
       left: 6%; 
     }
   }
 
   .max {
     justify-content: flex-end;
-    right: 10%;
-    @media screen and (min-width: ${size.mobileS}) {
-      right: 7%; 
+    right: 11%;
+    @media screen and (max-width: 390px) {
+      right: 6%; 
     }
   }
 `;
