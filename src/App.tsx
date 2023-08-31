@@ -19,6 +19,7 @@ import Progress6 from './Pages/Articles/WriteComment/CreatePost/Progress6/Progre
 import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
+import ScrollToTop from '@utils/ScrollToTop';
 
 function App() {
   const routes = [
@@ -49,6 +50,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <ScrollToTop />
         <Layout>
           <Routes>
             {routes.map(({ path, element }, index) => (
