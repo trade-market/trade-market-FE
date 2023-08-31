@@ -1,10 +1,10 @@
 import * as O from './OfferItemStyles';
-import RatingBadge from '@/components/common/RatingBadge';
+import RatingBadge from '@components/common/RatingBadge';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
-import BigTitle from '@/components/common/BigTitle';
+import BigTitle from '@components/common/BigTitle';
 import useTimeDiff from '@hooks/useTimeDiff';
-import { OfferTypes } from '@components/Articles/OfferItemLists';
+import { OfferPostTypes } from '@/types/OfferTypes';
 
 function OfferItem({
   profileImg,
@@ -17,7 +17,7 @@ function OfferItem({
   price,
   text,
   isOriginalPost,
-}: OfferTypes) {
+}: OfferPostTypes) {
   const timeDifference = useTimeDiff(createdAt);
 
   return (

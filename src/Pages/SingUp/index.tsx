@@ -3,14 +3,10 @@ import * as P from './SignUpStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import NicknameSetting from '@components/SignUp/NicknameSetting';
 import AddressSetting from '@components/SignUp/AddressSetting';
-import BlueButton from '@/components/common/Buttons/BlueButton';
-import ProfileImgSetting from '@/components/SignUp/ProfileImgSetting';
+import BlueButton from '@components/common/Buttons/BlueButton';
+import ProfileImgSetting from '@components/SignUp/ProfileImgSetting';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
-
-export interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
+import { Coordinates } from '@/types/UserTypes';
 
 function SignUp() {
   const [imgSrc, setImgSrc] = useState(userDefaultImg);

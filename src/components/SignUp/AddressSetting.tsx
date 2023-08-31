@@ -3,12 +3,12 @@ import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
 import * as S from '@Pages/SingUp/SignUpStyles';
 import BigTitle from '@components/common/BigTitle';
-import BlueButton from '@/components/common/Buttons/BlueButton';
-import KakaoMap from './KakaoMap';
-import { size } from '@/styles/theme';
-import { Coordinates } from '@Pages/SingUp';
+import BlueButton from '@components/common/Buttons/BlueButton';
+import { size } from '@styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
+import { Coordinates } from '@/types/UserTypes';
+import KakaoMap from './KakaoMap';
 
 const MapContainer = styled.div`
   position: absolute;
