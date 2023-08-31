@@ -17,7 +17,7 @@ function Layout({ children }: ILayoutProps) {
 
   const hiddenPaths = [
     /^\/auth/,
-    /^\/profile-setup/,
+    /^\/signup/,
     /^\/search/,
     /^\/oauth2\/callback/,
     /^\/articles\/\w+$/, // /articles/:id

@@ -79,7 +79,7 @@ function Articles() {
             uploadTime={timeDifference}
             daedline="08월 17일"
             desiredCategory="의류"
-            tradeTime="08월 17일"
+            tradeTime="오전(09시~12시)"
             price="21,000~24,000"
             description="2년 간 사용했고, 기스가 좀 있습니다."
           />

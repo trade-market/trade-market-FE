@@ -4,7 +4,7 @@ import { theme } from '@styles/theme';
 import Layout from '@components/common/Layout/Layout';
 import Home from '@Pages/Home/Home';
 import Auth from '@Pages/Auth/Auth';
-import ProfileSetup from '@Pages/ProfileSetup/ProfileSetup';
+import SignUp from '@Pages/SingUp';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles/Articles';
 import KakaoRedirectHandler from '@components/Auth/KakaoRedirectHandler';
@@ -29,7 +29,7 @@ function App() {
     { path: '/oauth2/callback/google', element: <GoogleRedirectHandler /> },
     { path: '/oauth2/callback/naver', element: <NaverRedirectHandler /> },
     { path: '/auth', element: <Auth /> },
-    { path: '/profile-setup/', element: <ProfileSetup /> },
+    { path: '/signup', element: <SignUp /> },
     { path: '/search', element: <Search /> },
     { path: '/articles/:id', element: <Articles /> },
     { path: '/articles/:id/write-comment', element: <WriteComment /> },

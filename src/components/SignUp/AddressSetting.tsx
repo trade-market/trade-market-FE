@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
-import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import * as S from '@Pages/SingUp/SignUpStyles';
 import BigTitle from '@components/common/BigTitle';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 import KakaoMap from './KakaoMap';
 import { size } from '@/styles/theme';
-import { Coordinates } from '@/Pages/ProfileSetup/ProfileSetup';
+import { Coordinates } from '@Pages/SingUp';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
 
@@ -71,10 +71,10 @@ function AddressSetting({
   };
 
   return (
-    <P.Section>
+    <S.Section>
       <BigTitle>동네 설정</BigTitle>
-      <P.InputContainer>
-        <P.Input
+      <S.InputContainer>
+        <S.Input
           type="text"
           placeholder="지번, 도로명, 건물명으로 검색"
           value={selectedAddress}
@@ -83,7 +83,7 @@ function AddressSetting({
         <BlueButton disabled={false} onClick={handleSearchBtnClick}>
           검색
         </BlueButton>
-      </P.InputContainer>
+      </S.InputContainer>
       <ActionButton
         onClick={handelCurrentLocationBtnClick}
         backgroundColor="white"
@@ -109,7 +109,7 @@ function AddressSetting({
           />
         </MapContainer>
       )}
-    </P.Section>
+    </S.Section>
   );
 }
 

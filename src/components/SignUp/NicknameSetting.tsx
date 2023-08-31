@@ -1,6 +1,6 @@
 import React from 'react';
 import BigTitle from '@components/common/BigTitle';
-import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import * as S from '@Pages/SingUp/SignUpStyles';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface NicknameSettingProps {
@@ -17,10 +17,10 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
   handleNicknameCheck,
 }) => {
   return (
-    <P.Section>
+    <S.Section>
       <BigTitle>닉네임 설정</BigTitle>
-      <P.InputContainer>
-        <P.Input
+      <S.InputContainer>
+        <S.Input
           type="text"
           placeholder="닉네임 입력"
           value={nickname}
@@ -32,9 +32,9 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
         >
           중복확인
         </BlueButton>
-      </P.InputContainer>
-      {error && <P.ErrorText>{error}</P.ErrorText>}
-    </P.Section>
+      </S.InputContainer>
+      {error && <S.ErrorText>{error}</S.ErrorText>}
+    </S.Section>
   );
 };
 

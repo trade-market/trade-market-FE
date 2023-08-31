@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import * as P from './ProfileSetupStyles';
+import * as P from './SignUpStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import NicknameSetting from '@components/ProfileSetup/NicknameSetting';
-import AddressSetting from '@components/ProfileSetup/AddressSetting';
+import NicknameSetting from '@components/SignUp/NicknameSetting';
+import AddressSetting from '@components/SignUp/AddressSetting';
 import BlueButton from '@/components/common/Buttons/BlueButton';
-import ProfileImgSetting from '@/components/ProfileSetup/ProfileImgSetting';
+import ProfileImgSetting from '@/components/SignUp/ProfileImgSetting';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
 
 export interface Coordinates {
@@ -12,7 +12,7 @@ export interface Coordinates {
   longitude: number;
 }
 
-function ProfileSetup() {
+function SignUp() {
   const [imgSrc, setImgSrc] = useState(userDefaultImg);
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [nickname, setNickname] = useState('');
@@ -82,4 +82,4 @@ function ProfileSetup() {
   );
 }
 
-export default ProfileSetup;
+export default SignUp;
