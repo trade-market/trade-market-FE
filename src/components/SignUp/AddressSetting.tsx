@@ -11,26 +11,22 @@ import { Coordinates } from '@/types/UserTypes';
 import KakaoMap from './KakaoMap';
 
 const MapContainer = styled.div`
-  position: absolute;
+  position: fixed;
   max-width: ${size.mobile};
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 999;
-
   animation: bottomUp 0.3s ease;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   @keyframes bottomUp {
-    0% {
-      transform: translateY(100%);
+    from {
+      transform: translate(-50%, calc(100% + (100vh - ${size.mobile}) / 2));
     }
-    100% {
-      transform: translateY(0%);
+    to {
+      transform: translate(-50%, -${size.mobile} / 2);
     }
   }
 `;
