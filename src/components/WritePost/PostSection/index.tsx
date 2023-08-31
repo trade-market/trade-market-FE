@@ -1,14 +1,21 @@
 import BigTitle from '@/components/common/BigTitle';
 import styled from 'styled-components';
+import SelectBox from '../SelectBox';
 
 interface IPostSectionProps {
-  text: string;
+  label: string;
+  placeholder: string;
+  option: number;
 }
 
-const PostSection = ({text}: IPostSectionProps) => {
+const PostSection = ({label, placeholder, option}: IPostSectionProps) => {
   return (
     <Container>
-      <BigTitle>{text}</BigTitle>
+      <BigTitle>{label}</BigTitle>
+      <SelectBox
+        placeholder={placeholder}
+        option={option}
+      />
     </Container>
   );
 };
@@ -19,5 +26,4 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-  background-color: yellow;
 `;
