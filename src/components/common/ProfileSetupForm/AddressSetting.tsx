@@ -82,8 +82,8 @@ function AddressSetting({
       </S.InputContainer>
       <ActionButton
         onClick={handelCurrentLocationBtnClick}
-        backgroundColor="white"
-        borderColor="Mainblue"
+        $backgroundColor="white"
+        $borderColor="Mainblue"
       >
         현재 동네로 설정
       </ActionButton>

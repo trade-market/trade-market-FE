@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import * as K from './KakaoMapStyles';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
-import CurrentLocation from '@/components/SignUp/CurrentLocation';
-import SetCurrentLocationBtn from '@/components/SignUp/SetCurrentLocationBtn';
+import CurrentLocation from '@components/common/ProfileSetupForm/CurrentLocation';
+import SetCurrentLocationBtn from '@components/common/ProfileSetupForm/SetCurrentLocationBtn';
 import { Coordinates } from '@/types/UserTypes';
 
 interface IKakaoMapProps {

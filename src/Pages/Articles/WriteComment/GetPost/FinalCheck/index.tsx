@@ -94,8 +94,8 @@ function FinalCheck() {
           </Row>
         </Container>
         <ActionButton
-          backgroundColor="white"
-          borderColor="Mainblue"
+          $backgroundColor="white"
+          $borderColor="Mainblue"
           onClick={handleReSelectBtnClick}
         >
           다시 선택하기

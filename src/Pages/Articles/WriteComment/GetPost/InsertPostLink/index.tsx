@@ -66,8 +66,8 @@ function InsertPostLink() {
           }
         />
         <ActionButton
-          backgroundColor="white"
-          borderColor="Mainblue"
+          $backgroundColor="white"
+          $borderColor="Mainblue"
           onClick={handleGetPostLinkBtnClick}
         >
           링크 가져오기

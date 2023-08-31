@@ -32,8 +32,8 @@ function Auth() {
               <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
               <ActionButton
                 onClick={toggleSignUp}
-                backgroundColor="white"
-                borderColor="Mainblue"
+                $backgroundColor="white"
+                $borderColor="Mainblue"
               >
                 회원가입
               </ActionButton>
