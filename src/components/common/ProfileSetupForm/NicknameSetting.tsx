@@ -33,7 +33,10 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           중복확인
         </BlueButton>
       </S.InputContainer>
-      {error && <S.ErrorText>{error}</S.ErrorText>}
+      {error &&
+        error
+          .split('\n')
+          .map((line, index) => <S.ErrorText key={index}>{line}</S.ErrorText>)}
     </S.Section>
   );
 };
