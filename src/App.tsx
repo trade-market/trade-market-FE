@@ -18,9 +18,10 @@ import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import WritePost from './Pages/WritePost/WritePost';
 import F2F from './Pages/WritePost/F2F/F2F';
-import Offer from './Pages/WritePost/Offer/Offer';
 import SelectElement from './Pages/WritePost/F2F/SelectElement';
 import WriteContent from './Pages/WritePost/F2F/WriteContent';
+import FinalCheckPost from './Pages/WritePost/F2F/FinalCheckPost';
+import Offer from './Pages/WritePost/Offer/Offer';
 
 function App() {
   const routes = [
@@ -43,6 +44,7 @@ function App() {
       element: <MyPosts />,
     },
     { path: '/write-post', element: <WritePost /> },
+    { path: '/write-post/offer', element: <Offer /> },
   ];
 
   return (
@@ -63,6 +65,7 @@ function App() {
               <Route path='/write-post/one-on-one' element={<F2F />} >
                 <Route path='select-element' element={<SelectElement />} />
                 <Route path='write-content' element={<WriteContent />} />
+                <Route path='final-check' element={<FinalCheckPost />} />
               </Route>
             </Routes>
         </Layout>

@@ -52,8 +52,6 @@ const SelectElement = () => {
     
   }, [])
 
-  console.log(enable)
-
   return (
     <>
       <O.Container>

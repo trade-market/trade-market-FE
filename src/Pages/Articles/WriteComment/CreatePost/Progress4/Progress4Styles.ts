@@ -3,4 +3,5 @@ import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progr
 
 export const Container = styled(ContainerTemplet)`
   margin-top: 15px;
+  padding: 0 20px;
 `;

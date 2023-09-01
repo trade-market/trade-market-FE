@@ -1,22 +1,27 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 interface IBlueTextAreaProps {
   placeholder: string;
   value: string | string[];
   maxLength?: number;
-  handleChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  dispatchType: any;
   maxHeight?: string;
 }
 
-const BlueTextArea = ({placeholder, value='', maxLength=0, maxHeight='268px', handleChange } : IBlueTextAreaProps) => {
-  //* 글자수 제한
-  const onBlur = (value: string | string[]) => value.length > maxLength ? value.slice(0, maxLength) : value;
+const BlueTextArea = ({ placeholder, value = '', maxLength = 0, maxHeight = '268px', dispatchType }: IBlueTextAreaProps) => {
+  const dispatch = useDispatch(); 
+  const onBlur = (value: string | string[]) => value.length > maxLength ? value.slice(0, maxLength) : value;   //* 글자수 제한
+  
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(dispatchType(e.target.value));
+  };
   
   return (
     <BlueContainer
       placeholder={placeholder}
       defaultValue={onBlur(value)}
-      onChange={handleChange}
+      onChange={onChangeHandler}
       $maxHeight={maxHeight}
       />
   );

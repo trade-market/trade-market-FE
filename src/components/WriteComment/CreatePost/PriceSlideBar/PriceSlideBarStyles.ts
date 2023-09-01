@@ -6,7 +6,7 @@ export const InputContainerTemplet = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 `;
 
 export const InputTemplet = styled.input`
@@ -27,7 +27,7 @@ export const InputTemplet = styled.input`
 export const InputContainer = styled(InputContainerTemplet)`
   .currency {
     position: absolute;
-    left: 86%;
+    left: 90%;
     top: 22%;
     font-size: 15px;
     color: ${({ theme }) => theme.color.lightGray};
@@ -43,7 +43,7 @@ export const Input = styled(InputTemplet)`
 
 export const PriceSlideContainer = styled.div`
   width: 100%;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 `;
 
 const Slide = styled.div`
@@ -72,7 +72,7 @@ export const PriceRangeWrap = styled.div`
 export const PriceRangeMin = styled.input`
   position: absolute;	
 	top: -2px;
-  left: -8px;
+  left: -6px;
   width: 102%;
   height: 8px;
   background: none;
@@ -80,8 +80,8 @@ export const PriceRangeMin = styled.input`
   pointer-events: none; // input-pointer 비활성화
 
   &::-webkit-slider-thumb {
-    height: 22px;
-    width: 22px;
+    height: 21px;
+    width: 21px;
     border-radius: 50%;
     -webkit-box-shadow: 0.5px 0.5px 3px 0.5px ${({ theme }) => theme.color.gray};
     background-color: ${({ theme }) => theme.color.white};

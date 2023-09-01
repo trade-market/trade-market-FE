@@ -17,12 +17,12 @@ const PriceSlideBar = ({fixedMinValue, fixedMaxValue, priceGapValue, selectMinPr
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
 
   //* 최소값 가져오기
-  const prcieRangeMinValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const priceRangeMinValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMinPriceValue(parseInt(e.target.value)));
   };
 
   //* 최대값 가져오기
-  const prcieRangeMaxValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const priceRangeMaxValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMaxPriceValue(parseInt(e.target.value)));
   };
 
@@ -41,10 +41,6 @@ const PriceSlideBar = ({fixedMinValue, fixedMaxValue, priceGapValue, selectMinPr
       dispatch(setMaxPriceValue(fixedMaxValue));
     }
   }, [])
-
-  const handleChange = () => {
-    return [`${currentPrice(selectMinPriceValue)}~${currentPrice(selectMaxPriceValue)}`]
-  };
 
   return (
     <>
@@ -70,7 +66,7 @@ const PriceSlideBar = ({fixedMinValue, fixedMaxValue, priceGapValue, selectMinPr
               step="1000"
               defaultValue={selectMinPriceValue}
               onChange={((e) => {
-                prcieRangeMinValueHandler(e);
+                priceRangeMinValueHandler(e);
                 twoRangeHandler();
               })}
               />
@@ -81,7 +77,7 @@ const PriceSlideBar = ({fixedMinValue, fixedMaxValue, priceGapValue, selectMinPr
               step="1000"
               defaultValue={selectMaxPriceValue}
               onChange={((e) => {
-                prcieRangeMaxValueHandler(e);
+                priceRangeMaxValueHandler(e);
                 twoRangeHandler();
               })}
               />
