@@ -6,7 +6,7 @@ const Container = styled.div<{ selected: boolean | null }>`
   max-width: 168px;
   min-height: 168px;
   padding: 20px;
-  background-color: ${({ theme }) => theme.color.whiteGray};
+  background-color: #ebf0fc;
   opacity: ${({ selected }) => (selected || selected === null ? 1 : 0.4)};
   border-radius: 8px;
   cursor: pointer;
