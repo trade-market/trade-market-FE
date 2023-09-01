@@ -42,10 +42,13 @@ export const Input = styled.input`
 `;
 
 export const ErrorText = styled.div`
-  margin-top: 12px;
+  &:not(:last-child) {
+    margin-top: -10px;
+  }
   font-size: ${({ theme }) => theme.font.size.small};
   color: red;
   text-align: center;
+  line-height: 130%;
 `;
 
 export const Button = styled.button<{ disabled: boolean }>`

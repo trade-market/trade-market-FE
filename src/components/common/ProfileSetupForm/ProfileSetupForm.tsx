@@ -48,7 +48,7 @@ function ProfileSetupForm({
     const regex = /^[A-Za-z0-9_가-힣]{2,10}$/; //영문, 한글, 숫자, _ (언더바)2~10자리
     if (!regex.test(nickname)) {
       setNicknameError(
-        '닉네임은 2자 이상 최대 10자로, 영문, 한글, 숫자, 특수 문자는 "_" 언더바만 사용할 수 있습니다.'
+        '닉네임은 2자 이상 최대 10자로\n영문, 한글, 숫자, 특수 문자는 "_" 언더바만 사용할 수 있습니다.'
       );
       return;
     }
