@@ -17,10 +17,10 @@ import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink'
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import WritePost from './Pages/WritePost/WritePost';
-import OneOnOne from './Pages/WritePost/OneOnOne/OneOnOne';
+import F2F from './Pages/WritePost/F2F/F2F';
 import Offer from './Pages/WritePost/Offer/Offer';
-import SelectElement from './Pages/WritePost/OneOnOne/SelectElement';
-import WriteContent from './Pages/WritePost/OneOnOne/WriteContent';
+import SelectElement from './Pages/WritePost/F2F/SelectElement';
+import WriteContent from './Pages/WritePost/F2F/WriteContent';
 
 function App() {
   const routes = [
@@ -60,7 +60,7 @@ function App() {
                 <Route path='5' element={<Progress5 />} />
                 <Route path='6' element={<Progress6 />} />
               </Route>
-              <Route path='/write-post/one-on-one' element={<OneOnOne />} >
+              <Route path='/write-post/one-on-one' element={<F2F />} >
                 <Route path='select-element' element={<SelectElement />} />
                 <Route path='write-content' element={<WriteContent />} />
               </Route>

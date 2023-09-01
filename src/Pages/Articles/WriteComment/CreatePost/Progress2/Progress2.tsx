@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@store/types';
 import { setImagePost } from '@/store/slices/CreatePostSlice';
+import { RootState } from '@store/types';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";

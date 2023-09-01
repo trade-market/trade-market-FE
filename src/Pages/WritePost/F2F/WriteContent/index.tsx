@@ -5,7 +5,7 @@ import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
 import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@components/common/Buttons/BlueButton';
 import useNavigateButton from '@hooks/useNavigateButton';
-import * as O from '../OneOnOneStyles';
+import * as O from '../F2FStyles';
 
 const WriteContent = () => {
   const [textAreaValue, setTextAreaValue] = useState('')

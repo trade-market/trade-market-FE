@@ -4,32 +4,28 @@ import styled from 'styled-components';
 interface IPostSectionProps {
   placeholder: string;
   option: number;
+  isChange: boolean,
+  selectDispatch?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-  const selectOptions = [
-    { TalentOptions: ['국어', '영어', '제2외국어', '개발/코딩', '디자인', '수학', '미술', '운동', '주식', '미용/뷰티', '취업', '자격증', '음악', '단순인력'] },
-    { ObjectOptions: [] },
-    { TimeOptions: ['이른 아침(06시 ~ 09시', '오전(09시 ~ 12시)', '오후(12시 ~ 18시)', '저녁(18시 ~ 00시)', '새벽(00시 ~ 06시'] },
-  ];
+const selectOptions = [
+  { TalentOptions: ['국어', '영어', '제2외국어', '개발/코딩', '디자인', '수학', '미술', '운동', '주식', '미용/뷰티', '취업', '자격증', '음악', '단순인력'] },
+  { ObjectOptions: [] },
+  { TimeOptions: ['이른 아침(06시 ~ 09시', '오전(09시 ~ 12시)', '오후(12시 ~ 18시)', '저녁(18시 ~ 00시)', '새벽(00시 ~ 06시'] },
+];
 
-const SelectBox = ({placeholder, option } : IPostSectionProps) => {
+const SelectBox = ({ placeholder, option, isChange, selectDispatch }: IPostSectionProps) => {
   const [OptionOpen, setOptionOpen] = useState(false);
-  const [selectValue, setSelectValue] = useState(placeholder);
   const selectArr = Object.values(selectOptions[option])[0];
-
-  const handleOnChangeSelectValue = (e: React.MouseEvent<HTMLElement>) => {
-    const event = e.target as HTMLElement;
-    setSelectValue(event.innerText);
-  }
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
-      <Label $change={selectValue === placeholder}>{selectValue}</Label>
+      <Label $change={isChange}>{placeholder}</Label>
       <SelectOptions $open={OptionOpen}> {
         selectArr && selectArr.map((op: string, i: number) => (
           <Option
             key={i}
-            onClick={handleOnChangeSelectValue}>{op}</Option>
+            onClick={selectDispatch}>{op}</Option>
         ))
       }
       </SelectOptions>
@@ -57,7 +53,6 @@ const BoxContainer = styled.div`
   background: url('/down.svg') right no-repeat;
 
   &::before {
-    /* content: "⌵"; */
     position: absolute;
     top: 7px;
     right: 15px;
@@ -68,7 +63,7 @@ const BoxContainer = styled.div`
 
 const Label = styled.label<{ $change: boolean }>`
   display: flex;
-  color : ${({ $change, theme }) => $change ? theme.color.gray : theme.color.activeBlue};
+  color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
 `;
 
 const SelectOptions = styled.ul<{ $open: boolean }>`
