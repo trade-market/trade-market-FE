@@ -4,18 +4,14 @@ import SelectBox from '../SelectBox';
 
 interface IPostSectionProps {
   label: string;
-  placeholder: string;
-  option: number;
+  children?: React.ReactNode;
 }
 
-const PostSection = ({label, placeholder, option}: IPostSectionProps) => {
+const PostSection = ({label, children}: IPostSectionProps) => {
   return (
     <Container>
       <BigTitle>{label}</BigTitle>
-      <SelectBox
-        placeholder={placeholder}
-        option={option}
-      />
+      { children }
     </Container>
   );
 };

@@ -17,7 +17,7 @@ const WritePost = () => {
   const handleTypeButtonClick = (buttonId: string) =>
     setSelectedButton(buttonId);
 
-  const handleNextButtonClick = () => navigate(`${selectedButton}`);
+  const handleNextButtonClick = () => navigate(`${selectedButton}/select-element`);
 
  //* close 버튼
   const handleCloseButton = () => {

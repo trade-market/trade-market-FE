@@ -36,27 +36,32 @@ const Progress3 = () => {
         n={3}
         ProgessIcon={category}
         text={["희망 물품 및 카테고리 선정", "거래를 원하시는 물품을 작성하시고,", "물품이 해당하는 카테고리를 선택해주세요."]}
-        inputRef={inputRef}
-        placeholder={'물품 작성'}
-        handleSearch={handleSearch}
         disabled={!(selectProduct.length > 0) || !(selectCategory.length > 0)}
-        value={selectProduct}
         />
-        <P.Container>
-          <P.Line />
-          <P.Categories>
-            {
-              categories.map((c, i) => {
-                return (
-                  <button
-                    key={i}
-                    className={selectCategory === categories[i] ? 'active ' : ''}
-                    onClick={() => handleSelectCategory(i)}>{c}</button>
+      <P.Container>
+        <P.InputContainer>
+          <P.Input
+            type={'text'}
+            placeholder='물품 작성'
+            ref={inputRef}
+            onChange={handleSearch}
+            defaultValue={selectProduct}
+            />
+        </P.InputContainer>
+        <P.Line />
+        <P.Categories>
+          {
+            categories.map((c, i) => {
+              return (
+                <button
+                  key={i}
+                  className={selectCategory === categories[i] ? 'active ' : ''}
+                  onClick={() => handleSelectCategory(i)}>{c}</button>
                 )
               })
-            }
-            </P.Categories>
-        </P.Container>
+          }
+        </P.Categories>
+      </P.Container>
     </>
   );
 };

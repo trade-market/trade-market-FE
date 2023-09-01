@@ -43,7 +43,8 @@ const BoxContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 378px;
+  max-width: 378px;
+  width: 100%;
   height: 48px;
   padding-left: 15px;
   margin-top: 15px;
@@ -79,22 +80,26 @@ const SelectOptions = styled.ul<{ $open: boolean }>`
   width: 100%;
   overflow: hidden;
   height: max-content;
+  height: 223px;
   max-height: ${({ $open }) => $open ? "none" : "0" };
   /* padding: 0 10px; */
+  overflow-y: scroll;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
   color: ${({ theme }) => theme.color.lightGray};
   box-shadow:${({ $open }) => $open ? "1px 3px 4px 2px rgba(152, 152, 152, 0.25);" : "none" }; 
   z-index: 999;
 `;
+
 const Option = styled.li`
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.font.size.base};
-  height: 48px;
+  /* height: 48px; */
+  padding: 15px 0;
   padding-left: 15px;
   border-radius: 4px;
-  transition: background-color 0.2s ease-in;
+  transition: background-color 0.1s ease-in-out;
   &:hover {
     background-color: #EBF0FC;
     border: 1px solid ${({ theme }) => theme.color.activeBlue};

@@ -18,8 +18,9 @@ import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import WritePost from './Pages/WritePost/WritePost';
 import OneOnOne from './Pages/WritePost/OneOnOne/OneOnOne';
-import OfferItem from './components/Articles/OfferItem';
 import Offer from './Pages/WritePost/Offer/Offer';
+import SelectElement from './Pages/WritePost/OneOnOne/SelectElement';
+import WriteContent from './Pages/WritePost/OneOnOne/WriteContent';
 
 function App() {
   const routes = [
@@ -42,8 +43,6 @@ function App() {
       element: <MyPosts />,
     },
     { path: '/write-post', element: <WritePost /> },
-    { path: '/write-post/one-on-one', element: <OneOnOne /> },
-    { path: '/write-post/offer',element: <Offer /> },
   ];
 
   return (
@@ -60,6 +59,10 @@ function App() {
                 <Route path='4' element={<Progress4 />} />
                 <Route path='5' element={<Progress5 />} />
                 <Route path='6' element={<Progress6 />} />
+              </Route>
+              <Route path='/write-post/one-on-one' element={<OneOnOne />} >
+                <Route path='select-element' element={<SelectElement />} />
+                <Route path='write-content' element={<WriteContent />} />
               </Route>
             </Routes>
         </Layout>
