@@ -43,8 +43,7 @@ function App() {
       path: '/articles/:id/write-comment/get-post/2/my-posts',
       element: <MyPosts />,
     },
-    { path: '/write-post', element: <WritePost /> },
-    { path: '/write-post/offer', element: <Offer /> },
+    { path: '/write-post/:type', element: <WritePost /> },
   ];
 
   return (
@@ -62,11 +61,13 @@ function App() {
                 <Route path='5' element={<Progress5 />} />
                 <Route path='6' element={<Progress6 />} />
               </Route>
-              <Route path='/write-post/one-on-one' element={<F2F />} >
+              <Route path='/write-post/:type/one-on-one' element={<F2F />} >
                 <Route path='select-element' element={<SelectElement />} />
                 <Route path='write-content' element={<WriteContent />} />
                 <Route path='final-check' element={<FinalCheckPost />} />
-              </Route>
+            </Route>
+            <Route path='/write-post/:type/offer' element={<Offer />}>
+            </Route>
             </Routes>
         </Layout>
       </BrowserRouter>
