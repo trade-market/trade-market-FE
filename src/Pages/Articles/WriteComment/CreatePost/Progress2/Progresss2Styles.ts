@@ -11,14 +11,11 @@ export const ContainerTemplet = styled.div`
 export const Container = styled(ContainerTemplet)`
   color: ${({ theme }) => theme.color.lightGray};
 
-  :nth-child(1) {
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
-
-  .get-image {
+  > img {
     width: 204px;
     height: 204px;
     border-radius: 8px;
+    cursor: pointer;
+    margin: 15px;
   }
 `;

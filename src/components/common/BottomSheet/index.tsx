@@ -17,7 +17,7 @@ function BottomSheet({
       <Background />
       <Container $height={height}>
         {children}
-        <div onClick={onClick}>닫기</div>
+        <div className="close" onClick={onClick}>닫기</div>
       </Container>
     </>
   );
@@ -88,12 +88,18 @@ const Container = styled.div<{ $height?: string }>`
     border-radius: 0 0 8px 8px;
   }
 
-  :nth-child(3) {
+  .close {
     margin-top: 10px;
     border-radius: 8px;
   }
 
+  /* input 사진 앨범 시 input display none */
   #file {
     display: none;
+  }
+
+  /* 단일 메뉴 시 */
+  .single {
+    border-radius: 8px;
   }
 `;

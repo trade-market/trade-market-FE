@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { setProvidePost, setExchangePost, setAbleTimePost, } from '@/store/slices/WriteF2FPostSlice';
 import { RootState } from '@store/types';
-import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
-import BlueButton from '@components/common/Buttons/BlueButton';
 import PostSection from '@/components/WritePost/PostSection';
 import SelectBox from '@components/WritePost/SelectBox';
+import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
+import BlueButton from '@components/common/Buttons/BlueButton';
 import useNavigateButton from '@hooks/useNavigateButton';
 import * as O from '../F2FStyles';
+import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
 
 const SelectElement = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const SelectElement = () => {
   return (
     <>
       <O.Container>
+      <MultiImageUpload></MultiImageUpload>
         {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 0 : 1, (inintialValueP !== selectProvide), setProvidePost)}
         {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 0 : 1, (inintialValueE !== selectExchange), setExchangePost)}
         {renderPostSection('거래 가능 시간', selectAbleTime, 2, (inintialValuT !== selectAbleTime), setAbleTimePost)}

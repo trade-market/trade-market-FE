@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setImagePost } from '@/store/slices/CreatePostSlice';
 import { RootState } from '@store/types';
+import { setImagePost } from '@/store/slices/CreatePostSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
@@ -33,13 +33,12 @@ const Progress2 = () => {
         />
         <W.Container>
           <img
-            className={selectImage ? 'get-image' : 'sample' }
             src={selectImage ? selectImage : PhotoSample}
             onClick={() => setIsModalOpen(true)} />
           <div>대표사진 1장</div>
         </W.Container>
       {isModalOpen &&
-        <BottomSheet height={'130px'} onClick={() => setIsModalOpen(false)}>
+        <BottomSheet height={'140px'} onClick={() => setIsModalOpen(false)}>
             <label>
               사진 앨범
               <input 

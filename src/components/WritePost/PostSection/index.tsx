@@ -21,5 +21,5 @@ export default PostSection;
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 15px 0;
 `;
