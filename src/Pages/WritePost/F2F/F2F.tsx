@@ -12,7 +12,7 @@ const F2F = () => {
         display={'flex'}
         closeClick={() => navigate(`/`)}
       >게시글 작성</CommonHeader>
-      <O.PostType>1 : 1</O.PostType>
+      {!window.location.pathname.includes('final-check') ? <O.PostType>1 : 1</O.PostType> : null}  
       <Outlet />
     </>
   );

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { setProvidePost, setExchangePost, setAbleTimePost, } from '@/store/slices/WriteF2FPostSlice';
 import { RootState } from '@store/types';
 import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
@@ -11,6 +12,7 @@ import { useEffect } from 'react';
 
 const SelectElement = () => {
   const dispatch = useDispatch();
+  const { type } = useParams();
   const selectProvide = useSelector((state: RootState) => state.WriteF2FPost.provide);
   const selectExchange = useSelector((state: RootState) => state.WriteF2FPost.exchange);
   const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
@@ -41,7 +43,7 @@ const SelectElement = () => {
     }
   })
 
-  const handleNextButtonClick = useNavigateButton(`/write-post/one-on-one/write-content`);
+  const handleNextButtonClick = useNavigateButton(`/write-post/${type}/one-on-one/write-content`);
 
   useEffect(() => { //* 선택된 요소가 없다면 기본 placeHolder 값 부여
     if (selectProvide === '') {
