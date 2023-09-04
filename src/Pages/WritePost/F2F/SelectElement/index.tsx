@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { setProvidePost, setExchangePost, setAbleTimePost, } from '@/store/slices/WriteF2FPostSlice';
 import { RootState } from '@store/types';
@@ -8,7 +9,6 @@ import PostSection from '@/components/WritePost/PostSection';
 import SelectBox from '@components/WritePost/SelectBox';
 import useNavigateButton from '@hooks/useNavigateButton';
 import * as O from '../F2FStyles';
-import { useEffect } from 'react';
 
 const SelectElement = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,8 @@ const SelectElement = () => {
   const selectProvide = useSelector((state: RootState) => state.WriteF2FPost.provide);
   const selectExchange = useSelector((state: RootState) => state.WriteF2FPost.exchange);
   const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
-  const [inintialValueP, inintialValueE, inintialValuT] = ['제공할 재능 선택', '교환할 재능 선택', '거래 가능 시간 선택'];
+  const pageType = type === 'talent-trade' ? '재능' : '물물';
+  let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
 
   const renderPostSection = (
@@ -24,24 +25,17 @@ const SelectElement = () => {
     placeholder: string,
     option: number,
     isChange: boolean,
-    selectDispatch: (e: React.MouseEvent<HTMLElement>) => void,
+    dispatchType: any,
     ) => (
       <PostSection label={label}>
         <SelectBox
           placeholder={placeholder}
           option={option}
           isChange={isChange}
-          selectDispatch={selectDispatch}
+          dispatchType={dispatchType}
           />
       </PostSection>
   ); 
-
-  const handleOnChangeSelectValue = ((dispatchType : any) => {
-    return (e: React.MouseEvent<HTMLElement>) => {
-      const event = e.target as HTMLElement;
-      dispatch(dispatchType(event.innerText));
-    }
-  })
 
   const handleNextButtonClick = useNavigateButton(`/write-post/${type}/one-on-one/write-content`);
 
@@ -51,17 +45,15 @@ const SelectElement = () => {
       dispatch(setExchangePost(inintialValueE));
       dispatch(setAbleTimePost(inintialValuT));
     }
-    
-  }, [])
+  }, []);
 
   return (
     <>
       <O.Container>
-        {renderPostSection('제공할 재능 카테고리', selectProvide, 0, (inintialValueP !== selectProvide), handleOnChangeSelectValue(setProvidePost))}
-        {renderPostSection('교환할 재능 카테고리', selectExchange, 0, (inintialValueE !== selectExchange), handleOnChangeSelectValue(setExchangePost))}
-        {renderPostSection('거래 가능 시간', selectAbleTime, 2, (inintialValuT !== selectAbleTime), handleOnChangeSelectValue(setAbleTimePost))}
+        {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 0 : 1, (inintialValueP !== selectProvide), setProvidePost)}
+        {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 0 : 1, (inintialValueE !== selectExchange), setExchangePost)}
+        {renderPostSection('거래 가능 시간', selectAbleTime, 2, (inintialValuT !== selectAbleTime), setAbleTimePost)}
       </O.Container>  
-      {/*  */}
       <BottomBtnSection>
         <BlueButton
           maxWidth="100%"

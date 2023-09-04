@@ -1,22 +1,31 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 interface IPostSectionProps {
   placeholder: string;
   option: number;
   isChange: boolean,
-  selectDispatch?: (e: React.MouseEvent<HTMLElement>) => void;
+  dispatchType: any,
 }
 
 const selectOptions = [
   { TalentOptions: ['국어', '영어', '제2외국어', '개발/코딩', '디자인', '수학', '미술', '운동', '주식', '미용/뷰티', '취업', '자격증', '음악', '단순인력'] },
-  { ObjectOptions: [] },
+  { ObjectOptions: ['전자기기', '생활 가전', '가구', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓', '식품'] },
   { TimeOptions: ['이른 아침(06시 ~ 09시', '오전(09시 ~ 12시)', '오후(12시 ~ 18시)', '저녁(18시 ~ 00시)', '새벽(00시 ~ 06시'] },
 ];
 
-const SelectBox = ({ placeholder, option, isChange, selectDispatch }: IPostSectionProps) => {
+const SelectBox = ({ placeholder, option, isChange, dispatchType }: IPostSectionProps) => {
+  const dispatch = useDispatch();
   const [OptionOpen, setOptionOpen] = useState(false);
   const selectArr = Object.values(selectOptions[option])[0];
+
+  const handleOnChangeSelectValue = ((dispatchType: any) => {
+    return (e: React.MouseEvent<HTMLElement>) => {
+      const event = e.target as HTMLElement;
+      dispatch(dispatchType(event.innerText));
+    }
+  })
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
@@ -25,7 +34,7 @@ const SelectBox = ({ placeholder, option, isChange, selectDispatch }: IPostSecti
         selectArr && selectArr.map((op: string, i: number) => (
           <Option
             key={i}
-            onClick={selectDispatch}>{op}</Option>
+            onClick={handleOnChangeSelectValue(dispatchType)}>{op}</Option>
         ))
       }
       </SelectOptions>
