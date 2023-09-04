@@ -4,6 +4,11 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import App from './App.tsx';
 
+if (import.meta.env.DEV) {
+  const { worker } = await import('./mocks/browser');
+  worker.start();
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
