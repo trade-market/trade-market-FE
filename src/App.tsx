@@ -7,9 +7,6 @@ import Auth from '@Pages/Auth';
 import SignUp from '@Pages/SingUp';
 import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles';
-import KakaoRedirectHandler from '@components/Auth/KakaoRedirectHandler';
-import GoogleRedirectHandler from '@components/Auth/GoogleRedirectHandler';
-import NaverRedirectHandler from '@components/Auth/NaverRedirectHandler';
 import WriteComment from '@Pages/WriteComment';
 import Progress2 from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progress2';
 import Progress3 from './Pages/Articles/WriteComment/CreatePost/Progress3/Progress3';
@@ -20,14 +17,24 @@ import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink'
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import ScrollToTop from '@utils/ScrollToTop';
+import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
 
 function App() {
   const routes = [
     { path: '/', element: <Home /> },
     { path: '/auth', element: <Auth /> },
-    { path: '/oauth2/callback/kakao', element: <KakaoRedirectHandler /> },
-    { path: '/oauth2/callback/google', element: <GoogleRedirectHandler /> },
-    { path: '/oauth2/callback/naver', element: <NaverRedirectHandler /> },
+    {
+      path: '/oauth2/callback/kakao',
+      element: <OAuthRedirectHandler service="kakao" />,
+    },
+    {
+      path: '/oauth2/callback/google',
+      element: <OAuthRedirectHandler service="google" />,
+    },
+    {
+      path: '/oauth2/callback/naver',
+      element: <OAuthRedirectHandler service="naver" />,
+    },
     { path: '/auth', element: <Auth /> },
     { path: '/signup', element: <SignUp /> },
     { path: '/search', element: <Search /> },
