@@ -33,6 +33,19 @@ class AuthService {
 
     return data;
   }
+
+  async signUp(body: any) {
+    const response = await this.authClient.post('/auth/signup', body);
+    const { headers, data } = response;
+
+    const accessToken = headers['authorization'].split(' ')[1];
+    const refreshToken = headers['refresh'];
+
+    TokenService.setAccessToken(accessToken);
+    TokenService.setRefreshToken(refreshToken);
+
+    return data;
+  }
 }
 
 export default new AuthService();

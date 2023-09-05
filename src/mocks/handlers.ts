@@ -60,4 +60,38 @@ export const handlers = [
   rest.post('/auth/token', (req, res, ctx) => {
     return res(ctx.set('Authorization', 'Baerer newtoken123124'));
   }),
+
+  rest.post('/auth/signup', async (req, res, ctx) => {
+    const body = await req.json();
+    const { nickname, id, coordinates, town } = body;
+
+    return res(
+      ctx.set('Authorization', 'Baerer abcdefg12345'),
+      ctx.set('refresh', 'testrefresh12345'),
+      ctx.json({
+        code: 200,
+        message: '로그인 성공',
+        isNew: false,
+        user: {
+          id,
+          nickname,
+          coordinates,
+          grade: 'one',
+          town,
+        },
+      })
+    );
+  }),
+
+  rest.post('/auth/nickname', async (req, res, ctx) => {
+    const body = await req.json();
+    const nickname = body.nickname;
+    if (nickname === '거래왕') {
+      return res(
+        ctx.status(400),
+        ctx.json({ code: 400, message: '이미 존재하는 닉네임입니다.' })
+      );
+    }
+    return res(ctx.json({ code: 200, message: '사용 가능한 닉네임입니다.' }));
+  }),
 ];

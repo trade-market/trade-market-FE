@@ -5,6 +5,7 @@ import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface NicknameSettingProps {
   nickname: string;
+  disabled: boolean;
   error: string | null;
   handleNickname: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNicknameCheck: () => void;
@@ -12,6 +13,7 @@ interface NicknameSettingProps {
 
 const NicknameSetting: React.FC<NicknameSettingProps> = ({
   nickname,
+  disabled,
   error,
   handleNickname,
   handleNicknameCheck,
@@ -25,9 +27,10 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           placeholder="닉네임 입력"
           value={nickname}
           onChange={handleNickname}
+          disabled={disabled}
         />
         <BlueButton
-          disabled={nickname.length < 2}
+          disabled={nickname.length < 2 || disabled}
           onClick={handleNicknameCheck}
         >
           중복확인

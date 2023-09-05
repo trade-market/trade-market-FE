@@ -6,12 +6,13 @@ import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
+import axios from 'axios';
 
 interface IProfileSetupFormProps {
   defaultProfileImgSrc: string;
   defaultNickname: string;
   address?: string;
-  handleSubmit: () => void;
+  handleSubmit: (Coordinates: Coordinates, town: string) => Promise<void>;
 }
 
 function ProfileSetupForm({
@@ -52,10 +53,18 @@ function ProfileSetupForm({
       );
       return;
     }
-    // Todo: 닉네임 중복확인 API 호출 및 성공 여부
-    // 성공시 닉네임 input 비활성화 + 중복확인 버튼 비활성화 + error 메시지 삭제
-  };
 
+    axios
+      .post('/auth/nickname', { nickname })
+      .then((res) => {
+        setSuccessNickname(true);
+        setNicknameError(res.data.message);
+      })
+      .catch((err) => {
+        setNicknameError(err.response.data.message);
+      });
+  };
+  /*추후 프로필 편집 api 나오면 재사용 가능하게 onClick 변경 */
   return (
     <>
       <CommonHeader>기본 정보 입력</CommonHeader>
@@ -67,6 +76,7 @@ function ProfileSetupForm({
           />
           <NicknameSetting
             nickname={nickname}
+            disabled={successNickname}
             error={nicknameError}
             handleNickname={handleNickname}
             handleNicknameCheck={handleNicknameCheck}
@@ -77,7 +87,20 @@ function ProfileSetupForm({
             handleCoordinates={handleCoordinates}
           />
         </P.Section>
-        <BlueButton disabled={true} maxWidth="100%" onClick={handleSubmit}>
+        <BlueButton
+          disabled={
+            !successNickname ||
+            selectedAddress.length < 0 ||
+            coordinates === null
+          }
+          maxWidth="100%"
+          onClick={() =>
+            handleSubmit(
+              coordinates as Coordinates,
+              selectedAddress.split(' ').slice(-1).toString()
+            )
+          }
+        >
           완료
         </BlueButton>
       </P.Wrapper>

@@ -8,12 +8,13 @@ export interface Coordinates {
   latitude: number;
   longitude: number;
 }
+export type GradeType = 'one' | 'two' | 'three' | 'four' | null;
 
 export interface User {
   id: string;
   profile_image: string;
   nickname: string;
   coordinate: { lat: string; lng: string };
-  grade: 'one' | 'two' | 'three' | 'four' | null;
+  grade: GradeType;
   town: string;
 }

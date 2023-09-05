@@ -1,14 +1,36 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import AuthService from '@/service/AuthService';
+import { Coordinates, NewUserInfo } from '@/types/UserTypes';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
 
 function SignUp() {
-  const nickname = ''; // Todo: SNS 로그인 시 닉네임 받아오기
-  const profileImg = ''; // Todo: SNS 로그인 시 프로필 이미지 받아오기
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = location.state as NewUserInfo;
+  const nickname = state.nickname; // Todo: SNS 로그인 시 닉네임 받아오기
+  const profileImg = state.profile_image; // Todo: SNS 로그인 시 프로필 이미지 받아오기
+
+  const handleSubmit = async (coordinates: Coordinates, town: string) => {
+    const body = {
+      nickname,
+      profileImg,
+      coordinates,
+      town,
+    };
+    try {
+      const { data } = await AuthService.signUp(body);
+      navigate('/', { replace: true });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ProfileSetupForm
       defaultProfileImgSrc={profileImg || userDefaultImg}
       defaultNickname={nickname}
-      handleSubmit={() => {}}
+      handleSubmit={handleSubmit}
     />
   );
 }
