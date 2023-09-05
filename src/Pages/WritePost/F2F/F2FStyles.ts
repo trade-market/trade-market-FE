@@ -3,8 +3,10 @@ import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progr
 
 export const Container = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   padding: 0 20px;
+  /* margin-bottom: 48px;  // BottomBtnSection 높이 */
 `;
 
 export const PriceSlideContainer = styled(ContainerTemplet)`

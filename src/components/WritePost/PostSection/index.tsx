@@ -1,6 +1,5 @@
 import BigTitle from '@/components/common/BigTitle';
 import styled from 'styled-components';
-import SelectBox from '../SelectBox';
 
 interface IPostSectionProps {
   label: string;

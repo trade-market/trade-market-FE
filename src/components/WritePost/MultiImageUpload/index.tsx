@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { RootState } from '@store/types';
 import { setImagePost } from '@/store/slices/WriteF2FPostSlice';
 import styled from 'styled-components';
-import PostSection from '@/components/WritePost/PostSection';
 import BottomSheet from '@/components/common/BottomSheet';
 import postImage from '@Assets/Icons/WritePost/postImage.svg';
 import button_x from '@Assets/Icons/WritePost/button_x.svg';
 
 const MultiImageUpload = () => {
+  const { type } = useParams();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const selectImages = useSelector((state: RootState) => state.WriteF2FPost.image);
+  console.log(type)
 
   //* 이미지를 가져와 URL을 생성한다.
   const handleAddImages = (e: React.ChangeEvent) => {
@@ -36,26 +38,29 @@ const MultiImageUpload = () => {
     dispatch(setImagePost(selectImages.filter((_, index) => index !== id)));
   };
 
+  useEffect(() => {
+    console.log(type)
+    dispatch(setImagePost([]));
+  }, [type]);
+
+
   return (
     <>
-      <PostSection label={'사진 업로드'}>
-        <ImageContainer>
-          {selectImages.map((image, id) => (
-            <div key={id}>
-              <img className='image' src={image} alt={`${image}-${id}`} />
-                <DeleteButton onClick={() => handleDeleteImage(id)}>
-                    <img src={button_x} />
-                </DeleteButton>
-            </div>
-          ))} 
-          {selectImages.length < 5 ?
-            <img className='image' src={postImage} onClick={() => setIsModalOpen(true)} />
-            : null}
-        </ImageContainer>
-      </PostSection>
-      
+      <ImageContainer>
+        {selectImages.map((image, id) => (
+          <div key={id}>
+            <img className='image' src={image} alt={`${image}-${id}`} />
+              <DeleteButton onClick={() => handleDeleteImage(id)}>
+                  <img src={button_x} />
+              </DeleteButton>
+          </div>
+        ))} 
+        {selectImages.length < 5 ?
+          <img className='image' src={postImage} onClick={() => setIsModalOpen(true)} />
+          : null}
+      </ImageContainer>
       {isModalOpen &&
-        <BottomSheet height={'140px'} onClick={() => setIsModalOpen(false)}>
+        <BottomSheet height={'140px'} optionP={'on'} onClick={() => setIsModalOpen(false)}>
           <label className='single'>
             사진 앨범
             <input 

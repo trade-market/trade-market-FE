@@ -17,6 +17,7 @@ const FinalCheckPost = () => {
   const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], completePost.deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
 
   // todo : type(재능, 물물 교환)에 따라 POST 요청
+  console.log(SetCreatePost[0])
 
   return (
     <>
@@ -28,12 +29,12 @@ const FinalCheckPost = () => {
                 <div key={i} className='row'>
                   <div className='title'>{title}</div>
                   {i === 0 ? 
-                    <img className='img' src={SetCreatePost[i]} />
+                      <img className='img' src={SetCreatePost[i]} />
                     : i === 1 ?
                       <div className='category'>
-                        <span className='provide'>{SetCreatePost[1][0]}</span>
+                        <span className='provide'>{SetCreatePost[i][0]}</span>
                         <img src={exchange_icon} />
-                        <span className='exchange'>{SetCreatePost[1][1]}</span>
+                        <span className='exchange'>{SetCreatePost[i][1]}</span>
                       </div> 
                       : i === 6 ?
                         <div className='price'>{SetCreatePost[i]}</div>

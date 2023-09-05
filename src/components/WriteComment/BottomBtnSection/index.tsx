@@ -8,6 +8,9 @@ const ButtonContainer = styled.div`
   position: fixed;
   bottom: 48px;
   padding: 0 21px;
+  /* background-color: ${({ theme }) => theme.color.bgColor}; */
+  /* bottom: 0; */
+  /* padding-bottom: 48px; */
   align-items: center;
   z-index: 99;
   gap: 8px;
