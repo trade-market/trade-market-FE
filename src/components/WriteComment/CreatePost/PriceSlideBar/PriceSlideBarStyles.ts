@@ -43,7 +43,7 @@ export const Input = styled(InputTemplet)`
 
 export const PriceSlideContainer = styled.div`
   width: 100%;
-  /* padding: 0 20px; */
+  padding: 0 5px;
 `;
 
 const Slide = styled.div`

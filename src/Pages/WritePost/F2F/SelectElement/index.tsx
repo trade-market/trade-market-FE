@@ -38,16 +38,14 @@ const SelectElement = () => {
   const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
   const pageType = type === 'talent-trade' ? '재능' : '물물';
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
-  const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
+  const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime) && (selectImage.length > 0);
 
   const handleNextButtonClick = useNavigateButton(`/write-post/${type}/one-on-one/write-content`);
 
-  useEffect(() => { //* 선택된 요소가 없다면 기본 placeHolder 값 부여
-    if (selectProvide === '') {
+  useEffect(() => { //* type(주소)에 따라 초기값 변경
       dispatch(setProvidePost(inintialValueP));
       dispatch(setExchangePost(inintialValueE));
       dispatch(setAbleTimePost(inintialValuT));
-    }
   }, [type]);
 
   return (
