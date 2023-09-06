@@ -6,16 +6,15 @@ import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
 import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
 import SelectBox from '@components/WritePost/SelectBox';
-import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
-import BlueButton from '@components/common/Buttons/BlueButton';
 import useNavigateButton from '@hooks/useNavigateButton';
 import Calender from '@/components/WritePost/Calendar';
+import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import * as O from '../F2FStyles';
 
 const renderPostSection = (
   label: string,
   placeholder: string,
-  option: number,
+  option: string,
   isChange: boolean,
   dispatchType: any,
   ) => (
@@ -57,24 +56,21 @@ const SelectElement = () => {
         <PostSection label={'사진 업로드'}>
           <MultiImageUpload />
         </PostSection>
-        {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 0 : 1, (inintialValueP !== selectProvide), setProvidePost)}
-        {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 0 : 1, (inintialValueE !== selectExchange), setExchangePost)}
+        {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 'TalentOptions' : 'ObjectOptions', (inintialValueP !== selectProvide), setProvidePost)}
+        {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 'TalentOptions' : 'ObjectOptions', (inintialValueE !== selectExchange), setExchangePost)}
         <PostSection label={'거래 마감일'}>
           <Calender
             dispatchType={setDeadlinePost}
             selectdeadline={selectdeadline}
           />
         </PostSection>
-        {renderPostSection('거래 가능 시간', selectAbleTime, 2, (inintialValuT !== selectAbleTime), setAbleTimePost)}
+        {renderPostSection('거래 가능 시간', selectAbleTime, 'TimeOptions', (inintialValuT !== selectAbleTime), setAbleTimePost)}
       </O.Container>  
-      <BottomBtnSection>
-        <BlueButton
-          maxWidth="100%"
-          disabled={true && !enable}
-          onClick={handleNextButtonClick}
-          >다음
-        </BlueButton>
-      </BottomBtnSection>
+      <PostBlueButtons
+        option={1}
+        disabled={true && !enable}
+        BlueButtonClickHandler={handleNextButtonClick}
+      />
     </>
   );
 };

@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { format } from "date-fns"
-import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
-import ActionButton from '@/components/common/Buttons/ActionButton';
-import BlueButton from '@components/common/Buttons/BlueButton';
 import exchange_icon from '@Assets/Icons/WritePost/exchange_icon.svg'
+import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 
 const FinalCheckPost = () => {
   const { type } = useParams();
@@ -43,18 +41,16 @@ const FinalCheckPost = () => {
                       : <div className='content'>{SetCreatePost[i]}</div>
                   }
                 </div>
-              )
-            })} 
-          </PostContainer>
-      </Container>
-      <BottomBtnSection>
-        <ActionButton onClick={() => navigate(-1)}>이전</ActionButton>
-        <BlueButton
-          maxWidth={'100%'}
-          disabled={false}
-          onClick={() => console.log('data fetch')}
-          >완료</BlueButton>
-        </BottomBtnSection>
+                )
+              })} 
+            </PostContainer>
+          </Container>
+        <PostBlueButtons
+        option={2}
+        disabled={false}
+        BlueButtonName={'완료'}
+        BlueButtonClickHandler={() => console.log('data fetch')}
+        />
     </>
   );
 };
@@ -76,8 +72,8 @@ const Container = styled.div`
   max-width: 378px;
   width: 100%;
   border: none;
-  padding: 0px 20px;
-  margin-top: 30px;
+  padding: 30px 30px;
+  /* margin: 30px 0; */
 `;
 
 const PostContainer = styled.div`

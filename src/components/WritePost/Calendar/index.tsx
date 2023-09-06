@@ -9,7 +9,7 @@ import arrow_right from '@Assets/Icons/WritePost/arrow_right.svg'
 
 interface ICalendarProps {
     dispatchType: any;
-    selectdeadline: Date;
+    selectdeadline: Date | null;
 }
 
 const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
@@ -56,62 +56,78 @@ export default Calendar;
 
 const Container = styled.div`
     display: flex;
-    max-width: 380px;
-    width: 100%;
     height: 100%;
+    width: 100%;
     margin-top: 15px;
-    background-color: yellow;
+    overflow: hidden;
+    overflow: scroll;
 
     .calender {
         display: flex;
         border: none;
         background-color: ${({ theme }) => theme.color.bgColor};
         font-family: ${({ theme }) => theme.font.family.Pretendard};
+        width: 100%;
     }
 
     .selectedDay,
     .unselectedDay {
-        padding: 7px 0px;
+        padding: 8px 0px;
         width: 42px;
         height: 42px;
         font-size: 16px;
         border-radius: 50%;
-        /* margin: 0 5px; */
-
+        margin: 3px 5px;
     }
     .selectedDay {
         background-color: ${({ theme }) => theme.color.activeBlue};
     }
-
-    .react-datepicker__month-container {
-        max-width: 380px;
+    //Date 전체
+    .react-datepicker__month{
         width: 100%;
-    }
-
-
+        display: flex;
+        /* margin-left: 3px; */
+        padding-left: 3px;
+        justify-content: center;
+        flex-wrap: wrap;
+    } 
     .react-datepicker {
     border: none;
+    display: flex;
         // DatePicker 헤더 
         .react-datepicker__header {
-            background-color: ${({ theme }) => theme.color.bgColor};
+            background-color: ${({ theme }) => theme.color.white};
             border-bottom: none;
-
             // DatePicker 요일 
             .react-datepicker__day-names {
                 height: 15px;
             }
         }
-
         .react-datepicker__day--outside-month { // 이전 달, 다음 달에 해당하는 날짜는 표시되지 않도록 hidden
         cursor: default;
         visibility: hidden;
         }
     }
+
+    /* @media screen and (max-width: 400px) {
+        // 달력 전체
+        .react-datepicker__month-container {
+            max-width: calc(360px - 7%);
+            font-size: 14px;
+        }
+        //Date 전체
+        .react-datepicker__month {
+            max-width: calc(300px - 15%);
+        }
+        .selectedDay,.unselectedDay {
+            margin: 3px calc(5px - 0.5%);
+        }
+    } */
 `;
 
 const CalendarHead = styled.div`
     display: flex;
-    padding: 0px 20px;
+    padding: 0px 7px 0 20px;
     justify-content: space-between;
     font-size: 16px;
     font-weight: 500;

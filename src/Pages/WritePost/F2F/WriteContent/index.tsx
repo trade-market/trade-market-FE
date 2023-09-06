@@ -4,10 +4,8 @@ import { RootState } from '@store/types';
 import { setTitlePost, setContentPost, setMinPricePost, setMaxPricePost } from '@/store/slices/WriteF2FPostSlice';
 import BlueTextArea from '@/components/WriteComment/CreatePost/BlueTextArea';
 import PostSection from '@/components/WritePost/PostSection';
-import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
-import ActionButton from '@/components/common/Buttons/ActionButton';
-import BlueButton from '@components/common/Buttons/BlueButton';
 import PriceSlideBar from '@/components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBar';
+import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import * as O from '../F2FStyles';
 
 const WriteContent = () => {
@@ -52,14 +50,11 @@ const WriteContent = () => {
           </O.PriceSlideContainer>
         </PostSection>
     </O.Container>
-    <BottomBtnSection>
-      <ActionButton onClick={() => navigate(-1)}>이전</ActionButton>
-        <BlueButton
-          maxWidth={'100%'}
-          disabled={selectTitle.length === 0 || selectContent.length === 0}
-          onClick={() => navigate(`/write-post/${type}/one-on-one/final-check`)}
-          >다음</BlueButton>
-      </BottomBtnSection>
+      <PostBlueButtons
+      option={2}
+      disabled={selectTitle.length === 0 || selectContent.length === 0}
+      BlueButtonClickHandler={() => navigate(`/write-post/${type}/one-on-one/final-check`)}
+      />
     </>  
   );
 };
