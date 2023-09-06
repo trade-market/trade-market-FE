@@ -6,11 +6,14 @@ import ProfileSetupForm from '@components/common/ProfileSetupForm';
 
 function SignUp() {
   const location = useLocation();
-  const navigate = useNavigate();
   const state = location.state as NewUserInfo;
+  if (!state) {
+    window.location.href = '/auth';
+    return null;
+  }
+  const navigate = useNavigate();
   const nickname = state.nickname; // Todo: SNS 로그인 시 닉네임 받아오기
   const profileImg = state.profile_image; // Todo: SNS 로그인 시 프로필 이미지 받아오기
-
   const handleSubmit = async (coordinates: Coordinates, town: string) => {
     const body = {
       nickname,
