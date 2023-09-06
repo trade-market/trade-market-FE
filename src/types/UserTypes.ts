@@ -14,7 +14,7 @@ export interface User {
   id: string;
   profile_image: string;
   nickname: string;
-  coordinate: { lat: string; lng: string };
+  coordinates: { lat: string; lng: string };
   grade: GradeType;
   town: string;
 }

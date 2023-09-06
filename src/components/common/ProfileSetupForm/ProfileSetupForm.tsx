@@ -12,7 +12,11 @@ interface IProfileSetupFormProps {
   defaultProfileImgSrc: string;
   defaultNickname: string;
   address?: string;
-  handleSubmit: (Coordinates: Coordinates, town: string) => Promise<void>;
+  handleSubmit: (
+    Coordinates: Coordinates,
+    town: string,
+    profileImg: File | null
+  ) => Promise<void>;
 }
 
 function ProfileSetupForm({
@@ -97,7 +101,8 @@ function ProfileSetupForm({
           onClick={() =>
             handleSubmit(
               coordinates as Coordinates,
-              selectedAddress.split(' ').slice(-1).toString()
+              selectedAddress.split(' ').slice(-1).toString(),
+              imgFile
             )
           }
         >

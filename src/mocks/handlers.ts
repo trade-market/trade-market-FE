@@ -1,4 +1,17 @@
+import { User } from '@/types/UserTypes';
 import { rest } from 'msw';
+
+const users: User[] = [
+  {
+    id: '123',
+    profile_image:
+      'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
+    nickname: '거래왕',
+    coordinates: { lat: '37.123', lng: '127.123' },
+    grade: 'one',
+    town: '서초동',
+  },
+];
 
 export const handlers = [
   rest.get('/oauth2/callback/google', (req, res, ctx) => {
@@ -9,13 +22,6 @@ export const handlers = [
         code: 200,
         message: '로그인 성공',
         isNew: false,
-        user: {
-          id: '123',
-          nickname: '거래왕',
-          coordinate: { lat: '37.123456', lng: '127.123456' },
-          grade: 'one',
-          town: '경기도 수원시 화서동',
-        },
       })
     );
   }),
@@ -46,39 +52,43 @@ export const handlers = [
         code: 200,
         message: '로그인 성공',
         isNew: false,
-        user: {
-          id: '123',
-          nickname: '거래왕',
-          coordinate: { lat: '37.123456', lng: '127.123456' },
-          grade: 'one',
-          town: '경기도 수원시 화서동',
-        },
       })
     );
   }),
 
-  rest.post('/auth/token', (req, res, ctx) => {
-    return res(ctx.set('Authorization', 'Baerer newtoken123124'));
+  rest.get('/auth/user', (req, res, ctx) => {
+    const user1 = 'abcdefg12345';
+    const accessToken = req.headers.get('Authorization')?.split(' ')[1];
+    const index = user1 === accessToken ? 0 : 1;
+    console.log(users[index]);
+
+    return res(
+      ctx.json({
+        code: 200,
+        message: '유저 정보 조회 성공',
+        user: users[index],
+      })
+    );
   }),
 
   rest.post('/auth/signup', async (req, res, ctx) => {
     const body = await req.json();
-    const { nickname, id, coordinates, town } = body;
+    const { nickname, coordinates, town, profileImg, profileImgFile } = body;
+    users.push({
+      id: '9910',
+      nickname,
+      profile_image: profileImg,
+      coordinates,
+      town,
+      grade: 'one',
+    });
 
     return res(
-      ctx.set('Authorization', 'Baerer abcdefg12345'),
+      ctx.set('Authorization', 'Baerer geggeg2'),
       ctx.set('refresh', 'testrefresh12345'),
       ctx.json({
         code: 200,
-        message: '로그인 성공',
-        isNew: false,
-        user: {
-          id,
-          nickname,
-          coordinates,
-          grade: 'one',
-          town,
-        },
+        message: '회원가입 성공',
       })
     );
   }),
