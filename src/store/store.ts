@@ -7,5 +7,6 @@ export const store = configureStore({
     createPost: createPostSlice, 
     WriteF2FPost :WriteF2FPostSlice,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
   devTools: import.meta.env.DEV,
 });

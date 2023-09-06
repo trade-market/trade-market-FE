@@ -13,7 +13,6 @@ const MultiImageUpload = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const selectImages = useSelector((state: RootState) => state.WriteF2FPost.image);
-  console.log(type)
 
   //* 이미지를 가져와 URL을 생성한다.
   const handleAddImages = (e: React.ChangeEvent) => {
@@ -39,7 +38,7 @@ const MultiImageUpload = () => {
   };
 
   useEffect(() => {
-    console.log(type)
+    // console.log(type)
     dispatch(setImagePost([]));
   }, [type]);
 

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
+import { format } from "date-fns"
 import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
 import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@components/common/Buttons/BlueButton';
@@ -13,8 +14,9 @@ const FinalCheckPost = () => {
   const titles = ['이미지', '카테고리', '거래 마감일', '거래 가능 시간', ' 제목', '내용', '가격 제안'];
   const completePost = useSelector((state: RootState) => state.WriteF2FPost);
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
-  const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b)+'원');
-  const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], completePost.deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
+  const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b) + '원');
+  const deadline = format(new Date(completePost.deadline), `yyyy-MM-dd`)
+  const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
 
   // todo : type(재능, 물물 교환)에 따라 POST 요청
   console.log(SetCreatePost[0])

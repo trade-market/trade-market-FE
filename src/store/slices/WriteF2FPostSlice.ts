@@ -4,7 +4,7 @@ interface Post {
   image : string[];
   provide: string;
   exchange : string;
-  deadline : number[];
+  deadline: Date;
   ableTime: string;
   title: string;
   content: string;
@@ -16,7 +16,7 @@ const initialState: Post = {
   image : [],
   provide: '',
   exchange : '',
-  deadline : [],
+  deadline: new Date(),
   ableTime: '',
   title: '',
   content: '',
@@ -38,7 +38,7 @@ export const createCommentPostSlice = createSlice({
     setExchangePost: (state, action: PayloadAction<string>) => {
       state.exchange = action.payload;
     },
-    setDeadlinePost: (state, action: PayloadAction<number[]>) => {
+    setDeadlinePost: (state, action: PayloadAction<Date>) => {
       state.deadline = action.payload;
     },
     setAbleTimePost: (state, action: PayloadAction<string>) => {

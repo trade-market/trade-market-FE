@@ -13,7 +13,7 @@ const BlueTextArea = ({ placeholder, value = '', maxLength = 0, maxHeight = '268
   const dispatch = useDispatch(); 
   const onBlur = (value: string | string[]) => value.length > maxLength ? value.slice(0, maxLength) : value;   //* 글자수 제한
   
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(dispatchType(e.target.value));
   };
   

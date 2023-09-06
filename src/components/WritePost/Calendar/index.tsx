@@ -1,28 +1,32 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { ko } from "date-fns/esm/locale";
-import getYear from "date-fns/getYear";
-import getMonth from "date-fns/getMonth";
+import { getYear, getMonth } from "date-fns";
 import 'react-datepicker/dist/react-datepicker.css';
 import arrpw_left from '@Assets/Icons/WritePost/arrpw_left.svg'
 import arrow_right from '@Assets/Icons/WritePost/arrow_right.svg'
 
-const Calendar = () => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-    console.log(selectedDate)
+interface ICalendarProps {
+    dispatchType: any;
+    selectdeadline: Date;
+}
+
+const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
+    const dispatch = useDispatch();
+    const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
     return (
         <Container>
             <DatePicker
                 calendarClassName='calender'
-                dayClassName={(d) => (d.getDate() === selectedDate!.getDate() ? 'selectedDay' : 'unselectedDay')}
+                dayClassName={(d) => (d.getDate() === selectdeadline!.getDate() ? 'selectedDay' : 'unselectedDay')}
                 locale={ko}
                 formatWeekDay={x => ''} // 요일은 안보이게 설정
                 minDate={new Date()} // minDate 이전 날짜 선택 불가
                 // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
+                selected={selectdeadline}
+                onChange={date => dispatch(dispatchType(date))}
                 inline
                 renderCustomHeader={({
                     date,
@@ -32,7 +36,7 @@ const Calendar = () => {
                     nextMonthButtonDisabled,
                 }) => (
                     <CalendarHead>
-                        <div className="year-month">{getYear(date)}년 {getMonth(date)}월</div>
+                        <div className="year-month">{getYear(date)}년 {months[getMonth(date)]}월</div>
                         <div className='buttons'>
                             <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
                                 <img src={arrpw_left} />
@@ -52,13 +56,13 @@ export default Calendar;
 
 const Container = styled.div`
     display: flex;
+    max-width: 380px;
     width: 100%;
     height: 100%;
     margin-top: 15px;
+    background-color: yellow;
 
     .calender {
-        max-width: 370px;
-        width: 100%;
         display: flex;
         border: none;
         background-color: ${({ theme }) => theme.color.bgColor};
@@ -67,21 +71,27 @@ const Container = styled.div`
 
     .selectedDay,
     .unselectedDay {
-        padding: 7px 1px;
+        padding: 7px 0px;
         width: 42px;
         height: 42px;
         font-size: 16px;
         border-radius: 50%;
-        margin: 0 5px;
+        /* margin: 0 5px; */
+
     }
     .selectedDay {
         background-color: ${({ theme }) => theme.color.activeBlue};
     }
 
+    .react-datepicker__month-container {
+        max-width: 380px;
+        width: 100%;
+    }
+
+
     .react-datepicker {
     border: none;
-
-    // DatePicker 헤더 
+        // DatePicker 헤더 
         .react-datepicker__header {
             background-color: ${({ theme }) => theme.color.bgColor};
             border-bottom: none;
@@ -101,12 +111,10 @@ const Container = styled.div`
 
 const CalendarHead = styled.div`
     display: flex;
-    padding: 0px 15px;
+    padding: 0px 20px;
     justify-content: space-between;
     font-size: 16px;
     font-weight: 500;
-    justify-content: space-between;
-    width: 100%;
 
     .year-month {
         font-size: 16px;
@@ -117,7 +125,7 @@ const CalendarHead = styled.div`
         > button {
             background-color: transparent;
             border: none;
-            margin-left: 26px;
+            margin-left: 30px;
             }
         }
 `;

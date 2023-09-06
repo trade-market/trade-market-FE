@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { setProvidePost, setExchangePost, setAbleTimePost } from '@/store/slices/WriteF2FPostSlice';
+import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WriteF2FPostSlice';
 import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
 import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
@@ -32,10 +32,11 @@ const renderPostSection = (
 const SelectElement = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
+  const selectImage = useSelector((state: RootState) => state.WriteF2FPost.image);
   const selectProvide = useSelector((state: RootState) => state.WriteF2FPost.provide);
   const selectExchange = useSelector((state: RootState) => state.WriteF2FPost.exchange);
+  const selectdeadline = useSelector((state: RootState) => state.WriteF2FPost.deadline);
   const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
-  const selectImage = useSelector((state: RootState) => state.WriteF2FPost.image);
   const pageType = type === 'talent-trade' ? '재능' : '물물';
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
@@ -59,7 +60,10 @@ const SelectElement = () => {
         {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 0 : 1, (inintialValueP !== selectProvide), setProvidePost)}
         {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 0 : 1, (inintialValueE !== selectExchange), setExchangePost)}
         <PostSection label={'거래 마감일'}>
-          <Calender />
+          <Calender
+            dispatchType={setDeadlinePost}
+            selectdeadline={selectdeadline}
+          />
         </PostSection>
         {renderPostSection('거래 가능 시간', selectAbleTime, 2, (inintialValuT !== selectAbleTime), setAbleTimePost)}
       </O.Container>  
