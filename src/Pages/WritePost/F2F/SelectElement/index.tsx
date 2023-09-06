@@ -42,11 +42,13 @@ const SelectElement = () => {
 
   const handleNextButtonClick = useNavigateButton(`/write-post/${type}/one-on-one/write-content`);
 
-  useEffect(() => { //* type(주소)에 따라 초기값 변경
-      dispatch(setProvidePost(inintialValueP));
-      dispatch(setExchangePost(inintialValueE));
-      dispatch(setAbleTimePost(inintialValuT));
-  }, [type]);
+  // useEffect(() => { //* type(주소)에 따라 초기값 변경
+  //     dispatch(setProvidePost(inintialValueP));
+  //     dispatch(setExchangePost(inintialValueE));
+  //     dispatch(setAbleTimePost(inintialValuT));
+  // }, [type]);
+
+  // console.log(type)
 
   return (
     <>

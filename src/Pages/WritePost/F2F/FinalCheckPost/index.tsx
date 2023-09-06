@@ -13,11 +13,21 @@ const FinalCheckPost = () => {
   const completePost = useSelector((state: RootState) => state.WriteF2FPost);
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
   const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b) + '원');
-  const deadline = format(new Date(completePost.deadline), `yyyy-MM-dd`)
+  const deadline = format(new Date(completePost.deadline), `yyyy-MM-dd`);
   const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
 
   // todo : type(재능, 물물 교환)에 따라 POST 요청
-  console.log(SetCreatePost[0])
+
+  const renderImageSection = (arr: string[]) => (
+    arr.map((img, i) => (
+      <ImgSection key={i}>
+        <div>
+          <img src={img} />
+
+        </div>
+        </ImgSection>
+    ))
+  ); 
 
   return (
     <>
@@ -29,7 +39,7 @@ const FinalCheckPost = () => {
                 <div key={i} className='row'>
                   <div className='title'>{title}</div>
                   {i === 0 ? 
-                      <img className='img' src={SetCreatePost[i]} />
+                      renderImageSection(completePost.image)
                     : i === 1 ?
                       <div className='category'>
                         <span className='provide'>{SetCreatePost[i][0]}</span>
@@ -46,10 +56,10 @@ const FinalCheckPost = () => {
             </PostContainer>
           </Container>
         <PostBlueButtons
-        option={2}
-        disabled={false}
-        BlueButtonName={'완료'}
-        BlueButtonClickHandler={() => console.log('data fetch')}
+          option={2}
+          disabled={false}
+          BlueButtonName={'완료'}
+          BlueButtonClickHandler={() => console.log('data fetch')}
         />
     </>
   );
@@ -69,11 +79,9 @@ const HeadTitle = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 378px;
   width: 100%;
   border: none;
-  padding: 30px 30px;
-  /* margin: 30px 0; */
+  padding: 30px 20px;
 `;
 
 const PostContainer = styled.div`
@@ -83,6 +91,10 @@ const PostContainer = styled.div`
   font-size: 15px;
   font-weight: 400;
   gap: 40px;
+  overflow: hidden;
+  position: relative;
+  overflow-x: scroll;
+  /* background-color: aquamarine; */
 
   .row {
     display: flex;
@@ -90,43 +102,58 @@ const PostContainer = styled.div`
   .title {
     width: 44%;
     color : ${({ theme }) => theme.color.gray};
+    /* background-color: yellow; */
   }
-  .content {
+  .content, .category, .price  {
     width: 56%;
-  }
-
-  .img {
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 8px;
+    /* background-color: pink; */
   }
 
   .category {
-    display: flex;
+    font-size: 10px;
+    font-weight: 500;
+    color : ${({ theme }) => theme.color.activeBlue};
     .provide {
-      color : ${({ theme }) => theme.color.activeBlue};
-      font-size: 10px;
-      font-weight: 500;
-      border: 1px solid ${({ theme }) => theme.color.activeBlue};
       border-radius: 12px;
-      padding: 3px 12px;
+      border: 1px solid ${({ theme }) => theme.color.activeBlue};
       margin-right: 5px;
+      padding: 3px 12px;
     }
     .exchange {
       color : ${({ theme }) => theme.color.activeBlue};
-      font-size: 10px;
-      font-weight: 500;
       border: none;
-      background-color: #2156F214;
       border-radius: 12px;
-      padding: 4px 12px;
+      background-color: #2156F214;
       margin-left: 5px;
+      padding: 4px 12px;
     }
   }
-
   .price {
     color : ${({ theme }) => theme.color.activeBlue};
     font-weight: 600;
   }
+`;
+
+const ImgSection = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: pink;
+  position: relative;
+  overflow-x: scroll;
+
+  > div {
+    display: flex;
+    background-color: blue;
+    overflow-x: scroll;
+
+    > img {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 8px;
+      margin-right: 5px;
+    }
+  }
+  
+
 `;
