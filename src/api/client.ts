@@ -35,7 +35,7 @@ client.interceptors.response.use(
         if (axiosErr.response && axiosErr.response.status === 403) {
           TokenService.clearTokens();
           alert('토큰이 만료되어 로그아웃 되었습니다.');
-          window.location.href = '/auth';
+          window.location.reload();
         }
       }
     }

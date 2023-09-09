@@ -4,25 +4,32 @@ import AuthService from '@/service/AuthService';
 import { OAuthServiceType } from '@/types/AuthTypes';
 import { NewUserInfo } from '@/types/UserTypes';
 import Spinner from './Spinner';
+import UserService from '@/service/UserService';
+import { useDispatch } from 'react-redux';
+import { setUser } from '@store/slices/userSlice';
 
 interface IOAuthRedirectHandlerProps {
   service: OAuthServiceType;
 }
 
 function OAuthRedirectHandler({ service }: IOAuthRedirectHandlerProps) {
-  // 1. 인가코드
-  const code = new URL(window.location.href).searchParams.get('code') as string;
+  const code = new URL(window.location.href).searchParams.get('code') as string; //인가코드
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleOAuthLogin = async () => {
       try {
         const res = await AuthService.loginWithOauth(service, code);
         const { isNew } = res;
+
         if (isNew) {
           navigate('/signup', { state: { ...(res.user as NewUserInfo) } });
           return;
         }
+
+        const data = await UserService.getUserInfo();
+        dispatch(setUser({ ...data.user, isLogin: true }));
         navigate('/', { replace: true });
       } catch (error) {
         console.error(error);

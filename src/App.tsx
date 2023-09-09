@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@styles/theme';
@@ -18,6 +20,9 @@ import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import ScrollToTop from '@utils/ScrollToTop';
 import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
+import UserService from './service/UserService';
+import { setUser } from '@store/slices/userSlice';
+import TokenService from './service/TokenService';
 
 function App() {
   const routes = [
@@ -53,6 +58,21 @@ function App() {
       element: <MyPosts />,
     },
   ];
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = TokenService.getAccessToken();
+    if (!token) return;
+    const getUserInfo = async () => {
+      try {
+        const data = await UserService.getUserInfo();
+        dispatch(setUser({ ...data.user, isLogin: true }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserInfo();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
