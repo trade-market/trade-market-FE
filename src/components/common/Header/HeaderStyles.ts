@@ -17,7 +17,8 @@ export const Container = styled.div`
   .item:nth-child(1) {
     flex-grow: 1;
   }
-  .item:nth-child(2), .item:nth-child(3) {
+  .item:nth-child(2),
+  .item:nth-child(3) {
     margin-left: 12px;
     width: 23px;
     height: 23px;
@@ -27,10 +28,11 @@ export const Container = styled.div`
   }
   .location {
     display: flex;
-    width : max-content;
+    width: max-content;
     cursor: pointer;
     font-size: 16px;
   }
+  .non-user {
+    color: ${({ theme }) => theme.color.lightGray};
+  }
 `;
-
-

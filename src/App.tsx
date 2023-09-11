@@ -61,9 +61,9 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    const token = TokenService.getAccessToken();
-    if (!token) return;
     const getUserInfo = async () => {
+      const token = TokenService.getAccessToken();
+      if (!token) return;
       try {
         const data = await UserService.getUserInfo();
         dispatch(setUser({ ...data.user, isLogin: true }));

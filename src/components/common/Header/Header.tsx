@@ -18,7 +18,7 @@ const Header = () => {
             {user.isLogin ? (
               <div className="location">{user.town}</div>
             ) : (
-              <div className="location">내 위치</div>
+              <div className="location non-user">내 위치</div>
             )}
           </div>
           <img className="item" src={search} onClick={() => navigate('/')} />
