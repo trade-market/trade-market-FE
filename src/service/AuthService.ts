@@ -34,6 +34,7 @@ class AuthService {
     return data;
   }
 
+  // Todo: api 명세서 나오면 any type 수정
   async signUp(body: any) {
     const response = await this.authClient.post('/auth/signup', body);
     const { headers, data } = response;
