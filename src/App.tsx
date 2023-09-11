@@ -16,12 +16,11 @@ import Progress6 from './Pages/Articles/WriteComment/CreatePost/Progress6/Progre
 import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
 import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
-import WritePost from './Pages/WritePost/WritePost';
-import F2F from './Pages/WritePost/F2F/F2F';
-import SelectElement from './Pages/WritePost/F2F/SelectElement';
-import WriteContent from './Pages/WritePost/F2F/WriteContent';
-import FinalCheckPost from './Pages/WritePost/F2F/FinalCheckPost';
-import Offer from './Pages/WritePost/Offer/Offer';
+import ChoicePostType from './Pages/WritePost/ChoicePostType/ChoicePostType';
+import WritePost from './Pages/WritePost/WritePost/WritePost';
+import SelectElement from './Pages/WritePost/WritePost/SelectElement';
+import WriteContent from './Pages/WritePost/WritePost/WriteContent';
+import FinalCheckPost from './Pages/WritePost/WritePost/FinalCheckPost';
 
 function App() {
   const routes = [
@@ -43,7 +42,7 @@ function App() {
       path: '/articles/:id/write-comment/get-post/2/my-posts',
       element: <MyPosts />,
     },
-    { path: '/write-post/:type', element: <WritePost /> },
+    { path: '/write-post/:exchangeType', element: <ChoicePostType /> },
   ];
 
   return (
@@ -61,12 +60,10 @@ function App() {
                 <Route path='5' element={<Progress5 />} />
                 <Route path='6' element={<Progress6 />} />
               </Route>
-              <Route path='/write-post/:type/one-on-one' element={<F2F />} >
+              <Route path='/write-post/:exchangeType/:tradeType' element={<WritePost />} >
                 <Route path='select-element' element={<SelectElement />} />
                 <Route path='write-content' element={<WriteContent />} />
                 <Route path='final-check' element={<FinalCheckPost />} />
-            </Route>
-            <Route path='/write-post/:type/offer' element={<Offer />}>
             </Route>
             </Routes>
         </Layout>

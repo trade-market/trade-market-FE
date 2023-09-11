@@ -7,7 +7,7 @@ import BlueTextArea from '@/components/WriteComment/CreatePost/BlueTextArea';
 import PostSection from '@/components/WritePost/PostSection';
 import PriceSlideBar from '@/components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import * as O from '../F2FStyles';
+import * as O from '../WritePostType';
 
 const WriteContent = () => {
   const dispatch = useDispatch();

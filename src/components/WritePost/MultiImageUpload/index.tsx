@@ -9,7 +9,7 @@ import postImage from '@Assets/Icons/WritePost/postImage.svg';
 import button_x from '@Assets/Icons/WritePost/button_x.svg';
 
 const MultiImageUpload = () => {
-  const { type } = useParams();
+  const { exchangeType } = useParams();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const selectImages = useSelector((state: RootState) => state.WriteF2FPost.image);
@@ -40,7 +40,7 @@ const MultiImageUpload = () => {
   useEffect(() => {
     // console.log(type)
     dispatch(setImagePost([]));
-  }, [type]);
+  }, [exchangeType]);
 
 
   return (

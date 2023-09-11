@@ -9,7 +9,7 @@ import SelectBox from '@components/WritePost/SelectBox';
 import useNavigateButton from '@hooks/useNavigateButton';
 import Calender from '@/components/WritePost/Calendar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import * as O from '../F2FStyles';
+import * as O from '../WritePostType';
 
 const renderPostSection = (
   label: string,
@@ -30,25 +30,23 @@ const renderPostSection = (
 
 const SelectElement = () => {
   const dispatch = useDispatch();
-  const { type } = useParams();
+  const { exchangeType, tradeType } = useParams();
   const selectImage = useSelector((state: RootState) => state.WriteF2FPost.image);
   const selectProvide = useSelector((state: RootState) => state.WriteF2FPost.provide);
   const selectExchange = useSelector((state: RootState) => state.WriteF2FPost.exchange);
   const selectdeadline = useSelector((state: RootState) => state.WriteF2FPost.deadline);
   const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
-  const pageType = type === 'talent-trade' ? '재능' : '물물';
+  const pageType = exchangeType === 'talent-trade' ? '재능' : '물물';
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime) && (selectImage.length > 0);
 
-  const handleNextButtonClick = useNavigateButton(`/write-post/${type}/one-on-one/write-content`);
+  const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
 
-  // useEffect(() => { //* type(주소)에 따라 초기값 변경
-  //     dispatch(setProvidePost(inintialValueP));
-  //     dispatch(setExchangePost(inintialValueE));
-  //     dispatch(setAbleTimePost(inintialValuT));
-  // }, [type]);
-
-  // console.log(type)
+  useEffect(() => { //* type(주소)에 따라 초기값 변경
+      dispatch(setProvidePost(inintialValueP));
+      dispatch(setExchangePost(inintialValueE));
+      dispatch(setAbleTimePost(inintialValuT));
+  }, [exchangeType]);
 
   return (
     <>

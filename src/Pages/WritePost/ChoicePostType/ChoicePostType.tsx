@@ -6,7 +6,7 @@ import TitleSection from '@components/WriteComment/TitleSection';
 import WriteTypeButton from '@components/WriteComment/WriteTypeButton';
 import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
 import BlueButton from '@components/common/Buttons/BlueButton';
-import * as W from './WritePostStyles';
+import * as W from './ChoicePostTypeStyles';
 import trade_1vs1 from '@Assets/Icons/WritePost/trade_1vs1.svg';
 import trade_offer from '@Assets/Icons/WritePost/trade_offer.svg';
 
@@ -51,7 +51,7 @@ const WritePost = () => {
               h2Text="거래하실 방법을 선택해주세요."
             />
             <W.ButtonsContainer>
-              {renderWriteTypeButton('one-on-one',trade_1vs1,'1:1')}
+              {renderWriteTypeButton('1:1',trade_1vs1,'1:1')}
               {renderWriteTypeButton('offer', trade_offer, '오퍼')}
             </W.ButtonsContainer>
           </ContentsSection>
