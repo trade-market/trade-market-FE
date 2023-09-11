@@ -11,6 +11,15 @@ const users: User[] = [
     grade: 'one',
     town: '서초동',
   },
+  {
+    id: '1234',
+    profile_image:
+      'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
+    nickname: '거래왕',
+    coordinates: { lat: '37.123', lng: '127.123' },
+    grade: 'one',
+    town: '화서동',
+  },
 ];
 
 export const handlers = [
