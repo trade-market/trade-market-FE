@@ -29,18 +29,12 @@ const useCurrentPosition = (): PositionType => {
   };
 
   useEffect(() => {
-    let isMounted = true;
-
     const successCb = (pos: GeolocationPosition) => {
-      if (isMounted) {
-        handleSuccess(pos);
-      }
+      handleSuccess(pos);
     };
 
     const errorCb = (error: GeolocationPositionError) => {
-      if (isMounted) {
-        handleError(error);
-      }
+      handleError(error);
     };
 
     navigator.geolocation.getCurrentPosition(
@@ -48,10 +42,6 @@ const useCurrentPosition = (): PositionType => {
       errorCb,
       geolocationOptions
     );
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   return position;
