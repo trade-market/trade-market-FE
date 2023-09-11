@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
-import { setMinPricePost, setMaxPricePost } from '@/store/slices/CreatePostSlice';
+import { setMinPricePost, setMaxPricePost } from '@/store/slices/CreateCommentSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import expect_price from '@Assets/offer/Write-comment/[Progress]expect_price.svg';
 import PriceSlideBar from '@/components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBar';
 import { Container } from "./Progress4Styles";
 
 const Progress4 = () => {
-  const selectMinPrice = useSelector((state: RootState) => state.createPost.minPrice);
-  const selectMaxPrice = useSelector((state: RootState) => state.createPost.maxPrice);
-
+  const selectMinPrice = useSelector((state: RootState) => state.createComment.minPrice);
+  const selectMaxPrice = useSelector((state: RootState) => state.createComment.maxPrice);
+createComment
   return (
     <>
       <ProcessCompo

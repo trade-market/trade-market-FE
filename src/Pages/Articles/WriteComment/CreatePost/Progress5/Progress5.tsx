@@ -1,7 +1,7 @@
 import { useRef, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
-import { setInfoPost } from '@/store/slices/CreatePostSlice';
+import { setInfoPost } from '@/store/slices/CreateCommentSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import write_imformation from "@Assets/offer/Write-comment/[Progress]_write_imformation.svg";
 import { Container } from './Progress5Styles';
@@ -9,7 +9,7 @@ import BlueTextArea from "@/components/WriteComment/CreatePost/BlueTextArea";
 
 const Progress5 = () => {
   const dispatch = useDispatch();
-  const selectInfo = useSelector((state: RootState) => state.createPost.info);
+  const selectInfo = useSelector((state: RootState) => state.createComment.info);
 
   const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setInfoPost(e.target.value))

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WriteF2FPostSlice';
+import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
 import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
@@ -31,11 +31,11 @@ const renderPostSection = (
 const SelectElement = () => {
   const dispatch = useDispatch();
   const { exchangeType, tradeType } = useParams();
-  const selectImage = useSelector((state: RootState) => state.WriteF2FPost.image);
-  const selectProvide = useSelector((state: RootState) => state.WriteF2FPost.provide);
-  const selectExchange = useSelector((state: RootState) => state.WriteF2FPost.exchange);
-  const selectdeadline = useSelector((state: RootState) => state.WriteF2FPost.deadline);
-  const selectAbleTime = useSelector((state: RootState) => state.WriteF2FPost.ableTime);
+  const selectImage = useSelector((state: RootState) => state.WritePost.image);
+  const selectProvide = useSelector((state: RootState) => state.WritePost.provide);
+  const selectExchange = useSelector((state: RootState) => state.WritePost.exchange);
+  const selectdeadline = useSelector((state: RootState) => state.WritePost.deadline);
+  const selectAbleTime = useSelector((state: RootState) => state.WritePost.ableTime);
   const pageType = exchangeType === 'talent-trade' ? '재능' : '물물';
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime) && (selectImage.length > 0);
@@ -43,10 +43,11 @@ const SelectElement = () => {
   const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
 
   useEffect(() => { //* type(주소)에 따라 초기값 변경
-      dispatch(setProvidePost(inintialValueP));
-      dispatch(setExchangePost(inintialValueE));
-      dispatch(setAbleTimePost(inintialValuT));
-  }, [exchangeType]);
+    dispatch(setProvidePost(inintialValueP));
+    dispatch(setExchangePost(inintialValueE));
+    dispatch(setAbleTimePost(inintialValuT));
+  }, [exchangeType, tradeType]);
+
 
   return (
     <>

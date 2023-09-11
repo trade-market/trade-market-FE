@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '@store/types';
-import { setImagePost } from '@/store/slices/WriteF2FPostSlice';
+import { setImagePost } from '@/store/slices/WritePostSlice';
 import styled from 'styled-components';
 import BottomSheet from '@/components/common/BottomSheet';
 import postImage from '@Assets/Icons/WritePost/postImage.svg';
@@ -12,7 +12,7 @@ const MultiImageUpload = () => {
   const { exchangeType } = useParams();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const selectImages = useSelector((state: RootState) => state.WriteF2FPost.image);
+  const selectImages = useSelector((state: RootState) => state.WritePost.image);
 
   //* 이미지를 가져와 URL을 생성한다.
   const handleAddImages = (e: React.ChangeEvent) => {

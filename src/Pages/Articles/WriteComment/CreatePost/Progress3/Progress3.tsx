@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
-import { setProductPost, setCategoryPost } from '@/store/slices/CreatePostSlice';
+import { setProductPost, setCategoryPost } from '@/store/slices/CreateCommentSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import * as P from "./Progresss3Styles";
 import category from '@Assets/offer/Write-comment/[Progress]category.svg';
@@ -10,8 +10,8 @@ const Progress3 = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const categories = ['전자기기', '생활가전', '가구', '식품', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓'];
-  const selectProduct = useSelector((state: RootState) => state.createPost.product);
-  const selectCategory = useSelector((state: RootState) => state.createPost.category);
+  const selectProduct = useSelector((state: RootState) => state.createComment.product);
+  const selectCategory = useSelector((state: RootState) => state.createComment.category);
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

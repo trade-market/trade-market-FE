@@ -24,7 +24,7 @@ const initialState: Post = {
   maxPrice: 0,
 }
 
-// 게시물 작성하기 - 재능 - 1:1
+// 게시물 작성하기(재능/물물 && 1:1/offer)
 export const createCommentPostSlice = createSlice({
   name: 'WriteF2FPost',
   initialState,

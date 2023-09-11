@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
-import { setImagePost } from '@/store/slices/CreatePostSlice';
+import { setImagePost } from '@/store/slices/CreateCommentSlice';
 import ProcessCompo from '@components/WriteComment/CreatePost/ProcessCompo/ProcessCompo';
 import photo from "@Assets/offer/Write-comment/[Progress]upload_photo.svg";
 import * as W from "./Progresss2Styles";
@@ -12,7 +12,7 @@ const Progress2 = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const selectImage = useSelector(
-    (state: RootState) => state.createPost.image
+    (state: RootState) => state.createComment.image
   );
 
   //* 이미지를 가져와 URL을 생성한다.

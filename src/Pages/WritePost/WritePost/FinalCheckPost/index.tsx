@@ -7,13 +7,13 @@ import exchange_icon from '@Assets/Icons/WritePost/exchange_icon.svg'
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 
 const FinalCheckPost = () => {
-  const { type } = useParams();
+  const { exchangeType, tradeType } = useParams();
   const navigate = useNavigate();
   const titles = ['이미지', '카테고리', '거래 마감일', '거래 가능 시간', ' 제목', '내용', '가격 제안'];
-  const completePost = useSelector((state: RootState) => state.WriteF2FPost);
+  const completePost = useSelector((state: RootState) => state.WritePost);
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
   const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b) + '원');
-  const deadline = format(new Date(completePost.deadline), `yyyy-MM-dd`);
+  const deadline = format(new Date(completePost.deadline), `yyyy년 MM월 dd일`);
   const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
 
   // todo : type(재능, 물물 교환)에 따라 POST 요청
@@ -31,7 +31,7 @@ const FinalCheckPost = () => {
 
   return (
     <>
-        <HeadTitle>다음 1 :1 게시물을 업로드하시겠습니까 ?</HeadTitle>
+        <HeadTitle>다음 {tradeType === '1:1' ? tradeType : '오퍼'} 게시물을 업로드하시겠습니까 ?</HeadTitle>
         <Container>
           <PostContainer>
             {titles?.map((title, i) => {
@@ -91,9 +91,9 @@ const PostContainer = styled.div`
   font-size: 15px;
   font-weight: 400;
   gap: 40px;
-  overflow: hidden;
+  text-overflow: ellipsis;
   position: relative;
-  overflow-x: scroll;
+  /* overflow: hidden; */
   /* background-color: aquamarine; */
 
   .row {
@@ -104,15 +104,18 @@ const PostContainer = styled.div`
     color : ${({ theme }) => theme.color.gray};
     /* background-color: yellow; */
   }
-  .content, .category, .price  {
+  .content, .category, .price {
     width: 56%;
-    /* background-color: pink; */
+    display: flex;
+    text-overflow: ellipsis;
+    background-color: pink;
   }
 
   .category {
     font-size: 10px;
     font-weight: 500;
     color : ${({ theme }) => theme.color.activeBlue};
+    align-items: center;
     .provide {
       border-radius: 12px;
       border: 1px solid ${({ theme }) => theme.color.activeBlue};
@@ -154,6 +157,4 @@ const ImgSection = styled.div`
       margin-right: 5px;
     }
   }
-  
-
 `;
