@@ -4,12 +4,15 @@ import { Coordinates, NewUserInfo } from '@/types/UserTypes';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import { useDispatch } from 'react-redux';
+import { setUser } from '@store/slices/userSlice';
+import UserService from '@/service/UserService';
 
 function SignUp() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const state = location.state as NewUserInfo;
   if (!state) {
-    window.location.href = '/auth';
+    window.location.href = '/';
     return null;
   }
   const navigate = useNavigate();
@@ -29,9 +32,11 @@ function SignUp() {
     };
     try {
       const data = await AuthService.signUp(userInfo);
+      const { user } = await UserService.getUserInfo();
+      dispatch(setUser({ ...user, isLogin: true }));
       navigate('/', { replace: true });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
