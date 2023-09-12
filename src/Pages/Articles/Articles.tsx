@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -9,6 +8,7 @@ import LikeAndComment from '@/components/Articles/LikeAndComment';
 import OfferItemLists from '@/components/Articles/OfferItemLists';
 import useTimeDiff from '@/hooks/useTimeDiff';
 import BottomSheet from '@/components/common/BottomSheet';
+import useModal from '@hooks/useModal';
 
 // 더미데이터
 const offers = [
@@ -52,15 +52,14 @@ const offers = [
 ];
 
 function Articles() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isOpen, open, close } = useModal();
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
   // Todo: id를 통해 해당 게시글 정보 가져오기
 
-  const handleOptionBtnClick = () => setIsModalOpen(true);
   return (
     <>
-      <CommonHeader visibleOption={true} optionClick={handleOptionBtnClick}>
+      <CommonHeader visibleOption optionClick={open}>
         상세 페이지
       </CommonHeader>
       <A.Container>
@@ -88,8 +87,8 @@ function Articles() {
         </A.ContentsContainer>
       </A.Container>
       <PostActions />
-      {isModalOpen && (
-        <BottomSheet height={'200px'} onClick={() => setIsModalOpen(false)}>
+      {isOpen && (
+        <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton>게시물 수정</A.CorrectionButton>
           <A.DeleteButton>삭제</A.DeleteButton>

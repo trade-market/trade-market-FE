@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Profile from '@components/MyPage/Profile';
 import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
-import BottomSheet from '@components/common/BottomSheet';
+import OptionModal from '@components/MyPage/OptionModal';
+import useModal from '@hooks/useModal';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -17,22 +17,11 @@ const TopSection = styled.div`
   padding: 0 21px;
 `;
 
-const LogoutText = styled.div``;
-
-const WithDrawText = styled.div`
-  color: red;
-`;
-
 function MyPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOptionBtnClick = () => setIsModalOpen(true);
+  const { isOpen, open, close } = useModal();
   return (
     <>
-      <CommonHeader
-        visibleHeart
-        visibleOption
-        optionClick={handleOptionBtnClick}
-      >
+      <CommonHeader visibleHeart visibleOption optionClick={open}>
         마이페이지
       </CommonHeader>
       <MyPageContainer>
@@ -41,12 +30,7 @@ function MyPage() {
           <ExchangeInfoList />
         </TopSection>
       </MyPageContainer>
-      {isModalOpen && (
-        <BottomSheet onClick={() => setIsModalOpen(false)}>
-          <LogoutText>로그아웃</LogoutText>
-          <WithDrawText>탈퇴하기</WithDrawText>
-        </BottomSheet>
-      )}
+      {isOpen && <OptionModal close={close} />}
     </>
   );
 }
