@@ -2,6 +2,7 @@ import { Container, CloseButton, OptionButton } from './CommonHeaderStyles';
 import GobackBtn from './GobackBtn';
 import Close from '@Assets/offer/Write-comment/close.svg';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
+import UnLikeIcon from '@Assets/Icons/Home/Post/Icon_unlike.svg';
 
 interface ICommonHeaderProps {
   children?: React.ReactNode;
@@ -9,7 +10,8 @@ interface ICommonHeaderProps {
   display?: string;
   closeClick?: () => void;
   optionClick?: () => void;
-  isMyPost?: boolean;
+  visibleHeart?: boolean;
+  visibleOption?: boolean;
 }
 
 const CommonHeader = ({
@@ -18,7 +20,8 @@ const CommonHeader = ({
   display = 'none',
   closeClick,
   optionClick,
-  isMyPost = false,
+  visibleHeart = false,
+  visibleOption = false,
 }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
   const hideGobackButton = ['/'].includes(currentPath);
@@ -35,8 +38,11 @@ const CommonHeader = ({
         onClick={closeClick}
       >
         <img src={Close} />
-      </CloseButton>
-      {isMyPost && (
+      </CloseButton>{' '}
+      {visibleHeart && (
+        <OptionButton src={UnLikeIcon} alt="관심목록" onClick={optionClick} />
+      )}
+      {visibleOption && (
         <OptionButton src={optionDot} alt="옵션" onClick={optionClick} />
       )}
     </Container>
