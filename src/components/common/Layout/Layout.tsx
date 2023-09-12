@@ -12,7 +12,6 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const shouldHideComponent = (regex: RegExp) => regex.test(pathname);
 
