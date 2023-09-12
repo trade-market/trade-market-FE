@@ -7,6 +7,7 @@ interface IPostSectionProps {
   option: string;
   isChange: boolean,
   dispatchType: any,
+  direction?: string;
 }
 
 type selectOptionsType = {
@@ -19,7 +20,7 @@ const selectOptions: selectOptionsType = {
   'TimeOptions' : ['이른 아침(06시 ~ 09시)', '오전(09시 ~ 12시)', '오후(12시 ~ 18시)', '저녁(18시 ~ 00시)', '새벽(00시 ~ 06시'],
 };
 
-const SelectBox = ({ placeholder, option, isChange, dispatchType }: IPostSectionProps) => {
+const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'down' }: IPostSectionProps) => {
   const dispatch = useDispatch();
   const [OptionOpen, setOptionOpen] = useState(false);
 
@@ -33,7 +34,7 @@ const SelectBox = ({ placeholder, option, isChange, dispatchType }: IPostSection
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
       <Label $change={isChange}>{placeholder}</Label>
-      <SelectOptions $open={OptionOpen}> {
+      <SelectOptions $open={OptionOpen} $direction={direction}> {
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
             key={i}
@@ -78,31 +79,29 @@ const Label = styled.label<{ $change: boolean }>`
   color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
 `;
 
-const SelectOptions = styled.ul<{ $open: boolean }>`
+const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 48px;
   left: 0;
-  width: 100%;
+  top: ${({ $direction }) => $direction === 'down' ? '48px' : 'null'}; 
+  bottom: ${({ $direction }) => $direction === 'down' ? 'null' : '49px'};
   overflow: hidden;
-  height: max-content;
+  overflow-y: ${({ $direction }) => $direction === 'down' ? 'scroll' : 'none'};
+  width: 100%;
   height: 223px;
-  max-height: ${({ $open }) => $open ? "none" : "0" };
-  /* padding: 0 10px; */
-  overflow-y: scroll;
+  max-height: ${({ $open }) => $open ? "none" : "0"};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
   color: ${({ theme }) => theme.color.lightGray};
-  box-shadow:${({ $open }) => $open ? "1px 3px 4px 2px rgba(152, 152, 152, 0.25);" : "none" }; 
-  z-index: 999;
+  box-shadow:${({ $open, $direction }) => $open && $direction === 'down' ? "1px 3px 8px 2px rgba(152, 152, 152, 0.25);" : $open && !($direction === 'down') ? "1px -3px 8px 2px rgba(152, 152, 152, 0.25);" : "none" }; 
+  z-index: 99;
 `;
 
 const Option = styled.li`
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.font.size.base};
-  /* height: 48px; */
   padding: 15px 0;
   padding-left: 15px;
   border-radius: 4px;

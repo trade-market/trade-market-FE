@@ -17,6 +17,7 @@ const renderPostSection = (
   option: string,
   isChange: boolean,
   dispatchType: any,
+  direction?: string,
   ) => (
     <PostSection label={label}>
       <SelectBox
@@ -24,6 +25,7 @@ const renderPostSection = (
         option={option}
         isChange={isChange}
         dispatchType={dispatchType}
+        direction={direction}
         />
     </PostSection>
 ); 
@@ -63,7 +65,7 @@ const SelectElement = () => {
             selectdeadline={selectdeadline}
           />
         </PostSection>
-        {renderPostSection('거래 가능 시간', selectAbleTime, 'TimeOptions', (inintialValuT !== selectAbleTime), setAbleTimePost)}
+        {renderPostSection('거래 가능 시간', selectAbleTime, 'TimeOptions', (inintialValuT !== selectAbleTime), setAbleTimePost, 'up')}
       </O.Container>  
       <PostBlueButtons
         option={1}
