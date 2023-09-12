@@ -14,7 +14,7 @@ function BottomSheet({
 }: IBottomSheetProps) {
   return (
     <>
-      <Background />
+      <Background onClick={onClick} />
       <Container $height={height}>
         {children}
         <div onClick={onClick}>닫기</div>
