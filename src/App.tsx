@@ -22,14 +22,13 @@ function App() {
         const data = await UserService.getUserInfo();
         dispatch(setUser({ ...data.user, isLogin: true }));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
     };
     getUserInfo();
   }, []);
-  console.log(isLoading);
 
   if (isLoading) return null;
 
