@@ -12,6 +12,7 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const { pathname } = useLocation();
+  console.log(pathname);
 
   const shouldHideComponent = (regex: RegExp) => regex.test(pathname);
 
@@ -20,12 +21,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/signup/,
     /^\/search/,
     /^\/oauth2\/callback/,
-    /^\/articles\/\w+$/, // /articles/:id
-    /^\/articles\/\w+\/write-comment$/, // /articles/:id/write-comment
-    /^\/articles\/\w+\/write-comment\/create-post\/\w+$/, // /articles/:id/write-comment/create-post/:number
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+$/, // /articles/:id/write-comment/get-post/:number
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+$/,
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+\/my-posts$/,
+    /^\/articles/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
