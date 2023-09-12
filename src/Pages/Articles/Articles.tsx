@@ -60,7 +60,7 @@ function Articles() {
   const handleOptionBtnClick = () => setIsModalOpen(true);
   return (
     <>
-      <CommonHeader isMyPost={true} optionClick={handleOptionBtnClick}>
+      <CommonHeader visibleOption={true} optionClick={handleOptionBtnClick}>
         상세 페이지
       </CommonHeader>
       <A.Container>
@@ -71,7 +71,7 @@ function Articles() {
             profileImg="https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg"
             nickname="동그란 딸기"
             location="한강로동"
-            rating="3"
+            rating="three"
           />
           <ProductInfo
             title="여성용 나비 선글라스"
