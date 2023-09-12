@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
-import BigTitle from '@components/common/BigTitle';
 import RatingBadge from '@components/common/RatingBadge';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ const ProfileContainer = styled.div`
   justify-content: space-between;
 
   .left {
-    height: 100%;
     display: flex;
     align-items: center;
   }
@@ -37,9 +35,8 @@ const ProfileContainer = styled.div`
 
 const TextSection = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 4px;
   margin-left: 12px;
 
   .nickname {

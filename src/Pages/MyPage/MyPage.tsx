@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Profile from '@components/MyPage/Profile';
-import ExchangeInfoBox from '@components/MyPage/ExchangeInfoBox';
 import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
 
 const MyPageContainer = styled.div`
