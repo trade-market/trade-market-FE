@@ -36,6 +36,7 @@ declare module 'styled-components' {
         xSmall: string;
         small: string;
         base: string;
+        medium: string;
         large: string;
       };
     };

@@ -18,6 +18,7 @@ import ScrollToTop from '@utils/ScrollToTop';
 import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
 import PrivateRoute from '@components/PrivateRoute';
 import PublicRoute from '@components/PublicRoute';
+import MyPage from '@Pages/MyPage';
 
 function Router() {
   return (
@@ -71,6 +72,7 @@ function Router() {
                 <Route path="3" element={<FinalCheck />} />
               </Route>
             </Route>
+            <Route path="/my-page" element={<MyPage />} />
           </Route>
         </Routes>
       </Layout>

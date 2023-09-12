@@ -40,6 +40,7 @@ export const theme: DefaultTheme = {
       xSmall: '10px',
       small: '12px',
       base: '14px',
+      medium: '16px',
       large: '18px',
     },
   },
