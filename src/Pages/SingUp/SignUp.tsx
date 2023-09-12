@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import AuthService from '@/service/AuthService';
 import { Coordinates, NewUserInfo } from '@/types/UserTypes';
 import userDefaultImg from '@Assets/Images/user_default_img.svg';
@@ -12,8 +12,8 @@ function SignUp() {
   const location = useLocation();
   const state = location.state as NewUserInfo;
   if (!state) {
-    window.location.href = '/';
-    return null;
+    alert('비정상적인 접근입니다.');
+    return <Navigate to="/" replace />;
   }
   const navigate = useNavigate();
   const nickname = state.nickname; // Todo: SNS 로그인 시 닉네임 받아오기
