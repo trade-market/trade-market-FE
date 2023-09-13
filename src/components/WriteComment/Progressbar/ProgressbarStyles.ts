@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  padding-top: 48px;
+  padding-top: 60px;
 `;
 
 export const Line = styled.div<{ $number: number; $total: number }>`

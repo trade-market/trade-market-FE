@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* height: 500px; */
   width: 100%;
 `;
 
@@ -34,18 +33,29 @@ export const Memubar = styled.div`
 
 export const ExchangeContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  padding: 15px;
+
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 5px 20px; 
+    @media screen and (max-width: 390px) {
+      padding: 5px calc(17px - 1vw);
+    }
+  }
 
   .eachIcon {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin: 12px 10px;
     cursor: pointer;
+    @media screen and (max-width: 380px) {
+      margin: 12px calc(10px - 1vw);
+    }
   }
+
   .iconName {
     font-size: 12px;
     font-weight: 300;

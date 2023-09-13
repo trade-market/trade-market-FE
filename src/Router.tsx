@@ -18,6 +18,11 @@ import ScrollToTop from '@utils/ScrollToTop';
 import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
 import PrivateRoute from '@components/PrivateRoute';
 import PublicRoute from '@components/PublicRoute';
+import ChoicePostType from '@Pages/WritePost/ChoicePostType/ChoicePostType';
+import SelectElement from '@Pages/WritePost/WritePost/SelectElement';
+import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
+import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
+import WritePost from '@Pages/WritePost/WritePost/WritePost';
 import MyPage from '@Pages/MyPage';
 
 function Router() {
@@ -71,6 +76,18 @@ function Router() {
                 </Route>
                 <Route path="3" element={<FinalCheck />} />
               </Route>
+            </Route>
+            <Route
+              path="/write-post/:exchangeType"
+              element={<ChoicePostType />}
+            />
+            <Route
+              path="/write-post/:exchangeType/:tradeType"
+              element={<WritePost />}
+            >
+              <Route path="select-element" element={<SelectElement />} />
+              <Route path="write-content" element={<WriteContent />} />
+              <Route path="final-check" element={<FinalCheckPost />} />
             </Route>
             <Route path="/my-page" element={<MyPage />} />
           </Route>

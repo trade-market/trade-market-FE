@@ -19,7 +19,7 @@ const initialState: Postcomment = {
 }
 
 // 오퍼 - 직접 작성하기 게시물
-export const createPostSlice = createSlice({
+export const createCommentSlice = createSlice({
   name: 'createPost',
   initialState,
   reducers: {
@@ -45,6 +45,6 @@ export const createPostSlice = createSlice({
 });
 
 export const { setImagePost, setProductPost, setCategoryPost, setMinPricePost, setMaxPricePost, setInfoPost} =
-  createPostSlice.actions;
+  createCommentSlice.actions;
 
-export default createPostSlice.reducer;
+export default createCommentSlice.reducer;

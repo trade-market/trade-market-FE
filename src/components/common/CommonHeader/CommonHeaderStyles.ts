@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: ${size.mobile};
-  min-height: 48px;
+  min-height: 60px;
   z-index: 2;
   position: fixed;
   top: 0;
@@ -20,7 +20,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-grow: 2;
-    padding-right: 20px;
+    /* padding-right: 20px; */
 
     &.Only {
       padding: 0px;

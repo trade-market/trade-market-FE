@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: ${size.mobile};
-  min-height: 80px;
+  min-height: 70px;
   padding: 0px 50px;
   position: fixed;
   z-index: 10;
