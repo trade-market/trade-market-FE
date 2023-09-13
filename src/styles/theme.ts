@@ -30,6 +30,7 @@ export const theme: DefaultTheme = {
     activeBlue: '#2156F2',
     disableBtn: '#E5E7EB',
     inputGray: '#f9f8fb',
+    orange: '#FF5B22',
   },
   font: {
     family: {
