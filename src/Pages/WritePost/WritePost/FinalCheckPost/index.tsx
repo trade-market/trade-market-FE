@@ -21,40 +21,39 @@ const FinalCheckPost = () => {
   const renderImageSection = (arr: string[]) => (
     arr.map((img, i) => (
       <ImgSection key={i}>
-        <div>
           <img src={img} />
-
-        </div>
         </ImgSection>
     ))
   ); 
 
   return (
     <>
-        <HeadTitle>다음 {tradeType === '1:1' ? tradeType : '오퍼'} 게시물을 업로드하시겠습니까 ?</HeadTitle>
-        <Container>
-          <PostContainer>
-            {titles?.map((title, i) => {
-              return (
-                <div key={i} className='row'>
-                  <div className='title'>{title}</div>
-                  {i === 0 ? 
-                      renderImageSection(completePost.image)
-                    : i === 1 ?
-                      <div className='category'>
-                        <span className='provide'>{SetCreatePost[i][0]}</span>
-                        <img src={exchange_icon} />
-                        <span className='exchange'>{SetCreatePost[i][1]}</span>
-                      </div> 
-                      : i === 6 ?
-                        <div className='price'>{SetCreatePost[i]}</div>
-                      : <div className='content'>{SetCreatePost[i]}</div>
-                  }
-                </div>
-                )
-              })} 
-            </PostContainer>
-          </Container>
+      <HeadTitle>다음 {tradeType === '1:1' ? tradeType : '오퍼'} 게시물을 업로드하시겠습니까 ?</HeadTitle>
+      <Container>
+        <PostContainer>
+          {titles?.map((title, i) => {
+            return (
+              <div key={i} className='row'>
+                <div className='title'>{title}</div>
+                {i === 0 ? 
+                  <div className='images'>
+                    {renderImageSection(completePost.image)}
+                  </div>
+                  : i === 1 ?
+                    <div className='category'>
+                      <span className='provide'>{SetCreatePost[i][0]}</span>
+                      <img src={exchange_icon} />
+                      <span className='exchange'>{SetCreatePost[i][1]}</span>
+                    </div> 
+                    : i === 6 ?
+                      <div className='price'>{SetCreatePost[i]}</div>
+                    : <div className='content'>{SetCreatePost[i]}</div>
+                }
+              </div>
+              )
+            })} 
+          </PostContainer>
+        </Container>
         <PostBlueButtons
           option={2}
           disabled={false}
@@ -91,26 +90,17 @@ const PostContainer = styled.div`
   font-size: 15px;
   font-weight: 400;
   gap: 40px;
-  text-overflow: ellipsis;
-  position: relative;
-  /* overflow: hidden; */
-  /* background-color: aquamarine; */
-
   .row {
     display: flex;
   }
   .title {
     width: 44%;
     color : ${({ theme }) => theme.color.gray};
-    /* background-color: yellow; */
   }
-  .content, .category, .price {
-    width: 56%;
+  .content, .category, .price, .images {
     display: flex;
-    text-overflow: ellipsis;
-    background-color: pink;
+    width: 56%;
   }
-
   .category {
     font-size: 10px;
     font-weight: 500;
@@ -135,20 +125,13 @@ const PostContainer = styled.div`
     color : ${({ theme }) => theme.color.activeBlue};
     font-weight: 600;
   }
+  .images { 
+    overflow-x: scroll;
+  }
 `;
 
 const ImgSection = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  background-color: pink;
-  position: relative;
-  overflow-x: scroll;
-
-  > div {
-    display: flex;
-    background-color: blue;
-    overflow-x: scroll;
-
     > img {
       width: 60px;
       height: 60px;
@@ -156,5 +139,4 @@ const ImgSection = styled.div`
       border-radius: 8px;
       margin-right: 5px;
     }
-  }
 `;

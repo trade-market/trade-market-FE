@@ -33,7 +33,7 @@ const Background = styled.div<{ $optionP?: string }>`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
+  height: 110%;
   z-index: 140;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(10px);

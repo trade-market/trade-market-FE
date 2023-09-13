@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
@@ -49,7 +49,6 @@ const SelectElement = () => {
     dispatch(setExchangePost(inintialValueE));
     dispatch(setAbleTimePost(inintialValuT));
   }, [exchangeType, tradeType]);
-
 
   return (
     <>

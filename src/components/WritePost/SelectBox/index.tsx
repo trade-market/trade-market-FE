@@ -22,7 +22,7 @@ const selectOptions: selectOptionsType = {
 
 const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'down' }: IPostSectionProps) => {
   const dispatch = useDispatch();
-  const [OptionOpen, setOptionOpen] = useState(false);
+  const [optionOpen, setOptionOpen] = useState(false);
 
   const handleOnChangeSelectValue = ((dispatchType: any) => {
     return (e: React.MouseEvent<HTMLElement>) => {
@@ -34,10 +34,13 @@ const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'd
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
       <Label $change={isChange}>{placeholder}</Label>
-      <SelectOptions $open={OptionOpen} $direction={direction}> {
+      <SelectOptions
+        $open={optionOpen}
+        $direction={direction}
+        > {
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
-            key={i}
+          key={i}
             onClick={handleOnChangeSelectValue(dispatchType)}>{op}</Option>
         ))
       }
