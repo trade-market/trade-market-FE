@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import createPostSlice from './slices/CreatePostSlice';
+import createCommentSlice from './slices/CreateCommentSlice';
+import WritePostSlice from './slices/WritePostSlice';
 import userSlice from './slices/userSlice';
 
 export const store = configureStore({
   reducer: {
-    createPost: createPostSlice,
+    createComment: createCommentSlice, 
+    WritePost :WritePostSlice,
     user: userSlice,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
   devTools: import.meta.env.DEV,
 });

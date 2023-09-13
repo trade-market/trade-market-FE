@@ -6,7 +6,7 @@ import { Container, BlueContainer, PostContainer } from './Progress6Styles';
 
 const Progress6 = () => {
   const titles = ['이미지', '희망물품', '카테고리', '예상 가격대', '작성글'];
-  const completePost = useSelector((state: RootState) => state.createPost);
+  const completePost = useSelector((state: RootState) => state.createComment);
   const currentPrice = (p: number) => p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 화폐 단위 표시(,)
   const priceString = (([...arr]) => arr.map(v => currentPrice(v)).reduce((a, b) => a + b)+'원');
   const SetCreatePost = [completePost.image, completePost.product, completePost.category, priceString([completePost.minPrice, '~', completePost.maxPrice]), completePost.info];
