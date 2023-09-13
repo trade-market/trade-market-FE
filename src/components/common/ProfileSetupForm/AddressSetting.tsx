@@ -1,36 +1,32 @@
 import { useState } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
-import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import * as S from '@Pages/SingUp/SignUpStyles';
 import BigTitle from '@components/common/BigTitle';
-import BlueButton from '@/components/common/Buttons/BlueButton';
-import KakaoMap from './KakaoMap';
-import { size } from '@/styles/theme';
-import { Coordinates } from '@/Pages/ProfileSetup/ProfileSetup';
+import BlueButton from '@components/common/Buttons/BlueButton';
+import { size } from '@styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
+import { Coordinates } from '@/types/UserTypes';
+import KakaoMap from './KakaoMap';
 
 const MapContainer = styled.div`
-  position: absolute;
+  position: fixed;
   max-width: ${size.mobile};
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 999;
-
   animation: bottomUp 0.3s ease;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   @keyframes bottomUp {
-    0% {
-      transform: translateY(100%);
+    from {
+      transform: translate(-50%, calc(100% + (100vh - ${size.mobile}) / 2));
     }
-    100% {
-      transform: translateY(0%);
+    to {
+      transform: translate(-50%, -${size.mobile} / 2);
     }
   }
 `;
@@ -71,10 +67,10 @@ function AddressSetting({
   };
 
   return (
-    <P.Section>
+    <S.Section>
       <BigTitle>동네 설정</BigTitle>
-      <P.InputContainer>
-        <P.Input
+      <S.InputContainer>
+        <S.Input
           type="text"
           placeholder="지번, 도로명, 건물명으로 검색"
           value={selectedAddress}
@@ -83,11 +79,11 @@ function AddressSetting({
         <BlueButton disabled={false} onClick={handleSearchBtnClick}>
           검색
         </BlueButton>
-      </P.InputContainer>
+      </S.InputContainer>
       <ActionButton
         onClick={handelCurrentLocationBtnClick}
-        backgroundColor="white"
-        borderColor="Mainblue"
+        $backgroundColor="white"
+        $borderColor="Mainblue"
       >
         현재 동네로 설정
       </ActionButton>
@@ -109,7 +105,7 @@ function AddressSetting({
           />
         </MapContainer>
       )}
-    </P.Section>
+    </S.Section>
   );
 }
 

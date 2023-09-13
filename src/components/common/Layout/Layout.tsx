@@ -17,14 +17,10 @@ function Layout({ children }: ILayoutProps) {
 
   const hiddenPaths = [
     /^\/auth/,
-    /^\/profile-setup/,
+    /^\/signup/,
     /^\/search/,
-    /^\/articles\/\w+$/, // /articles/:id
-    /^\/articles\/\w+\/write-comment$/, // /articles/:id/write-comment
-    /^\/articles\/\w+\/write-comment\/create-post\/\w+$/, // /articles/:id/write-comment/create-post/:number
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+$/, // /articles/:id/write-comment/get-post/:number
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+$/,
-    /^\/articles\/\w+\/write-comment\/get-post\/\w+\/my-posts$/,
+    /^\/oauth2\/callback/,
+    /^\/articles/,
     /^\/write-post\/\w+/,
   ];
 

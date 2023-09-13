@@ -2,23 +2,30 @@ import * as S from './SocialButtonStyles';
 
 interface ISocialButtonProps {
   text: string;
-  bgColor: string;
+  bgcolor: string;
   ImageSrc: string;
-  fontColor?: string;
+  fontcolor?: string;
   border?: boolean;
   isSignUp: boolean;
+  onClick?: () => void;
 }
 
 function SocialButton({
   text,
-  fontColor,
+  fontcolor,
   border,
-  bgColor,
+  bgcolor,
   ImageSrc,
   isSignUp,
+  onClick = () => {},
 }: ISocialButtonProps) {
   return (
-    <S.Button bgColor={bgColor} fontColor={fontColor} border={border}>
+    <S.Button
+      bgcolor={bgcolor}
+      fontcolor={fontcolor}
+      border={border ? 1 : 0}
+      onClick={onClick}
+    >
       <S.Icon src={ImageSrc} />
       {text} 계정으로 {isSignUp ? '회원가입' : '로그인'}
     </S.Button>

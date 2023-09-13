@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
+  min-height: inherit;
   padding: 0 21px;
   display: flex;
   flex-direction: column;
@@ -31,4 +31,12 @@ export const SmallTitle = styled.div`
   font-size: ${({ theme }) => theme.font.size.small};
   color: ${({ theme }) => theme.color.lightGray};
   margin-bottom: 12px;
+`;
+export const GoHomeText = styled.span`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100px;
+  color: ${({ theme }) => theme.color.gray};
+  text-decoration: underline;
 `;

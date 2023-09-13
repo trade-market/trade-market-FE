@@ -1,19 +1,19 @@
 import RatingBadge from '@/components/common/RatingBadge';
 import * as W from './WriterProfileStyles';
 
-interface IWriterInfoProps {
+interface IWriterProfileProps {
   profileImg: string;
   nickname: string;
   location: string;
   rating: string;
 }
 
-function WriterInfo({
+function WriterProfile({
   profileImg,
   nickname,
   location,
   rating,
-}: IWriterInfoProps) {
+}: IWriterProfileProps) {
   return (
     <W.Container>
       <W.ProfileImg src={profileImg} />
@@ -28,4 +28,4 @@ function WriterInfo({
   );
 }
 
-export default WriterInfo;
+export default WriterProfile;

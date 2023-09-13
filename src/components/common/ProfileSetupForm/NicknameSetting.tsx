@@ -1,10 +1,11 @@
 import React from 'react';
 import BigTitle from '@components/common/BigTitle';
-import * as P from '@Pages/ProfileSetup/ProfileSetupStyles';
+import * as S from '@Pages/SingUp/SignUpStyles';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface NicknameSettingProps {
   nickname: string;
+  disabled: boolean;
   error: string | null;
   handleNickname: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNicknameCheck: () => void;
@@ -12,29 +13,34 @@ interface NicknameSettingProps {
 
 const NicknameSetting: React.FC<NicknameSettingProps> = ({
   nickname,
+  disabled,
   error,
   handleNickname,
   handleNicknameCheck,
 }) => {
   return (
-    <P.Section>
+    <S.Section>
       <BigTitle>닉네임 설정</BigTitle>
-      <P.InputContainer>
-        <P.Input
+      <S.InputContainer>
+        <S.Input
           type="text"
           placeholder="닉네임 입력"
           value={nickname}
           onChange={handleNickname}
+          disabled={disabled}
         />
         <BlueButton
-          disabled={nickname.length < 2}
+          disabled={nickname.length < 2 || disabled}
           onClick={handleNicknameCheck}
         >
           중복확인
         </BlueButton>
-      </P.InputContainer>
-      {error && <P.ErrorText>{error}</P.ErrorText>}
-    </P.Section>
+      </S.InputContainer>
+      {error &&
+        error
+          .split('\n')
+          .map((line, index) => <S.ErrorText key={index}>{line}</S.ErrorText>)}
+    </S.Section>
   );
 };
 

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import WriterProfile from '@/components/Articles/WriterProfile/WriterProfile';
-import ProductInfo from '@components/Articles/ProductInfo/ProductInfo';
-import PostActions from '@components/Articles/PostActions/PostActions';
+import WriterProfile from '@/components/Articles/WriterProfile';
+import ProductInfo from '@components/Articles/ProductInfo';
+import PostActions from '@components/Articles/PostActions';
 import LikeAndComment from '@/components/Articles/LikeAndComment';
 import OfferItemLists from '@/components/Articles/OfferItemLists';
 import useTimeDiff from '@/hooks/useTimeDiff';
@@ -79,7 +79,7 @@ function Articles() {
             uploadTime={timeDifference}
             daedline="08월 17일"
             desiredCategory="의류"
-            tradeTime="08월 17일"
+            tradeTime="오전(09시~12시)"
             price="21,000~24,000"
             description="2년 간 사용했고, 기스가 좀 있습니다."
           />

@@ -21,7 +21,7 @@ const CommonHeader = ({
   isMyPost = false,
 }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
-  const hideGobackButton = ['/', '/auth'].includes(currentPath);
+  const hideGobackButton = ['/'].includes(currentPath);
 
   return (
     <Container>
