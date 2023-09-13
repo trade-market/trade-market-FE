@@ -5,7 +5,7 @@ interface IMapIconsProps {
 
 const MapIcons = ({ icons, munus }: IMapIconsProps) => {
   return (
-    <>
+    <div className='icons'>
       {icons
         .map((_, i) => {
         return (
@@ -15,7 +15,7 @@ const MapIcons = ({ icons, munus }: IMapIconsProps) => {
           </div>
         )
       })}
-    </>
+    </div>
   );
 };
 

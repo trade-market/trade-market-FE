@@ -11,20 +11,14 @@ interface IInfoComponentProps {
   n: number;
   ProgessIcon: string;
   text: string[];
-  inputRef?: React.RefObject<HTMLInputElement>;
-  handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
   disabled: boolean;
-  price?: string[] | any;
-  value?: string;
 }
 
 const ProcessCompo = ({
-  children, n, ProgessIcon, text, inputRef, handleSearch, placeholder = '', disabled, price, value = undefined }: IInfoComponentProps) => {
+  children, n, ProgessIcon, text,  disabled }: IInfoComponentProps) => {
   const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const priceString = (([...arr]) => arr.reduce((a, b) => a + b));
 
   //* 이전 버튼
   const handleBackButton = () => {
@@ -57,16 +51,6 @@ const ProcessCompo = ({
           <div className="description">
             <span>{text[1]}</span>
             <span>{text[2]}</span>
-            <P.Input
-              type={n === 3 || n == 4 ? "text" : "hidden"}
-              placeholder={placeholder}
-              ref={inputRef}
-              onChange={handleSearch}
-              disabled={n === 4}
-              value={n === 4 ? priceString(price) : value}
-              className={n === 4 ? 'price-input' : ''}
-            />
-            {n === 4 ? <div className="currency">원</div> : null}
           </div>
         </P.Info>
       </P.Container>
