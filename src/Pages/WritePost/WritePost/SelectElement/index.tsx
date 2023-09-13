@@ -33,14 +33,13 @@ const renderPostSection = (
 const SelectElement = () => {
   const dispatch = useDispatch();
   const { exchangeType, tradeType } = useParams();
-  const selectImage = useSelector((state: RootState) => state.WritePost.image);
   const selectProvide = useSelector((state: RootState) => state.WritePost.provide);
   const selectExchange = useSelector((state: RootState) => state.WritePost.exchange);
   const selectdeadline = useSelector((state: RootState) => state.WritePost.deadline);
   const selectAbleTime = useSelector((state: RootState) => state.WritePost.ableTime);
   const pageType = exchangeType === 'talent-trade' ? '재능' : '물물';
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
-  const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime) && (selectImage.length > 0);
+  const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
 
   const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
 

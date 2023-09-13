@@ -126,7 +126,7 @@ const PostContainer = styled.div`
     font-weight: 600;
   }
   .images { 
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 `;
 
