@@ -5,6 +5,19 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["kakao.maps.d.ts"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@Pages/*": ["src/Pages/*"],
+      "@components/*": ["src/components/*"],
+      "@Assets/*": ["src/Assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@/*": ["src/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -16,10 +29,10 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/styles/custom.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

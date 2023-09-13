@@ -17,11 +17,26 @@ declare module 'styled-components' {
     };
     color: {
       white: string;
+      bgColor: string;
+      black: string;
+      Mainblue: string;
+      gray: string;
+      lightGray: string;
+      whiteGray: string;
+      activeBlue: string;
+      disableBtn: string;
+      inputGray: string;
     };
     font: {
       family: {
         NotoSansKR: string;
         Pretendard: string;
+      };
+      size: {
+        xSmall: string;
+        small: string;
+        base: string;
+        large: string;
       };
     };
 

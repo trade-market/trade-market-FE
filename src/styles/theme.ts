@@ -21,11 +21,26 @@ export const theme: DefaultTheme = {
   },
   color: {
     white: '#fff',
+    bgColor: '#FDFDFD', // 메인 배경색
+    Mainblue: '#007af7',
+    gray: '#AFAFAF',
+    lightGray: '#797979',
+    whiteGray: '#E5E7EB',
+    black: '#0B0B0B',
+    activeBlue: '#2156F2',
+    disableBtn: '#E5E7EB',
+    inputGray: '#f9f8fb',
   },
   font: {
     family: {
       NotoSansKR: 'NotoSansKR',
       Pretendard: 'Pretendard',
+    },
+    size: {
+      xSmall: '10px',
+      small: '12px',
+      base: '14px',
+      large: '18px',
     },
   },
 

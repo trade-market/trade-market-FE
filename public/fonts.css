@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('Noto Sans KR Thin'),
+    url('/fonts/NotoSansKR_Thin.otf') format('opentype');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('Noto Sans KR Light'),
+    url('/fonts/NotoSansKR_Light.otf') format('opentype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('NotoSansKR_Regular'),
+    url('/fonts/NotoSansKR_Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('NotoSansKR_Medium'),
+    url('/fonts/NotoSansKR_Medium.otf') format('opentype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('NotoSansKR_Bold'),
+    url('/fonts/NotoSansKR_Bold.otf') format('opentype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src:
+    local('NotoSansKR_Black'),
+    url('/fonts/NotoSansKR_Black.otf') format('opentype');
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_Thin'),
+    url('/fonts/Pretendard_Thin.otf') format('opentype');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_ExtraLight'),
+    url('/fonts/Pretendard_ExtraLight.otf') format('opentype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_Light'),
+    url('/fonts/Pretendard_Light.otf') format('opentype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_Regular'),
+    url('/fonts/Pretendard_Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_Medium'),
+    url('/fonts/Pretendard_Medium.otf') format('opentype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_SemiBold'),
+    url('/fonts/Pretendard_SemiBold.otf') format('opentype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src:
+    local('Pretendard_ExtraBold'),
+    url('/fonts/Pretendard_ExtraBold.otf') format('opentype');
+  font-weight: 700;
+}

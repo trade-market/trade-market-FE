@@ -11,16 +11,25 @@ const GlobalStyle = createGlobalStyle`
   ${({ theme }) => {
     return css`
       body {
-        background: gray;
+        background: #cbcbcb;
+        font-family: ${theme.font.family.Pretendard};
+        font-size: ${theme.font.size.base};
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        font-family: ${theme.font.family.Pretendard};
+        cursor: pointer;
+      }
+      input {
         font-family: ${theme.font.family.Pretendard};
       }
     `;
   }}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+
 `;
 
 export default GlobalStyle;
