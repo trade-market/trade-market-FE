@@ -1,7 +1,7 @@
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import AuthService from '@/service/AuthService';
 import { Coordinates, NewUserInfo } from '@/types/UserTypes';
-import userDefaultImg from '@Assets/Images/user_default_img.svg';
+import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@store/slices/userSlice';
@@ -42,7 +42,7 @@ function SignUp() {
 
   return (
     <ProfileSetupForm
-      defaultProfileImgSrc={profileImg || userDefaultImg}
+      defaultProfileImgSrc={profileImg || defaultProfileImg}
       defaultNickname={nickname}
       handleSubmit={handleSubmit}
     />
