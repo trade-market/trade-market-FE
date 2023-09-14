@@ -5,10 +5,11 @@ import userSlice from './slices/userSlice';
 
 export const store = configureStore({
   reducer: {
-    createComment: createCommentSlice, 
-    WritePost :WritePostSlice,
+    createComment: createCommentSlice,
+    WritePost: WritePostSlice,
     user: userSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   devTools: import.meta.env.DEV,
 });

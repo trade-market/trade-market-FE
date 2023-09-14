@@ -22,6 +22,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
+    /^\/my-page\/edit/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>

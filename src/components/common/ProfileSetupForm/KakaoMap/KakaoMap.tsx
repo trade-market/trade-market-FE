@@ -67,7 +67,10 @@ function KakaoMap({
           region_2depth_name,
           region_3depth_name,
         });
-        setCoordinates({ longitude, latitude });
+        setCoordinates({
+          longitude: String(longitude),
+          latitude: String(latitude),
+        });
       }
     });
   };
@@ -109,7 +112,10 @@ function KakaoMap({
             region_2depth_name,
             region_3depth_name,
           });
-          setCoordinates({ longitude, latitude });
+          setCoordinates({
+            longitude: String(longitude),
+            latitude: String(latitude),
+          });
           resolve(coords);
         } else {
           resolve(null);

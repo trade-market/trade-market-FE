@@ -24,6 +24,7 @@ import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
 import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
 import WritePost from '@Pages/WritePost/WritePost/WritePost';
 import MyPage from '@Pages/MyPage';
+import EditProfile from '@Pages/MyPage/EditProfile';
 
 function Router() {
   return (
@@ -89,7 +90,10 @@ function Router() {
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
             </Route>
-            <Route path="/my-page" element={<MyPage />} />
+            <Route path="/my-page">
+              <Route index element={<MyPage />} />
+              <Route path="edit" element={<EditProfile />} />
+            </Route>
           </Route>
         </Routes>
       </Layout>

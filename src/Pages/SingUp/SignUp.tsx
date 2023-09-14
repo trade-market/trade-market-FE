@@ -19,6 +19,7 @@ function SignUp() {
   const nickname = state.nickname; // Todo: SNS 로그인 시 닉네임 받아오기
   const profileImg = state.profile_image; // Todo: SNS 로그인 시 프로필 이미지 받아오기
   const handleSubmit = async (
+    nickname: string,
     coordinates: Coordinates,
     town: string,
     profileImgFile: File | null

@@ -9,7 +9,7 @@ const initialState: UserState = {
   id: '',
   nickname: '',
   profile_image: '',
-  coordinates: { lat: '', lng: '' },
+  coordinates: { latitude: '', longitude: '' },
   grade: null,
   town: '',
   isLogin: false,

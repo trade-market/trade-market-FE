@@ -11,6 +11,7 @@ import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 const MyPageContainer = styled.div`
   width: 100%;
   padding-top: 48px;
+  padding-bottom: 70px;
 `;
 
 const TopSection = styled.div`

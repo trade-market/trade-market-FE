@@ -59,7 +59,7 @@ function Profile() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
 
-  const handleEditBtnClick = () => navigate('/edit');
+  const handleEditBtnClick = () => navigate('edit');
 
   return (
     <ProfileContainer>

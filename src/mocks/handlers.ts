@@ -7,7 +7,7 @@ const users: User[] = [
     profile_image:
       'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
     nickname: '거래왕',
-    coordinates: { lat: '37.123', lng: '127.123' },
+    coordinates: { latitude: '37.123', longitude: '127.123' },
     grade: 'one',
     town: '서초동',
   },
@@ -16,7 +16,7 @@ const users: User[] = [
     profile_image:
       'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
     nickname: '거래왕',
-    coordinates: { lat: '37.123', lng: '127.123' },
+    coordinates: { latitude: '37.123', longitude: '127.123' },
     grade: 'one',
     town: '화서동',
   },
@@ -123,11 +123,16 @@ export const handlers = [
   rest.post('/auth/token', async (req, res, ctx) => {
     const body = await req.json();
     const refreshToken = body.refreshToken;
-    console.log(refreshToken);
 
     return res(
       ctx.status(200),
       ctx.set('Authorization', 'Baerer abcdefg12345')
     );
+  }),
+
+  rest.put('/user/update', async (req, res, ctx) => {
+    const body = await req.json();
+
+    return res(ctx.json({ code: 200, message: '수정 성공' }));
   }),
 ];

@@ -6,25 +6,28 @@ import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
-import client from '@/api/client';
 import UserService from '@/service/UserService';
-import { AxiosError } from 'axios';
 
 interface IProfileSetupFormProps {
+  isEdit?: boolean;
   defaultProfileImgSrc: string;
   defaultNickname: string;
-  address?: string;
+  defaultCoordinates?: Coordinates;
+  defaultAddress?: string;
   handleSubmit: (
+    nickname: string,
     Coordinates: Coordinates,
-    town: string,
+    address: string,
     profileImg: File | null
   ) => Promise<void>;
 }
 
 function ProfileSetupForm({
+  isEdit = false,
   defaultProfileImgSrc,
   defaultNickname,
-  address,
+  defaultCoordinates,
+  defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
@@ -32,8 +35,10 @@ function ProfileSetupForm({
   const [nickname, setNickname] = useState(defaultNickname);
   const [successNickname, setSuccessNickname] = useState(false); // 닉네임 중복확인 성공 여부
   const [nicknameError, setNicknameError] = useState<string | null>(null);
-  const [selectedAddress, setSelectedAddress] = useState(address || '');
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
+  const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(
+    defaultCoordinates || null
+  );
 
   const handleAddressSelect = useCallback((address: string) => {
     setSelectedAddress(address);
@@ -73,10 +78,10 @@ function ProfileSetupForm({
       setNicknameError(err.response.data.message);
     }
   }, [nickname]);
-  /*추후 프로필 편집 api 나오면 재사용 가능하게 onClick 변경 */
+
   return (
     <>
-      <CommonHeader>기본 정보 입력</CommonHeader>
+      <CommonHeader>{isEdit ? '프로필 편집' : '기본 정보 입력'}</CommonHeader>
       <P.Wrapper>
         <P.Section>
           <ProfileImgSetting
@@ -105,6 +110,7 @@ function ProfileSetupForm({
           maxWidth="100%"
           onClick={() =>
             handleSubmit(
+              nickname,
               coordinates as Coordinates,
               selectedAddress.split(' ').slice(-1).toString(),
               imgFile
