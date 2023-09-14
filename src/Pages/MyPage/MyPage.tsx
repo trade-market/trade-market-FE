@@ -5,6 +5,7 @@ import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
 import OptionModal from '@components/MyPage/OptionModal';
 import useModal from '@hooks/useModal';
 import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
+import DividedLine from '@components/common/DividedLine';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -16,14 +17,6 @@ const TopSection = styled.div`
   flex-direction: column;
   gap: 24px;
   padding: 0 21px;
-`;
-
-const Line = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: ${({ theme }) => theme.color.whiteGray};
-  margin-top: 24px;
-  margin-bottom: 20px;
 `;
 
 function MyPage() {
@@ -39,7 +32,7 @@ function MyPage() {
           <ExchangeInfoList />
         </TopSection>
         <RecentlyViewedPostsContainer />
-        <Line />
+        <DividedLine />
       </MyPageContainer>
       {isOpen && <OptionModal close={close} />}
     </>

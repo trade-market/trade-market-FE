@@ -18,13 +18,6 @@ export const Title = styled.div`
 
 export const ButtonsContainer = styled.div``;
 
-export const DividedLine = styled.hr`
-  border: none;
-  height: 1px;
-  background-color: rgba(33, 86, 242, 0.1);
-  margin: 0;
-`;
-
 export const SignUpContainer = styled.div``;
 
 export const SmallTitle = styled.div`
