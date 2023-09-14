@@ -21,7 +21,6 @@ function Layout({ children }: ILayoutProps) {
     /^\/search/,
     /^\/oauth2\/callback/,
     /^\/articles/,
-    /^\/my-page/,
     /^\/write-post\/\w+/,
   ];
 
@@ -36,7 +35,6 @@ function Layout({ children }: ILayoutProps) {
       <GlobalStyle />
       {!isHidden && <Header />}
       {children}
-      {!isHidden && <WriteButton />}
       {!isHidden && <NavigationBar />}
     </Wrapper>
   );
