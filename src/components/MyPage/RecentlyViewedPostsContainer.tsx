@@ -3,6 +3,7 @@ import RecentlyViewedPostList from '@components/MyPage/RecentlyViewedPostList';
 
 const Container = styled.div`
   margin-top: 32px;
+  margin-bottom: 24px;
   padding: 0 21px;
 `;
 const Title = styled.div`

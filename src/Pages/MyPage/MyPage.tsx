@@ -6,6 +6,7 @@ import OptionModal from '@components/MyPage/OptionModal';
 import useModal from '@hooks/useModal';
 import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
 import DividedLine from '@components/common/DividedLine';
+import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -33,6 +34,9 @@ function MyPage() {
         </TopSection>
         <RecentlyViewedPostsContainer />
         <DividedLine />
+        <MannersContainer mannerType="매너" />
+        <DividedLine />
+        <MannersContainer mannerType="비매너" />
       </MyPageContainer>
       {isOpen && <OptionModal close={close} />}
     </>
