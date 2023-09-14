@@ -108,7 +108,7 @@ export const handlers = [
     );
   }),
 
-  rest.post('/auth/nickname', async (req, res, ctx) => {
+  rest.post('/user/nickname', async (req, res, ctx) => {
     const body = await req.json();
     const nickname = body.nickname;
     if (nickname === '거래왕') {

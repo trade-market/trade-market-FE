@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
 
@@ -38,7 +38,6 @@ function ProfileImgSetting({
 
   const handleImgClick = () => fileInputRef.current?.click();
 
-  console.log('render');
   return (
     <>
       <BigTitle>프로필 이미지 설정</BigTitle>
@@ -63,4 +62,4 @@ function ProfileImgSetting({
   );
 }
 
-export default ProfileImgSetting;
+export default memo(ProfileImgSetting);
