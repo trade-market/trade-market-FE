@@ -2,7 +2,6 @@ import GlobalStyle from '@/styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 import Header from '@components/common/Header/Header';
 import NavigationBar from '@components/common/NavigationBar/NavigationBar';
-import WriteButton from '@/components/Home/WriteButton';
 import { useWindowSize } from '@hooks/useWindowDimensions';
 import { useLocation } from 'react-router-dom';
 

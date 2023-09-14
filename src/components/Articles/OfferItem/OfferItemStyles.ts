@@ -64,6 +64,10 @@ export const ProductInfoContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 5px;
+      span {
+        font-size: ${({ theme }) => theme.font.size.medium};
+        font-weight: 600;
+      }
       .category {
         display: flex;
         justify-content: center;

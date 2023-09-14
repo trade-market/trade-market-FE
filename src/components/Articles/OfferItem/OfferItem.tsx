@@ -48,7 +48,7 @@ function OfferItem({
         <div className="product-contents">
           <div className="top">
             <div className="title">
-              <BigTitle>{title}</BigTitle>
+              <span>{title}</span>
               <div className="category">{category}</div>
             </div>
             <div className="price">{price}</div>
