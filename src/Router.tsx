@@ -23,6 +23,7 @@ import SelectElement from '@Pages/WritePost/WritePost/SelectElement';
 import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
 import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
 import WritePost from '@Pages/WritePost/WritePost/WritePost';
+import ChatList from '@Pages/Chat/ChatList';
 
 function Router() {
   return (
@@ -88,6 +89,7 @@ function Router() {
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
             </Route>
+            <Route path='chat-list' element={<ChatList />} />
           </Route>
         </Routes>
       </Layout>

@@ -7,13 +7,14 @@ interface INaviMenuProps {
   position: number;
   setActiveNav: React.Dispatch<React.SetStateAction<number>>;
   menu: string;
+  loacate?: string;
 }
 
-const NaviMenu = ({ able, disable, activeNav, position, setActiveNav, menu }: INaviMenuProps) => {
+const NaviMenu = ({ able, disable, activeNav, position, setActiveNav, menu, loacate=`/`}: INaviMenuProps) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/');
+    navigate(loacate);
     setActiveNav(position);
   };
   

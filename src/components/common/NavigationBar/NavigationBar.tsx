@@ -11,32 +11,31 @@ import MY_Disable from '@Assets/Icons/Home/MY_Disable.svg';
 const NavigationBar = () => {
   const [activeNav, setActiveNav] = useState(2);
 
+  const renderNaviMenu = (
+    able: string,
+    disable: string,
+    activeNav: number,
+    setActiveNav: React.Dispatch<React.SetStateAction<number>>,
+    position: number,
+    menu: string,
+    loacate?: string,
+    ) => (
+      <NaviMenu
+        able={able}
+        disable={disable}
+        activeNav={activeNav}
+        setActiveNav={setActiveNav}
+        position={position}
+      menu={menu}
+      loacate={loacate}
+      />
+  ); 
+
   return (
     <Container>
-      <NaviMenu
-        able={Chat_able}
-        disable={Chat_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={1}
-        menu={'채팅'}
-      />
-      <NaviMenu
-        able={Home_able}
-        disable={Home_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={2}
-        menu={'홈'}
-      />
-      <NaviMenu
-        able={MY_able}
-        disable={MY_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={3}
-        menu={'MY'}
-      />
+      {renderNaviMenu(Chat_able, Chat_Disable, activeNav, setActiveNav, 1, '채팅', `/chat-list`)}
+      {renderNaviMenu(Home_able, Home_Disable, activeNav, setActiveNav, 2, '홈')}
+      {renderNaviMenu(MY_able, MY_Disable, activeNav, setActiveNav, 3, 'MY', `/`)}
     </Container>
   );
 };
