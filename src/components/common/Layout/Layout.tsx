@@ -22,6 +22,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
+    /^\/chat-list/
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
@@ -37,6 +38,8 @@ function Layout({ children }: ILayoutProps) {
       {children}
       {!isHidden && <WriteButton />}
       {!isHidden && <NavigationBar />}
+      {/* 임시 */}
+      <NavigationBar /> 
     </Wrapper>
   );
 }

@@ -11,7 +11,7 @@ const Header = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <CommonHeader>
+    <CommonHeader hideGobackButton={true}>
       <Container>
         <div className="header">
           <div className="item" onClick={() => navigate('/')}>

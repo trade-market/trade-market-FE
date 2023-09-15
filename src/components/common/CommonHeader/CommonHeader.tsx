@@ -10,6 +10,7 @@ interface ICommonHeaderProps {
   closeClick?: () => void;
   optionClick?: () => void;
   isMyPost?: boolean;
+  hideGobackButton?: boolean;
 }
 
 const CommonHeader = ({
@@ -19,18 +20,17 @@ const CommonHeader = ({
   closeClick,
   optionClick,
   isMyPost = false,
+  hideGobackButton = false,
+  
 }: ICommonHeaderProps) => {
-  const currentPath = window.location.pathname;
-  const hideGobackButton = ['/'].includes(currentPath);
 
   return (
     <Container>
       {!hideGobackButton && <GobackBtn onClick={onClick} />}
-      <div className={hideGobackButton ? 'title Only' : 'title'}>
+      <div className={!hideGobackButton ? 'title Only' : 'title'}>
         {children}
       </div>
       <CloseButton
-        className="closeButton"
         $display={display}
         onClick={closeClick}
       >
