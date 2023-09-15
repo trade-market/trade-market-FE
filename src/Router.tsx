@@ -25,6 +25,7 @@ import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
 import WritePost from '@Pages/WritePost/WritePost/WritePost';
 import MyPage from '@Pages/MyPage';
 import EditProfile from '@Pages/MyPage/EditProfile';
+import LikePosts from '@Pages/MyPage/LikePosts';
 
 function Router() {
   return (
@@ -93,6 +94,7 @@ function Router() {
             <Route path="/my-page">
               <Route index element={<MyPage />} />
               <Route path="edit" element={<EditProfile />} />
+              <Route path="like-posts" element={<LikePosts />} />
             </Route>
           </Route>
         </Routes>

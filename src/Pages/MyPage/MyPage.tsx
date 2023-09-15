@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Profile from '@components/MyPage/Profile';
@@ -23,9 +24,18 @@ const TopSection = styled.div`
 
 function MyPage() {
   const { isOpen, open, close } = useModal();
+  const navigate = useNavigate();
+
+  const handleHeartClick = () => navigate('/my-page/like-posts');
+
   return (
     <>
-      <CommonHeader visibleHeart visibleOption optionClick={open}>
+      <CommonHeader
+        visibleHeart={true}
+        visibleOption={true}
+        optionClick={open}
+        heartClick={handleHeartClick}
+      >
         마이페이지
       </CommonHeader>
       <MyPageContainer>

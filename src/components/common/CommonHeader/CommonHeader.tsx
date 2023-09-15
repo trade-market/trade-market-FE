@@ -9,6 +9,7 @@ interface ICommonHeaderProps {
   onClick?: () => void;
   display?: string;
   closeClick?: () => void;
+  heartClick?: () => void;
   optionClick?: () => void;
   visibleHeart?: boolean;
   visibleOption?: boolean;
@@ -19,12 +20,13 @@ const CommonHeader = ({
   onClick,
   display = 'none',
   closeClick,
+  heartClick,
   optionClick,
   visibleHeart = false,
   visibleOption = false,
 }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
-  const hideGobackButton = ['/'].includes(currentPath);
+  const hideGobackButton = ['/', '/my-page'].includes(currentPath);
 
   return (
     <Container>
@@ -40,7 +42,7 @@ const CommonHeader = ({
         <img src={Close} />
       </CloseButton>{' '}
       {visibleHeart && (
-        <OptionButton src={UnLikeIcon} alt="관심목록" onClick={optionClick} />
+        <OptionButton src={UnLikeIcon} alt="관심목록" onClick={heartClick} />
       )}
       {visibleOption && (
         <OptionButton src={optionDot} alt="옵션" onClick={optionClick} />
