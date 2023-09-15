@@ -13,9 +13,15 @@ interface IPostComponentProps {
     location: string;
     date: string;
   };
+  isOption?: boolean;
+  onOptionClick?: () => void;
 }
 
-const PostComponent = ({ post }: IPostComponentProps) => {
+const PostComponent = ({
+  post,
+  isOption = false,
+  onOptionClick = () => {},
+}: IPostComponentProps) => {
   return (
     <>
       <ImgSection type={post.type} image={post.image} />
@@ -24,7 +30,13 @@ const PostComponent = ({ post }: IPostComponentProps) => {
         want={post.want}
         category={post.category}
       />
-      <SebSection like={post.like} location={post.location} date={post.date} />
+      <SebSection
+        like={post.like}
+        location={post.location}
+        date={post.date}
+        isOption={isOption}
+        onOptionClick={onOptionClick}
+      />
     </>
   );
 };

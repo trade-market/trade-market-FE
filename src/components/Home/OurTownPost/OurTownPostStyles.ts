@@ -21,11 +21,11 @@ export const PostContainer = styled.div`
   width: 100%;
   height: 150px;
   cursor: pointer;
-  
+
   .img-section {
     display: flex;
     flex-direction: column;
-    padding: 10px 15px; 
+    padding: 10px 15px;
     .postImage {
       margin: 2px;
       width: 90px;
@@ -40,12 +40,13 @@ export const PostContainer = styled.div`
     padding: 20px 0;
     justify-content: space-between;
 
-    .item:nth-child(1), .item:nth-child(3) {
+    .item:nth-child(1),
+    .item:nth-child(3) {
       font-weight: 500;
       font-size: 14px;
     }
     .item:nth-child(3) {
-      color : #ff5b22;
+      color: #ff5b22;
     }
     .item:nth-child(2) {
       font-size: 12px;
@@ -58,7 +59,7 @@ export const PostContainer = styled.div`
     flex-direction: column;
     padding: 15px 10px;
 
-    .like-icon {
+    .icon {
       display: flex;
       margin-bottom: 50px;
       margin-left: 10px;
@@ -69,7 +70,7 @@ export const PostContainer = styled.div`
       align-items: flex-end;
       justify-content: center;
       gap: 3px;
-      color : #AFAFAF;
+      color: #afafaf;
       font-size: 12px;
     }
   }
