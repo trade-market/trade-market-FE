@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MannerTypeItem from './MannerTypeItem';
 
-const mannerDumyData = [
+export const mannerDumyData = [
   {
     type: '응답이 빨라요',
     count: 12,
@@ -19,7 +19,7 @@ const mannerDumyData = [
   },
 ];
 
-const badMannerDumyData = [
+export const badMannerDumyData = [
   {
     type: '응답이 느려요',
     count: 12,

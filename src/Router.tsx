@@ -27,6 +27,7 @@ import MyPage from '@Pages/MyPage';
 import EditProfile from '@Pages/MyPage/EditProfile';
 import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
+import MannersDetail from '@Pages/MyPage/MannersDetail';
 
 function Router() {
   return (
@@ -97,6 +98,7 @@ function Router() {
               <Route path="edit" element={<EditProfile />} />
               <Route path="like-posts" element={<LikePosts />} />
               <Route path="exchange-history" element={<ExchangeHistory />} />
+              <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
           </Route>
         </Routes>
