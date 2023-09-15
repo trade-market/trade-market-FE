@@ -2,7 +2,6 @@ import * as O from './OfferItemStyles';
 import RatingBadge from '@components/common/RatingBadge';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
-import BigTitle from '@components/common/BigTitle';
 import useTimeDiff from '@hooks/useTimeDiff';
 import { OfferPostTypes } from '@/types/OfferTypes';
 
@@ -48,7 +47,7 @@ function OfferItem({
         <div className="product-contents">
           <div className="top">
             <div className="title">
-              <BigTitle>{title}</BigTitle>
+              <span>{title}</span>
               <div className="category">{category}</div>
             </div>
             <div className="price">{price}</div>

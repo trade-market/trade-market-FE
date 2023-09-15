@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ChatListItem from '@components/Chat/ChatListItem';
@@ -6,38 +6,55 @@ import Check_icon from '@Assets/Icons/Chat/Check.svg';
 import UserIcon from '@Assets/Icons/Chat/UserIcon.svg';
 
 const ChatList = () => {
-  const [deleteModeOn, setDeleteModeOn] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
-
-  const renderUserList = (
-    nickName: string,
-    time: string,
-    text: string,
-    deleteMode: boolean,
-    userImg?: string,
-  ) => (
-    <ChatListItem
-      userImg={userImg}
-      nickName={nickName}
-      time={time}
-      text={text}
-      deleteMode={deleteModeOn}
-    />
-  );
+  const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
+  const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
   
+  const tempData = [
+    { nickname: '닉네임', time: '오전 10:01', text: '시간 언제가 괜찮으신가요? 전 이번주...', userImage: UserIcon },
+    { nickname: '세모난 수박', time: '오후 4:29', text: '안녕하세요~', userImage: UserIcon },
+    { nickname: '네모난 감자', time: '오전 7:31', text: '아직 판매 하시나요?', userImage: UserIcon },
+  ];
+
+  const checkHandler = (id: string, isChecked: boolean) => {
+    if (isChecked) {
+      checkItems.add(id); 
+      setCheckItems(checkItems);
+      // console.log('add', checkItems, checkItems.size > 0);
+    } else if (!isChecked && checkItems.has(id)) {
+      checkItems.delete(id);
+      setCheckItems(checkItems);
+      // console.log('delete', checkItems, checkItems.size > 0);
+    }
+  }
+
+  const deleteHandler = () => {
+    console.log('global', checkItems);
+  }
+
   return (
     <>
-      <CommonHeader hideGobackButton={true}>
-        <HeaderSection>
+      <CommonHeader>
+          <HeaderSection>
           <span className='title'>채팅</span>
           {!deleteModeOn ?
-            <img className='check' src={Check_icon} onClick={() => setDeleteModeOn(prev => !prev)} />
-            : <button className='deleteBtn' onClick={() => setDeleteModeOn(prev => !prev)}>삭제</button>}
+            <img className='check' src={Check_icon} onClick={() => { setDeleteModeOn(prev => !prev); checkItems.clear(); }} />
+            : <DeleteButton $active={checkItems.size > 0} onClick={() => checkItems.size > 0 ? deleteHandler() : setDeleteModeOn(prev => !prev)}>삭제</DeleteButton>}
         </HeaderSection>
       </CommonHeader>
 
       <Wrapper>
-      {renderUserList('닉네임', '오전 10:01', '시간 언제가 괜찮으신가요? 전 이번주...', deleteModeOn, UserIcon)}
+        {tempData.map((chat, i)=> (
+          <ChatListItem
+            key={i}
+            id={chat.nickname}
+            nickName={chat.nickname}
+            time={chat.time}
+            text={chat.text}
+            userImg={chat.userImage}
+            deleteMode={deleteModeOn}
+            checkHandler={checkHandler}
+            />
+      ))}
       </Wrapper>
     </>
   );
@@ -54,13 +71,14 @@ export const HeaderSection = styled.div`
     padding-right: 5px;
     cursor: pointer;
   }
-  .deleteBtn {
-    border: none;
-    margin-left: -13px;
-    background-color: transparent;
-    color : ${({ theme }) => theme.color.gray}; 
-    font-size: ${({ theme }) => theme.font.size.base};
-  }
+`;
+
+const DeleteButton = styled.button<{$active : boolean}>`
+  border: none;
+  margin-left: -13px;
+  background-color: transparent;
+  color : ${({ theme, $active }) => $active ? '#FF5B22' : theme.color.gray}; 
+  font-size: ${({ theme }) => theme.font.size.base};
 `;
 
 export const Wrapper = styled.div`
@@ -68,5 +86,4 @@ export const Wrapper = styled.div`
   flex-direction: column;
   width : 100%;
   margin-top: 60px;
-  padding: 0 20px;
 `;

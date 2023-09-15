@@ -11,7 +11,7 @@ const Header = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <CommonHeader hideGobackButton={true}>
+    <CommonHeader>
       <Container>
         <div className="header">
           <div className="item" onClick={() => navigate('/')}>
@@ -21,11 +21,11 @@ const Header = () => {
               <div className="location non-user">내 위치</div>
             )}
           </div>
-          <img className="item" src={search} onClick={() => navigate('/')} />
+          <img className="item" src={search} onClick={() => navigate('/search')} />
           <img
             className="item"
             src={Notification}
-            onClick={() => navigate('/')}
+            onClick={() => !user.isLogin && navigate('/auth')}
           />
         </div>
       </Container>

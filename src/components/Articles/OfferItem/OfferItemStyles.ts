@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 17px;
+  border-radius: 8px;
   box-shadow: 2px 2px 8px 0px rgba(96, 96, 96, 0.1);
   cursor: pointer;
 `;
@@ -64,6 +65,10 @@ export const ProductInfoContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 5px;
+      span {
+        font-size: ${({ theme }) => theme.font.size.medium};
+        font-weight: 600;
+      }
       .category {
         display: flex;
         justify-content: center;

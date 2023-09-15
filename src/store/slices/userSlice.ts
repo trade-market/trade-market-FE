@@ -9,7 +9,7 @@ const initialState: UserState = {
   id: '',
   nickname: '',
   profile_image: '',
-  coordinates: { lat: '', lng: '' },
+  coordinates: { latitude: '', longitude: '' },
   grade: null,
   town: '',
   isLogin: false,
@@ -22,16 +22,7 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<UserState>) => {
       return { ...action.payload, isLogin: true };
     },
-    logoutUser: (state) => {
-      state.id = '';
-      state.nickname = '';
-      state.profile_image = '';
-      state.coordinates.lat = '';
-      state.coordinates.lng = '';
-      state.grade = null;
-      state.town = '';
-      state.isLogin = false;
-    },
+    logoutUser: () => initialState,
   },
 });
 

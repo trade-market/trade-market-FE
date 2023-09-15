@@ -1,14 +1,25 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface IChatListItemProps {
+  id: string;
   userImg?: string;
   nickName: string;
   time: string;
   text: string;
   deleteMode: boolean;
+  checkHandler: (id: string, isChecked: boolean) => void;
 }
 
-const ChatListItem = ({userImg, nickName, time, text, deleteMode}: IChatListItemProps) => {
+const ChatListItem = ({id, userImg, nickName, time, text, deleteMode, checkHandler}: IChatListItemProps) => {
+  const [isChecked, setIsChecked] = useState(false);
+  
+  const checkHandled = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, checked } = e.target;
+    setIsChecked(!isChecked);
+    checkHandler(id, checked);
+  }
+  
   return (
     <Container $deleteMode={deleteMode}>
       <div className='image-section'>
@@ -23,7 +34,10 @@ const ChatListItem = ({userImg, nickName, time, text, deleteMode}: IChatListItem
       </ContentBox>
       <div className='checkbox-section'>
         <input
+          id={id}
           type='checkbox'
+          checked={isChecked}
+          onChange={(e) =>checkHandled(e)}
         />
       </div>
     </Container>
@@ -35,8 +49,11 @@ export default ChatListItem;
 const Container = styled.div<{ $deleteMode : boolean }>`
   display: flex;
   width: 100%;
-  padding: 7px 0;
+  padding: 12px 20px;
   align-items: center;
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.whiteGray}; 
+  cursor: pointer;
+
   .image-section {
     margin: 3px 5px 0 5px;
   }

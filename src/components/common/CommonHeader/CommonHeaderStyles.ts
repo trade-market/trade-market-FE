@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { size } from '../../../styles/theme';
 
-export const Container = styled.div`
+export const Container = styled.div<{$hidden : boolean}>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -15,20 +15,17 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.bgColor};
   justify-content: center;
   padding: 0 15px;
-
   .title {
     display: flex;
     justify-content: center;
     flex-grow: 2;
-    /* padding-right: 20px; */
-
     &.Only {
       padding: 0px;
     }
   }
-
   .gobackBtn {
     display: flex;
+    visibility: ${({ $hidden }) => $hidden ? 'hidden' : 'visible'};
     border: none;
     cursor: pointer;
     background-color: transparent;
