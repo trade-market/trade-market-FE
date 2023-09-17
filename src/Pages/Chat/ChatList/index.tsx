@@ -1,14 +1,14 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import ChatListItem from '@components/Chat/ChatListItem';
+import ChatListItem from '@components/Chat/ChatList/ChatListItem';
 import Check_icon from '@Assets/Icons/Chat/Check.svg';
 import UserIcon from '@Assets/Icons/Chat/UserIcon.svg';
 
 const ChatList = () => {
   const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
   const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
-  
+
   const tempData = [
     { nickname: '닉네임', time: '오전 10:01', text: '시간 언제가 괜찮으신가요? 전 이번주...', userImage: UserIcon },
     { nickname: '세모난 수박', time: '오후 4:29', text: '안녕하세요~', userImage: UserIcon },
@@ -17,18 +17,19 @@ const ChatList = () => {
 
   const checkHandler = (id: string, isChecked: boolean) => {
     if (isChecked) {
-      checkItems.add(id); 
-      setCheckItems(checkItems);
-      // console.log('add', checkItems, checkItems.size > 0);
-    } else if (!isChecked && checkItems.has(id)) {
-      checkItems.delete(id);
-      setCheckItems(checkItems);
-      // console.log('delete', checkItems, checkItems.size > 0);
+      setCheckItems((prev) => new Set([...prev, id]));
     }
+    else if (!isChecked && checkItems.has(id)) {
+      setCheckItems((prev) => {
+        const newCheckItem = new Set(prev);
+        newCheckItem.delete(id);
+        return newCheckItem;
+      });
+    } 
   }
 
   const deleteHandler = () => {
-    console.log('global', checkItems);
+    console.log('삭제하시겠습니까?', checkItems);
   }
 
   return (

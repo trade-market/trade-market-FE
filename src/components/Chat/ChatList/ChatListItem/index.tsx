@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import CheckBox from '../Checkbox';
 
 interface IChatListItemProps {
   id: string;
@@ -8,17 +8,10 @@ interface IChatListItemProps {
   time: string;
   text: string;
   deleteMode: boolean;
-  checkHandler: (id: string, isChecked: boolean) => void;
+  checkHandler: ((id: string, isChecked: boolean) => void);
 }
 
 const ChatListItem = ({id, userImg, nickName, time, text, deleteMode, checkHandler}: IChatListItemProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-  
-  const checkHandled = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = e.target;
-    setIsChecked(!isChecked);
-    checkHandler(id, checked);
-  }
   
   return (
     <Container $deleteMode={deleteMode}>
@@ -33,11 +26,9 @@ const ChatListItem = ({id, userImg, nickName, time, text, deleteMode, checkHandl
         <div className='text'>{text}</div>
       </ContentBox>
       <div className='checkbox-section'>
-        <input
+        <CheckBox
           id={id}
-          type='checkbox'
-          checked={isChecked}
-          onChange={(e) =>checkHandled(e)}
+          checkHandler={checkHandler}
         />
       </div>
     </Container>
