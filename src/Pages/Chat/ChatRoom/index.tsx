@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BottomSheet from '@components/common/BottomSheet';
+import InfoCollapse from '@components/Chat/ChatRoom/InfoCollapse';
+
 
 const ChatRoom = () => {
   const [saleState, setSaleState] = useState<string>('판매중');
@@ -22,7 +24,9 @@ const ChatRoom = () => {
           <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
         </HeaderSection>
       </CommonHeader>
-
+      <Wrapper>
+        <InfoCollapse />
+      </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
           <StateOption onClick={handleChangeState}>판매중</StateOption>

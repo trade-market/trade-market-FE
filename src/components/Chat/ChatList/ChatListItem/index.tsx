@@ -14,9 +14,12 @@ interface IChatListItemProps {
 
 const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler }: IChatListItemProps) => {
   const navigate = useNavigate();
+  const handlerClick = () => {
+    if (!deleteMode) navigate(id);
+  }
 
   return (
-    <Container $deleteMode={deleteMode} onClick={() => navigate(id)}>
+    <Container $deleteMode={deleteMode} onClick={handlerClick}>
       <div className='image-section'>
         <img src={userImg} />
       </div>
