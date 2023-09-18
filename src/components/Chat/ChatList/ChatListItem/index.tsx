@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CheckBox from '../Checkbox';
 
@@ -11,10 +12,11 @@ interface IChatListItemProps {
   checkHandler: ((id: string, isChecked: boolean) => void);
 }
 
-const ChatListItem = ({id, userImg, nickName, time, text, deleteMode, checkHandler}: IChatListItemProps) => {
-  
+const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler }: IChatListItemProps) => {
+  const navigate = useNavigate();
+
   return (
-    <Container $deleteMode={deleteMode}>
+    <Container $deleteMode={deleteMode} onClick={() => navigate(id)}>
       <div className='image-section'>
         <img src={userImg} />
       </div>

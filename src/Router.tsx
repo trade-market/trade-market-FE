@@ -29,6 +29,7 @@ import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
 import ChatList from '@Pages/Chat/ChatList';
+import ChatRoom from '@Pages/Chat/ChatRoom';
 
 function Router() {
   return (
@@ -102,6 +103,7 @@ function Router() {
               <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
             <Route path='chat-list' element={<ChatList />} />
+            <Route path='chat-list/:id' element={<ChatRoom />} />
           </Route>
         </Routes>
       </Layout>

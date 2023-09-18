@@ -21,21 +21,22 @@ const ChatList = () => {
     }
     else if (!isChecked && checkItems.has(id)) {
       setCheckItems((prev) => {
-        const newCheckItem = new Set(prev);
-        newCheckItem.delete(id);
-        return newCheckItem;
+        const newCheckItems = new Set(prev);
+        newCheckItems.delete(id);
+        return newCheckItems;
       });
     } 
   }
 
   const deleteHandler = () => {
+    //Todo : 삭제 petch api
     console.log('삭제하시겠습니까?', checkItems);
   }
 
   return (
     <>
       <CommonHeader>
-          <HeaderSection>
+        <HeaderSection>
           <span className='title'>채팅</span>
           {!deleteModeOn ?
             <img className='check' src={Check_icon} onClick={() => { setDeleteModeOn(prev => !prev); checkItems.clear(); }} />
@@ -47,7 +48,7 @@ const ChatList = () => {
         {tempData.map((chat, i)=> (
           <ChatListItem
             key={i}
-            id={chat.nickname}
+            id={`user${i.toString()}`}
             nickName={chat.nickname}
             time={chat.time}
             text={chat.text}

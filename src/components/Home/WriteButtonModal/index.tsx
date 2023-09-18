@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { size } from '@styles/theme';
 
-interface IBottomSheetProps {
+interface IWriteButtonModaltProps {
   children?: React.ReactNode;
   onClick?: () => void;
   height?: string;
@@ -9,7 +9,7 @@ interface IBottomSheetProps {
 
 function WriteButtonModal({
   children,
-}: IBottomSheetProps) {
+}: IWriteButtonModaltProps) {
   return (
     <>
       <Background />
