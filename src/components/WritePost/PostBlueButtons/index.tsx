@@ -36,7 +36,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: ${size.mobile};
   min-height: 70px;
-  padding: 0px 20px;
+  padding: 20px 20px;
   position: fixed;
   z-index: 10;
   bottom: 0;

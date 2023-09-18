@@ -11,25 +11,6 @@ import Calender from '@/components/WritePost/Calendar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import * as O from '../WritePostType';
 
-const renderPostSection = (
-  label: string,
-  placeholder: string,
-  option: string,
-  isChange: boolean,
-  onClick: React.MouseEventHandler<HTMLLIElement>,
-  direction?: string,
-  ) => (
-    <PostSection label={label}>
-      <SelectBox
-        placeholder={placeholder}
-        option={option}
-        isChange={isChange}
-        onClick={onClick}
-        direction={direction}
-        />
-    </PostSection>
-); 
-
 const SelectElement = () => {
   const dispatch = useDispatch();
   const { exchangeType, tradeType } = useParams();
@@ -80,7 +61,7 @@ const SelectElement = () => {
         </PostSection>
         <PostSection label={'거래 마감일'}>
           <Calender
-            dispatchType={setDeadlinePost}
+            onChange={date => dispatch(setDeadlinePost(date))}
             selectdeadline={selectdeadline}
           />
         </PostSection>

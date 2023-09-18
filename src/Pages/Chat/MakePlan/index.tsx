@@ -1,18 +1,29 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import PostSection from '@/components/WritePost/PostSection';
 import SelectBox from '@components/WritePost/SelectBox';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
+import { useState } from 'react';
 
 const MakePlan = () => {
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
   const a = '';
   const b = '';
 
   const handleNextButtonClick = () => {
     console.log('오픈')
   }
+  
+  const handleOnChangeSelectValue = (() => {
+    return (e: React.MouseEvent<HTMLElement>) => {
+    const event = e.target as HTMLElement;
+      console.log(event.innerText);
+    }
+  });
 
   return (
     <>
@@ -21,19 +32,16 @@ const MakePlan = () => {
       </CommonHeader>
       <Wrapper>
         <PostSection label={'약속 시간'}>
-          <SelectBox
-            placeholder={'약속 시간을 설정해주세요'}
-            option={'MakePlan'}
-            isChange={a !== b}
-            // onClick={}
-            />
+          <BoxContainer onClick={() => setModalOpen((prev) => !prev)}>
+            <Label $change={a !== b}>{'약속 시간을 설정해주세요'}</Label>
+            </BoxContainer>
         </PostSection>
         <PostSection label={'약속 전 알림 보내기'}>
           <SelectBox
             placeholder={'30분 전'}
             option={'AlertOptions'}
             isChange={a !== b}
-            // onClick={}
+            onClick={handleOnChangeSelectValue}
             />
         </PostSection>
       </Wrapper>
@@ -42,7 +50,8 @@ const MakePlan = () => {
         disabled={true}
         BlueButtonName={'완료'}
         BlueButtonClickHandler={handleNextButtonClick}
-      />
+        />
+        {modalOpen && <CalendarModal />}
     </>
   );
 };
@@ -57,21 +66,33 @@ export const Wrapper = styled.div`
   padding: 0 20px;
 `;
 
-const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`
+const BoxContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 0;
-  top: ${({ $direction }) => $direction === 'down' ? '48px' : 'null'}; 
-  bottom: ${({ $direction }) => $direction === 'down' ? 'null' : '49px'};
-  overflow: hidden;
-  overflow-y: ${({ $direction }) => $direction === 'down' ? 'scroll' : 'none'};
+  align-items: center;
+  position: relative;
+  max-width: 378px;
   width: 100%;
-  height: 223px;
-  max-height: ${({ $open }) => $open ? "none" : "0"};
+  height: 48px;
+  padding-left: 15px;
+  margin-top: 15px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
-  color: ${({ theme }) => theme.color.lightGray};
-  box-shadow:${({ $open, $direction }) => $open && $direction === 'down' ? "1px 3px 8px 2px rgba(152, 152, 152, 0.25);" : $open && !($direction === 'down') ? "1px -3px 8px 2px rgba(152, 152, 152, 0.25);" : "none" }; 
-  z-index: 99;
+  border: 1px solid ${({ theme }) => theme.color.whiteGray};
+  color : ${({ theme }) => theme.color.gray};
+  font-size: ${({ theme }) => theme.font.size.base};
+  cursor: pointer;
+  background: url('/down.svg') right no-repeat;
+
+  &::before {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    color: ${({ theme }) => theme.color.lightGray};
+    font-size: 22px;
+  }
+`;
+
+const Label = styled.label<{ $change: boolean }>`
+  display: flex;
+  color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
 `;
