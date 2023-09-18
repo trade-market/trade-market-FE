@@ -104,6 +104,7 @@ function ConfirmModal({
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
+      setIsConfirmed(false);
       document.body.style.overflow = 'unset';
     }
 
