@@ -2,7 +2,6 @@ import GlobalStyle from '@/styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 import Header from '@components/common/Header/Header';
 import NavigationBar from '@components/common/NavigationBar/NavigationBar';
-import WriteButton from '@/components/Home/WriteButton';
 import { useWindowSize } from '@hooks/useWindowDimensions';
 import { useLocation } from 'react-router-dom';
 
@@ -22,6 +21,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
+    /^\/my-page\/.+$/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
@@ -35,7 +35,6 @@ function Layout({ children }: ILayoutProps) {
       <GlobalStyle />
       {!isHidden && <Header />}
       {children}
-      {!isHidden && <WriteButton />}
       {!isHidden && <NavigationBar />}
     </Wrapper>
   );

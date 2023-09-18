@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { memo } from 'react';
 import BigTitle from '@components/common/BigTitle';
 import * as S from '@Pages/SingUp/SignUpStyles';
 import BlueButton from '@/components/common/Buttons/BlueButton';
 
 interface NicknameSettingProps {
   nickname: string;
-  disabled: boolean;
   error: string | null;
   handleNickname: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNicknameCheck: () => void;
 }
 
-const NicknameSetting: React.FC<NicknameSettingProps> = ({
+function NicknameSetting({
   nickname,
-  disabled,
   error,
   handleNickname,
   handleNicknameCheck,
-}) => {
+}: NicknameSettingProps) {
   return (
     <S.Section>
       <BigTitle>닉네임 설정</BigTitle>
@@ -27,10 +25,9 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           placeholder="닉네임 입력"
           value={nickname}
           onChange={handleNickname}
-          disabled={disabled}
         />
         <BlueButton
-          disabled={nickname.length < 2 || disabled}
+          disabled={nickname.length < 2}
           onClick={handleNicknameCheck}
         >
           중복확인
@@ -42,6 +39,6 @@ const NicknameSetting: React.FC<NicknameSettingProps> = ({
           .map((line, index) => <S.ErrorText key={index}>{line}</S.ErrorText>)}
     </S.Section>
   );
-};
+}
 
-export default NicknameSetting;
+export default memo(NicknameSetting);

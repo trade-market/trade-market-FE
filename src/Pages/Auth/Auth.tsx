@@ -7,6 +7,7 @@ import GoogleLoginBtn from '@/components/Auth/Buttons/GoogleLoginBtn';
 import KakaoLoginBtn from '@/components/Auth/Buttons/KakaoLoginBtn';
 import NaverLoginBtn from '@/components/Auth/Buttons/NaverLoginBtn';
 import ActionButton from '@/components/common/Buttons/ActionButton';
+import DividedLine from '@components/common/DividedLine';
 
 function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -27,7 +28,7 @@ function Auth() {
         </A.ButtonsContainer>
         {!isSignUp && (
           <>
-            <A.DividedLine />
+            <DividedLine />
             <A.SignUpContainer>
               <A.SmallTitle>아직 회원이 아니신가요?</A.SmallTitle>
               <ActionButton

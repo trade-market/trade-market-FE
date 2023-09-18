@@ -1,25 +1,29 @@
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 3px;
-  background-color: ${({ theme }) => theme.color.Mainblue};
-  color: ${({ theme }) => theme.color.white};
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 10px;
-  border-radius: 2px 2px 0px 0px;
-`;
+import { GradeType } from '@/types/UserTypes';
+import Rating1 from '@Assets/Icons/rating_1.svg';
+import Rating2 from '@Assets/Icons/rating_2.svg';
+import Rating3 from '@Assets/Icons/rating_3.svg';
+import Rating4 from '@Assets/Icons/rating_4.svg';
 
 interface IRatingBadgeProps {
-  rating: string;
+  rating: GradeType;
+}
+
+function getRatingImage(rating: GradeType) {
+  switch (rating) {
+    case 'one':
+      return Rating1;
+    case 'two':
+      return Rating2;
+    case 'three':
+      return Rating3;
+    case 'four':
+      return Rating4;
+  }
 }
 
 function RatingBadge({ rating }: IRatingBadgeProps) {
-  return <Container>{rating}</Container>;
+  const ImageSrc = getRatingImage(rating);
+  return <img src={ImageSrc} alt={`Rating ${rating}`} />;
 }
 
 export default RatingBadge;

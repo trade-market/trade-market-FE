@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Container } from './NavigationBarStyles';
 import NaviMenu from './NaviMenu';
 import Chat_able from '@Assets/Icons/Home/Chat_able.svg';
@@ -9,34 +9,35 @@ import MY_able from '@Assets/Icons/Home/MY_able.svg';
 import MY_Disable from '@Assets/Icons/Home/MY_Disable.svg';
 
 const NavigationBar = () => {
-  const [activeNav, setActiveNav] = useState(2);
+  const { pathname } = useLocation();
+
+  const menuItems = [
+    {
+      path: '/chat',
+      label: '채팅',
+      iconAble: Chat_able,
+      iconDisable: Chat_Disable,
+    },
+    { path: '/', label: '홈', iconAble: Home_able, iconDisable: Home_Disable },
+    {
+      path: '/my-page',
+      label: 'MY',
+      iconAble: MY_able,
+      iconDisable: MY_Disable,
+    },
+  ];
 
   return (
     <Container>
-      <NaviMenu
-        able={Chat_able}
-        disable={Chat_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={1}
-        menu={'채팅'}
-      />
-      <NaviMenu
-        able={Home_able}
-        disable={Home_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={2}
-        menu={'홈'}
-      />
-      <NaviMenu
-        able={MY_able}
-        disable={MY_Disable}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        position={3}
-        menu={'MY'}
-      />
+      {menuItems.map((item) => (
+        <Link key={item.path} to={item.path}>
+          <NaviMenu
+            icon={pathname === item.path ? item.iconAble : item.iconDisable}
+            active={pathname === item.path}
+            menu={item.label}
+          />
+        </Link>
+      ))}
     </Container>
   );
 };

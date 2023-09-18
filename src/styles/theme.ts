@@ -22,7 +22,7 @@ export const theme: DefaultTheme = {
   color: {
     white: '#fff',
     bgColor: '#FDFDFD', // 메인 배경색
-    Mainblue: '#007af7',
+    Mainblue: '#2156F2',
     gray: '#AFAFAF',
     lightGray: '#797979',
     whiteGray: '#E5E7EB',
@@ -30,6 +30,7 @@ export const theme: DefaultTheme = {
     activeBlue: '#2156F2',
     disableBtn: '#E5E7EB',
     inputGray: '#f9f8fb',
+    orange: '#FF5B22',
   },
   font: {
     family: {
@@ -40,6 +41,7 @@ export const theme: DefaultTheme = {
       xSmall: '10px',
       small: '12px',
       base: '14px',
+      medium: '16px',
       large: '18px',
     },
   },

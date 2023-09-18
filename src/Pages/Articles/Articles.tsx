@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -9,6 +8,8 @@ import LikeAndComment from '@/components/Articles/LikeAndComment';
 import OfferItemLists from '@/components/Articles/OfferItemLists';
 import useTimeDiff from '@/hooks/useTimeDiff';
 import BottomSheet from '@/components/common/BottomSheet';
+import useModal from '@hooks/useModal';
+import { OfferPostTypes } from '@/types/OfferTypes';
 
 // 더미데이터
 const offers = [
@@ -16,7 +17,7 @@ const offers = [
     profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
     nickname: '용',
     location: '한강로동',
-    rating: '3',
+    rating: 'two',
     title: '선글라스',
     category: '의류',
     createdAt: new Date('2023-08-29T21:24:00'),
@@ -28,7 +29,7 @@ const offers = [
     profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
     nickname: '거래왕',
     location: '신사동',
-    rating: '1',
+    rating: 'one',
     title: '선글라스',
     category: '의류',
     createdAt: new Date('2023-08-26T22:24:00'),
@@ -40,7 +41,7 @@ const offers = [
     profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
     nickname: '용',
     location: '한강로동',
-    rating: '3',
+    rating: 'three',
     title: '선글라스',
     category: '의류',
     createdAt: new Date('2023-08-29T21:24:00'),
@@ -49,18 +50,17 @@ const offers = [
     isOriginalPost: true,
     // isOriginalPost를 통해 원글인지 댓글인지 구분 하는데, API명세서가 나오면 수정 필요 (post id 여부로 판별?)
   },
-];
+] as OfferPostTypes[];
 
 function Articles() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isOpen, open, close } = useModal();
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
   // Todo: id를 통해 해당 게시글 정보 가져오기
 
-  const handleOptionBtnClick = () => setIsModalOpen(true);
   return (
     <>
-      <CommonHeader isMyPost={true} optionClick={handleOptionBtnClick}>
+      <CommonHeader visibleOption optionClick={open}>
         상세 페이지
       </CommonHeader>
       <A.Container>
@@ -71,7 +71,7 @@ function Articles() {
             profileImg="https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg"
             nickname="동그란 딸기"
             location="한강로동"
-            rating="3"
+            rating="three"
           />
           <ProductInfo
             title="여성용 나비 선글라스"
@@ -88,8 +88,8 @@ function Articles() {
         </A.ContentsContainer>
       </A.Container>
       <PostActions />
-      {isModalOpen && (
-        <BottomSheet height={'200px'} onClick={() => setIsModalOpen(false)}>
+      {isOpen && (
+        <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton>게시물 수정</A.CorrectionButton>
           <A.DeleteButton>삭제</A.DeleteButton>

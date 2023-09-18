@@ -23,6 +23,11 @@ import SelectElement from '@Pages/WritePost/WritePost/SelectElement';
 import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
 import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
 import WritePost from '@Pages/WritePost/WritePost/WritePost';
+import MyPage from '@Pages/MyPage';
+import EditProfile from '@Pages/MyPage/EditProfile';
+import LikePosts from '@Pages/MyPage/LikePosts';
+import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
+import MannersDetail from '@Pages/MyPage/MannersDetail';
 
 function Router() {
   return (
@@ -87,6 +92,13 @@ function Router() {
               <Route path="select-element" element={<SelectElement />} />
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
+            </Route>
+            <Route path="/my-page">
+              <Route index element={<MyPage />} />
+              <Route path="edit" element={<EditProfile />} />
+              <Route path="like-posts" element={<LikePosts />} />
+              <Route path="exchange-history" element={<ExchangeHistory />} />
+              <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
           </Route>
         </Routes>

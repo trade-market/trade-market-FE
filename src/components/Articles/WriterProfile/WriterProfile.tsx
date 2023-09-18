@@ -1,11 +1,12 @@
 import RatingBadge from '@/components/common/RatingBadge';
 import * as W from './WriterProfileStyles';
+import { GradeType } from '@/types/UserTypes';
 
 interface IWriterProfileProps {
   profileImg: string;
   nickname: string;
   location: string;
-  rating: string;
+  rating: GradeType;
 }
 
 function WriterProfile({

@@ -12,14 +12,16 @@ function BottomSheet({
   children,
   onClick,
   height = '190px',
-  optionP = 'off'
+  optionP = 'off',
 }: IBottomSheetProps) {
   return (
     <>
-      <Background $optionP={optionP} />
-      <Container $height={height} $optionP={optionP} >
+      <Background onClick={onClick} $optionP={optionP} />
+      <Container $height={height} $optionP={optionP}>
         {children}
-        <div className="close" onClick={onClick}>닫기</div>
+        <div className="close" onClick={onClick}>
+          닫기
+        </div>
       </Container>
     </>
   );
@@ -35,15 +37,16 @@ const Background = styled.div<{ $optionP?: string }>`
   width: 100%;
   height: 110%;
   z-index: 140;
-  backdrop-filter: blur(3px);
+  background: var(--bg-blur, rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(150, 150, 150, 0.4);
   transition: transform 650ms ease-out;
-  margin-top:${({ $optionP }) => $optionP === 'on' ? '-60px' : '0'}; // 헤더 영역이 있을 경우
+  margin-top: ${({ $optionP }) =>
+    $optionP === 'on' ? '-60px' : '0'}; // 헤더 영역이 있을 경우
 `;
 
 const Container = styled.div<{ $height?: string; $optionP?: string }>`
-  display: flex;  
+  display: flex;
   width: 100%;
   max-width: ${size.mobile};
   z-index: 150;
@@ -53,7 +56,8 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
   overflow-y: scroll;
   height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
-  margin-left: ${({ $optionP }) => $optionP === 'on' ? '-20px;' : '0'}; // 헤더 영역이 있을 경우
+  margin-left: ${({ $optionP }) =>
+    $optionP === 'on' ? '-20px;' : '0'}; // 헤더 영역이 있을 경우
 
   &::-webkit-scrollbar {
     display: none;
@@ -70,7 +74,8 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
 
   :nth-child(1),
   :nth-child(2),
-  :nth-child(3) {
+  :nth-child(3),
+  :nth-child(4) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,7 +93,7 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
     border-radius: 8px 8px 0 0;
   }
 
-  :nth-child(2) {
+  :nth-last-child(2) {
     border-radius: 0 0 8px 8px;
   }
 

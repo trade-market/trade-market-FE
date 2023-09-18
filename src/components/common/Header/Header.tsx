@@ -25,7 +25,7 @@ const Header = () => {
           <img
             className="item"
             src={Notification}
-            onClick={() => navigate('/')}
+            onClick={() => !user.isLogin && navigate('/auth')}
           />
         </div>
       </Container>

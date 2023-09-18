@@ -1,0 +1,91 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import CommonHeader from '@components/common/CommonHeader/CommonHeader';
+import Profile from '@components/MyPage/Profile';
+import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
+import OptionModal from '@components/MyPage/OptionModal';
+import useModal from '@hooks/useModal';
+import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
+import DividedLine from '@components/common/DividedLine';
+import MannersContainer from '@components/MyPage/Manners/MannersContainer';
+import ConfirmModal from '@components/common/confirmModal';
+import { logoutUser } from '@store/slices/userSlice';
+import TokenService from '@/service/TokenService';
+
+const MyPageContainer = styled.div`
+  width: 100%;
+  padding-top: 48px;
+  padding-bottom: 70px;
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 21px;
+`;
+
+function MyPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isOpen, open, close } = useModal();
+
+  const {
+    isOpen: isLogoutModalOpen,
+    open: logoutModalOpen,
+    close: logoutModalClose,
+  } = useModal();
+
+  const handleHeartClick = () => navigate('/my-page/like-posts');
+
+  const onOptionModalLogoutClick = () => {
+    close();
+    logoutModalOpen();
+  };
+
+  const handleConfirm = () => {
+    dispatch(logoutUser());
+    TokenService.clearTokens();
+    navigate('/');
+  };
+
+  return (
+    <>
+      <CommonHeader
+        visibleHeart={true}
+        visibleOption={true}
+        optionClick={open}
+        heartClick={handleHeartClick}
+      >
+        마이페이지
+      </CommonHeader>
+      <MyPageContainer>
+        <TopSection>
+          <Profile />
+          <ExchangeInfoList />
+        </TopSection>
+        <RecentlyViewedPostsContainer />
+        <DividedLine />
+        <MannersContainer mannerType="매너" />
+        <DividedLine />
+        <MannersContainer mannerType="비매너" />
+      </MyPageContainer>
+      <OptionModal
+        isOpen={isOpen}
+        close={close}
+        onLogoutClick={onOptionModalLogoutClick}
+      />
+      <ConfirmModal
+        isOpen={isLogoutModalOpen}
+        title="로그아웃"
+        content="로그아웃 하시겠습니까?"
+        confirmedContent="로그아웃 되었습니다."
+        onFinalOkClick={handleConfirm}
+        closeAction={logoutModalClose}
+      />
+    </>
+  );
+}
+
+export default MyPage;
