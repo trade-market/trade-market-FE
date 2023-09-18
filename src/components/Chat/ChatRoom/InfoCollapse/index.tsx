@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Category from '@components/WritePost/Category';
 import MakePlanButtons from '../MakePlanButtons';
@@ -6,9 +7,15 @@ import sample_sale_image from '@Assets/Icons/Chat/sample_sale_image.svg';
 import up_arrow from '@Assets/Icons/Chat/up_arrow.svg';
 import { size } from '@/styles/theme';
 
-const InfoCollapse = () => {
+interface IInfoCollapseProps {
+  setSaleState: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const InfoCollapse = ({setSaleState}:IInfoCollapseProps) => {
   const [isPlans, setIsPlans] = useState([]);
   const [closeCollapse, setCloseCollapse] = useState(false);
+  const navigate = useNavigate();
+  const today = new Date();
   // todo : '판매중' -> 약속 잡기를 통해 약속 날짜를 잡으면 '예약중'으로 상태 변경 -> 오늘 날짜가 예약 날짜를 넘을 시 '판매완료'로 상태 변경
   // todo : 잡은 약속이 없다면 : 약속 잡기 -> 잡은 약속이 있다면 : 변경하기 -> 잡은 약속이 지났다면 : 평가하기
 
@@ -27,9 +34,15 @@ const InfoCollapse = () => {
         </InfoContainer>
       </Container>
         <ButtonContainer>
-          <MakePlanButtons
-          >약속 잡기
-          </MakePlanButtons>
+        { !isPlans.length ?
+            <MakePlanButtons onClick={() => navigate('make-plan')}>약속 잡기</MakePlanButtons> 
+            : <>
+                <MakePlanButtons
+                  $bgColor='whiteLightGray' $color='activeBlue' $isBlock={true}>{isPlans}</MakePlanButtons>
+                <MakePlanButtons onClick={() => navigate('make-plan')}>변경하기</MakePlanButtons> 
+              </>
+        }
+          
         </ButtonContainer>
     </Wrapper>
     <UpArrow $closeCollapse={closeCollapse} onClick={() => setCloseCollapse(prev => !prev)}>
@@ -45,7 +58,7 @@ const Wrapper = styled.div<{$closeCollapse : boolean}>`
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
-  max-height: ${({ $closeCollapse }) => $closeCollapse ? "none" : "0"};
+  max-height: ${({ $closeCollapse }) => $closeCollapse ? "0" : "none"};
   overflow: hidden;
 `;
 
@@ -81,6 +94,6 @@ const UpArrow = styled.div<{$closeCollapse : boolean}>`
   padding: 3px;
   > img {
     cursor: pointer;
-    transform: ${({ $closeCollapse }) => $closeCollapse ? `` : `scaleY(-1)`}; 
+    transform: ${({ $closeCollapse }) => $closeCollapse ? `scaleY(-1)` : ``}; 
   }
 `;

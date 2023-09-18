@@ -7,20 +7,14 @@ interface IPostSectionProps {
   placeholder: string;
   option: string;
   isChange: boolean,
-  dispatchType: any,
+  dispatchType?: any,
   direction?: string;
+  onClick?: React.MouseEventHandler<HTMLLIElement>,
 }
 
-const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'down' }: IPostSectionProps) => {
+const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down' }: IPostSectionProps) => {
   const dispatch = useDispatch();
   const [optionOpen, setOptionOpen] = useState(false);
-
-  const handleOnChangeSelectValue = ((dispatchType: any) => {
-    return (e: React.MouseEvent<HTMLElement>) => {
-      const event = e.target as HTMLElement;
-      dispatch(dispatchType(event.innerText));
-    }
-  });
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
@@ -32,7 +26,7 @@ const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'd
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
           key={i}
-            onClick={handleOnChangeSelectValue(dispatchType)}>{op}</Option>
+            onClick={onClick}>{op}</Option>
         ))
       }
       </SelectOptions>
@@ -83,7 +77,7 @@ const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`
   overflow: hidden;
   overflow-y: ${({ $direction }) => $direction === 'down' ? 'scroll' : 'none'};
   width: 100%;
-  height: 223px;
+  /* height: 223px; */
   max-height: ${({ $open }) => $open ? "none" : "0"};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};

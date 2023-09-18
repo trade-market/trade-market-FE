@@ -25,7 +25,9 @@ const ChatRoom = () => {
         </HeaderSection>
       </CommonHeader>
       <Wrapper>
-        <InfoCollapse />
+        <InfoCollapse
+          setSaleState={setSaleState}
+        />
       </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>

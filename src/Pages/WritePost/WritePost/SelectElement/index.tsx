@@ -16,7 +16,7 @@ const renderPostSection = (
   placeholder: string,
   option: string,
   isChange: boolean,
-  dispatchType: any,
+  onClick: React.MouseEventHandler<HTMLLIElement>,
   direction?: string,
   ) => (
     <PostSection label={label}>
@@ -24,7 +24,7 @@ const renderPostSection = (
         placeholder={placeholder}
         option={option}
         isChange={isChange}
-        dispatchType={dispatchType}
+        onClick={onClick}
         direction={direction}
         />
     </PostSection>
@@ -41,6 +41,13 @@ const SelectElement = () => {
   let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
 
+  const handleOnChangeSelectValue = ((dispatchType: any) => {
+    return (e: React.MouseEvent<HTMLElement>) => {
+      const event = e.target as HTMLElement;
+      dispatch(dispatchType(event.innerText));
+    }
+  });
+
   const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
 
   useEffect(() => { //* type(주소)에 따라 초기값 변경
@@ -55,15 +62,37 @@ const SelectElement = () => {
         <PostSection label={'사진 업로드'}>
           <MultiImageUpload />
         </PostSection>
-        {renderPostSection(`${inintialValueP.slice(0, 6)} 카테고리`, selectProvide, pageType === '재능' ? 'TalentOptions' : 'ObjectOptions', (inintialValueP !== selectProvide), setProvidePost)}
-        {renderPostSection(`${inintialValueE.slice(0, 6)} 카테고리`, selectExchange, pageType === '재능' ? 'TalentOptions' : 'ObjectOptions', (inintialValueE !== selectExchange), setExchangePost)}
+        <PostSection label={`${inintialValueP.slice(0, 6)} 카테고리`}>
+          <SelectBox
+            placeholder={selectProvide}
+            option={pageType === '재능' ? 'TalentOptions' : 'ObjectOptions'}
+            isChange={inintialValueP !== selectProvide}
+            onClick={handleOnChangeSelectValue(setProvidePost)}
+            />
+        </PostSection>
+        <PostSection label={`${inintialValueE.slice(0, 6)} 카테고리`}>
+          <SelectBox
+            placeholder={selectExchange}
+            option={pageType === '재능' ? 'TalentOptions' : 'ObjectOptions'}
+            isChange={inintialValueE !== selectExchange}
+            onClick={handleOnChangeSelectValue(setExchangePost)}
+            />
+        </PostSection>
         <PostSection label={'거래 마감일'}>
           <Calender
             dispatchType={setDeadlinePost}
             selectdeadline={selectdeadline}
           />
         </PostSection>
-        {renderPostSection('거래 가능 시간', selectAbleTime, 'TimeOptions', (inintialValuT !== selectAbleTime), setAbleTimePost, 'up')}
+        <PostSection label={'거래 가능 시간'}>
+          <SelectBox
+            placeholder={selectAbleTime}
+            option={'TimeOptions'}
+            isChange={inintialValuT !== selectAbleTime}
+            onClick={handleOnChangeSelectValue(setAbleTimePost)}
+            direction='up'
+            />
+        </PostSection>
       </O.Container>  
       <PostBlueButtons
         option={1}

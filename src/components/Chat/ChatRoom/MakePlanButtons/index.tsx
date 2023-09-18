@@ -6,6 +6,7 @@ type ThemeColor =
   | 'Mainblue'
   | 'gray'
   | 'lightGray'
+  | 'whiteLightGray'
   | 'whiteGray'
   | 'black'
   | 'activeBlue'
@@ -44,6 +45,7 @@ const Button = styled.button<IMakePlanButtonsProps>`
   border-radius: 8px;
   border: none;
   font-size: ${({ theme }) => theme.font.size.base};
+  font-weight: 40;
   background-color: ${({ theme, $bgColor }) => $bgColor ? theme.color[$bgColor] : theme.color.activeBlue};
   color: ${({ theme, $color }) => $color ? theme.color[$color] : theme.color.white};
   border: ${({ theme, $borderColor }) =>

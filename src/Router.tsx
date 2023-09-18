@@ -30,6 +30,7 @@ import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
 import ChatList from '@Pages/Chat/ChatList';
 import ChatRoom from '@Pages/Chat/ChatRoom';
+import MakePlan from '@Pages/Chat/MakePlan';
 
 function Router() {
   return (
@@ -104,6 +105,7 @@ function Router() {
             </Route>
             <Route path='chat-list' element={<ChatList />} />
             <Route path='chat-list/:id' element={<ChatRoom />} />
+            <Route path='chat-list/:id/make-plan' element={<MakePlan />} />
           </Route>
         </Routes>
       </Layout>

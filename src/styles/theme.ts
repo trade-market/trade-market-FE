@@ -26,6 +26,7 @@ export const theme: DefaultTheme = {
     gray: '#AFAFAF',
     lightGray: '#797979',
     whiteGray: '#E5E7EB',
+    whiteLightGray : '#F2F2F2',
     black: '#0B0B0B',
     activeBlue: '#2156F2',
     disableBtn: '#E5E7EB',
