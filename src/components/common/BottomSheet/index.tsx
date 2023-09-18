@@ -37,9 +37,9 @@ const Background = styled.div<{ $optionP?: string }>`
   width: 100%;
   height: 110%;
   z-index: 140;
-  backdrop-filter: blur(3px);
+  background: var(--bg-blur, rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(150, 150, 150, 0.4);
   transition: transform 650ms ease-out;
   margin-top: ${({ $optionP }) =>
     $optionP === 'on' ? '-60px' : '0'}; // 헤더 영역이 있을 경우
