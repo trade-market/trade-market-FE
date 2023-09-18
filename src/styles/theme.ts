@@ -22,7 +22,7 @@ export const theme: DefaultTheme = {
   color: {
     white: '#fff',
     bgColor: '#FDFDFD', // 메인 배경색
-    Mainblue: '#007af7',
+    Mainblue: '#2156F2',
     gray: '#AFAFAF',
     lightGray: '#797979',
     whiteGray: '#E5E7EB',
