@@ -1,50 +1,55 @@
 import styled from 'styled-components';
 
-
-export const Button = styled.button<{ $isPlans: boolean; $maxwidth: string }>`
-  width: 100%;
-  max-width: ${({ $maxwidth }) => $maxwidth};
-  padding: 15px 42px;
-  border-radius: 8px;
-  border: none;
-  background-color: ${({ theme, $isPlans }) =>
-  $isPlans ? theme.color.disableBtn : theme.color.activeBlue};
-  font-size: ${({ theme }) => theme.font.size.base};
-  color: ${({ theme, $isPlans }) =>
-    $isPlans ? theme.color.gray : theme.color.white};
-  cursor: ${({ $isPlans }) => ($isPlans ? 'not-allowed' : 'pointer')};
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-`;
+type ThemeColor =
+  | 'white'
+  | 'bgColor'
+  | 'Mainblue'
+  | 'gray'
+  | 'lightGray'
+  | 'whiteGray'
+  | 'black'
+  | 'activeBlue'
+  | 'disableBtn'
+  | 'inputGray';
 
 interface IMakePlanButtonsProps {
-  isPlans?: boolean;
-  children: React.ReactNode;
-  maxWidth?: string;
+  children: React.ReactNode,
   onClick?: () => void;
-  className?: string;
+  $bgColor?: ThemeColor;
+  $color?: ThemeColor;
+  $borderColor?: ThemeColor;
+  $isBlock?: boolean;
 }
 
 function MakePlanButtons({
-  isPlans = false,
   children,
   onClick,
-  maxWidth = '135px',
-  className,
+  ...rest
 }: IMakePlanButtonsProps) {
   return (
-    <Button
-      $isPlans={isPlans}
-      onClick={onClick}
-      $maxwidth={maxWidth}
-      className={className}
-    >
-
-      
+    <Button onClick={onClick} {...rest}>
       {children}
     </Button>
   );
 }
 
 export default MakePlanButtons;
+
+const Button = styled.button<IMakePlanButtonsProps>`
+  width: 100%;
+  max-width: 100%;
+  max-height: 48px;
+  height: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: ${({ theme }) => theme.font.size.base};
+  background-color: ${({ theme, $bgColor }) => $bgColor ? theme.color[$bgColor] : theme.color.activeBlue};
+  color: ${({ theme, $color }) => $color ? theme.color[$color] : theme.color.white};
+  border: ${({ theme, $borderColor }) =>
+    $borderColor ? `1px solid ${theme.color[$borderColor]}` : 'none'};
+  cursor: ${({ $isBlock }) => $isBlock ? 'not-allowed' : 'pointer'};
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+`;
