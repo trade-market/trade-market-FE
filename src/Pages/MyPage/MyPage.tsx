@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -8,6 +9,9 @@ import useModal from '@hooks/useModal';
 import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
+import ConfirmModal from '@components/common/confirmModal';
+import { logoutUser } from '@store/slices/userSlice';
+import TokenService from '@/service/TokenService';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -23,10 +27,28 @@ const TopSection = styled.div`
 `;
 
 function MyPage() {
-  const { isOpen, open, close } = useModal();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isOpen, open, close } = useModal();
+
+  const {
+    isOpen: isLogoutModalOpen,
+    open: logoutModalOpen,
+    close: logoutModalClose,
+  } = useModal();
 
   const handleHeartClick = () => navigate('/my-page/like-posts');
+
+  const onOptionModalLogoutClick = () => {
+    close();
+    logoutModalOpen();
+  };
+
+  const handleConfirm = () => {
+    dispatch(logoutUser());
+    TokenService.clearTokens();
+    navigate('/');
+  };
 
   return (
     <>
@@ -49,7 +71,19 @@ function MyPage() {
         <DividedLine />
         <MannersContainer mannerType="비매너" />
       </MyPageContainer>
-      {isOpen && <OptionModal close={close} />}
+      <OptionModal
+        isOpen={isOpen}
+        close={close}
+        onLogoutClick={onOptionModalLogoutClick}
+      />
+      <ConfirmModal
+        isOpen={isLogoutModalOpen}
+        title="로그아웃"
+        content="로그아웃 하시겠습니까?"
+        confirmedContent="로그아웃 되었습니다."
+        onFinalOkClick={handleConfirm}
+        closeAction={logoutModalClose}
+      />
     </>
   );
 }

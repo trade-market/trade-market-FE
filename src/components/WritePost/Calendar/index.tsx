@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { ko } from "date-fns/esm/locale";
 import { getYear, getMonth } from "date-fns";
@@ -8,12 +7,11 @@ import arrpw_left from '@Assets/Icons/WritePost/arrpw_left.svg'
 import arrow_right from '@Assets/Icons/WritePost/arrow_right.svg'
 
 interface ICalendarProps {
-  dispatchType: any;
   selectdeadline: Date | null;
+  onChange: (date: Date | null, event: React.SyntheticEvent<any, Event> | undefined) => void;
 }
 
-const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
-  const dispatch = useDispatch();
+const Calendar = ({onChange, selectdeadline} : ICalendarProps) => {
   const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
   return (
@@ -26,7 +24,7 @@ const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
         minDate={new Date()} // minDate 이전 날짜 선택 불가
         // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
         selected={selectdeadline}
-        onChange={date => dispatch(dispatchType(date))}
+        onChange={onChange}
         inline
         renderCustomHeader={({
           date,

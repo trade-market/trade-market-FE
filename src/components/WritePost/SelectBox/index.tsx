@@ -13,7 +13,6 @@ interface IPostSectionProps {
 }
 
 const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down' }: IPostSectionProps) => {
-  const dispatch = useDispatch();
   const [optionOpen, setOptionOpen] = useState(false);
 
   return (
@@ -26,7 +25,7 @@ const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down' 
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
           key={i}
-            onClick={onClick}>{op}</Option>
+          onClick={onClick}>{op}</Option>
         ))
       }
       </SelectOptions>
