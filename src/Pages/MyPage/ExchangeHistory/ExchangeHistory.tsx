@@ -6,7 +6,7 @@ import PostComponent from '@components/Home/OurTownPost/PostComponents/PostCompo
 import { Data } from '@components/Home/OurTownPost/DumyData';
 import useModal from '@hooks/useModal';
 import BottomSheet from '@components/common/BottomSheet';
-import useQuerystring from '@hooks/useQuerystring';
+import useQueryString from '@hooks/useQueryString';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -21,7 +21,7 @@ const DeletePost = styled.div`
 `;
 
 function ExchangeHistory() {
-  const type = useQuerystring('type');
+  const type = useQueryString('type');
   const { isOpen, open, close } = useModal();
   const [selectedPostId, setSelectedPostId] = useState('');
 

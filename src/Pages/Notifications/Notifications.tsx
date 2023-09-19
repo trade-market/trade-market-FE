@@ -4,7 +4,7 @@ import BottomSheet from '@components/common/BottomSheet';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import useModal from '@hooks/useModal';
 import Menu from '@components/Notifications/Menu';
-import useQuerystring from '@hooks/useQuerystring';
+import useQueryString from '@hooks/useQueryString';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -24,7 +24,7 @@ const RemoveNotification = styled.div`
 function Notifications() {
   const { isOpen, open, close } = useModal();
   const navigate = useNavigate();
-  const type = useQuerystring('type');
+  const type = useQueryString('type');
 
   const checkType = (currentType: string) => type === currentType;
 
