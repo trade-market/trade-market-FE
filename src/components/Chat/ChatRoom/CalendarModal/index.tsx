@@ -1,23 +1,55 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlanTime } from '@/store/slices/ChatSlice';
+import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import Calendar from '@components/WritePost/Calendar';
 
-const CalendarModal = () => {
+interface ICalendarModalProps {
+  onClick: () => void;
+}
+
+const CalendarModal = ({ onClick }: ICalendarModalProps) => {
+  const dispatch = useDispatch();
+  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
+
+
+  console.log('selectPlanTime', selectPlanTime)
+  
   return (
+    <>
+    <Background onClick={onClick} />
     <Container>
-      CalendarModal
+        <Calendar
+          selectdeadline={selectPlanTime}
+          onChange={date => dispatch(setPlanTime(date))}
+        />
       <PostBlueButtons
         option={1}
-        disabled={true}
+        disabled={!selectPlanTime}
         BlueButtonName={'완료'}
         BlueButtonClickHandler={()=> console.log('hj')}
         />
-    </Container>
+      </Container>
+    </>
   );
 };
 
 export default CalendarModal;
 
+
+const Background = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 140;
+  transition: transform 650ms ease-out;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +59,7 @@ const Container = styled.div`
   max-width: ${size.mobile};
   max-height: 455px;
   height: 100%;
-  padding: 20px 0;
+  padding: 10px 0;
   z-index: 150;
   position: fixed;
   bottom: 0;

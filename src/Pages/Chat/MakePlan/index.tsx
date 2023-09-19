@@ -1,16 +1,24 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlanTime } from '@/store/slices/ChatSlice';
+import { RootState } from '@store/types';
 import { useNavigate } from 'react-router-dom';
+import { format } from "date-fns";
 import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import PostSection from '@/components/WritePost/PostSection';
 import SelectBox from '@components/WritePost/SelectBox';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
-import { useState } from 'react';
+
 
 const MakePlan = () => {
   const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
+  const date = format(new Date(selectPlanTime), `yyyy/MM/dd`);
+  const { isOpen, open, close } = useModal();
   const a = '';
   const b = '';
 
@@ -25,6 +33,12 @@ const MakePlan = () => {
     }
   });
 
+  useEffect(() => {
+    dispatch(setPlanTime(new Date()));
+  }, []);
+
+  console.log(!!selectPlanTime)
+
   return (
     <>
       <CommonHeader>
@@ -32,7 +46,7 @@ const MakePlan = () => {
       </CommonHeader>
       <Wrapper>
         <PostSection label={'약속 시간'}>
-          <BoxContainer onClick={() => setModalOpen((prev) => !prev)}>
+          <BoxContainer onClick={open}>
             <Label $change={a !== b}>{'약속 시간을 설정해주세요'}</Label>
             </BoxContainer>
         </PostSection>
@@ -47,11 +61,13 @@ const MakePlan = () => {
       </Wrapper>
       <PostBlueButtons
         option={1}
-        disabled={true}
+        disabled={!!selectPlanTime}
         BlueButtonName={'완료'}
         BlueButtonClickHandler={handleNextButtonClick}
         />
-        {modalOpen && <CalendarModal />}
+      {isOpen && <CalendarModal onClick={close}
+        
+      />}
     </>
   );
 };

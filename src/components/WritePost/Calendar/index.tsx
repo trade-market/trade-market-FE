@@ -57,17 +57,29 @@ const Container = styled.div <{$innerWidth : number }>`
 
   .selectedDay,
   .unselectedDay {
-    padding: 8px 0px;
+    padding: 7px 0px;
     width: 42px;
     height: 42px;
     font-size: 16px;
     border-radius: 50%;
+    border: 1px solid ${({ theme }) => theme.color.white};
     @media screen and (min-width: 395px) {
         margin: 3px calc(4.5px + 0.1vw);
     }
   }
   .selectedDay {
     background-color: ${({ theme }) => theme.color.activeBlue};
+  }
+
+
+  .unselectedDay {
+    &[aria-disabled="false"] {
+      &:hover {
+      color: ${({ theme }) => theme.color.activeBlue};
+      background-color: ${({ theme }) => theme.color.white};
+      border: 1px solid ${({ theme }) => theme.color.activeBlue};
+      }
+    }
   }
 
   .react-datepicker, .react-datepicker__header, .react-datepicker__month {
