@@ -26,6 +26,14 @@ function Notifications() {
   const navigate = useNavigate();
   const type = useQuerystring('type');
 
+  const checkType = (currentType: string) => type === currentType;
+
+  const handleKeywordMenuClick = () =>
+    navigate('?type=keyword', { replace: true });
+
+  const handleActivityMenuClick = () =>
+    navigate('?type=activity', { replace: true });
+
   return (
     <>
       <CommonHeader visibleOption={true} optionClick={open}>
@@ -34,14 +42,14 @@ function Notifications() {
       <Container>
         <Menubar>
           <Menu
-            isActive={type === 'keyword'}
+            isActive={checkType('keyword')}
             title="키워드 알림"
-            onClick={() => navigate('?type=keyword')}
+            onClick={handleKeywordMenuClick}
           />
           <Menu
-            isActive={type === 'activity'}
+            isActive={checkType('activity')}
             title="활동 알림"
-            onClick={() => navigate('?type=activity')}
+            onClick={handleActivityMenuClick}
           />
         </Menubar>
       </Container>
