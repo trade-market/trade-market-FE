@@ -25,7 +25,11 @@ const Header = () => {
           <img
             className="item"
             src={Notification}
-            onClick={() => !user.isLogin && navigate('/auth')}
+            onClick={() =>
+              !user.isLogin
+                ? navigate('/auth')
+                : navigate('/notifications?type=keyword')
+            }
           />
         </div>
       </Container>

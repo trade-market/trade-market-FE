@@ -22,6 +22,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/articles/,
     /^\/write-post\/\w+/,
     /^\/my-page\/.+$/,
+    /^\/notifications/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>

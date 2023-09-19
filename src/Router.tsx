@@ -28,6 +28,7 @@ import EditProfile from '@Pages/MyPage/EditProfile';
 import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
+import Notifications from '@Pages/Notifications';
 
 function Router() {
   return (
@@ -100,6 +101,7 @@ function Router() {
               <Route path="exchange-history" element={<ExchangeHistory />} />
               <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
+            <Route path="/notifications" element={<Notifications />} />
           </Route>
         </Routes>
       </Layout>
