@@ -28,6 +28,7 @@ declare module 'styled-components' {
       disableBtn: string;
       inputGray: string;
       orange: string;
+      lightBlue: string;
     };
     font: {
       family: {

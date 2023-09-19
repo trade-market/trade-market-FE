@@ -47,7 +47,7 @@ const MakePlan = () => {
       <Wrapper>
         <PostSection label={'약속 시간'}>
           <BoxContainer onClick={open}>
-            <Label $change={a !== b}>{'약속 시간을 설정해주세요'}</Label>
+            <Label $change={a !== b}>{date ? date : '약속 시간을 설정해주세요'}</Label>
             </BoxContainer>
         </PostSection>
         <PostSection label={'약속 전 알림 보내기'}>
@@ -66,7 +66,6 @@ const MakePlan = () => {
         BlueButtonClickHandler={handleNextButtonClick}
         />
       {isOpen && <CalendarModal onClick={close}
-        
       />}
     </>
   );

@@ -70,8 +70,6 @@ const Container = styled.div <{$innerWidth : number }>`
   .selectedDay {
     background-color: ${({ theme }) => theme.color.activeBlue};
   }
-
-
   .unselectedDay {
     &[aria-disabled="false"] {
       &:hover {
@@ -81,31 +79,26 @@ const Container = styled.div <{$innerWidth : number }>`
       }
     }
   }
-
   .react-datepicker, .react-datepicker__header, .react-datepicker__month {
     background-color: ${({ theme }) => theme.color.white};
     margin: 0 auto;
     border: none;
   }
-
   .react-datepicker {
     font-family: ${({ theme }) => theme.font.family.Pretendard};
     width: 100%;
     justify-content: space-between;
     display: flex;
   }
-
   .react-datepicker__day--outside-month { // 이전 달, 다음 달에 해당하는 날짜는 표시되지 않도록 hidden
     cursor: default;
     visibility: hidden; 
   }
-
   .react-datepicker__month-container, .react-datepicker__month { 
     width: 100%;
     white-space: nowrap;
   }
 `;
-
 const CalendarHead = styled.div`
   display: flex;
   padding-left: 20px;

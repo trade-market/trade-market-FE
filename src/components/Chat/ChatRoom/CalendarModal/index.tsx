@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlanTime } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
+import useModal from '@hooks/useModal';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import Calendar from '@components/WritePost/Calendar';
+import TimePicker from '../TimePicker';
 
 interface ICalendarModalProps {
   onClick: () => void;
@@ -14,24 +15,28 @@ interface ICalendarModalProps {
 const CalendarModal = ({ onClick }: ICalendarModalProps) => {
   const dispatch = useDispatch();
   const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
-
-
-  console.log('selectPlanTime', selectPlanTime)
+  const { isOpen, open, close } = useModal();
   
+
   return (
     <>
     <Background onClick={onClick} />
-    <Container>
+      <Container>
         <Calendar
           selectdeadline={selectPlanTime}
           onChange={date => dispatch(setPlanTime(date))}
         />
-      <PostBlueButtons
-        option={1}
-        disabled={!selectPlanTime}
-        BlueButtonName={'완료'}
-        BlueButtonClickHandler={()=> console.log('hj')}
-        />
+        <TimeContainer>
+          <div>시간</div>
+          <div className='time-selector' onClick={open}>오후 3:00</div>
+          {isOpen && <TimePicker />}
+        </TimeContainer>
+        <PostBlueButtons
+          option={1}
+          disabled={!selectPlanTime}
+          BlueButtonName={'완료'}
+          BlueButtonClickHandler={onClick}
+            />
       </Container>
     </>
   );
@@ -80,5 +85,28 @@ const Container = styled.div`
       transform: translateY(0%);
     }
   }
+`;
+
+export const TimeContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: yellow; */
+  padding: 25px 40px;
+  :nth-child(1) {
+    font-weight: 500;
+  }
+  .time-selector {
+    color : ${({ theme }) => theme.color.Mainblue};
+    background-color: ${({ theme }) => theme.color.lightBlue};
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  
 
 `;
