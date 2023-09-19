@@ -1,12 +1,12 @@
-import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
 import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
 import { Data } from '@components/Home/OurTownPost/DumyData';
 import useModal from '@hooks/useModal';
 import BottomSheet from '@components/common/BottomSheet';
-import { useLocation } from 'react-router-dom';
+import useQuerystring from '@hooks/useQuerystring';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -21,9 +21,7 @@ const DeletePost = styled.div`
 `;
 
 function ExchangeHistory() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const type = query.get('type');
+  const type = useQuerystring('type');
   const { isOpen, open, close } = useModal();
   const [selectedPostId, setSelectedPostId] = useState('');
 
