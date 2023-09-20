@@ -6,7 +6,7 @@ import { size } from '@/styles/theme';
 import useModal from '@hooks/useModal';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import Calendar from '@components/WritePost/Calendar';
-import TimeController from '../TimeController';
+import TimeController from './TimeController';
 import { useEffect, useState } from 'react';
 
 interface ICalendarModalProps {
@@ -67,31 +67,31 @@ const CalendarModal = ({ onClick }: ICalendarModalProps) => {
           selectdeadline={plans.date ? plans.date : new Date()}
           onChange={date => handleSelectDate(date)}
           />
-        <TimeContainer>
-          <div>시간</div>
-          <div
-            className={!plans.ap ? 'time-selector unSelect' : 'time-selector'}
-            onClick={open}
-            >{plans.ap ? SelectTime : '시간 설정'}</div>
-        </TimeContainer>
-        <PostBlueButtons
-          option={1}
-          disabled={!CheckComplete(plans)}
-          BlueButtonName={'완료'}
-          BlueButtonClickHandler={handleSelectPlan}
-          />
-      </Container>
-      {isOpen &&
-        <>
-          <Background onClick={onClick}/>
-        <TimeController
-            plans={plans}
-            setPlans={setPlans}
-            isOpen={isOpen}
-            closeAction={close}
-          />
-        </>
-        }
+          <TimeContainer>
+            <div>시간</div>
+            <div
+              className={!plans.ap ? 'time-selector unSelect' : 'time-selector'}
+              onClick={open}
+              >{plans.ap ? SelectTime : '시간 설정'}</div>
+          </TimeContainer>
+          <PostBlueButtons
+            option={1}
+            disabled={!CheckComplete(plans)}
+            BlueButtonName={'완료'}
+            BlueButtonClickHandler={handleSelectPlan}
+            />
+        </Container>
+        {isOpen &&
+          <>
+            <Background onClick={onClick}/>
+            <TimeController
+                plans={plans}
+                setPlans={setPlans}
+                isOpen={isOpen}
+                closeAction={close}
+              />
+          </>
+          }
     </>
   );
 };

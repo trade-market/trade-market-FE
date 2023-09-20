@@ -22,7 +22,7 @@ interface IMakePlanButtonsProps {
   $isBlock?: boolean;
 }
 
-function MakePlanButtons({
+function CollapseButton({
   children,
   onClick,
   ...rest
@@ -34,7 +34,7 @@ function MakePlanButtons({
   );
 }
 
-export default MakePlanButtons;
+export default CollapseButton;
 
 const Button = styled.button<IMakePlanButtonsProps>`
   width: 100%;
@@ -45,7 +45,7 @@ const Button = styled.button<IMakePlanButtonsProps>`
   border-radius: 8px;
   border: none;
   font-size: ${({ theme }) => theme.font.size.base};
-  font-weight: 40;
+  font-weight: 400;
   background-color: ${({ theme, $bgColor }) => $bgColor ? theme.color[$bgColor] : theme.color.activeBlue};
   color: ${({ theme, $color }) => $color ? theme.color[$color] : theme.color.white};
   border: ${({ theme, $borderColor }) =>
