@@ -1,19 +1,30 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useDispatch} from 'react-redux';
-import { setPlanAP, setPlanHour, setPlanMinute, } from '@/store/slices/ChatSlice';
 import VerticalSwiper from './VerticalSwiper';
 
 interface ITimeControllerProps {
+  plans: {
+    date: Date;
+    ap: string;
+    hour: number;
+    minute: number;
+  };
+  setPlans: React.Dispatch<React.SetStateAction<{
+    date: Date;
+    ap: string;
+    hour: number;
+    minute: number;
+  }>>;
   isOpen: boolean;
   closeAction: () => void;
 }
 
 const TimeController = ({
+  plans,
+  setPlans,
   isOpen,
   closeAction,
 }: ITimeControllerProps) => {
-  const dispatch = useDispatch();
   const [time, setTime] = useState({
     ap: '',
     hour: 0,
@@ -23,10 +34,17 @@ const TimeController = ({
   const TIME_HOURS = Array.from(Array(12).keys()).map((_, i) => i + 1);
   const TIME_MINUTES = Array(12).fill(0).map((_, i) => i * 5).map(x => x < 10 ? '0' + x : x);
 
+  const renderSwiper = (arr: string[] | (string | number)[], key : string) => (
+    <VerticalSwiper
+      TimeData={arr}
+      onSlideChange={(swiper) => setTime((prev) => {
+        return { ...prev, [key] : arr[swiper.realIndex]}
+      })}
+    />
+  )
+  
   const handleSetUPTimeClick = () => {
-    dispatch(setPlanAP(time.ap));
-    dispatch(setPlanHour(time.hour));
-    dispatch(setPlanMinute(time.minute));
+    setPlans({ ...plans, ap: time.ap , hour: time.hour, minute: time.minute });
     closeAction();
   }
 
@@ -38,15 +56,6 @@ const TimeController = ({
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
-
-  const renderSwiper = (arr: string[] | (string | number)[], key : string) => (
-    <VerticalSwiper
-      TimeData={arr}
-      onSlideChange={(swiper) => setTime((prev) => {
-        return { ...prev, [key] : arr[swiper.realIndex]}
-      })}
-    />
-  )
 
   return (
     <>

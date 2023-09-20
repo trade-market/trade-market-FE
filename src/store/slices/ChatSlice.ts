@@ -9,7 +9,7 @@ interface ChatState {
 const initialState: ChatState = {
   chatStorage: [],
   planTime: { date: null, ap: '', hour: 0, minute: 0 },
-  alarm: '',
+  alarm: '알림 없음',
 } 
 
 // chat

@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlanDate } from '@/store/slices/ChatSlice';
+import { setPlanDate, setPlanAP, setPlanHour, setPlanMinute } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
@@ -8,58 +7,86 @@ import useModal from '@hooks/useModal';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import Calendar from '@components/WritePost/Calendar';
 import TimeController from '../TimeController';
+import { useEffect, useState } from 'react';
 
 interface ICalendarModalProps {
-  setSelectTime: React.Dispatch<React.SetStateAction<string>>;
   onClick: () => void;
 }
 
-const CalendarModal = ({ setSelectTime, onClick }: ICalendarModalProps) => {
+const CalendarModal = ({ onClick }: ICalendarModalProps) => {
   const dispatch = useDispatch();
   const selectPlan = useSelector((state: RootState) => state.chat.planTime);
   const { isOpen, open, close } = useModal();
-  const SelectTime = Object.values(selectPlan).filter((_, i) => i !== 0).reduce((acc, cur, i) => {
+  const [plans, setPlans] = useState({
+    date: new Date(),
+    ap: '',
+    hour: 0,
+    minute: 0,
+  });
+
+  //* 날짜 선택
+  const handleSelectDate = (date: Date) => {
+    setPlans((prev) => {
+      return { ...prev, ['date']: date }
+    })
+  };
+
+  //* 날짜 형태
+  const SelectTime = Object.values(plans).filter((_, i) => i !== 0).reduce((acc, cur, i) => {
     acc += ( i === 2 ? `:`  : ` `) + cur;
     return acc;
   }).toString();
 
+  //* 객체 value 다 있는지 checking
   const CheckComplete = (obj: any) => {
     let flag = true; // true이면 객체의 value가 다 있다는 의미
-    Object.keys(selectPlan).forEach(key => {
+    Object.keys(plans).forEach((key) => {
       if (!obj[key]) flag = false;
     })
     return flag;
   };
+
+  //* 확인 누를 시 dispatching
+  const handleSelectPlan = () => {
+    dispatch(setPlanDate(plans.date))
+    dispatch(setPlanAP(plans.ap));
+    dispatch(setPlanHour(plans.hour));
+    dispatch(setPlanMinute(plans.minute));
+    onClick();
+  }
   
+  //* 수정 시 이전 값이 있다면 이전 값으로 덮어쓰기
   useEffect(() => {
-    setSelectTime(SelectTime);
-  }, [selectPlan]);
-  
+    setPlans({ ...selectPlan });
+  }, []);
+
   return (
     <>
       <Container>
         <Calendar
-          selectdeadline={selectPlan.date ? selectPlan.date : new Date()}
-          onChange={date => dispatch(setPlanDate(date))}
+          selectdeadline={plans.date ? plans.date : new Date()}
+          onChange={date => handleSelectDate(date)}
           />
         <TimeContainer>
           <div>시간</div>
           <div
-            className={!selectPlan.ap ? 'time-selector unSelect' : 'time-selector'}
+            className={!plans.ap ? 'time-selector unSelect' : 'time-selector'}
             onClick={open}
-            >{selectPlan.ap ? SelectTime : '시간 설정'}</div>
+            >{plans.ap ? SelectTime : '시간 설정'}</div>
         </TimeContainer>
         <PostBlueButtons
           option={1}
-          disabled={!CheckComplete(selectPlan)}
+          disabled={!CheckComplete(plans)}
           BlueButtonName={'완료'}
-          BlueButtonClickHandler={onClick}
+          BlueButtonClickHandler={handleSelectPlan}
           />
       </Container>
       {isOpen &&
         <>
           <Background onClick={onClick}/>
-          <TimeController
+        <TimeController
+            plans={plans}
+            setPlans={setPlans}
             isOpen={isOpen}
             closeAction={close}
           />

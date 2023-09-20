@@ -1,10 +1,9 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlarm } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns";
+import styled from 'styled-components';
 import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import PostSection from '@/components/WritePost/PostSection';
@@ -15,22 +14,26 @@ import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
 const MakePlan = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [selectTime, setSelectTime] = useState<string>('');
-  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime.date);
-  const selectAlarm = useSelector((state: RootState) => state.chat.alarm);
-  const date = format(new Date(selectPlanTime), `yyyy/MM/dd`);
   const { isOpen, open, close } = useModal();
+  const selectPlan = useSelector((state: RootState) => state.chat.planTime);
+  const selectAlarm = useSelector((state: RootState) => state.chat.alarm);
   const initialTime = '약속 시간을 설정해주세요';
-
-  const handleNextButtonClick = () => {
-    console.log('오픈')
-  }
+  const SelectTime = Object.values(selectPlan)
+    .map((v,i) => i === 0 ? format(new Date(v),`yyyy/MM/dd`) : v)
+    .reduce((acc, cur, i) => {
+      acc += ( i === 3 ? `:`  : ` `) + cur;
+      return acc;
+    }).toString();
   
   const handleOnChangeSelectValue = ((e: React.MouseEvent<HTMLElement>) => {
     const event = e.target as HTMLElement;
     dispatch(setAlarm(event.innerText))
   });
-
+    
+  const handleNextButtonClick = () => {
+    navigate(-1);
+  }
+  
   return (
     <>
       <CommonHeader>
@@ -39,8 +42,8 @@ const MakePlan = () => {
       <Wrapper>
         <PostSection label={'약속 시간'}>
           <BoxContainer onClick={open}>
-            <Label $change={!initialTime && `${date} ${selectTime}` !== initialTime}>
-              {selectPlanTime ? `${date} ${selectTime}` : initialTime}
+            <Label $change={SelectTime.includes('오')}>
+              {selectPlan.ap ? SelectTime : initialTime}
             </Label>
             </BoxContainer>
         </PostSection>
@@ -56,16 +59,14 @@ const MakePlan = () => {
       </Wrapper>
       <PostBlueButtons
         option={1}
-        disabled={(!selectPlanTime) || (!selectAlarm)}
+        disabled={(!selectPlan.date) || (!selectAlarm)}
         BlueButtonName={'완료'}
         BlueButtonClickHandler={handleNextButtonClick}
         />
       {isOpen &&
         <>
         <Background onClick={close} />
-        <CalendarModal
-          onClick={close}
-          setSelectTime={setSelectTime} />
+        <CalendarModal onClick={close} />
         </>
       }
     </>
