@@ -21,7 +21,7 @@ const TimeController = ({
   })
   const TIME_AP = ['오전', '오후'];
   const TIME_HOURS = Array.from(Array(12).keys()).map((_, i) => i + 1);
-  const TIME_MINUTES = Array(12).fill(0).map((_, i) => i * 5).map(x => x < 10 ? '0'+x : x);
+  const TIME_MINUTES = Array(12).fill(0).map((_, i) => i * 5).map(x => x < 10 ? '0' + x : x);
 
   const handleSetUPTimeClick = () => {
     dispatch(setPlanAP(time.ap));

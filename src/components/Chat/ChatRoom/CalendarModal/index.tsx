@@ -14,13 +14,20 @@ interface ICalendarModalProps {
 
 const CalendarModal = ({ onClick }: ICalendarModalProps) => {
   const dispatch = useDispatch();
-  const selectPlanAP = useSelector((state: RootState) => state.chat.planTime.ap);
   const selectPlan = useSelector((state: RootState) => state.chat.planTime);
   const { isOpen, open, close } = useModal();
-
+  const selectTime = Object.values(selectPlan).filter((_, i) => i !== 0).reduce((acc, cur, i) => {
+    i === 2 ? (acc += `:${cur}`) : (acc += ` ${cur}`);
+    return acc;
+  }).toString();
   
-  
-  console.log(selectPlan)
+  const CheckComplete = (obj: any) => {
+    let flag = true; // true이면 객체의 value가 다 있다는 의미
+    Object.keys(selectPlan).forEach(key => {
+      if (!obj[key]) flag = false;
+    })
+    return flag;
+  };
 
   return (
     <>
@@ -34,11 +41,11 @@ const CalendarModal = ({ onClick }: ICalendarModalProps) => {
           <div
             className={!selectPlan.ap ? 'time-selector unSelect' : 'time-selector'}
             onClick={open}
-            >{selectPlan.ap ? selectPlanAP : '시간 설정'}</div>
+            >{selectPlan.ap ? selectTime : '시간 설정'}</div>
         </TimeContainer>
         <PostBlueButtons
           option={1}
-          disabled={!selectPlanAP}
+          disabled={!CheckComplete(selectPlan)}
           BlueButtonName={'완료'}
           BlueButtonClickHandler={onClick}
           />
@@ -106,13 +113,14 @@ export const TimeContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 30px;
+  padding: 25px 32px;
+  font-size : ${({ theme }) => theme.font.size.medium};
   :nth-child(1) {
     font-weight: 500;
   }
   .time-selector {
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 8px 10px;
     cursor: pointer;
     color : ${({ theme }) => theme.color.Mainblue};
     background-color: ${({ theme }) => theme.color.lightBlue};
