@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 const Container = styled.div<{ $isActive: boolean }>`
   ${({ theme, $isActive }) => css`
+    background-color: ${theme.color.white};
     width: 50%;
     padding: 14px 0;
     text-align: center;
