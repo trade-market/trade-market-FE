@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlanTime } from '@/store/slices/ChatSlice';
+import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import { format } from "date-fns";
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ interface IInfoCollapseProps {
 
 const InfoCollapse = ({ setSaleState }: IInfoCollapseProps) => {
   const dispatch = useDispatch();
-  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
+  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime.date);
   const deadline = format(new Date(selectPlanTime), `yy년 MM월 dd일`);
   const [closeCollapse, setCloseCollapse] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const InfoCollapse = ({ setSaleState }: IInfoCollapseProps) => {
   // todo : '판매중' -> 약속 잡기를 통해 약속 날짜를 잡으면 '예약중'으로 상태 변경 -> 오늘 날짜가 예약 날짜를 넘을 시 '판매완료'로 상태 변경
   // todo : 잡은 약속이 없다면 : 약속 잡기 -> 잡은 약속이 있다면 : 변경하기 -> 잡은 약속이 지났다면 : 평가하기
 
-  console.log(selectPlanTime)
+  // console.log(selectPlanTime)
 
   return (
     <>

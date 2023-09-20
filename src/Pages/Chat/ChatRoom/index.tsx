@@ -15,7 +15,6 @@ const ChatRoom = () => {
     close();
   }
   
-
   return (
     <>
       <CommonHeader>
@@ -41,7 +40,6 @@ const ChatRoom = () => {
 };
 
 export default ChatRoom;
-
 
 const HeaderSection = styled.div`
   width: 100%;

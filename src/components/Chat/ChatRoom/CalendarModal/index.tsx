@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlanTime } from '@/store/slices/ChatSlice';
+import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import useModal from '@hooks/useModal';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import Calendar from '@components/WritePost/Calendar';
-import TimePicker from '../TimePicker';
+import TimeController from '../TimeController';
 
 interface ICalendarModalProps {
   onClick: () => void;
@@ -14,45 +14,59 @@ interface ICalendarModalProps {
 
 const CalendarModal = ({ onClick }: ICalendarModalProps) => {
   const dispatch = useDispatch();
-  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
+  const selectPlanAP = useSelector((state: RootState) => state.chat.planTime.ap);
+  const selectPlan = useSelector((state: RootState) => state.chat.planTime);
   const { isOpen, open, close } = useModal();
+
   
+  
+  console.log(selectPlan)
 
   return (
     <>
-    <Background onClick={onClick} />
       <Container>
         <Calendar
-          selectdeadline={selectPlanTime}
-          onChange={date => dispatch(setPlanTime(date))}
-        />
+          selectdeadline={selectPlan.date}
+          onChange={date => dispatch(setPlanDate(date))}
+          />
         <TimeContainer>
           <div>시간</div>
-          <div className='time-selector' onClick={open}>오후 3:00</div>
-          {isOpen && <TimePicker />}
+          <div
+            className={!selectPlan.ap ? 'time-selector unSelect' : 'time-selector'}
+            onClick={open}
+            >{selectPlan.ap ? selectPlanAP : '시간 설정'}</div>
         </TimeContainer>
         <PostBlueButtons
           option={1}
-          disabled={!selectPlanTime}
+          disabled={!selectPlanAP}
           BlueButtonName={'완료'}
           BlueButtonClickHandler={onClick}
-            />
+          />
       </Container>
+      {isOpen &&
+        <>
+          <Background onClick={onClick}/>
+          <TimeController
+            isOpen={isOpen}
+            closeAction={close}
+          />
+        </>
+        }
     </>
   );
 };
 
 export default CalendarModal;
 
-
 const Background = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  z-index: 140;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 95;
   transition: transform 650ms ease-out;
 `;
 
@@ -65,7 +79,7 @@ const Container = styled.div`
   max-height: 455px;
   height: 100%;
   padding: 10px 0;
-  z-index: 150;
+  z-index: 90;
   position: fixed;
   bottom: 0;
   border-radius: 8px 16px 0 0;
@@ -92,17 +106,21 @@ export const TimeContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  /* background-color: yellow; */
-  padding: 25px 40px;
+  padding: 25px 30px;
   :nth-child(1) {
     font-weight: 500;
   }
   .time-selector {
-    color : ${({ theme }) => theme.color.Mainblue};
-    background-color: ${({ theme }) => theme.color.lightBlue};
     border-radius: 8px;
     padding: 8px 12px;
     cursor: pointer;
+    color : ${({ theme }) => theme.color.Mainblue};
+    background-color: ${({ theme }) => theme.color.lightBlue};
+
+    &.unSelect {
+      color : ${({ theme }) => theme.color.lightGray};
+      background-color: ${({ theme }) => theme.color.whiteGray};
+    }
   }
 `;
 

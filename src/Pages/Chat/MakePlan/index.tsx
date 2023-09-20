@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlanTime } from '@/store/slices/ChatSlice';
+import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns";
@@ -16,7 +16,7 @@ import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
 const MakePlan = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime);
+  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime.date);
   const date = format(new Date(selectPlanTime), `yyyy/MM/dd`);
   const { isOpen, open, close } = useModal();
   const a = '';
@@ -34,10 +34,10 @@ const MakePlan = () => {
   });
 
   useEffect(() => {
-    dispatch(setPlanTime(new Date()));
+    dispatch(setPlanDate(new Date()));
   }, []);
 
-  console.log(!!selectPlanTime)
+  // console.log(!!selectPlanTime)
 
   return (
     <>
@@ -65,8 +65,12 @@ const MakePlan = () => {
         BlueButtonName={'완료'}
         BlueButtonClickHandler={handleNextButtonClick}
         />
-      {isOpen && <CalendarModal onClick={close}
-      />}
+      {isOpen &&
+        <>
+        <Background onClick={close} />
+        <CalendarModal onClick={close}/>
+        </>
+      }
     </>
   );
 };
@@ -79,6 +83,16 @@ export const Wrapper = styled.div`
   width : 100%;
   margin-top: 60px;
   padding: 0 20px;
+`;
+
+const Background = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  transition: transform 650ms ease-out;
 `;
 
 const BoxContainer = styled.div`

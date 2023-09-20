@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 998;
+  z-index: 997;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(2px);
 `;
