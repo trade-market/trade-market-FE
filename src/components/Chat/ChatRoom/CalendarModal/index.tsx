@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
@@ -9,18 +10,19 @@ import Calendar from '@components/WritePost/Calendar';
 import TimeController from '../TimeController';
 
 interface ICalendarModalProps {
+  setSelectTime: React.Dispatch<React.SetStateAction<string>>;
   onClick: () => void;
 }
 
-const CalendarModal = ({ onClick }: ICalendarModalProps) => {
+const CalendarModal = ({ setSelectTime, onClick }: ICalendarModalProps) => {
   const dispatch = useDispatch();
   const selectPlan = useSelector((state: RootState) => state.chat.planTime);
   const { isOpen, open, close } = useModal();
-  const selectTime = Object.values(selectPlan).filter((_, i) => i !== 0).reduce((acc, cur, i) => {
-    i === 2 ? (acc += `:${cur}`) : (acc += ` ${cur}`);
+  const SelectTime = Object.values(selectPlan).filter((_, i) => i !== 0).reduce((acc, cur, i) => {
+    acc += ( i === 2 ? `:`  : ` `) + cur;
     return acc;
   }).toString();
-  
+
   const CheckComplete = (obj: any) => {
     let flag = true; // true이면 객체의 value가 다 있다는 의미
     Object.keys(selectPlan).forEach(key => {
@@ -28,12 +30,16 @@ const CalendarModal = ({ onClick }: ICalendarModalProps) => {
     })
     return flag;
   };
-
+  
+  useEffect(() => {
+    setSelectTime(SelectTime);
+  }, [selectPlan]);
+  
   return (
     <>
       <Container>
         <Calendar
-          selectdeadline={selectPlan.date}
+          selectdeadline={selectPlan.date ? selectPlan.date : new Date()}
           onChange={date => dispatch(setPlanDate(date))}
           />
         <TimeContainer>
@@ -41,7 +47,7 @@ const CalendarModal = ({ onClick }: ICalendarModalProps) => {
           <div
             className={!selectPlan.ap ? 'time-selector unSelect' : 'time-selector'}
             onClick={open}
-            >{selectPlan.ap ? selectTime : '시간 설정'}</div>
+            >{selectPlan.ap ? SelectTime : '시간 설정'}</div>
         </TimeContainer>
         <PostBlueButtons
           option={1}
@@ -130,9 +136,4 @@ export const TimeContainer = styled.div`
       background-color: ${({ theme }) => theme.color.whiteGray};
     }
   }
-`;
-
-const ButtonContainer = styled.div`
-  
-
 `;

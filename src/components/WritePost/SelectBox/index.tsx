@@ -6,25 +6,27 @@ interface IPostSectionProps {
   placeholder: string;
   option: string;
   isChange: boolean,
-  dispatchType?: any,
+  onClick: React.MouseEventHandler<HTMLLIElement>,
   direction?: string;
-  onClick?: React.MouseEventHandler<HTMLLIElement>,
+  defaultActiveColor?: boolean;
 }
 
-const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down' }: IPostSectionProps) => {
+const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down', defaultActiveColor }: IPostSectionProps) => {
   const [optionOpen, setOptionOpen] = useState(false);
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
-      <Label $change={isChange}>{placeholder}</Label>
+      <Label $change={isChange} $defaultActiveColor={defaultActiveColor}>
+        {placeholder}
+      </Label>
       <SelectOptions
         $open={optionOpen}
         $direction={direction}
         > {
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
-          key={i}
-          onClick={onClick}>{op}</Option>
+            key={i}
+            onClick={onClick}>{op}</Option>
         ))
       }
       </SelectOptions>
@@ -60,9 +62,9 @@ const BoxContainer = styled.div`
   }
 `;
 
-const Label = styled.label<{ $change: boolean }>`
+const Label = styled.label<{ $change: boolean; $defaultActiveColor: boolean }>`
   display: flex;
-  color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
+  color : ${({ $change, $defaultActiveColor, theme }) => $defaultActiveColor ? theme.color.black :  $change ? theme.color.activeBlue : theme.color.gray};
 `;
 
 const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`

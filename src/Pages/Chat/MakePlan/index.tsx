@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlanDate } from '@/store/slices/ChatSlice';
+import { setAlarm } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import { useNavigate } from 'react-router-dom';
 import { format } from "date-fns";
@@ -12,32 +12,24 @@ import SelectBox from '@components/WritePost/SelectBox';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
 
-
 const MakePlan = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [selectTime, setSelectTime] = useState<string>('');
   const selectPlanTime = useSelector((state: RootState) => state.chat.planTime.date);
+  const selectAlarm = useSelector((state: RootState) => state.chat.alarm);
   const date = format(new Date(selectPlanTime), `yyyy/MM/dd`);
   const { isOpen, open, close } = useModal();
-  const a = '';
-  const b = '';
+  const initialTime = '약속 시간을 설정해주세요';
 
   const handleNextButtonClick = () => {
     console.log('오픈')
   }
   
-  const handleOnChangeSelectValue = (() => {
-    return (e: React.MouseEvent<HTMLElement>) => {
+  const handleOnChangeSelectValue = ((e: React.MouseEvent<HTMLElement>) => {
     const event = e.target as HTMLElement;
-      console.log(event.innerText);
-    }
+    dispatch(setAlarm(event.innerText))
   });
-
-  useEffect(() => {
-    dispatch(setPlanDate(new Date()));
-  }, []);
-
-  // console.log(!!selectPlanTime)
 
   return (
     <>
@@ -47,28 +39,33 @@ const MakePlan = () => {
       <Wrapper>
         <PostSection label={'약속 시간'}>
           <BoxContainer onClick={open}>
-            <Label $change={a !== b}>{date ? date : '약속 시간을 설정해주세요'}</Label>
+            <Label $change={!initialTime && `${date} ${selectTime}` !== initialTime}>
+              {selectPlanTime ? `${date} ${selectTime}` : initialTime}
+            </Label>
             </BoxContainer>
         </PostSection>
         <PostSection label={'약속 전 알림 보내기'}>
           <SelectBox
-            placeholder={'30분 전'}
+            placeholder={selectAlarm}
             option={'AlertOptions'}
-            isChange={a !== b}
+            isChange={true}
             onClick={handleOnChangeSelectValue}
+            defaultActiveColor={true}
             />
         </PostSection>
       </Wrapper>
       <PostBlueButtons
         option={1}
-        disabled={!!selectPlanTime}
+        disabled={(!selectPlanTime) || (!selectAlarm)}
         BlueButtonName={'완료'}
         BlueButtonClickHandler={handleNextButtonClick}
         />
       {isOpen &&
         <>
         <Background onClick={close} />
-        <CalendarModal onClick={close}/>
+        <CalendarModal
+          onClick={close}
+          setSelectTime={setSelectTime} />
         </>
       }
     </>
@@ -123,5 +120,5 @@ const BoxContainer = styled.div`
 
 const Label = styled.label<{ $change: boolean }>`
   display: flex;
-  color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
+  color : ${({ $change, theme }) => $change ? theme.color.black : theme.color.gray};
 `;
