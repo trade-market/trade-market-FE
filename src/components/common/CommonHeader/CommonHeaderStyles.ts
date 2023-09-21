@@ -18,7 +18,8 @@ export const Container = styled.div<{$hidden : boolean}>`
   .title {
     display: flex;
     justify-content: center;
-    flex-grow: 2;
+    padding-left: 10px;
+    flex-grow: 1;
     &.Only {
       padding: 0px;
     }

@@ -6,7 +6,7 @@ import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BottomSheet from '@components/common/BottomSheet';
 import InfoCollapse from '@components/Chat/ChatRoom/InfoCollapse';
-
+import ChatInput from '@components/Chat/ChatRoom/ChatInput';
 
 const ChatRoom = () => {
   const [saleState, setSaleState] = useState<string>('판매중');
@@ -22,7 +22,7 @@ const ChatRoom = () => {
     if (selectPlan.ap) {
       setSaleState('예약중')
     };
-    if (selectPlan.date < new Date()) { //2023,9,29
+    if ((selectPlan.date !== null) && (selectPlan.date < new Date())) { //2023,9,29
       setSaleState('판매완료')
     }
   }, []);
@@ -36,9 +36,8 @@ const ChatRoom = () => {
         </HeaderSection>
       </CommonHeader>
       <Wrapper>
-        <InfoCollapse
-          saleState={saleState}
-        />
+        <InfoCollapse saleState={saleState} />
+        <ChatInput saleState={saleState} />
       </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
