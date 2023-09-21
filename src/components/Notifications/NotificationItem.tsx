@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@store/types';
+import { useDispatch } from 'react-redux';
 import { checkItem, uncheckItem } from '@store/slices/CheckboxSlice';
 import useTimeDiff from '@hooks/useTimeDiff';
 import { NotificationType } from './NotificationList';
 import Checkbox from './Checkbox';
+import useCheckboxState from '@hooks/useCheckboxState';
 
 const Container = styled.div<{ $read: boolean }>`
   display: flex;
@@ -70,9 +70,7 @@ function NotificationItem({
 }: NotificationType) {
   const timeDiff = useTimeDiff(createdAt);
   const dispatch = useDispatch();
-  const { checkboxVisible, checkedItems } = useSelector(
-    (state: RootState) => state.checkbox
-  );
+  const { checkboxVisible, checkedItems } = useCheckboxState();
   const isChecked = checkedItems.includes(id);
 
   const handleCheckboxChange = () => {

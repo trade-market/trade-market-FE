@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  inVisibleCheckbox,
-  resetCheckedItems,
-  toggleCheckboxVisible,
-} from '@store/slices/CheckboxSlice';
-import { RootState } from '@store/types';
+import { useDispatch } from 'react-redux';
+import { toggleCheckboxVisible } from '@store/slices/CheckboxSlice';
 import ConfirmModal from '@components/common/ConfirmModal';
 import styled from 'styled-components';
 import BottomSheet from '@components/common/BottomSheet';
@@ -15,6 +10,7 @@ import useModal from '@hooks/useModal';
 import Menu from '@components/Notifications/Menu';
 import useQueryString from '@hooks/useQueryString';
 import NotificationList from '@components/Notifications/NotificationList';
+import useCheckboxState from '@hooks/useCheckboxState';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -82,9 +78,7 @@ function Notifications() {
   const navigate = useNavigate();
   const type = useQueryString('type');
   const [visibleDeleteBtn, setVisibleDeleteBtn] = useState<boolean>(false);
-  const { checkboxVisible, checkedItems } = useSelector(
-    (state: RootState) => state.checkbox
-  );
+  const { checkedItems, resetCheckboxState } = useCheckboxState();
 
   const checkType = (currentType: string) => type === currentType;
   const isKeyword = checkType('keyword');
@@ -108,30 +102,26 @@ function Notifications() {
     openConfirm();
   };
 
-  // 체크박스 및 삭제할 목록 초기화
-  const resetCheckboxState = () => {
-    dispatch(resetCheckedItems());
-    if (visibleDeleteBtn) {
-      setVisibleDeleteBtn(false);
-    }
-    if (checkboxVisible) {
-      dispatch(inVisibleCheckbox());
-    }
-  };
-
   // 알림 삭제 API 호출
   const handleNotificationDelete = () => {
     console.log(checkedItems);
+    setVisibleDeleteBtn(false);
     closeConfirm();
     resetCheckboxState();
   };
 
-  // URL 변경 시 체크박스 및 삭제할 목록 초기화
+  // URL 변경 시 체크박스 및 삭제할 목록 초기화 + 헤더 삭제 버튼 숨기기
   useEffect(() => {
     resetCheckboxState();
+    if (visibleDeleteBtn) {
+      setVisibleDeleteBtn(false);
+    }
 
     return () => {
       resetCheckboxState();
+      if (visibleDeleteBtn) {
+        setVisibleDeleteBtn(false);
+      }
     };
   }, [type]);
 
