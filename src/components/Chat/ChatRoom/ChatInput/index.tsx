@@ -17,6 +17,7 @@ const ChatInput = ({ saleState }: IChatInputProps) => {
   }
 
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setSend(e.target.value);
   };
 
@@ -30,7 +31,7 @@ const ChatInput = ({ saleState }: IChatInputProps) => {
             disabled={saleState === '판매완료' ? true : false}
             onChange={onInputHandler}
         />
-        <SendButton>
+        <SendButton $active={send.length > 0}>
           <img src={send.length > 0 ? Chat_send_able : Chat_send_disable} />
         </SendButton>
         </Wrapper>
@@ -59,9 +60,10 @@ const CahtInput = styled(Input)`
   margin-right: 3px;
 `;
 
-const SendButton = styled.button`
+const SendButton = styled.button<{$active : boolean}>`
   display: flex;
   border: none;
   background-color: transparent;
+  cursor: ${({ $active }) => $active ? 'pointer' : 'not-allowed'};
 `;
 

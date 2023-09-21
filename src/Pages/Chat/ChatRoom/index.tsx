@@ -7,6 +7,7 @@ import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BottomSheet from '@components/common/BottomSheet';
 import InfoCollapse from '@components/Chat/ChatRoom/InfoCollapse';
 import ChatInput from '@components/Chat/ChatRoom/ChatInput';
+import Chatting from '@components/Chat/ChatRoom/Chatting/Chatting';
 
 const ChatRoom = () => {
   const [saleState, setSaleState] = useState<string>('판매중');
@@ -37,6 +38,7 @@ const ChatRoom = () => {
       </CommonHeader>
       <Wrapper>
         <InfoCollapse saleState={saleState} />
+          <Chatting />
         <ChatInput saleState={saleState} />
       </Wrapper>
       {isOpen && (
