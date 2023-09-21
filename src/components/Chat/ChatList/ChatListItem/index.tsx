@@ -36,6 +36,7 @@ const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHand
           id={id}
           checkHandler={checkHandler}
         />
+        <label className='check' />
       </div>
     </Container>
   );
@@ -55,18 +56,20 @@ const Container = styled.div<{ $deleteMode : boolean }>`
     margin: 3px 5px 0 5px;
   }
   .checkbox-section {
-      > input {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: 2px;
-      cursor: pointer;
-      height: 12px;
-      width: 12px;
-      background-color: ${({ theme }) => theme.color.gray}; 
-      display: ${({ $deleteMode }) => $deleteMode ? 'block' : 'none'};
+    > input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    background-color: ${({ theme }) => theme.color.gray}; 
+    display: ${({ $deleteMode }) => $deleteMode ? 'block' : 'none'};
       &:checked {
         background-color: ${({ theme }) => theme.color.activeBlue}; 
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5714 4L6.85714 11.1429L4 9' stroke='%23FDFDFD' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-position: 50%;
       }
     }
   } 
