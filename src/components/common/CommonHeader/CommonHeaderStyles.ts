@@ -45,3 +45,10 @@ export const CloseButton = styled.div<{ $display: string }>`
 export const OptionButton = styled.img`
   cursor: pointer;
 `;
+
+export const DeleteButton = styled.button`
+  cursor: pointer;
+  color: ${({ theme }) => theme.color.orange};
+  border: none;
+  background-color: transparent;
+`;

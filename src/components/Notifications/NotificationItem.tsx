@@ -1,6 +1,10 @@
-import useTimeDiff from '@hooks/useTimeDiff';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/types';
+import { checkItem, uncheckItem } from '@store/slices/CheckboxSlice';
+import useTimeDiff from '@hooks/useTimeDiff';
 import { NotificationType } from './NotificationList';
+import Checkbox from './Checkbox';
 
 const Container = styled.div<{ $read: boolean }>`
   display: flex;
@@ -8,7 +12,7 @@ const Container = styled.div<{ $read: boolean }>`
   justify-content: space-between;
   gap: 12px;
   padding: 15px 21px;
-  background-color: ${({ $read }) => !$read && 'rgba(33, 86, 242, 0.08)'};
+  background-color: ${({ $read }) => !$read && '#EBF0FC'};
 
   img {
     width: 52px;
@@ -65,8 +69,25 @@ function NotificationItem({
   read,
 }: NotificationType) {
   const timeDiff = useTimeDiff(createdAt);
+  const dispatch = useDispatch();
+  const { checkboxVisible, checkedItems } = useSelector(
+    (state: RootState) => state.checkbox
+  );
+  const isChecked = checkedItems.includes(id);
+
+  const handleCheckboxChange = () => {
+    if (isChecked) {
+      dispatch(uncheckItem(id));
+    } else {
+      dispatch(checkItem(id));
+    }
+  };
+
   return (
     <Container $read={read}>
+      {checkboxVisible && (
+        <Checkbox checked={isChecked} onChange={handleCheckboxChange} />
+      )}
       {image ? (
         <img src={image} alt="대표 이미지" />
       ) : (

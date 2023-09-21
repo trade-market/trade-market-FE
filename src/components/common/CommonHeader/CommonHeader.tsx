@@ -1,4 +1,9 @@
-import { Container, CloseButton, OptionButton } from './CommonHeaderStyles';
+import {
+  Container,
+  CloseButton,
+  OptionButton,
+  DeleteButton,
+} from './CommonHeaderStyles';
 import GobackBtn from './GobackBtn';
 import Close from '@Assets/offer/Write-comment/close.svg';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
@@ -11,8 +16,10 @@ interface ICommonHeaderProps {
   closeClick?: () => void;
   heartClick?: () => void;
   optionClick?: () => void;
+  onDeleteClick?: () => void;
   visibleHeart?: boolean;
   visibleOption?: boolean;
+  visibleDeleteBtn?: boolean;
 }
 
 const CommonHeader = ({
@@ -22,8 +29,10 @@ const CommonHeader = ({
   closeClick,
   heartClick,
   optionClick,
+  onDeleteClick,
   visibleHeart = false,
   visibleOption = false,
+  visibleDeleteBtn = false,
 }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
   const hideGobackButton = ['/', '/my-page'].includes(currentPath);
@@ -40,12 +49,15 @@ const CommonHeader = ({
         onClick={closeClick}
       >
         <img src={Close} />
-      </CloseButton>{' '}
+      </CloseButton>
       {visibleHeart && (
         <OptionButton src={UnLikeIcon} alt="관심목록" onClick={heartClick} />
       )}
       {visibleOption && (
         <OptionButton src={optionDot} alt="옵션" onClick={optionClick} />
+      )}
+      {visibleDeleteBtn && (
+        <DeleteButton onClick={onDeleteClick}>삭제</DeleteButton>
       )}
     </Container>
   );

@@ -2,7 +2,7 @@ import NotificationItem from './NotificationItem';
 import NoContents from './NoContents';
 
 export interface NotificationType {
-  id: number;
+  id: string;
   image?: string;
   category: string;
   message: string;
