@@ -14,6 +14,7 @@ interface IChatListItemProps {
 
 const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler }: IChatListItemProps) => {
   const navigate = useNavigate();
+  
   const handlerClick = () => {
     if (!deleteMode) navigate(id);
   }

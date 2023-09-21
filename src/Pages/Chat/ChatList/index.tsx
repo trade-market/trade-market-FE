@@ -4,10 +4,17 @@ import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ChatListItem from '@components/Chat/ChatList/ChatListItem';
 import Check_icon from '@Assets/Icons/Chat/Check.svg';
 import UserIcon from '@Assets/Icons/Chat/UserIcon.svg';
+import useModal from '@hooks/useModal';
+import ConfirmModal from '@components/common/confirmModal';
 
 const ChatList = () => {
   const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
   const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
+  const {
+    isOpen: isDeleteModalOpen,
+    open: deleteModalOpen,
+    close: deleteModalClose,
+  } = useModal();
 
   const tempData = [
     { nickname: '닉네임', time: '오전 10:01', text: '시간 언제가 괜찮으신가요? 전 이번주...', userImage: UserIcon },
@@ -29,9 +36,16 @@ const ChatList = () => {
   }
 
   const deleteHandler = () => {
-    //Todo : 삭제 petch api
-    console.log('삭제하시겠습니까?', checkItems);
+    deleteModalOpen();
+    
+    
   }
+
+  const handleConfirm = () => {
+    //Todo : 삭제 petch api
+    console.log('삭제');
+    deleteModalClose();
+  };
 
   return (
     <>
@@ -43,7 +57,6 @@ const ChatList = () => {
             : <DeleteButton $active={checkItems.size > 0} onClick={() => checkItems.size > 0 ? deleteHandler() : setDeleteModeOn(prev => !prev)}>삭제</DeleteButton>}
         </HeaderSection>
       </CommonHeader>
-
       <Wrapper>
         {tempData.map((chat, i)=> (
           <ChatListItem
@@ -58,6 +71,15 @@ const ChatList = () => {
             />
       ))}
       </Wrapper>
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        title="채팅 삭제"
+        content={`${checkItems.size}개의 채팅을 삭제하시겠습니까?`}
+        confirmedContent="삭제되었습니다."
+        onFinalOkClick={handleConfirm}
+        closeAction={deleteModalClose}
+        confirmType={'삭제'}
+      />
     </>
   );
 };
