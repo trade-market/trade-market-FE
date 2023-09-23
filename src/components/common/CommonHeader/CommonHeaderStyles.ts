@@ -45,3 +45,16 @@ export const CloseButton = styled.div<{ $display: string }>`
 export const OptionButton = styled.img`
   cursor: pointer;
 `;
+
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+`;
+
+export const DeleteButton = styled(Button)`
+  color: ${({ theme }) => theme.color.orange};
+`;
+
+export const CancelButton = styled(Button)`
+  color: ${({ theme }) => theme.color.lightGray};
+`;
