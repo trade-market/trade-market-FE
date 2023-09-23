@@ -6,7 +6,7 @@ import {
 import { RootState } from '@store/types';
 
 // 체크박스 "상태"를 관리하는 커스텀 훅
-// Reducer에서 작성 된 dispatch함수는 필요한 컴포넌트에서 직접 호출해서 사용
+// slice에서 작성 된 액션은 필요한 컴포넌트에서 직접 호출해서 사용
 const useCheckboxState = () => {
   const dispatch = useDispatch();
   const { checkboxVisible, checkedItems } = useSelector(
