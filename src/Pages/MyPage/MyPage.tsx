@@ -80,6 +80,7 @@ function MyPage() {
         isOpen={isLogoutModalOpen}
         title="로그아웃"
         content="로그아웃 하시겠습니까?"
+        confirmedTitle="로그아웃"
         confirmedContent="로그아웃 되었습니다."
         onFinalOkClick={handleConfirm}
         closeAction={logoutModalClose}
