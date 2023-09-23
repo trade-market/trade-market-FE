@@ -68,6 +68,9 @@ const activityNotifications = [
   },
 ];
 
+const KEYWORD = 'keyword';
+const ACTIVITY = 'activity';
+
 function Notifications() {
   const { isOpen, open, close } = useModal();
   const {
@@ -82,11 +85,12 @@ function Notifications() {
   const { checkedItems, resetCheckboxState } = useCheckboxState();
 
   const checkType = (currentType: string) => type === currentType;
-  const isKeyword = checkType('keyword');
-  const isActivity = checkType('activity');
+  const isKeyword = checkType(KEYWORD);
+  const isActivity = checkType(ACTIVITY);
 
-  const handleMenuClick = (currentType: string) => () =>
+  const handleMenuClick = (currentType: string) => {
     navigate(`?type=${currentType}`, { replace: true });
+  };
 
   // Option Modal에서 삭제 버튼 클릭 시
   const handleDeleteBtnInModal = () => {
@@ -138,18 +142,19 @@ function Notifications() {
     setVisibleDeleteBtn(false);
   };
 
-  // URL 변경 시 체크박스 및 삭제할 목록 초기화 + 헤더 삭제 버튼 숨기기
-  useEffect(() => {
+  const resetNotificationState = () => {
     resetCheckboxState();
     if (visibleDeleteBtn) {
       setVisibleDeleteBtn(false);
     }
+  };
+
+  // URL 변경 시 체크박스 및 삭제할 목록 초기화 + 헤더 삭제 버튼 숨기기
+  useEffect(() => {
+    resetNotificationState();
 
     return () => {
-      resetCheckboxState();
-      if (visibleDeleteBtn) {
-        setVisibleDeleteBtn(false);
-      }
+      resetNotificationState();
     };
   }, [type]);
 
@@ -169,12 +174,12 @@ function Notifications() {
           <Menu
             isActive={isKeyword}
             title="키워드 알림"
-            onClick={handleMenuClick('keyword')}
+            onClick={() => handleMenuClick(KEYWORD)}
           />
           <Menu
             isActive={isActivity}
             title="활동 알림"
-            onClick={handleMenuClick('activity')}
+            onClick={() => handleMenuClick(ACTIVITY)}
           />
         </Menubar>
         {visibleDeleteBtn && (
