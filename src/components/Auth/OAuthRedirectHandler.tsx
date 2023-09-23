@@ -7,13 +7,14 @@ import Spinner from './Spinner';
 import UserService from '@/service/UserService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@store/slices/userSlice';
+import useQueryString from '@hooks/useQueryString';
 
 interface IOAuthRedirectHandlerProps {
   service: OAuthServiceType;
 }
 
 function OAuthRedirectHandler({ service }: IOAuthRedirectHandlerProps) {
-  const code = new URL(window.location.href).searchParams.get('code') as string; //인가코드
+  const code = useQueryString('code') as string; // 인가 코드
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
