@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toggleCheckboxVisible } from '@store/slices/CheckboxSlice';
+import { checkAll, toggleCheckboxVisible } from '@store/slices/CheckboxSlice';
 import ConfirmModal from '@components/common/ConfirmModal';
 import styled from 'styled-components';
 import BottomSheet from '@components/common/BottomSheet';
@@ -11,6 +11,7 @@ import Menu from '@components/Notifications/Menu';
 import useQueryString from '@hooks/useQueryString';
 import NotificationList from '@components/Notifications/NotificationList';
 import useCheckboxState from '@hooks/useCheckboxState';
+import CancelContainer from '@components/Notifications/CancelContainer';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -110,6 +111,33 @@ function Notifications() {
     resetCheckboxState();
   };
 
+  // 전체 선택
+  const handleSelectAllClick = () => {
+    let notificationIds: string[] = [];
+
+    if (isKeyword) {
+      notificationIds = keywordNotifications.map(
+        (notification) => notification.id
+      );
+    } else if (isActivity) {
+      notificationIds = activityNotifications.map(
+        (notification) => notification.id
+      );
+    }
+
+    if (notificationIds) {
+      dispatch(checkAll(notificationIds));
+    }
+
+    openConfirm();
+  };
+
+  // 삭세 상태 취소
+  const handleCancelCheck = () => {
+    resetCheckboxState();
+    setVisibleDeleteBtn(false);
+  };
+
   // URL 변경 시 체크박스 및 삭제할 목록 초기화 + 헤더 삭제 버튼 숨기기
   useEffect(() => {
     resetCheckboxState();
@@ -132,6 +160,7 @@ function Notifications() {
         optionClick={open}
         visibleDeleteBtn={visibleDeleteBtn}
         onDeleteClick={handleHeaderDeleteBtnClick}
+        onCancelClick={handleCancelCheck}
       >
         알림
       </CommonHeader>
@@ -148,6 +177,9 @@ function Notifications() {
             onClick={handleMenuClick('activity')}
           />
         </Menubar>
+        {visibleDeleteBtn && (
+          <CancelContainer handleSelectAllClick={handleSelectAllClick} />
+        )}
         {isKeyword && <NotificationList notifications={keywordNotifications} />}
         {isActivity && (
           <NotificationList notifications={activityNotifications} />
@@ -165,6 +197,7 @@ function Notifications() {
         isOpen={isOpenConfirm}
         closeAction={closeConfirm}
         title={`${checkedItems.length}개 알림을 삭제하시겠습니까?`}
+        confirmedTitle="삭제 완료"
         content="삭제한 알림은 복구하기 어렵습니다."
         confirmedContent="알림이 삭제되었습니다."
         onFinalOkClick={handleNotificationDelete}

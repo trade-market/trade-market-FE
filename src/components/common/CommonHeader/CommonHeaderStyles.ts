@@ -46,9 +46,15 @@ export const OptionButton = styled.img`
   cursor: pointer;
 `;
 
-export const DeleteButton = styled.button`
-  cursor: pointer;
-  color: ${({ theme }) => theme.color.orange};
+const Button = styled.button`
   border: none;
   background-color: transparent;
+`;
+
+export const DeleteButton = styled(Button)`
+  color: ${({ theme }) => theme.color.orange};
+`;
+
+export const CancelButton = styled(Button)`
+  color: ${({ theme }) => theme.color.lightGray};
 `;

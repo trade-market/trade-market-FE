@@ -13,6 +13,7 @@ const Container = styled.div<{ $read: boolean }>`
   gap: 12px;
   padding: 15px 21px;
   background-color: ${({ $read }) => !$read && '#EBF0FC'};
+  cursor: pointer;
 
   img {
     width: 52px;

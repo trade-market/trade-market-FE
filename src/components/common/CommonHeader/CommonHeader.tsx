@@ -3,6 +3,7 @@ import {
   CloseButton,
   OptionButton,
   DeleteButton,
+  CancelButton,
 } from './CommonHeaderStyles';
 import GobackBtn from './GobackBtn';
 import Close from '@Assets/offer/Write-comment/close.svg';
@@ -17,6 +18,7 @@ interface ICommonHeaderProps {
   heartClick?: () => void;
   optionClick?: () => void;
   onDeleteClick?: () => void;
+  onCancelClick?: () => void;
   visibleHeart?: boolean;
   visibleOption?: boolean;
   visibleDeleteBtn?: boolean;
@@ -30,6 +32,7 @@ const CommonHeader = ({
   heartClick,
   optionClick,
   onDeleteClick,
+  onCancelClick,
   visibleHeart = false,
   visibleOption = false,
   visibleDeleteBtn = false,
@@ -39,7 +42,12 @@ const CommonHeader = ({
 
   return (
     <Container>
-      {!hideGobackButton && <GobackBtn onClick={onClick} />}
+      {visibleDeleteBtn && (
+        <CancelButton onClick={onCancelClick}>취소</CancelButton>
+      )}
+      {!hideGobackButton && !visibleDeleteBtn && (
+        <GobackBtn onClick={onClick} />
+      )}
       <div className={hideGobackButton ? 'title Only' : 'title'}>
         {children}
       </div>
