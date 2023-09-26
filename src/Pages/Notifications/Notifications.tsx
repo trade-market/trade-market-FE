@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { checkAll, toggleCheckboxVisible } from '@store/slices/CheckboxSlice';
+import {
+  checkAll,
+  resetCheckedItems,
+  toggleCheckboxVisible,
+} from '@store/slices/CheckboxSlice';
 import ConfirmModal from '@components/common/ConfirmModal';
 import styled from 'styled-components';
 import BottomSheet from '@components/common/BottomSheet';
@@ -81,8 +85,9 @@ function Notifications() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const type = useQueryString('type');
-  const [visibleDeleteBtn, setVisibleDeleteBtn] = useState<boolean>(false);
+  const [visibleDeleteBtn, setVisibleDeleteBtn] = useState(false);
   const { checkedItems, resetCheckboxState } = useCheckboxState();
+  const [isSelectAll, setIsSelectAll] = useState(false);
 
   const checkType = (currentType: string) => type === currentType;
   const isKeyword = checkType(KEYWORD);
@@ -115,8 +120,14 @@ function Notifications() {
     resetCheckboxState();
   };
 
-  // 전체 선택
+  // 전체 선택 및 취소
   const handleSelectAllClick = () => {
+    if (isSelectAll) {
+      dispatch(resetCheckedItems());
+      setIsSelectAll(false);
+      return;
+    }
+
     let notificationIds: string[] = [];
 
     if (isKeyword) {
@@ -133,19 +144,25 @@ function Notifications() {
       dispatch(checkAll(notificationIds));
     }
 
-    openConfirm();
+    setIsSelectAll(true);
   };
 
   // 삭세 상태 취소
   const handleCancelCheck = () => {
     resetCheckboxState();
     setVisibleDeleteBtn(false);
+    if (isSelectAll) {
+      setIsSelectAll(false);
+    }
   };
 
   const resetNotificationState = () => {
     resetCheckboxState();
     if (visibleDeleteBtn) {
       setVisibleDeleteBtn(false);
+    }
+    if (isSelectAll) {
+      setIsSelectAll(false);
     }
   };
 
@@ -183,7 +200,10 @@ function Notifications() {
           />
         </Menubar>
         {visibleDeleteBtn && (
-          <CancelContainer handleSelectAllClick={handleSelectAllClick} />
+          <CancelContainer
+            isSelectAll={isSelectAll}
+            handleSelectAllClick={handleSelectAllClick}
+          />
         )}
         {isKeyword && <NotificationList notifications={keywordNotifications} />}
         {isActivity && (

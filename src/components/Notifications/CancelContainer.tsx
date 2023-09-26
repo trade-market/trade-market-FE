@@ -13,13 +13,19 @@ const CancelButtonContainer = styled.div`
 `;
 
 interface ICancelContainerProps {
+  isSelectAll: boolean;
   handleSelectAllClick: () => void;
 }
 
-function CancelContainer({ handleSelectAllClick }: ICancelContainerProps) {
+function CancelContainer({
+  isSelectAll,
+  handleSelectAllClick,
+}: ICancelContainerProps) {
   return (
     <CancelButtonContainer>
-      <button onClick={handleSelectAllClick}>전체 삭제</button>
+      <button onClick={handleSelectAllClick}>
+        {isSelectAll ? '전체 선택 취소' : '전체 선택'}
+      </button>
     </CancelButtonContainer>
   );
 }
