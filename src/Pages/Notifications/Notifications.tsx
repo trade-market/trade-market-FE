@@ -81,8 +81,9 @@ function Notifications() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const type = useQueryString('type');
-  const [visibleDeleteBtn, setVisibleDeleteBtn] = useState<boolean>(false);
+  const [visibleDeleteBtn, setVisibleDeleteBtn] = useState(false);
   const { checkedItems, resetCheckboxState } = useCheckboxState();
+  const [isSelectAll, setIsSelectAll] = useState(false);
 
   const checkType = (currentType: string) => type === currentType;
   const isKeyword = checkType(KEYWORD);
@@ -133,7 +134,7 @@ function Notifications() {
       dispatch(checkAll(notificationIds));
     }
 
-    openConfirm();
+    setIsSelectAll((prev) => !prev);
   };
 
   // 삭세 상태 취소
@@ -146,6 +147,9 @@ function Notifications() {
     resetCheckboxState();
     if (visibleDeleteBtn) {
       setVisibleDeleteBtn(false);
+    }
+    if (isSelectAll) {
+      setIsSelectAll(false);
     }
   };
 
@@ -183,7 +187,10 @@ function Notifications() {
           />
         </Menubar>
         {visibleDeleteBtn && (
-          <CancelContainer handleSelectAllClick={handleSelectAllClick} />
+          <CancelContainer
+            isSelectAll={isSelectAll}
+            handleSelectAllClick={handleSelectAllClick}
+          />
         )}
         {isKeyword && <NotificationList notifications={keywordNotifications} />}
         {isActivity && (
