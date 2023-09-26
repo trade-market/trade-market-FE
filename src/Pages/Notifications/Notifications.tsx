@@ -151,6 +151,9 @@ function Notifications() {
   const handleCancelCheck = () => {
     resetCheckboxState();
     setVisibleDeleteBtn(false);
+    if (isSelectAll) {
+      setIsSelectAll(false);
+    }
   };
 
   const resetNotificationState = () => {
