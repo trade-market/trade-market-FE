@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { checkAll, toggleCheckboxVisible } from '@store/slices/CheckboxSlice';
+import {
+  checkAll,
+  resetCheckedItems,
+  toggleCheckboxVisible,
+} from '@store/slices/CheckboxSlice';
 import ConfirmModal from '@components/common/ConfirmModal';
 import styled from 'styled-components';
 import BottomSheet from '@components/common/BottomSheet';
@@ -116,8 +120,14 @@ function Notifications() {
     resetCheckboxState();
   };
 
-  // 전체 선택
+  // 전체 선택 및 취소
   const handleSelectAllClick = () => {
+    if (isSelectAll) {
+      dispatch(resetCheckedItems());
+      setIsSelectAll(false);
+      return;
+    }
+
     let notificationIds: string[] = [];
 
     if (isKeyword) {
@@ -134,7 +144,7 @@ function Notifications() {
       dispatch(checkAll(notificationIds));
     }
 
-    setIsSelectAll((prev) => !prev);
+    setIsSelectAll(true);
   };
 
   // 삭세 상태 취소
