@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ContentsSection from '@/components/WriteComment/ContentsSection';
 import TitleSection from '@components/WriteComment/TitleSection';
-import EvaluationTypeButton from '@components/Chat/ChatList/TradeEvaluation/EvaluationTypeButton';
+import EvaluationTypeButton from '@components/Chat/TradeEvaluation/EvaluationTypeButton';
 import GoodManner_Large from '@Assets/Icons/Chat/GoodManner_Large.svg';
 import BadManner_Large from '@Assets/Icons/Chat/BadManner_Large.svg';
-import EvaluationList from '@components/Chat/ChatList/TradeEvaluation/EvaluationList/EvaluationList';
+import EvaluationList from '@components/Chat/TradeEvaluation/EvaluationList/EvaluationList';
 
 const TradeEvaluation = () => {
   const [MannerType, setMannerType] = useState<string | null>(null);

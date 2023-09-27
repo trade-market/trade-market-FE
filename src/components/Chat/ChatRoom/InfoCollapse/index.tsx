@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
 import { format } from "date-fns";
 import styled from 'styled-components';
@@ -18,7 +19,17 @@ const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
   const planTime = format(new Date(selectPlanTime), `yy년 MM월 dd일`);
   const [closeCollapse, setCloseCollapse] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  //* 예약중으로 상태 변경시, default 시간으로 오늘날짜 00:00:00시로 지정
+  useEffect(() => {
+    if (!selectPlanTime && saleState === '예약중') {
+      const now = new Date();
+      now.setHours(0,0,0);
+      dispatch(setPlanDate(now))
+    }
+  }, [saleState]);
+  
   const renderButton = () => {
     switch (saleState) {
       case '판매중':
