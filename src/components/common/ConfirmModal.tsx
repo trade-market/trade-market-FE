@@ -34,6 +34,8 @@ const ModalWrapper = styled.div`
     transform: translateY(-50%);
     width: 100%;
     text-align: center;
+    line-height: 20px;
+    white-space: pre-line;
   }
 `;
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import MannerCheck from '@Assets/Icons/Chat/MannerCheck.svg';
-import { ReactComponent as Icon} from '@Assets/Icons/Chat/MannerCheck.svg';
 
 const Container = styled.div<{ $selected: boolean | null }>`
   position: relative;
@@ -31,15 +30,13 @@ const Text = styled.div`
   line-height: 130%;
 `;
 
-const ImageContainer = styled.img<{ $size: string; $selected: boolean | null }>`
+const ImageContainer = styled.img<{ $size:string }>`
   max-width: ${({ $size }) => $size};
   width: 100%;
   height: ${({ $size }) => $size};
   position: absolute;
   bottom: 20px;
   right: 20px;
-  color : red;
-  fill: ${({ $selected, theme }) => $selected ? theme.color.Mainblue : `none`};
 `;
 
 interface IEvaluationTypeButtonProps {
@@ -57,14 +54,14 @@ function EvaluationTypeButton({
   selected,
   size='36px'
 }: IEvaluationTypeButtonProps) {
+
   return (
     <Container onClick={onClick} $selected={selected}>
       <Text>
         {text}
         <CheckContainer $selected={selected} src={MannerCheck} alt={text} />
-        <Icon fill='#88bb19' />
       </Text>
-      <ImageContainer $selected={selected} src={imageSrc} $size={size} alt={text} />
+      <ImageContainer src={ selected ? imageSrc.replace('.svg', '_Active.svg') : imageSrc} $size={size} alt={text} />
     </Container>
   );
 }

@@ -40,7 +40,7 @@ const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
             $bgColor={'white'}
             $color={'activeBlue'}
             $borderColor={'activeBlue'}
-            onClick={() => navigate('trade-evalution')}>평가하기</CollapseButton> 
+            onClick={() => navigate('trade-evaluation')}>평가하기</CollapseButton> 
         )
     }
   }

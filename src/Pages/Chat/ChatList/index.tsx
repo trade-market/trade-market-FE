@@ -37,8 +37,6 @@ const ChatList = () => {
 
   const deleteHandler = () => {
     deleteModalOpen();
-    
-    
   }
 
   const handleConfirm = () => {

@@ -69,7 +69,7 @@ function Router() {
             <Route path='chat-list' element={<ChatList />} />
             <Route path='chat-list/:id' element={<ChatRoom />} />
             <Route path='chat-list/:id/make-plan' element={<MakePlan />} />
-            <Route path='chat-list/:id/trade-evalution' element={<TradeEvaluation />} />
+            <Route path='chat-list/:id/trade-evaluation' element={<TradeEvaluation />} />
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
