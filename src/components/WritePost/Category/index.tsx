@@ -23,12 +23,12 @@ const Container = styled.div`
   font-size: 10px;
   font-weight: 500;
   color : ${({ theme }) => theme.color.activeBlue};
-  /* align-items: center; */
+  align-items: center;
   .provide {
     border-radius: 12px;
     border: 1px solid ${({ theme }) => theme.color.activeBlue};
     margin-right: 5px;
-    padding: 6px 10px;
+    padding: 4px 12px;
   }
   .exchange {
     color : ${({ theme }) => theme.color.activeBlue};
@@ -36,6 +36,6 @@ const Container = styled.div`
     border-radius: 12px;
     background-color: #2156F214;
     margin-left: 5px;
-    padding: 6px 10px;
+    padding: 4px 12px;
   }
 `;

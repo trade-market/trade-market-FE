@@ -5,7 +5,7 @@ import ChatListItem from '@components/Chat/ChatList/ChatListItem';
 import Check_icon from '@Assets/Icons/Chat/Check.svg';
 import Character_circle from '@Assets/Character_Icons/Character_circle.svg';
 import useModal from '@hooks/useModal';
-import ConfirmModal from '@components/common/confirmModal';
+import ConfirmModal from '@components/common/ConfirmModal';
 
 const ChatList = () => {
   const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
