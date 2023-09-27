@@ -6,7 +6,7 @@ import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import { setUser } from '@store/slices/userSlice';
 import UserService from '@/service/UserService';
 import { RootState } from '@store/types';
-import ConfirmModal from '@components/common/confirmModal';
+import ConfirmModal from '@components/common/ConfirmModal';
 import useModal from '@hooks/useModal';
 
 function EditProfile() {

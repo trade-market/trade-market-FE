@@ -23,6 +23,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/write-post\/\w+/,
     /^\/my-page\/.+$/,
     /^\/chat-list\/.+$/,
+    /^\/notifications/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>

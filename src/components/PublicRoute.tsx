@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import useAuth from '@hooks/useAuth';
 import useModal from '@hooks/useModal';
 import { useEffect } from 'react';

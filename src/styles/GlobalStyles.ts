@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
       button {
         font-family: ${theme.font.family.Pretendard};
         cursor: pointer;
+        border: none;
+        background: none;
       }
       input {
         font-family: ${theme.font.family.Pretendard};

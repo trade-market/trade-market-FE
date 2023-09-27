@@ -9,7 +9,7 @@ import useModal from '@hooks/useModal';
 import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
-import ConfirmModal from '@components/common/confirmModal';
+import ConfirmModal from '@components/common/ConfirmModal';
 import { logoutUser } from '@store/slices/userSlice';
 import TokenService from '@/service/TokenService';
 
@@ -80,6 +80,7 @@ function MyPage() {
         isOpen={isLogoutModalOpen}
         title="로그아웃"
         content="로그아웃 하시겠습니까?"
+        confirmedTitle="로그아웃"
         confirmedContent="로그아웃 되었습니다."
         onFinalOkClick={handleConfirm}
         closeAction={logoutModalClose}

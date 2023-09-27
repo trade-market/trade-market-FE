@@ -28,10 +28,14 @@ import EditProfile from '@Pages/MyPage/EditProfile';
 import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
+<<<<<<< HEAD
 import ChatList from '@Pages/Chat/ChatList';
 import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
+=======
+import Notifications from '@Pages/Notifications';
+>>>>>>> 4848896ada4c10d20cbc48b4d798b2b1f9771007
 
 function Router() {
   return (
@@ -104,10 +108,14 @@ function Router() {
               <Route path="exchange-history" element={<ExchangeHistory />} />
               <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
+<<<<<<< HEAD
             <Route path='chat-list' element={<ChatList />} />
             <Route path='chat-list/:id' element={<ChatRoom />} />
             <Route path='chat-list/:id/make-plan' element={<MakePlan />} />
             <Route path='chat-list/:id/trade-evalution' element={<TradeEvaluation />} />
+=======
+            <Route path="/notifications" element={<Notifications />} />
+>>>>>>> 4848896ada4c10d20cbc48b4d798b2b1f9771007
           </Route>
         </Routes>
       </Layout>

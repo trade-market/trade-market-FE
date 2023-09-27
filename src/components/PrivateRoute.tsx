@@ -9,7 +9,6 @@ function PrivateRoute() {
   const auth = useAuth();
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
-
   useEffect(() => {
     if (!auth) {
       open();

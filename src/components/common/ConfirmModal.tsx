@@ -72,8 +72,9 @@ const ButtonWrapper = styled.div`
 interface IConfirmModalProps {
   isOpen: boolean;
   title: string;
+  confirmedTitle?: string;
   content: string;
-  confirmedContent: string;
+  confirmedContent?: string;
   closeAction: () => void;
   onFinalOkClick: () => void;
   confirmType?: string;
@@ -82,6 +83,7 @@ interface IConfirmModalProps {
 function ConfirmModal({
   isOpen,
   title,
+  confirmedTitle,
   content,
   confirmedContent,
   onFinalOkClick,
@@ -110,7 +112,7 @@ function ConfirmModal({
     <>
       <ModalBackground />
       <ModalWrapper>
-        <h1 className="title">{title}</h1>
+        <h1 className="title">{!isConfirmed ? title : confirmedTitle}</h1>
         <p className="content">{!isConfirmed ? content : confirmedContent}</p>
         <ButtonWrapper>
           {!isConfirmed ? (
