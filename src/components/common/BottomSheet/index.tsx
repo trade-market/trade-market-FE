@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { size } from '@/styles/theme';
 
 interface IBottomSheetProps {
-  children?: React.ReactNode;
-  onClick?: () => void;
+  children: React.ReactNode;
+  onClick: () => void;
   height?: string;
   optionP?: string;
 }
@@ -12,12 +12,11 @@ function BottomSheet({
   children,
   onClick,
   height = '190px',
-  optionP = 'off',
 }: IBottomSheetProps) {
   return (
     <>
-      <Background onClick={onClick} $optionP={optionP} />
-      <Container $height={height} $optionP={optionP}>
+      <Background onClick={onClick}/>
+      <Container $height={height}>
         {children}
         <div className="close" onClick={onClick}>
           닫기
@@ -29,23 +28,21 @@ function BottomSheet({
 
 export default BottomSheet;
 
-const Background = styled.div<{ $optionP?: string }>`
+const Background = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 115%;
+  height: 100%;
   z-index: 140;
   background: var(--bg-blur, rgba(0, 0, 0, 0.2));
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
   transition: transform 650ms ease-out;
-  margin-top: ${({ $optionP }) =>
-    $optionP === 'on' ? '-60px' : '0'}; // 헤더 영역이 있을 경우
 `;
 
-const Container = styled.div<{ $height?: string; $optionP?: string }>`
+const Container = styled.div<{ $height?: string;}>`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};
@@ -56,8 +53,6 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
   overflow-y: scroll;
   height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
-  margin-left: ${({ $optionP }) =>
-    $optionP === 'on' ? '-20px;' : '0'}; // 헤더 영역이 있을 경우
 
   &::-webkit-scrollbar {
     display: none;

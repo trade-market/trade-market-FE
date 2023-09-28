@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
+import { useOutletContext, useParams } from 'react-router-dom';
+import {  setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
 import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
@@ -11,9 +11,14 @@ import Calender from '@/components/WritePost/Calendar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 import * as O from '../WritePostType';
 
+interface ISelectElementOutletProps {
+  open: () => void
+}
+
 const SelectElement = () => {
   const dispatch = useDispatch();
   const { exchangeType, tradeType } = useParams();
+  const { open } = useOutletContext<ISelectElementOutletProps>();
   const selectProvide = useSelector((state: RootState) => state.WritePost.provide);
   const selectExchange = useSelector((state: RootState) => state.WritePost.exchange);
   const selectdeadline = useSelector((state: RootState) => state.WritePost.deadline);
@@ -41,7 +46,9 @@ const SelectElement = () => {
     <>
       <O.Container>
         <PostSection label={'사진 업로드'}>
-          <MultiImageUpload />
+          <MultiImageUpload
+            open={open}
+          />
         </PostSection>
         <PostSection label={`${inintialValueP.slice(0, 6)} 카테고리`}>
           <SelectBox

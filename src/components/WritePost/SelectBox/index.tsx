@@ -77,7 +77,7 @@ const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`
   overflow: hidden;
   overflow-y: ${({ $direction }) => $direction === 'down' ? 'scroll' : 'none'};
   width: 100%;
-  /* height: 223px; */
+  height: 223px;
   max-height: ${({ $open }) => $open ? "none" : "0"};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
