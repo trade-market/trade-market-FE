@@ -41,7 +41,7 @@ const ChatRoom = () => {
   //* 메세지 수신
   // useEffect(() => {
   //   socket.on('message-receive', (chatObj) => {
-  //     const { userId, massege, time } = chatObj;
+  //     const { send, userId, massege, time } = chatObj;
       
   //   })
   // }, [chatStorage]);
@@ -108,4 +108,5 @@ const Wrapper = styled.div`
   flex-direction: column;
   width : 100%;
   margin-top: 60px;
+  padding-bottom: 70px;
 `;
