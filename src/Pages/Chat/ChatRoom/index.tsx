@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@store/types';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -12,7 +13,10 @@ import Chatting from '@components/Chat/ChatRoom/Chatting/Chatting';
 const ChatRoom = () => {
   const [saleState, setSaleState] = useState<string>('판매중');
   const selectPlan = useSelector((state: RootState) => state.chat.planTime);
+  const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const { isOpen, open, close } = useModal();
+  const { id } = useParams<{ id: string }>();
+  const ChatRef = useRef(null);
 
   const handleChangeState = (e : React.MouseEvent<HTMLDivElement>) => {
     setSaleState(e.currentTarget.innerText);
@@ -28,6 +32,8 @@ const ChatRoom = () => {
     }
   }, []);
 
+  
+
   return (
     <>
       <CommonHeader>
@@ -39,7 +45,7 @@ const ChatRoom = () => {
       <Wrapper>
         <InfoCollapse saleState={saleState} />
           <Chatting />
-        <ChatInput saleState={saleState} />
+        <ChatInput saleState={saleState} ChatRef={ChatRef} />
       </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>

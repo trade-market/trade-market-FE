@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import socketio from 'socket.io-client';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ChatListItem from '@components/Chat/ChatList/ChatListItem';
@@ -10,6 +11,8 @@ import ConfirmModal from '@components/common/ConfirmModal';
 const ChatList = () => {
   const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
   const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
+  // const socket = socketio(process.env.REACT_APP_SOCKET_URL);
+  // const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL);
   const {
     isOpen: isDeleteModalOpen,
     open: deleteModalOpen,

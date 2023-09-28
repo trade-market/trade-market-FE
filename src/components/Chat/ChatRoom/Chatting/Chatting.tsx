@@ -1,9 +1,19 @@
+import { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setChatStorage } from '@/store/slices/ChatSlice';
+import { RootState } from '@store/types';
+import { format } from "date-fns";
 import styled from 'styled-components';
 import SpeechBubble from '@components/Chat/ChatRoom/Chatting/SpeechBubble';
 import DateBar from './DateBar';
 
-
 const Chatting = () => {
+  const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
+  const { id } = useParams<{ id: string }>();
+
+
+
   return (
     <>
       <DateBar date={new Date()} />

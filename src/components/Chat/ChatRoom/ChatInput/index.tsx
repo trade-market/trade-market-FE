@@ -7,9 +7,10 @@ import Chat_send_disable from '@Assets/Icons/Chat/Chat_send_disable.svg';
 
 interface IChatInputProps {
   saleState: string;
+  ChatRef: React.MutableRefObject<any>;
 }
 
-const ChatInput = ({ saleState }: IChatInputProps) => {
+const ChatInput = ({ saleState, ChatRef }: IChatInputProps) => {
   const [send, setSend] = useState('');
 
   const handleSubmit = () => {
@@ -26,6 +27,7 @@ const ChatInput = ({ saleState }: IChatInputProps) => {
         <Wrapper>
           <CahtInput
             type='text'
+            ref={ChatRef}
             value={send}
             placeholder='메세지를 입력해주세요.'
             disabled={saleState === '판매완료' ? true : false}
