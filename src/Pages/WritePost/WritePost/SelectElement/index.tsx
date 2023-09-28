@@ -4,7 +4,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import {  setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
-import MultiImageUpload from '@/components/WritePost/MultiImageUpload';
+import MultiImageUpload from '@components/WritePost/MultiImageUpload/MultiImageUpload';
 import SelectBox from '@components/WritePost/SelectBox';
 import useNavigateButton from '@hooks/useNavigateButton';
 import Calender from '@/components/WritePost/Calendar';
