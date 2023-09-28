@@ -46,9 +46,7 @@ const SelectElement = () => {
     <>
       <O.Container>
         <PostSection label={'사진 업로드'}>
-          <MultiImageUpload
-            open={open}
-          />
+          <MultiImageUpload open={open} />
         </PostSection>
         <PostSection label={`${inintialValueP.slice(0, 6)} 카테고리`}>
           <SelectBox

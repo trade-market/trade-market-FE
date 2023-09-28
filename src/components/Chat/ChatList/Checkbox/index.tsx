@@ -1,17 +1,13 @@
-import { useState } from 'react';
-
 interface ICheckBoxProps {
   id: string;
   checkHandler: ((id: string, isChecked: boolean) => void);
+  checkItems: Set<unknown>;
 }
 
-const CheckBox = ({id, checkHandler}: ICheckBoxProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-    
+const CheckBox = ({ id, checkHandler, checkItems }: ICheckBoxProps) => {
   const checkItemHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.target;
-    setIsChecked((prev) => !prev);
-    checkHandler(id, checked);
+    checkHandler(id, checked); 
   };
 
   return (
@@ -19,7 +15,7 @@ const CheckBox = ({id, checkHandler}: ICheckBoxProps) => {
       <input
       id={id}
       type='checkbox'
-      checked={isChecked}
+      checked={checkItems.has(id) ? true : false}
       onChange={(e) =>checkItemHandler(e)}
         />
     </>

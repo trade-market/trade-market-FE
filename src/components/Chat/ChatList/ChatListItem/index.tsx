@@ -10,9 +10,10 @@ interface IChatListItemProps {
   text: string;
   deleteMode: boolean;
   checkHandler: ((id: string, isChecked: boolean) => void);
+  checkItems: Set<unknown>;
 }
 
-const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler }: IChatListItemProps) => {
+const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler, checkItems }: IChatListItemProps) => {
   const navigate = useNavigate();
   
   const handlerClick = () => {
@@ -35,6 +36,7 @@ const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHand
         <CheckBox
           id={id}
           checkHandler={checkHandler}
+          checkItems={checkItems}
         />
         <label className='check' />
       </div>
