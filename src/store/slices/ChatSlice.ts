@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface chatStorageType {
-  userId: string; message: any; time: Date | null;
-}
+import { chatStorageType } from '@/types/ChatTypes';
 
 interface ChatState {
   chatStorage: chatStorageType[];

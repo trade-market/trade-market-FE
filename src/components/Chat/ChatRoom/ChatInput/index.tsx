@@ -1,17 +1,13 @@
 // import { io } from "socket.io-client";
 import { useState } from 'react';
-import { RootState } from '@store/types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setChatStorage } from '@/store/slices/ChatSlice';
 import { size } from '@/styles/theme';
 import styled from 'styled-components';
 import { Input } from "@Pages/Articles/WriteComment/CreatePost/Progress3/Progresss3Styles"
 import Chat_send_able from '@Assets/Icons/Chat/Chat_send_able.svg';
 import Chat_send_disable from '@Assets/Icons/Chat/Chat_send_disable.svg';
-
-interface chatStorageType {
-  userId: string; message: any; time: Date | null;
-}
+import { chatStorageType } from '@/types/ChatTypes';
 
 interface IChatInputProps {
   saleState: string;
@@ -20,8 +16,8 @@ interface IChatInputProps {
 
 const ChatInput = ({ saleState, userId }: IChatInputProps) => {
   // const socket = io();
-  const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const [sendMessage, setSendMessage] = useState<chatStorageType>({
+    send: true,
     userId: userId,
     message: '',
     time : null,
@@ -29,14 +25,16 @@ const ChatInput = ({ saleState, userId }: IChatInputProps) => {
   const dispatch = useDispatch();
 
   //* 메세지 송신
-  const handlesendMessageMessage = async () => {
+  const handlesendMessageMessage = async (e: React.SyntheticEvent) => {
     if (!sendMessage.message) {
       return;
     } else {
+      e.preventDefault();
       dispatch(setChatStorage({...sendMessage }));
       setSendMessage({...sendMessage, message : '', time : null});
     }
 
+    // todo : socket.emit (메세지 송신)
     // await socket.emit('message-sendMessage', { // 메세지 전송
     //   userId: userId,
     //   message: ChatRef.current.value,
@@ -48,8 +46,6 @@ const ChatInput = ({ saleState, userId }: IChatInputProps) => {
     e.preventDefault();
     setSendMessage({ ...sendMessage, message: e.target.value, time : new Date()});
   };
-
-  console.log('채팅 인풋', chatStorage)
 
   return (
       <Wrapper>

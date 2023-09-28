@@ -1,17 +1,20 @@
 import styled from 'styled-components';
+import ChatTime from '../ChatTime/ChatTime';
 
-interface IInfoCollapseProps {
+interface ISpeechBubbleProps {
   message: string;
   send: boolean;
+  time: Date;
 }
 
-const SpeechBubble = ({ message, send } : IInfoCollapseProps) => {
+const SpeechBubble = ({ message, send, time } : ISpeechBubbleProps) => {
   return (
-      <Container $send={send}>
-        <div className="bubble">
-          {message}
-        </div>
-      </Container>
+    <Container $send={send}>
+      <ChatMessage $send={send}>
+        <ChatTime send={send} time={time} />
+        <ChatBubble $send={send}>{message}</ChatBubble>
+      </ChatMessage>
+    </Container>
   );
 };
 
@@ -22,24 +25,29 @@ const Container = styled.div<{ $send: boolean; }>`
   justify-content: ${({ $send }) => $send ? 'flex-end' : 'flex-start'};
   position: relative;
   width: 100%;
-  padding-top: 25px;
+  padding: 25px 20px 0 20px;
+`; 
 
-  .bubble {
-    display: flex;
-    position: absolute;
-    min-height: 83px;
-    min-width: 204px;
-    padding: 12px 15px;
-    white-space: pre-wrap;
-    word-break: break-all;
-    border-radius: 5px;
-    position: relative;
-    font-size: ${({ theme }) => theme.font.size.small};
-    background-color: ${({ theme }) => theme.color.lightBlue};
-    color : ${({ theme }) => theme.color.lightGray};
-  }
+const ChatMessage = styled.div<{ $send: boolean; }>`
+  display: flex;
+  flex-direction: ${({ $send }) => $send ? 'row' : 'row-reverse'};
+`;
 
-  .bubble::before {
+const ChatBubble = styled.div<{ $send: boolean; }>`
+  display: flex;
+  position: absolute;
+  min-height: 83px;
+  min-width: 204px;
+  padding: 12px 15px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 5px;
+  position: relative;
+  font-size: ${({ theme }) => theme.font.size.small};
+  background-color: ${({ theme }) => theme.color.lightBlue};
+  color : ${({ theme }) => theme.color.lightGray};
+
+  &::before {
     content: '';
     width: 0px;
     height: 0px;
@@ -54,5 +62,4 @@ const Container = styled.div<{ $send: boolean; }>`
     left:${({ $send }) =>  $send ? null : '-6px' };
     transform: ${({ $send }) => $send ? 'rotate(-15deg)' : 'rotate(15deg)' };
   }
-`; 
-
+`;

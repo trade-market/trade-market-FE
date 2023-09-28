@@ -46,9 +46,6 @@ const ChatRoom = () => {
   //   })
   // }, [chatStorage]);
 
-
-  console.log('채팅룸', chatStorage)
-
   return (
     <>
       <CommonHeader>

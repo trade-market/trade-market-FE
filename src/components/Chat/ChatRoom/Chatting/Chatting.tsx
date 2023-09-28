@@ -1,7 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setChatStorage } from '@/store/slices/ChatSlice';
+import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { format } from "date-fns";
 import styled from 'styled-components';
@@ -10,17 +7,22 @@ import DateBar from './DateBar';
 
 const Chatting = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
-  const { id } = useParams<{ id: string }>();
 
   return (
     <>
-      <DateBar date={new Date()} />
-      <ChattingWrapper>
-        <SpeechBubble send={false} message={'안녕하세요'} />
-        <SpeechBubble send={true} message={'안녕하세요'} />
-        <SpeechBubble send={false} message={'안녕하세요'} />
-          <SpeechBubble send={true} message={'안녕하세요'} />
-      </ChattingWrapper>
+      {
+        chatStorage.map((chat, i, arr) => {
+          let ChatDate = arr[i].time.getMonth() + arr[i].time.getDate();
+
+          return (
+            <ChattingWrapper key={i}>
+              <DateBar date={chat.time} />
+              <SpeechBubble send={false} message={chat.message} time={chat.time} />
+              <SpeechBubble send={chat.send} message={chat.message} time={chat.time} />
+            </ChattingWrapper>
+          )
+        })
+      }
     </>
   );
 };
@@ -28,6 +30,7 @@ const Chatting = () => {
 export default Chatting;
 
 const ChattingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 0px 20px;
 `;
