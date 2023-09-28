@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
+// import { io } from "socket.io-client";
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@store/types';
 import { useParams } from 'react-router-dom';
@@ -16,7 +17,12 @@ const ChatRoom = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const { isOpen, open, close } = useModal();
   const { id } = useParams<{ id: string }>();
-  const ChatRef = useRef(null);
+  // const socket = io();
+  //todo : 추후 소켓 서버와 연결
+  // const socketConnect = socket.connect('http://localhost:8000', {
+  //           path: '/socket.io', // 서버 path와 일치시켜준다
+  //           //transports: ['websocket'] // polling 시도하지말고 바로 웹소켓으로 하려면 설정
+  // });
 
   const handleChangeState = (e : React.MouseEvent<HTMLDivElement>) => {
     setSaleState(e.currentTarget.innerText);
@@ -32,7 +38,16 @@ const ChatRoom = () => {
     }
   }, []);
 
-  
+  //* 메세지 수신
+  // useEffect(() => {
+  //   socket.on('message-receive', (chatObj) => {
+  //     const { userId, massege, time } = chatObj;
+      
+  //   })
+  // }, [chatStorage]);
+
+
+  console.log('채팅룸', chatStorage)
 
   return (
     <>
@@ -45,7 +60,10 @@ const ChatRoom = () => {
       <Wrapper>
         <InfoCollapse saleState={saleState} />
           <Chatting />
-        <ChatInput saleState={saleState} ChatRef={ChatRef} />
+        <ChatInput
+          saleState={saleState}
+          userId={id}
+        />
       </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>

@@ -12,8 +12,6 @@ const Chatting = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const { id } = useParams<{ id: string }>();
 
-
-
   return (
     <>
       <DateBar date={new Date()} />

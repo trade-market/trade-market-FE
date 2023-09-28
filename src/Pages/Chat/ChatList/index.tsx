@@ -11,8 +11,7 @@ import ConfirmModal from '@components/common/ConfirmModal';
 const ChatList = () => {
   const [deleteModeOn, setDeleteModeOn] = useState<boolean>(false);
   const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
-  // const socket = socketio(process.env.REACT_APP_SOCKET_URL);
-  // const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL);
+
   const {
     isOpen: isDeleteModalOpen,
     open: deleteModalOpen,
@@ -54,8 +53,16 @@ const ChatList = () => {
         <HeaderSection>
           <span className='title'>채팅</span>
           {!deleteModeOn ?
-            <img className='check' src={Check_icon} onClick={() => { setDeleteModeOn(prev => !prev); checkItems.clear(); }} />
-            : <DeleteButton $active={checkItems.size > 0} onClick={() => checkItems.size > 0 ? deleteHandler() : setDeleteModeOn(prev => !prev)}>삭제</DeleteButton>}
+            <img 
+              className='check' src={Check_icon}
+              onClick={() => {
+                setDeleteModeOn(prev => !prev); checkItems.clear(); 
+            }} />
+            : <DeleteButton
+              $active={checkItems.size > 0}
+              onClick={() => checkItems.size > 0 ? deleteHandler() : setDeleteModeOn(prev => !prev)}
+            >삭제</DeleteButton>
+          }
         </HeaderSection>
       </CommonHeader>
       <Wrapper>

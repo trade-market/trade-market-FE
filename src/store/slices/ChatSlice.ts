@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface chatStorageType {
+  userId: string; message: any; time: Date | null;
+}
+
 interface ChatState {
-  chatStorage: string[];
+  chatStorage: chatStorageType[];
   planTime: { date: Date | null; ap: string; hour: number; minute:number };
   alarm: string;
 }
@@ -17,8 +21,8 @@ export const ChatSlice = createSlice({
   name: 'chat',
   initialState,
   reducers: {
-    setChatStorage: (state, action: PayloadAction<string[]>) => {
-      state.chatStorage = action.payload;
+    setChatStorage: (state, action: PayloadAction<chatStorageType>) => {
+      state.chatStorage.push(action.payload);
     },
     setPlanDate : (state, action: PayloadAction<Date | null>) => {
       state.planTime.date = action.payload;
