@@ -27,4 +27,5 @@ const ChatTimeBlock = styled.div<{ $send: boolean; }>`
   font-weight: 500;
   font-size: ${({ theme }) => theme.font.size.xSmall};
   color : ${({ theme }) => theme.color.gray};
+  letter-spacing: 0.5px;
 `;
