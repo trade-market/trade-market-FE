@@ -43,7 +43,8 @@ const MakePlan = () => {
           visibleCloseButtonLeft={true}
           hiddenGoBack={true}
           closeClick={() => navigate(`/chat-list/${id}`)}
-        >약속 잡기</CommonHeader>
+        >약속 잡기
+        </CommonHeader>
         <PlanWrapper>
           <PostSection label={'약속 시간'}>
             <BoxContainer onClick={open}>

@@ -58,11 +58,8 @@ const ChatRoom = () => {
         </CommonHeader>
         <ChatWrapper>
           <InfoCollapse saleState={saleState} />
-            <Chatting />
-          <ChatInput
-            saleState={saleState}
-            userId={id}
-            />
+          <Chatting />
+          <ChatInput saleState={saleState} userId={id} />
         </ChatWrapper>
       </Wrapper>
       {isOpen && (

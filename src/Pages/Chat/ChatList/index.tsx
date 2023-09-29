@@ -63,10 +63,10 @@ const ChatList = () => {
       </CommonHeader>
       <ChatWrapper>
         <ChatLists
-          ChatListData={tempData}
-          deleteModeOn={deleteModeOn}
-          checkHandler={checkHandler}
-          checkItems={checkItems}
+        ChatListData={tempData}
+        deleteModeOn={deleteModeOn}
+        checkHandler={checkHandler}
+        checkItems={checkItems}
           />
       </ChatWrapper>
       <ConfirmModal

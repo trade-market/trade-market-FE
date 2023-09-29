@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import GoodManner_Large from '@Assets/Icons/Chat/GoodManner_Large_Active.svg';
 import BadManner_Large from '@Assets/Icons/Chat/BadManner_Large_Active.svg';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import * as M from './EvaluationList/EvaluationList';
+import * as M from './EvaluationList/EvaluationListStyles';
 
 interface IMyEvaluationProps {
   mannerType: string;
@@ -11,10 +11,9 @@ interface IMyEvaluationProps {
 
 const MyEvaluation = ({ mannerType, select }: IMyEvaluationProps) => {
   const navigate = useNavigate();
-
   return (
     <>
-      <M.Wrpper>
+      <M.Wrapper>
         <M.TitleContainer>
         <div className='title'>
         <img className='mannerIcon' src={mannerType === 'good' ? GoodManner_Large : BadManner_Large} />
@@ -24,21 +23,19 @@ const MyEvaluation = ({ mannerType, select }: IMyEvaluationProps) => {
         <M.ListConTainer>
           {
             [...select].map((list, idx) => (
-              <M.ListBox
-                key={idx}
-                className='my'
-                > {list}
+              <M.ListBox key={idx} className='my'>
+                {list}
               </M.ListBox>
             ))
           }
         </M.ListConTainer>
-        </M.Wrpper>
-        <PostBlueButtons
-        option={1}
-        disabled={false}
-        BlueButtonName={'홈'}
-        BlueButtonClickHandler={() => navigate('/', { replace: true })}
-        />
+      </M.Wrapper>
+      <PostBlueButtons
+      option={1}
+      disabled={false}
+      BlueButtonName={'홈'}
+      BlueButtonClickHandler={() => navigate('/', { replace: true })}
+      />
     </>
   );
 };
