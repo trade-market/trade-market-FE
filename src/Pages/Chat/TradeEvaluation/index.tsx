@@ -11,11 +11,12 @@ import EvaluationList from '@components/Chat/TradeEvaluation/EvaluationList/Eval
 const TradeEvaluation = () => {
   const [MannerType, setMannerType] = useState<string | null>(null);
   const [isComplete, setIsComplete] = useState(false);
+  const tradeUserNickName = '세모난 수박';
 
   const renderWriteTypeButton = (
     buttonId: string,
+    text: string,
     imageSrc: string,
-    text: string
   ) => (
     <EvaluationTypeButton
       onClick={() => setMannerType(buttonId)}
@@ -25,30 +26,39 @@ const TradeEvaluation = () => {
     />
   ); 
 
+  const renderEvaluationComponent = () => {
+    switch (MannerType) {
+      case null: // 매너 점수 주기 vs 비매너 점수 주기
+        return (
+          <ContentsSection>
+            <TitleSection
+              h3Text={`${tradeUserNickName} 님과의 거래가 어떠셨나요?`}
+              />
+            <ButtonsContainer>
+              {renderWriteTypeButton('good', '매너 점수 주기', GoodManner_Large)}
+              {renderWriteTypeButton('bad', '비매너 점수 주기', BadManner_Large)}
+            </ButtonsContainer>
+          </ContentsSection>
+        )
+      default : // 내가 남긴 평가
+        return (
+          <ListContainer>
+            <EvaluationList
+            mannerType={MannerType}
+            tradeUserNickName={tradeUserNickName}
+            isComplete={isComplete}
+            setIsComplete={setIsComplete}
+            />
+          </ListContainer>
+        )
+    }
+}
+
   return (
     <>
       <CommonHeader>{!isComplete ? '평가하기' : '내가 남긴 평가'}</CommonHeader>
       <Container>
-          {!MannerType ? 
-          <ContentsSection>
-            <TitleSection
-              h3Text="세모난 수박 님과의 거래가 어떠셨나요?"
-              />
-            <ButtonsContainer>
-              {renderWriteTypeButton('good', GoodManner_Large, '매너 점수 주기')}
-              {renderWriteTypeButton('bad', BadManner_Large, '비매너 점수 주기')}
-            </ButtonsContainer>
-          </ContentsSection>
-          :
-          <ListContainer>
-            <EvaluationList
-              mannerType={MannerType}
-              tradeUserId={'세모난 수박'}
-              isComplete={isComplete}
-              setIsComplete={setIsComplete}
-            />
-          </ListContainer>
-        }
+        {renderEvaluationComponent()}
       </Container>
     </>
   );

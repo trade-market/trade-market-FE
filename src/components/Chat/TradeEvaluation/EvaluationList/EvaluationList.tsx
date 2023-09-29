@@ -10,12 +10,12 @@ import MyEvaluation from '../MyEvaluation';
 
 interface IEvaluationListProps {
   mannerType: string;
-  tradeUserId: string;
+  tradeUserNickName: string;
   isComplete: boolean;
   setIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const EvaluationList = ({ mannerType, tradeUserId, isComplete, setIsComplete }: IEvaluationListProps) => {
+const EvaluationList = ({ mannerType, tradeUserNickName, isComplete, setIsComplete }: IEvaluationListProps) => {
   const [select, setSelect] = useState<Set<string>>(new Set());
   const { isOpen, open, close } = useModal();
 
@@ -48,7 +48,7 @@ const EvaluationList = ({ mannerType, tradeUserId, isComplete, setIsComplete }: 
                 <img className='mannerIcon' src={mannerType === 'good' ? GoodManner_Large : BadManner_Large} />
                 <TitleText>{EvaluationOption[mannerType][0]}</TitleText>
               </div>
-              <SubText>{`${tradeUserId} 님과의 거래에서 어떤 점이 ${EvaluationOption[mannerType][1]}`}</SubText>
+              <SubText>{`${tradeUserNickName} 님과의 거래에서 어떤 점이 ${EvaluationOption[mannerType][1]}`}</SubText>
             </TitleContainer>
             <ListConTainer>
               {
@@ -80,7 +80,7 @@ const EvaluationList = ({ mannerType, tradeUserId, isComplete, setIsComplete }: 
         isOpen={isOpen}
         title="평가를 완료하시겠습니까?"
         content={`한번 완료한 평가는 수정하기 어려우니 \n 신중하게 평가해주시길 바랍니다.`}
-        confirmedContent={`${tradeUserId} 님에 \n 대한 평가가 완료되었습니다.`}
+        confirmedContent={`${tradeUserNickName} 님에 \n 대한 평가가 완료되었습니다.`}
         onFinalOkClick={handleConfirm}
         closeAction={close}
         confirmType={'완료'}
