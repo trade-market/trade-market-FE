@@ -30,9 +30,10 @@ export default ChatListHeader;
 
 const CheckButton = styled.img`
   cursor: pointer;
+  padding-left: 7px;
 `;
 
-const DeleteButton = styled.button<{$active : boolean}>`
+const DeleteButton = styled.button<{ $active: boolean }>`
   border: none;
   background-color: transparent;
   color : ${({ theme, $active }) => $active ? '#FF5B22' : theme.color.gray}; 

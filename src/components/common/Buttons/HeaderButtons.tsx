@@ -16,7 +16,7 @@ export default HeaderButtons;
 
 const Buttons = styled.div`
   display: flex;
-  min-width: 25px;
-  width: fit-content;
+  width: 40px;
   justify-content: center;
+  align-items: center;
 `;
