@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-interface IChatActiveProps {
+interface IUnreadChatActiveProps {
 
 }
 
-const ChatActive = ({}: IChatActiveProps) => {
+const UnreadChatNav = ({}: IUnreadChatActiveProps) => {
   return (
     <Wrapper>
-      <ChatActiveButton className='ChatActiveButton'/>
+      <UnreadChatActiveButton className='UnreadChatActiveButton'/>
     </Wrapper>
   );
 };
 
-export default ChatActive;
+export default UnreadChatNav;
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   margin-left: 6px;
 `;
 
-const ChatActiveButton = styled.div`
+const UnreadChatActiveButton = styled.div`
   position: absolute; 
   width: 4px;
   height: 4px;

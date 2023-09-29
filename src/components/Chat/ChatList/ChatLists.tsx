@@ -1,4 +1,4 @@
-import ChatListItem from '@components/Chat/ChatList/ChatListItem';
+import ChatListItem from '@components/Chat/ChatList/ChatListItem/ChatListItem';
 
 interface IChatDataProps {
   nickname: string;

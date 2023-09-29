@@ -1,4 +1,4 @@
-import ChatActive from './ChatActive';
+import UnreadChatNav from './UnreadChatNav';
 
 interface INaviMenuProps {
   icon: string;
@@ -8,11 +8,9 @@ interface INaviMenuProps {
 }
 
 const NaviMenu = ({ icon, active, menu }: INaviMenuProps) => {
-  console.log(menu)
-
   return (
     <div className="item">
-      { menu === '채팅' && <ChatActive /> }
+      { menu === '채팅' && <UnreadChatNav /> }
       <img className="icon" src={icon} />
       <div className={active ? 'active' : ''}>{menu}</div>
     </div>
