@@ -53,15 +53,13 @@ const ChatList = () => {
   return (
     <Wrapper>
       <CommonHeader>
-        <HeaderSection>
-          <span className='title'>채팅</span>
-          <ChatListHeader
-            deleteModeOn={deleteModeOn}
-            setDeleteModeOn={setDeleteModeOn}
-            checkItems={checkItems}
-            deleteHandler={deleteHandler}
-            />
-        </HeaderSection>
+        <span className='title'>채팅</span>
+        <ChatListHeader
+          deleteModeOn={deleteModeOn}
+          setDeleteModeOn={setDeleteModeOn}
+          checkItems={checkItems}
+          deleteHandler={deleteHandler}
+          />
       </CommonHeader>
       <ChatWrapper>
         <ChatLists
@@ -90,19 +88,10 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-export const HeaderSection = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  .check {
-    padding-right: 5px;
-    cursor: pointer;
-  }
-`;
-
 export const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width : 100%;
   margin-top: 60px;
 `;
+

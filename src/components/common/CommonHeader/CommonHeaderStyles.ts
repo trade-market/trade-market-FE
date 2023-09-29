@@ -33,7 +33,7 @@ export const Container = styled.div<{$hidden : boolean}>`
   }
 `;
 
-export const CloseButton = styled.div<{ $display: string }>`
+export const CloseButton = styled.div<{ $display: string; }>`
   display: ${({ $display }) => $display};
   justify-content: flex-end;
   padding-right: 5px;

@@ -17,12 +17,6 @@ const ChatRoom = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const { isOpen, open, close } = useModal();
   const { id } = useParams<{ id: string }>();
-  // const socket = io();
-  //todo : 추후 소켓 서버와 연결
-  // const socketConnect = socket.connect('http://localhost:8000', {
-  //           path: '/socket.io', // 서버 path와 일치시켜준다
-  //           //transports: ['websocket'] // polling 시도하지말고 바로 웹소켓으로 하려면 설정
-  // });
 
   const handleChangeState = (e : React.MouseEvent<HTMLDivElement>) => {
     setSaleState(e.currentTarget.innerText);
@@ -33,12 +27,19 @@ const ChatRoom = () => {
     if (selectPlan.ap) {
       setSaleState('예약중')
     };
-    if ((selectPlan.date !== null) && (selectPlan.date < new Date())) { //2023,9,29
+    if ((selectPlan.date !== null) && (selectPlan.date < new Date())) {
       setSaleState('판매완료')
     }
   }, []);
 
-  //* 메세지 수신
+  //todo : 추후 소켓 서버와 연결
+  // const socket = io();
+  // const socketConnect = socket.connect('http://localhost:8000', {
+  //           path: '/socket.io', // 서버 path와 일치시켜준다
+  //           //transports: ['websocket'] // polling 시도하지말고 바로 웹소켓으로 하려면 설정
+  // });
+
+  //todo 메세지 수신
   // useEffect(() => {
   //   socket.on('message-receive', (chatObj) => {
   //     const { send, userId, massege, time } = chatObj;
@@ -48,19 +49,21 @@ const ChatRoom = () => {
 
   return (
     <>
-      <CommonHeader>
-        <HeaderSection>
-          <span className='title'>상대방 닉네임</span>
-          <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
-        </HeaderSection>
-      </CommonHeader>
       <Wrapper>
-        <InfoCollapse saleState={saleState} />
-          <Chatting />
-        <ChatInput
-          saleState={saleState}
-          userId={id}
-        />
+        <CommonHeader>
+          <HeaderSection>
+            <span className='title'>상대방 닉네임</span>
+            <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
+          </HeaderSection>
+        </CommonHeader>
+        <ChatWrapper>
+          <InfoCollapse saleState={saleState} />
+            <Chatting />
+          <ChatInput
+            saleState={saleState}
+            userId={id}
+            />
+        </ChatWrapper>
       </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
@@ -74,6 +77,10 @@ const ChatRoom = () => {
 };
 
 export default ChatRoom;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 const HeaderSection = styled.div`
   width: 100%;
@@ -103,10 +110,11 @@ const StateOptionComplete = styled(StateOption)`
   color : ${({ theme }) => theme.color.activeBlue};
 `;
 
-const Wrapper = styled.div`
+const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width : 100%;
   margin-top: 60px;
   padding-bottom: 70px;
 `;
+

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlarm } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { format } from "date-fns";
 import styled from 'styled-components';
 import useModal from '@hooks/useModal';
@@ -14,6 +14,7 @@ import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
 const MakePlan = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
   const { isOpen, open, close } = useModal();
   const selectPlan = useSelector((state: RootState) => state.chat.planTime);
   const selectAlarm = useSelector((state: RootState) => state.chat.alarm);
@@ -33,49 +34,58 @@ const MakePlan = () => {
   const handleNextButtonClick = () => {
     navigate(-1);
   }
-  
+
   return (
     <>
-      <CommonHeader>
-        약속 잡기
-      </CommonHeader>
       <Wrapper>
-        <PostSection label={'약속 시간'}>
-          <BoxContainer onClick={open}>
-            <Label $change={SelectTime.includes('오')}>
-              {selectPlan.ap ? SelectTime : initialTime}
-            </Label>
-            </BoxContainer>
-        </PostSection>
-        <PostSection label={'약속 전 알림 보내기'}>
-          <SelectBox
-            placeholder={selectAlarm}
-            option={'AlertOptions'}
-            isChange={true}
-            onClick={handleOnChangeSelectValue}
-            defaultActiveColor={true}
-            />
-        </PostSection>
-      </Wrapper>
-      <PostBlueButtons
-        option={1}
-        disabled={(!selectPlan.date) || (!selectAlarm)}
-        BlueButtonName={'완료'}
-        BlueButtonClickHandler={handleNextButtonClick}
-        />
-      {isOpen &&
-        <>
-        <Background onClick={close} />
-        <CalendarModal onClick={close} />
-        </>
-      }
+        <CommonHeader
+          display={'flex'}
+          visibleCloseButtonLeft={true}
+          hiddenGoBack={true}
+          closeClick={() => navigate(`/chat-list/${id}`)}
+        >약속 잡기</CommonHeader>
+        <PlanWrapper>
+          <PostSection label={'약속 시간'}>
+            <BoxContainer onClick={open}>
+              <Label $change={SelectTime.includes('오')}>
+                {selectPlan.ap ? SelectTime : initialTime}
+              </Label>
+              </BoxContainer>
+          </PostSection>
+          <PostSection label={'약속 전 알림 보내기'}>
+            <SelectBox
+              placeholder={selectAlarm}
+              option={'AlertOptions'}
+              isChange={true}
+              onClick={handleOnChangeSelectValue}
+              defaultActiveColor={true}
+              />
+          </PostSection>
+        </PlanWrapper>
+        <PostBlueButtons
+          option={1}
+          disabled={(!selectPlan.date) || (!selectAlarm)}
+          BlueButtonName={'완료'}
+          BlueButtonClickHandler={handleNextButtonClick}
+          />
+        </Wrapper>
+        {isOpen &&
+          <>
+            <Background onClick={close} />
+            <CalendarModal onClick={close} />
+          </>
+        }
     </>
   );
 };
 
 export default MakePlan;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+export const PlanWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width : 100%;
