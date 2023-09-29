@@ -7,6 +7,7 @@ import Home_able from '@Assets/Icons/Home/Home_able.svg';
 import Home_Disable from '@Assets/Icons/Home/Home_Disable.svg';
 import MY_able from '@Assets/Icons/Home/MY_able.svg';
 import MY_Disable from '@Assets/Icons/Home/MY_Disable.svg';
+import ChatActive from './ChatActive';
 
 const NavigationBar = () => {
   const { pathname } = useLocation();
