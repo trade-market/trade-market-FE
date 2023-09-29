@@ -1,6 +1,35 @@
 import styled from 'styled-components';
 import MannerCheck from '@Assets/Icons/Chat/MannerCheck.svg';
 
+interface IEvaluationTypeButtonProps {
+  text: string;
+  imageSrc: string;
+  onClick: () => void;
+  selected: boolean | null;
+  size?: string;
+}
+
+function EvaluationTypeButton({
+  text,
+  imageSrc,
+  onClick,
+  selected,
+  size='36px'
+}: IEvaluationTypeButtonProps) {
+
+  return (
+    <Container onClick={onClick} $selected={selected}>
+      <Text>
+        {text}
+        <CheckContainer $selected={selected} src={MannerCheck} alt={text} />
+      </Text>
+      <ImageContainer src={ selected ? imageSrc.replace('.svg', '_Active.svg') : imageSrc} $size={size} alt={text} />
+    </Container>
+  );
+}
+
+export default EvaluationTypeButton;
+
 const Container = styled.div<{ $selected: boolean | null }>`
   position: relative;
   width: 100%;
@@ -38,32 +67,3 @@ const ImageContainer = styled.img<{ $size:string }>`
   bottom: 20px;
   right: 20px;
 `;
-
-interface IEvaluationTypeButtonProps {
-  text: string;
-  imageSrc: string;
-  onClick: () => void;
-  selected: boolean | null;
-  size?: string;
-}
-
-function EvaluationTypeButton({
-  text,
-  imageSrc,
-  onClick,
-  selected,
-  size='36px'
-}: IEvaluationTypeButtonProps) {
-
-  return (
-    <Container onClick={onClick} $selected={selected}>
-      <Text>
-        {text}
-        <CheckContainer $selected={selected} src={MannerCheck} alt={text} />
-      </Text>
-      <ImageContainer src={ selected ? imageSrc.replace('.svg', '_Active.svg') : imageSrc} $size={size} alt={text} />
-    </Container>
-  );
-}
-
-export default EvaluationTypeButton;

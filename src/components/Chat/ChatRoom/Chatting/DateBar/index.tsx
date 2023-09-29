@@ -7,7 +7,6 @@ interface IDateBarProps {
 
 const DateBar = ({date} : IDateBarProps) => {
   const ChatDate = format(new Date(date), `yyyy년 MM월 dd일`);
-
   return (
     <Wrapper>
       <div className='chat-date'>

@@ -38,14 +38,16 @@ const MakePlan = () => {
   return (
     <>
       <Wrapper>
+        {/* 헤더 */}
         <CommonHeader
           display={'flex'}
           visibleCloseButtonLeft={true}
           hiddenGoBack={true}
           closeClick={() => navigate(`/chat-list/${id}`)}
-        >약속 잡기
+          >약속 잡기
         </CommonHeader>
         <PlanWrapper>
+          {/* 캘린더 모달 */}
           <PostSection label={'약속 시간'}>
             <BoxContainer onClick={open}>
               <Label $change={SelectTime.includes('오')}>
@@ -53,6 +55,7 @@ const MakePlan = () => {
               </Label>
               </BoxContainer>
           </PostSection>
+          {/* 알람 셀렉박스 */}
           <PostSection label={'약속 전 알림 보내기'}>
             <SelectBox
               placeholder={selectAlarm}
@@ -63,12 +66,14 @@ const MakePlan = () => {
               />
           </PostSection>
         </PlanWrapper>
+        {/* 완료버튼 */}
         <PostBlueButtons
           option={1}
           disabled={(!selectPlan.date) || (!selectAlarm)}
           BlueButtonName={'완료'}
           BlueButtonClickHandler={handleNextButtonClick}
-          />
+        />
+        {/* 캘린더 모달 오픈 */}
         </Wrapper>
         {isOpen &&
           <>
@@ -120,7 +125,6 @@ const BoxContainer = styled.div`
   font-size: ${({ theme }) => theme.font.size.base};
   cursor: pointer;
   background: url('/down.svg') right no-repeat;
-
   &::before {
     position: absolute;
     top: 7px;

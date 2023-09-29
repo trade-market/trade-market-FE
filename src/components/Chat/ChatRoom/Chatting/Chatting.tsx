@@ -13,12 +13,12 @@ const Chatting = () => {
       {
         chatStorage.map((chat, i, arr) => {
           let standardTime = CheckDate(arr[0].time);
-          let flag = false;
-          if (i === 0 || standardTime !== CheckDate(chat.time)) flag = true;
+          let isNewChatDate = false;
+          if (i === 0 || standardTime !== CheckDate(chat.time)) isNewChatDate = true;
           else standardTime = CheckDate(chat.time);
           return (
             <ChattingWrapper key={i}>
-              {flag ? <DateBar date={chat.time} /> : <></>}
+              {isNewChatDate ? <DateBar date={chat.time} /> : null}
               <SpeechBubble send={chat.send} message={chat.message} time={chat.time} />
             </ChattingWrapper>
           )
