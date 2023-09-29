@@ -3,6 +3,7 @@ import * as S from "./SearchStyles";
 import RecentSearsh from "@/components/Search/RecentSearch/RecentSearch";
 import NeighborhoodSearch from "@/components/Search/NeighborhoodSearch/NeighborhoodSearch";
 import SearchInput from "@/components/Search/SearchInput/SearchInput";
+import WriteButton from '@components/Home/WriteButton';
 
 export interface keyInterface {
   id: number
@@ -61,6 +62,7 @@ const Search = () => {
       />
       <S.Line />
       <NeighborhoodSearch />
+      <WriteButton />
     </S.Wrapper>
   );
 };

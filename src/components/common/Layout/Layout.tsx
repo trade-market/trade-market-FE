@@ -30,6 +30,10 @@ function Layout({ children }: ILayoutProps) {
     shouldHideComponent(pathRegex)
   );
 
+  const NavNotHidden = [/^\/search/].some((pathRegex) =>
+    shouldHideComponent(pathRegex)
+  );
+
   const { height } = useWindowSize();
 
   return (
@@ -37,7 +41,7 @@ function Layout({ children }: ILayoutProps) {
       <GlobalStyle />
       {!isHidden && <Header />}
       {children}
-      {!isHidden && <NavigationBar />}
+      {(!isHidden || NavNotHidden) && <NavigationBar />}
     </Wrapper>
   );
 }
