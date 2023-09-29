@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 interface ICheckBoxProps {
   id: string;
   checkHandler: ((id: string, isChecked: boolean) => void);
@@ -11,15 +13,17 @@ const CheckBox = ({ id, checkHandler, checkItems }: ICheckBoxProps) => {
   };
 
   return (
-    <>
-      <input
+      <Input
       id={id}
       type='checkbox'
       checked={checkItems.has(id) ? true : false}
       onChange={(e) =>checkItemHandler(e)}
         />
-    </>
   );
 };
 
 export default CheckBox;
+
+const Input = styled.input`
+  margin-top: 20px;
+`;
