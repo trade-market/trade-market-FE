@@ -39,14 +39,14 @@ const Progress2 = () => {
         </W.Container>
       {isModalOpen &&
         <BottomSheet height={'140px'} onClick={() => setIsModalOpen(false)}>
-            <label>
+            <label className='single'>
               사진 앨범
-              <input 
-              type='file'
-              id='file'
-              accept='image/*'
-              onChange={handleGetImage}
-              />
+                <input 
+                type='file'
+                id='file'
+                accept='image/*'
+                onChange={handleGetImage}
+                />
               </label>
           </BottomSheet>
           } 

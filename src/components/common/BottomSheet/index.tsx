@@ -53,7 +53,6 @@ const Container = styled.div<{ $height?: string;}>`
   overflow-y: scroll;
   height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -67,10 +66,7 @@ const Container = styled.div<{ $height?: string;}>`
     }
   }
 
-  :nth-child(1),
-  :nth-child(2),
-  :nth-child(3),
-  :nth-child(4) {
+  * {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,8 +81,8 @@ const Container = styled.div<{ $height?: string;}>`
   }
 
   :nth-child(1) {
-    border-radius: 8px 8px 0 0;
-  }
+      border-radius: 8px 8px 0 0;
+    }
 
   :nth-last-child(2) {
     border-radius: 0 0 8px 8px;
