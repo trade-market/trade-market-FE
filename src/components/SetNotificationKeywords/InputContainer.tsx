@@ -41,7 +41,6 @@ function InputContainer({ onAdd, currentKeywordCount }: IInputContainerProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('currentKeywordCount', currentKeywordCount);
     if (currentKeywordCount >= 10) {
       open();
       return;
