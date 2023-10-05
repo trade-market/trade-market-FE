@@ -29,6 +29,10 @@ import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
 import Notifications from '@Pages/Notifications';
+import ChatList from '@Pages/Chat/ChatList';
+import ChatRoom from '@Pages/Chat/ChatRoom';
+import MakePlan from '@Pages/Chat/MakePlan';
+import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
 
 function Router() {
   return (
@@ -61,6 +65,7 @@ function Router() {
           {/* 비로그인 유저만 접근 가능한 페이지 */}
           <Route element={<PublicRoute />}>
             <Route path="/auth" element={<Auth />} />
+            <Route path="/notifications" element={<Notifications />} />
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
@@ -102,6 +107,10 @@ function Router() {
               <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
             <Route path="/notifications" element={<Notifications />} />
+            <Route path='chat-list' element={<ChatList />} />
+            <Route path='chat-list/:id' element={<ChatRoom />} />
+            <Route path='chat-list/:id/make-plan' element={<MakePlan />} />
+            <Route path='chat-list/:id/trade-evaluation' element={<TradeEvaluation />} />
           </Route>
         </Routes>
       </Layout>

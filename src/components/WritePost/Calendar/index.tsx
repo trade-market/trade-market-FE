@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { ko } from "date-fns/esm/locale";
 import { getYear, getMonth } from "date-fns";
@@ -8,12 +7,11 @@ import arrpw_left from '@Assets/Icons/WritePost/arrpw_left.svg'
 import arrow_right from '@Assets/Icons/WritePost/arrow_right.svg'
 
 interface ICalendarProps {
-  dispatchType: any;
   selectdeadline: Date | null;
+  onChange: (date: Date | null, event: React.SyntheticEvent<any, Event> | undefined) => void;
 }
 
-const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
-  const dispatch = useDispatch();
+const Calendar = ({onChange, selectdeadline} : ICalendarProps) => {
   const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
   return (
@@ -26,7 +24,7 @@ const Calendar = ({dispatchType, selectdeadline} : ICalendarProps) => {
         minDate={new Date()} // minDate 이전 날짜 선택 불가
         // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
         selected={selectdeadline}
-        onChange={date => dispatch(dispatchType(date))}
+        onChange={onChange}
         inline
         renderCustomHeader={({
           date,
@@ -59,11 +57,12 @@ const Container = styled.div <{$innerWidth : number }>`
 
   .selectedDay,
   .unselectedDay {
-    padding: 8px 0px;
+    padding: 7px 0px;
     width: 42px;
     height: 42px;
     font-size: 16px;
     border-radius: 50%;
+    border: 1px solid ${({ theme }) => theme.color.white};
     @media screen and (min-width: 395px) {
         margin: 3px calc(4.5px + 0.1vw);
     }
@@ -71,31 +70,35 @@ const Container = styled.div <{$innerWidth : number }>`
   .selectedDay {
     background-color: ${({ theme }) => theme.color.activeBlue};
   }
-
+  .unselectedDay {
+    &[aria-disabled="false"] {
+      &:hover {
+      color: ${({ theme }) => theme.color.activeBlue};
+      background-color: ${({ theme }) => theme.color.white};
+      border: 1px solid ${({ theme }) => theme.color.activeBlue};
+      }
+    }
+  }
   .react-datepicker, .react-datepicker__header, .react-datepicker__month {
     background-color: ${({ theme }) => theme.color.white};
     margin: 0 auto;
     border: none;
   }
-
   .react-datepicker {
     font-family: ${({ theme }) => theme.font.family.Pretendard};
     width: 100%;
     justify-content: space-between;
     display: flex;
   }
-
   .react-datepicker__day--outside-month { // 이전 달, 다음 달에 해당하는 날짜는 표시되지 않도록 hidden
     cursor: default;
     visibility: hidden; 
   }
-
   .react-datepicker__month-container, .react-datepicker__month { 
     width: 100%;
     white-space: nowrap;
   }
 `;
-
 const CalendarHead = styled.div`
   display: flex;
   padding-left: 20px;

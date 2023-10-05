@@ -23,9 +23,14 @@ function Layout({ children }: ILayoutProps) {
     /^\/write-post\/\w+/,
     /^\/my-page\/.+$/,
     /^\/notifications/,
+    /^\/chat-list\/.+$/,
   ];
 
   const isHidden = hiddenPaths.some((pathRegex) =>
+    shouldHideComponent(pathRegex)
+  );
+
+  const NavNotHidden = [/^\/search/].some((pathRegex) =>
     shouldHideComponent(pathRegex)
   );
 
@@ -36,7 +41,7 @@ function Layout({ children }: ILayoutProps) {
       <GlobalStyle />
       {!isHidden && <Header />}
       {children}
-      {!isHidden && <NavigationBar />}
+      {(!isHidden || NavNotHidden) && <NavigationBar />}
     </Wrapper>
   );
 }

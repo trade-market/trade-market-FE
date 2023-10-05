@@ -1,47 +1,32 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import selectOptions from './selectOptionsType';
 
 interface IPostSectionProps {
   placeholder: string;
   option: string;
   isChange: boolean,
-  dispatchType: any,
+  onClick: React.MouseEventHandler<HTMLLIElement>,
   direction?: string;
+  defaultActiveColor?: boolean;
 }
 
-type selectOptionsType = {
-  [key: string]: string[];
-};
-
-const selectOptions: selectOptionsType = {
-  'TalentOptions': ['국어', '영어', '제2외국어', '개발/코딩', '디자인', '수학', '미술', '운동', '주식', '미용/뷰티', '취업', '자격증', '음악', '단순인력'],
-  'ObjectOptions': ['전자기기', '생활 가전', '가구', '생활/주방', '도서', '의류', '미용/뷰티', '스포츠/레저', '취미', '중고차', '티켓', '식품'],
-  'TimeOptions' : ['이른 아침(06시 ~ 09시)', '오전(09시 ~ 12시)', '오후(12시 ~ 18시)', '저녁(18시 ~ 00시)', '새벽(00시 ~ 06시)'],
-};
-
-const SelectBox = ({ placeholder, option, isChange, dispatchType, direction = 'down' }: IPostSectionProps) => {
-  const dispatch = useDispatch();
+const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down', defaultActiveColor }: IPostSectionProps) => {
   const [optionOpen, setOptionOpen] = useState(false);
-
-  const handleOnChangeSelectValue = ((dispatchType: any) => {
-    return (e: React.MouseEvent<HTMLElement>) => {
-      const event = e.target as HTMLElement;
-      dispatch(dispatchType(event.innerText));
-    }
-  });
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
-      <Label $change={isChange}>{placeholder}</Label>
+      <Label $change={isChange} $defaultActiveColor={defaultActiveColor}>
+        {placeholder}
+      </Label>
       <SelectOptions
         $open={optionOpen}
         $direction={direction}
         > {
         selectOptions[option] && selectOptions[option].map((op, i) => (
           <Option
-          key={i}
-            onClick={handleOnChangeSelectValue(dispatchType)}>{op}</Option>
+            key={i}
+            onClick={onClick}>{op}</Option>
         ))
       }
       </SelectOptions>
@@ -77,9 +62,9 @@ const BoxContainer = styled.div`
   }
 `;
 
-const Label = styled.label<{ $change: boolean }>`
+const Label = styled.label<{ $change: boolean; $defaultActiveColor: boolean }>`
   display: flex;
-  color : ${({ $change, theme }) => $change ? theme.color.activeBlue : theme.color.gray};
+  color : ${({ $change, $defaultActiveColor, theme }) => $defaultActiveColor ? theme.color.black :  $change ? theme.color.activeBlue : theme.color.gray};
 `;
 
 const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`

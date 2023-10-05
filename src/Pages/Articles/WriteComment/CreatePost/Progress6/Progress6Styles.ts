@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progresss2Styles';
 
 export const Container = styled(ContainerTemplet)`
+padding: 15px 21px;
 `;
 
 export const BlueContainer = styled.div`
@@ -12,7 +13,7 @@ export const BlueContainer = styled.div`
   height: 268px;
   border: none;
   border-radius: 8px;
-  padding: 30px 20px;
+  padding: 20px;
   flex-direction: column;
   justify-content: center;
 `;

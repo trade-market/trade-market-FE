@@ -23,10 +23,12 @@ declare module 'styled-components' {
       gray: string;
       lightGray: string;
       whiteGray: string;
+      whiteLightGray: string;
       activeBlue: string;
       disableBtn: string;
       inputGray: string;
       orange: string;
+      lightBlue: string;
     };
     font: {
       family: {

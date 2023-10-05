@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { size } from '@/styles/theme';
 
 export const InputContainerTemplet = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ export const InputTemplet = styled.input`
   display: flex;
   text-align: center;
   justify-content: center;
-  max-width: 378px;
+  max-width: ${size.mobile};
   width: 100%;
   height: 48px;
   padding: 16px;

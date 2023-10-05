@@ -12,6 +12,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setSearch(e.target.value);
   };
 
@@ -23,6 +24,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
 
   //* EnterKey로 검색
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
     if (search && e.key === 'Enter') {
       // 엔터일때 부모의 onAddKeyword에 전달
       onAddKeyword(search)

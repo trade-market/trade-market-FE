@@ -13,7 +13,7 @@ const NavigationBar = () => {
 
   const menuItems = [
     {
-      path: '/chat',
+      path: '/chat-list',
       label: '채팅',
       iconAble: Chat_able,
       iconDisable: Chat_Disable,

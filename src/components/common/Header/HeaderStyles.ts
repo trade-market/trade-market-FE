@@ -1,9 +1,20 @@
 import styled from 'styled-components';
+import { size } from '../../../styles/theme';
 
 export const Container = styled.div`
-  width: 100%;
   display: flex;
-  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+  max-width: ${size.mobile};
+  min-height: 60px;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.color.bgColor};
+  justify-content: center;
+  padding: 0 15px;
 
   .header {
     display: flex;
