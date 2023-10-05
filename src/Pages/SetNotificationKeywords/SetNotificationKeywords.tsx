@@ -17,6 +17,8 @@ function SetNotificationKeywords() {
   ]);
 
   const handleAddKeyword = (keyword: string) => {
+    if (keyword === '') return;
+
     setKeywords((keywords) => [
       ...keywords,
       { id: String(Date.now()), keyword },
