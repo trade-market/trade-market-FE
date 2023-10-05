@@ -44,6 +44,7 @@ function Router() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/articles/:id" element={<Articles />} />
 
           {/* 비로그인 유저만 접근 가능한 페이지 */}
           <Route element={<PublicRoute />}>
