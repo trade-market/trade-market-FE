@@ -11,25 +11,23 @@ const Header = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <CommonHeader>
-      <Container>
-        <div className="header">
-          <div className="item" onClick={() => navigate('/')}>
-            {user.isLogin ? (
-              <div className="location">{user.town}</div>
-            ) : (
-              <div className="location non-user">내 위치</div>
-            )}
-          </div>
-          <img className="item" src={search} onClick={() => navigate('/')} />
-          <img
-            className="item"
-            src={Notification}
-            onClick={() => navigate('/notifications?type=keyword')}
-          />
+    <Container>
+      <div className="header">
+        <div className="item" onClick={() => navigate('/')}>
+          {user.isLogin ? (
+            <div className="location">{user.town}</div>
+          ) : (
+            <div className="location non-user">내 위치</div>
+          )}
         </div>
-      </Container>
-    </CommonHeader>
+        <img className="item" src={search} onClick={() => navigate('/search')} />
+        <img
+          className="item"
+          src={Notification}
+          onClick={() => navigate('/notifications?type=keyword')}
+        />
+      </div>
+    </Container>
   );
 };
 

@@ -3,6 +3,7 @@ import { size } from '../../../styles/theme';
 
 export const Container = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   width: 100%;

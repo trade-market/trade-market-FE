@@ -18,11 +18,11 @@ const BlueTextArea = ({ placeholder, value = '', maxLength = 0, maxHeight = '268
   };
   
   return (
-    <BlueContainer
-      placeholder={placeholder}
-      defaultValue={onBlur(value)}
-      onChange={onChangeHandler}
-      $maxHeight={maxHeight}
+      <BlueContainer
+        placeholder={placeholder}
+        defaultValue={onBlur(value)}
+        onChange={onChangeHandler}
+        $maxHeight={maxHeight}
       />
   );
 };

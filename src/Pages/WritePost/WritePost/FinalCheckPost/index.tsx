@@ -2,8 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
-import { format } from "date-fns"
-import exchange_icon from '@Assets/Icons/WritePost/exchange_icon.svg'
+import { format } from "date-fns";
+import Category from '@components/WritePost/Category';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
 
 const FinalCheckPost = () => {
@@ -41,9 +41,10 @@ const FinalCheckPost = () => {
                   </div>
                   : i === 1 ?
                     <div className='category'>
-                      <span className='provide'>{SetCreatePost[i][0]}</span>
-                      <img src={exchange_icon} />
-                      <span className='exchange'>{SetCreatePost[i][1]}</span>
+                      <Category
+                        provide={SetCreatePost[i][0]}
+                        exchange={SetCreatePost[i][1]}
+                      />
                     </div> 
                     : i === 6 ?
                       <div className='price'>{SetCreatePost[i]}</div>

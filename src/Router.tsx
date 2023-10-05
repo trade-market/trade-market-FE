@@ -30,6 +30,10 @@ import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
 import Notifications from '@Pages/Notifications';
 import SetNotificationKeywords from '@Pages/SetNotificationKeywords';
+import ChatList from '@Pages/Chat/ChatList';
+import ChatRoom from '@Pages/Chat/ChatRoom';
+import MakePlan from '@Pages/Chat/MakePlan';
+import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
 
 function Router() {
   return (
@@ -107,6 +111,13 @@ function Router() {
                 element={<SetNotificationKeywords />}
               />
             </Route>
+            <Route path="chat-list" element={<ChatList />} />
+            <Route path="chat-list/:id" element={<ChatRoom />} />
+            <Route path="chat-list/:id/make-plan" element={<MakePlan />} />
+            <Route
+              path="chat-list/:id/trade-evaluation"
+              element={<TradeEvaluation />}
+            />
           </Route>
         </Routes>
       </Layout>

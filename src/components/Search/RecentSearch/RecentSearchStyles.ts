@@ -34,9 +34,9 @@ export const Container = styled.div`
   .keyword {
     display: flex;
     margin-top: 5px;
-    color: ${({ theme }) => theme.color.activeBlue};
+    color: #101010;
     font-size: ${({ theme }) => theme.font.size.small};
-    border: 1px solid ${({ theme }) => theme.color.activeBlue};
+    border: 1px solid ${({ theme }) => theme.color.whiteGray};
     padding: 5px 5px 5px 8px;
     border-radius: 20px;
     cursor: pointer;

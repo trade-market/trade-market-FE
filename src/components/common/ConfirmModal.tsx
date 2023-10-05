@@ -34,6 +34,8 @@ const ModalWrapper = styled.div`
     transform: translateY(-50%);
     width: 100%;
     text-align: center;
+    line-height: 20px;
+    white-space: pre-line;
   }
 `;
 
@@ -77,6 +79,7 @@ interface IConfirmModalProps {
   confirmedContent?: string;
   closeAction: () => void;
   onFinalOkClick: () => void;
+  confirmType?: string;
 }
 
 function ConfirmModal({
@@ -87,6 +90,7 @@ function ConfirmModal({
   confirmedContent,
   onFinalOkClick,
   closeAction,
+  confirmType='확인'
 }: IConfirmModalProps) {
   const [isConfirmed, setIsConfirmed] = useState(false);
 
@@ -122,7 +126,7 @@ function ConfirmModal({
                 className="ok-btn initial-ok-btn"
                 onClick={handleInitialOkBtnClick}
               >
-                확인
+                {confirmType}
               </button>
             </>
           ) : (
