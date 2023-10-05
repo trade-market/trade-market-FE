@@ -30,6 +30,7 @@ const ProfileContainer = styled.div`
     font-weight: 500;
     padding: 4px 13px;
     font-size: ${({ theme }) => theme.font.size.small};
+    background-color: ${({ theme }) => theme.color.whiteGray};
   }
 `;
 

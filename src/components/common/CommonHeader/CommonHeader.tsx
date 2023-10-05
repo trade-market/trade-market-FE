@@ -42,40 +42,40 @@ const CommonHeader = ({
   visibleCloseButtonLeft = false, // 닫기 버튼이 왼쪽에 있을 시
 }: ICommonHeaderProps) => {
   const currentPath = window.location.pathname;
-  const hideGobackButton = ['/', '/my-page', `/chat-list`].includes(currentPath);
+  const hideGobackButton = ['/', '/my-page', `/chat-list`].includes(
+    currentPath
+  );
 
   return (
     <Container $hidden={hideGobackButton}>
-        {visibleDeleteBtn && (
-          <CancelButton onClick={onCancelClick}>취소</CancelButton>
-        )}
-        {!hideGobackButton && !hiddenGoBack && (
-          <GobackBtn onClick={onClick} />
-        )}
-        {visibleCloseButtonLeft &&
-          (<CloseButton
-            $display={display}
-            onClick={closeClick}
-            ><img src={Close} />
-          </CloseButton>)}
+      {visibleDeleteBtn && (
+        <CancelButton onClick={onCancelClick}>취소</CancelButton>
+      )}
+      {!hideGobackButton && !hiddenGoBack && !visibleDeleteBtn && (
+        <GobackBtn onClick={onClick} />
+      )}
+      {visibleCloseButtonLeft && (
+        <CloseButton $display={display} onClick={closeClick}>
+          <img src={Close} />
+        </CloseButton>
+      )}
       <div className={hideGobackButton ? 'title Only' : 'title'}>
         {children}
       </div>
-        {!visibleCloseButtonLeft &&
-          (<CloseButton
-          $display={display}
-          onClick={closeClick}>
+      {!visibleCloseButtonLeft && (
+        <CloseButton $display={display} onClick={closeClick}>
           <img src={Close} />
-          </CloseButton>)}
-          {visibleHeart && (
-            <OptionButton src={UnLikeIcon} alt="관심목록" onClick={heartClick} />
-            )}
-          {visibleOption && (
-            <OptionButton src={optionDot} alt="옵션" onClick={optionClick} />
-            )}
-          {visibleDeleteBtn && (
-            <DeleteButton onClick={onDeleteClick}>삭제</DeleteButton>
-            )}
+        </CloseButton>
+      )}
+      {visibleHeart && (
+        <OptionButton src={UnLikeIcon} alt="관심목록" onClick={heartClick} />
+      )}
+      {visibleOption && (
+        <OptionButton src={optionDot} alt="옵션" onClick={optionClick} />
+      )}
+      {visibleDeleteBtn && (
+        <DeleteButton onClick={onDeleteClick}>삭제</DeleteButton>
+      )}
     </Container>
   );
 };

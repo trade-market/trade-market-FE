@@ -102,6 +102,14 @@ function Notifications() {
     close();
     setVisibleDeleteBtn(true);
     dispatch(toggleCheckboxVisible());
+    if (isSelectAll) {
+      setIsSelectAll(false);
+    }
+  };
+
+  // 헤더의 '키워드 설정' 버튼 클릭 시
+  const handleKeywordSettingBtnClick = () => {
+    navigate('/notifications/set-notification-keyword');
   };
 
   // 헤더의 '삭제' 버튼 클릭 시
@@ -212,7 +220,9 @@ function Notifications() {
       </Container>
       {isOpen && (
         <BottomSheet height="200px" onClick={close}>
-          <KeywordSetting>키워드 설정</KeywordSetting>
+          <KeywordSetting onClick={handleKeywordSettingBtnClick}>
+            키워드 설정
+          </KeywordSetting>
           <DeleteNotification onClick={handleDeleteBtnInModal}>
             삭제
           </DeleteNotification>

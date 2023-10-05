@@ -29,6 +29,7 @@ import LikePosts from '@Pages/MyPage/LikePosts';
 import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
 import MannersDetail from '@Pages/MyPage/MannersDetail';
 import Notifications from '@Pages/Notifications';
+import SetNotificationKeywords from '@Pages/SetNotificationKeywords';
 import ChatList from '@Pages/Chat/ChatList';
 import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
@@ -42,30 +43,28 @@ function Router() {
         {/* 모든 유저가 접근 가능한 페이지 */}
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* signup 페이지는 컴포넌트 내부에서 처리함 */}
-          <Route path="/signup" element={<SignUp />} />
-          {/* oauth2/callback 페이지는 처리 필요 없음 */}
-          <Route path="/oauth2/callback">
-            <Route
-              path="kakao"
-              element={<OAuthRedirectHandler service="kakao" />}
-            />
-            <Route
-              path="google"
-              element={<OAuthRedirectHandler service="google" />}
-            />
-            <Route
-              path="naver"
-              element={<OAuthRedirectHandler service="naver" />}
-            />
-          </Route>
-          <Route path="/articles/:id" element={<Articles />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/articles/:id" element={<Articles />} />
 
           {/* 비로그인 유저만 접근 가능한 페이지 */}
           <Route element={<PublicRoute />}>
             <Route path="/auth" element={<Auth />} />
-            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/oauth2/callback">
+              <Route
+                path="kakao"
+                element={<OAuthRedirectHandler service="kakao" />}
+              />
+              <Route
+                path="google"
+                element={<OAuthRedirectHandler service="google" />}
+              />
+              <Route
+                path="naver"
+                element={<OAuthRedirectHandler service="naver" />}
+              />
+            </Route>
+            <Route path="/articles/:id" element={<Articles />} />
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
@@ -106,11 +105,20 @@ function Router() {
               <Route path="exchange-history" element={<ExchangeHistory />} />
               <Route path="manners-detail" element={<MannersDetail />} />
             </Route>
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path='chat-list' element={<ChatList />} />
-            <Route path='chat-list/:id' element={<ChatRoom />} />
-            <Route path='chat-list/:id/make-plan' element={<MakePlan />} />
-            <Route path='chat-list/:id/trade-evaluation' element={<TradeEvaluation />} />
+            <Route path="/notifications">
+              <Route index element={<Notifications />} />
+              <Route
+                path="set-notification-keyword"
+                element={<SetNotificationKeywords />}
+              />
+            </Route>
+            <Route path="chat-list" element={<ChatList />} />
+            <Route path="chat-list/:id" element={<ChatRoom />} />
+            <Route path="chat-list/:id/make-plan" element={<MakePlan />} />
+            <Route
+              path="chat-list/:id/trade-evaluation"
+              element={<TradeEvaluation />}
+            />
           </Route>
         </Routes>
       </Layout>
