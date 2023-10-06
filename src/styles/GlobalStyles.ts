@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         border: none;
         background: none;
+        color: ${theme.color.black};
       }
       input {
         font-family: ${theme.font.family.Pretendard};

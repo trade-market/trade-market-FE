@@ -34,6 +34,7 @@ import ChatList from '@Pages/Chat/ChatList';
 import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
+import NotFound from '@Pages/NotFound';
 
 function Router() {
   return (
@@ -120,6 +121,8 @@ function Router() {
               element={<TradeEvaluation />}
             />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>

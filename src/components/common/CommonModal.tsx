@@ -11,9 +11,10 @@ const ModalWrapper = styled.div`
   transform: translate(-50%, -50%);
   max-width: 300px;
   width: 100%;
-  height: 203px;
+  height: 163px;
   z-index: 999;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: ${({ theme }) => theme.color.bgColor};
   box-shadow: 0px 0px 12px 0px rgba(33, 86, 242, 0.1);
 
@@ -23,12 +24,11 @@ const ModalWrapper = styled.div`
     position: absolute;
     width: 100%;
     text-align: center;
-    margin-bottom: 27px;
   }
 
   .close-btn {
     position: absolute;
-    bottom: 0;
+    bottom: -38px;
     width: 100%;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
