@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -10,7 +11,7 @@ import useTimeDiff from '@/hooks/useTimeDiff';
 import BottomSheet from '@/components/common/BottomSheet';
 import useModal from '@hooks/useModal';
 import { OfferPostTypes } from '@/types/OfferTypes';
-import { useEffect, useState } from 'react';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_basic_ 30_30 ver.svg';
 
 // 더미데이터
 const offers = [
@@ -27,7 +28,7 @@ const offers = [
     isOriginalPost: true,
   },
   {
-    profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
+    profileImg: '',
     nickname: '거래왕',
     location: '신사동',
     rating: 'one',
@@ -78,7 +79,7 @@ function Articles() {
         <A.ProductImage src="https://health.chosun.com/site/data/img_dir/2021/06/08/2021060801363_0.jpg" />
         <A.ContentsContainer>
           <WriterProfile
-            profileImg="https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg"
+            profileImg={defaultCharacterImg} // Todo: ImgSrc가 있으면 해당 이미지 아니면 기본 이미지
             nickname="동그란 딸기"
             location="한강로동"
             rating="three"

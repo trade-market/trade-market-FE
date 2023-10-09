@@ -4,6 +4,7 @@ import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
 import useTimeDiff from '@hooks/useTimeDiff';
 import { OfferPostTypes } from '@/types/OfferTypes';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_basic_ 30_30 ver.svg';
 
 function OfferItem({
   profileImg,
@@ -23,7 +24,11 @@ function OfferItem({
     <O.Container>
       <O.ProfileContainer>
         <div className="left">
-          <img src={profileImg} alt="프로필 이미지" className="profile-img" />
+          <img
+            src={profileImg ? profileImg : defaultCharacterImg}
+            alt="프로필 이미지"
+            className="profile-img"
+          />
           <div className="info">
             <div className="name-wrap">
               <span>{nickname}</span> <RatingBadge rating={rating} />
