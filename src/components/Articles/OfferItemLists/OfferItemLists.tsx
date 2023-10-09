@@ -12,14 +12,15 @@ const Container = styled.li`
 
 interface IOfferItemListsProps {
   offers: OfferPostTypes[];
+  isOwner: boolean;
 }
 
-function OfferItemLists({ offers }: IOfferItemListsProps) {
+function OfferItemLists({ offers, isOwner }: IOfferItemListsProps) {
   return (
     <Ul>
       {offers.map((offers) => (
         <Container key={offers.id}>
-          <OfferItem {...offers} />
+          <OfferItem {...offers} isOwner={isOwner} />
         </Container>
       ))}
     </Ul>

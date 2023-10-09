@@ -3,8 +3,24 @@ import RatingBadge from '@components/common/RatingBadge';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
 import useTimeDiff from '@hooks/useTimeDiff';
-import { OfferPostTypes } from '@/types/OfferTypes';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
+import { GradeType } from '@/types/UserTypes';
+
+interface IOfferItemProps {
+  id: string;
+  userId: string;
+  profileImg: string;
+  nickname: string;
+  location: string;
+  rating: GradeType;
+  title: string;
+  category: string;
+  createdAt: string | Date;
+  price: string;
+  text: string;
+  isOriginalPost: boolean;
+  isOwner: boolean;
+}
 
 function OfferItem({
   id,
@@ -19,7 +35,8 @@ function OfferItem({
   price,
   text,
   isOriginalPost,
-}: OfferPostTypes) {
+  isOwner,
+}: IOfferItemProps) {
   const timeDifference = useTimeDiff(createdAt);
 
   return (
@@ -42,7 +59,7 @@ function OfferItem({
         </div>
         <div className="right">
           {isOriginalPost && <img src={linkIcon} alt="링크아이콘" />}
-          <img src={optionDot} alt="옵션" />
+          {isOwner && <img src={optionDot} alt="옵션" />}
         </div>
       </O.ProfileContainer>
       <O.ProductInfoContainer>
