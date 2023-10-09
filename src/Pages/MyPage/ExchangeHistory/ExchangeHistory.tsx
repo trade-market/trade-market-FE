@@ -7,6 +7,7 @@ import { Data } from '@components/Home/OurTownPost/DumyData';
 import useModal from '@hooks/useModal';
 import BottomSheet from '@components/common/BottomSheet';
 import useQueryString from '@hooks/useQueryString';
+import ConfirmModal from '@components/common/ConfirmModal';
 
 const Container = styled.div`
   padding-top: 60px;
@@ -23,6 +24,11 @@ const DeletePost = styled.div`
 function ExchangeHistory() {
   const type = useQueryString('type');
   const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isDeleteModalOpen,
+    open: deleteModalOpen,
+    close: deleteModalClose,
+  } = useModal();
   const [selectedPostId, setSelectedPostId] = useState('');
 
   let title = '';
@@ -78,6 +84,7 @@ function ExchangeHistory() {
   };
   const handleDeletePost = () => {
     console.log(selectedPostId);
+    deleteModalClose();
   };
 
   return (
@@ -100,9 +107,24 @@ function ExchangeHistory() {
         <BottomSheet height="250px" onClick={close}>
           <EditPost onClick={handleEditPost}>게시물 수정</EditPost>
           <ChangeStatus onClick={handleChangeStatus}>상태 변경</ChangeStatus>
-          <DeletePost onClick={handleDeletePost}>삭제</DeletePost>
+          <DeletePost
+            onClick={() => {
+              close();
+              deleteModalOpen();
+            }}
+          >
+            삭제
+          </DeletePost>
         </BottomSheet>
       )}
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        title="게시물 삭제"
+        content="게시물을 삭제하시겠습니까?"
+        confirmedContent="게시물이 삭제되었습니다."
+        onFinalOkClick={handleDeletePost}
+        closeAction={deleteModalClose}
+      />
     </>
   );
 }

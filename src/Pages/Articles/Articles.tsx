@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import WriterProfile from '@/components/Articles/WriterProfile';
@@ -12,6 +12,7 @@ import BottomSheet from '@/components/common/BottomSheet';
 import useModal from '@hooks/useModal';
 import { OfferPostTypes } from '@/types/OfferTypes';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
+import ConfirmModal from '@components/common/ConfirmModal';
 
 // 더미데이터
 const offers = [
@@ -55,11 +56,18 @@ const offers = [
 ] as OfferPostTypes[];
 
 function Articles() {
+  const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isDeleteModalOpen,
+    open: deleteModalOpen,
+    close: deleteModalClose,
+  } = useModal();
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
 
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
+  const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자인지 구분)
 
   // Todo: id를 통해 해당 게시글 정보 가져오기
   useEffect(() => {
@@ -69,9 +77,13 @@ function Articles() {
     }
   }, []);
 
+  const handleDeletePost = () => {
+    navigate('/', { replace: true });
+  };
+
   return (
     <>
-      <CommonHeader visibleOption optionClick={open}>
+      <CommonHeader visibleOption={isOwner} optionClick={open}>
         상세 페이지
       </CommonHeader>
       <A.Container>
@@ -98,14 +110,29 @@ function Articles() {
           {isOfferPost && <OfferItemLists offers={offers} />}
         </A.ContentsContainer>
       </A.Container>
-      <PostActionButtons isOfferPost={isOfferPost} isOwner={false} />
+      <PostActionButtons isOfferPost={isOfferPost} isOwner={isOwner} />
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton>게시물 수정</A.CorrectionButton>
-          <A.DeleteButton>삭제</A.DeleteButton>
+          <A.DeleteButton
+            onClick={() => {
+              close();
+              deleteModalOpen();
+            }}
+          >
+            삭제
+          </A.DeleteButton>
         </BottomSheet>
       )}
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        title="게시물 삭제"
+        content="게시물을 삭제하시겠습니까?"
+        confirmedContent="게시물이 삭제되었습니다."
+        onFinalOkClick={handleDeletePost}
+        closeAction={deleteModalClose}
+      />
     </>
   );
 }
