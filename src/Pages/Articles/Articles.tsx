@@ -98,7 +98,7 @@ function Articles() {
           {isOfferPost && <OfferItemLists offers={offers} />}
         </A.ContentsContainer>
       </A.Container>
-      <PostActionButtons isOfferPost={isOfferPost} isOwner={true} />
+      <PostActionButtons isOfferPost={isOfferPost} isOwner={false} />
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}

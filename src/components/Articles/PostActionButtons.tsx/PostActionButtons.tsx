@@ -21,13 +21,13 @@ function PostActions({ isOfferPost, isOwner }: IPostActionsProps) {
       <LikeButton isLiked={false} />
       <P.ButtonsContainer $isOfferPost={isOfferPost}>
         {isOfferPost && (
-          <ActionButton onClick={handleCommentButtonClick}>
+          <ActionButton onClick={handleCommentButtonClick} disabled={isOwner}>
             댓글쓰기
           </ActionButton>
         )}
         <BlueButton
           className={!isOfferPost && 'only-chat'}
-          disabled={!isOfferPost && isOwner}
+          disabled={(!isOfferPost && isOwner) || (isOfferPost && !isOwner)}
         >
           채팅하기
         </BlueButton>
