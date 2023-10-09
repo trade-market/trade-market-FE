@@ -99,19 +99,6 @@ function ConfirmModal({
 
   const handleInitialOkBtnClick = () => setIsConfirmed(true);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      setIsConfirmed(false);
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
   if (!isOpen) return null;
   return (
     <>
