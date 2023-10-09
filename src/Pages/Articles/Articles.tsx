@@ -3,13 +3,14 @@ import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import WriterProfile from '@/components/Articles/WriterProfile';
 import ProductInfo from '@components/Articles/ProductInfo';
-import PostActions from '@components/Articles/PostActions';
+import PostActionButtons from '@components/Articles/PostActionButtons.tsx';
 import LikeAndComment from '@/components/Articles/LikeAndComment';
 import OfferItemLists from '@/components/Articles/OfferItemLists';
 import useTimeDiff from '@/hooks/useTimeDiff';
 import BottomSheet from '@/components/common/BottomSheet';
 import useModal from '@hooks/useModal';
 import { OfferPostTypes } from '@/types/OfferTypes';
+import { useEffect, useState } from 'react';
 
 // 더미데이터
 const offers = [
@@ -56,7 +57,16 @@ function Articles() {
   const { isOpen, open, close } = useModal();
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
+
+  const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
+
   // Todo: id를 통해 해당 게시글 정보 가져오기
+  useEffect(() => {
+    // 더미데이터: 임시 id로 짝수면 offerPost, 홀수면 1:1 게시글
+    if (Number(id) % 2 === 0) {
+      setIsOfferPost(true);
+    }
+  }, []);
 
   return (
     <>
@@ -84,10 +94,10 @@ function Articles() {
             description="2년 간 사용했고, 기스가 좀 있습니다."
           />
           <LikeAndComment likeCount="3" commentCount="3" />
-          <OfferItemLists offers={offers} />
+          {isOfferPost && <OfferItemLists offers={offers} />}
         </A.ContentsContainer>
       </A.Container>
-      <PostActions />
+      <PostActionButtons isOfferPost={isOfferPost} />
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
