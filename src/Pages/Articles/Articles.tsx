@@ -62,7 +62,7 @@ function Articles() {
 
   // Todo: id를 통해 해당 게시글 정보 가져오기
   useEffect(() => {
-    // 더미데이터: 임시 id로 짝수면 offerPost, 홀수면 1:1 게시글
+    // 더미데이터: 임시 id로 짝수면 오퍼 게시글, 홀수면 1:1 게시글
     if (Number(id) % 2 === 0) {
       setIsOfferPost(true);
     }
@@ -97,7 +97,7 @@ function Articles() {
           {isOfferPost && <OfferItemLists offers={offers} />}
         </A.ContentsContainer>
       </A.Container>
-      <PostActionButtons isOfferPost={isOfferPost} />
+      <PostActionButtons isOfferPost={isOfferPost} isOwner={true} />
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
