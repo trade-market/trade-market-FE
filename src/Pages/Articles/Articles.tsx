@@ -67,7 +67,7 @@ function Articles() {
   const { id } = useParams();
 
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
-  const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자인지 구분)
+  const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
 
   // Todo: id를 통해 해당 게시글 정보 가져오기
   useEffect(() => {
