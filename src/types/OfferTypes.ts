@@ -1,6 +1,8 @@
 import { GradeType } from './UserTypes';
 
 export interface OfferPostTypes {
+  id: string;
+  userId: string;
   profileImg: string;
   nickname: string;
   location: string;

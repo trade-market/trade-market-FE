@@ -13,10 +13,13 @@ import useModal from '@hooks/useModal';
 import { OfferPostTypes } from '@/types/OfferTypes';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 import ConfirmModal from '@components/common/ConfirmModal';
+import ChatToOfferedUserContainer from '@components/Articles/ChatToOfferedUserContainer';
 
 // 더미데이터
-const offers = [
+const offers: OfferPostTypes[] = [
   {
+    id: '1',
+    userId: '123',
     profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
     nickname: '용',
     location: '한강로동',
@@ -29,6 +32,8 @@ const offers = [
     isOriginalPost: true,
   },
   {
+    id: '2',
+    userId: '123321',
     profileImg: '',
     nickname: '거래왕',
     location: '신사동',
@@ -41,6 +46,8 @@ const offers = [
     isOriginalPost: false,
   },
   {
+    id: '3',
+    userId: '3213',
     profileImg: 'https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg',
     nickname: '용',
     location: '한강로동',
@@ -53,7 +60,7 @@ const offers = [
     isOriginalPost: true,
     // isOriginalPost를 통해 원글인지 댓글인지 구분 하는데, API명세서가 나오면 수정 필요 (post id 여부로 판별?)
   },
-] as OfferPostTypes[];
+];
 
 function Articles() {
   const navigate = useNavigate();
@@ -125,6 +132,7 @@ function Articles() {
           </A.DeleteButton>
         </BottomSheet>
       )}
+      <ChatToOfferedUserContainer offers={offers} />
       <ConfirmModal
         isOpen={isDeleteModalOpen}
         title="게시물 삭제"

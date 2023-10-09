@@ -7,6 +7,8 @@ import { OfferPostTypes } from '@/types/OfferTypes';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 
 function OfferItem({
+  id,
+  userId,
   profileImg,
   nickname,
   location,
@@ -46,7 +48,7 @@ function OfferItem({
       <O.ProductInfoContainer>
         <img
           src="https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg"
-          alt="프로필 이미지"
+          alt="제품 이미지"
           className="product-img"
         />
         <div className="product-contents">
