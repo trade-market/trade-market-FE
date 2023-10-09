@@ -11,7 +11,7 @@ import useTimeDiff from '@/hooks/useTimeDiff';
 import BottomSheet from '@/components/common/BottomSheet';
 import useModal from '@hooks/useModal';
 import { OfferPostTypes } from '@/types/OfferTypes';
-import defaultCharacterImg from '@Assets/Character_Icons/Character_basic_ 30_30 ver.svg';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 
 // 더미데이터
 const offers = [

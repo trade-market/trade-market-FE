@@ -4,7 +4,7 @@ import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
 import useTimeDiff from '@hooks/useTimeDiff';
 import { OfferPostTypes } from '@/types/OfferTypes';
-import defaultCharacterImg from '@Assets/Character_Icons/Character_basic_ 30_30 ver.svg';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 
 function OfferItem({
   profileImg,
