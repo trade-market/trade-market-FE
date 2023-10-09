@@ -5,7 +5,7 @@ interface IProductInfoProps {
   title: string;
   category: string;
   uploadTime: string;
-  daedline: string;
+  deadLine: string;
   desiredCategory: string;
   tradeTime: string;
   price: string;
@@ -16,7 +16,7 @@ function ProductInfo({
   title,
   category,
   uploadTime,
-  daedline,
+  deadLine,
   desiredCategory,
   tradeTime,
   price,
@@ -35,7 +35,7 @@ function ProductInfo({
       <P.InfoContainer>
         <div>
           <P.InfoTitle>거래 마감일</P.InfoTitle>
-          <P.InfoDate>{daedline}</P.InfoDate>
+          <P.InfoDate>{deadLine}</P.InfoDate>
         </div>
         <div>
           <P.InfoTitle>희망 물품</P.InfoTitle>

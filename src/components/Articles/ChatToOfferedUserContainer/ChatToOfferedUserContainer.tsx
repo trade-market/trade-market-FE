@@ -15,7 +15,7 @@ const Container = styled.div`
   border-radius: 16px 16px 0px 0px;
   background-color: ${({ theme }) => theme.color.bgColor};
   z-index: 999;
-  animation: bottomUp 0.25s ease-in-out;
+  animation: bottomUp 0.3s ease-in-out;
   @keyframes bottomUp {
     0% {
       transform: translateY(100%);
@@ -32,12 +32,20 @@ const Container = styled.div`
 
 interface IChatToOfferedUserProps {
   offers: OfferPostTypes[];
+  isOpen: boolean;
+  modalClose: () => void;
 }
 
-function ChatToOfferedUser({ offers }: IChatToOfferedUserProps) {
+function ChatToOfferedUser({
+  offers,
+  isOpen,
+  modalClose,
+}: IChatToOfferedUserProps) {
+  if (!isOpen) return null;
+
   return (
     <>
-      <ModalBackground />
+      <ModalBackground onClick={modalClose} />
       <Container>
         <BigTitle>채팅하기</BigTitle>
         <ChatToOfferedUserList offers={offers} />

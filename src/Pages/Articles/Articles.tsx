@@ -70,11 +70,23 @@ function Articles() {
     open: deleteModalOpen,
     close: deleteModalClose,
   } = useModal();
+  const {
+    isOpen: isChatToOfferedUserModalOpen,
+    open: chatToOfferedUserModalOpen,
+    close: chatToOfferedUserModalClose,
+  } = useModal();
   const timeDifference = useTimeDiff(new Date('2023-08-08T23:00:00')); // Todo: createdAt으로 변경
   const { id } = useParams();
 
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
   const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
+
+  const handleDeletePost = () => {
+    navigate('/', { replace: true });
+  };
+
+  // 1:1 거래일 시 채팅하기 버튼 클릭 시
+  const handleDirectChatInitiation = () => {};
 
   // Todo: id를 통해 해당 게시글 정보 가져오기
   useEffect(() => {
@@ -83,10 +95,6 @@ function Articles() {
       setIsOfferPost(true);
     }
   }, []);
-
-  const handleDeletePost = () => {
-    navigate('/', { replace: true });
-  };
 
   return (
     <>
@@ -107,7 +115,7 @@ function Articles() {
             title="여성용 나비 선글라스"
             category="의류"
             uploadTime={timeDifference}
-            daedline="08월 17일"
+            deadLine="08월 17일"
             desiredCategory="의류"
             tradeTime="오전(09시~12시)"
             price="21,000~24,000"
@@ -117,7 +125,13 @@ function Articles() {
           {isOfferPost && <OfferItemLists offers={offers} />}
         </A.ContentsContainer>
       </A.Container>
-      <PostActionButtons isOfferPost={isOfferPost} isOwner={isOwner} />
+      <PostActionButtons
+        isOfferPost={isOfferPost}
+        isOwner={isOwner}
+        onChatButtonClick={
+          isOfferPost ? chatToOfferedUserModalOpen : handleDirectChatInitiation
+        } // 오퍼 게시물 일때 채팅하기 버튼 클릭 시 모달 오픈, 1:1 게시물 일때 채팅하기 버튼 클릭 시 바로 채팅방으로 이동
+      />
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
@@ -132,7 +146,11 @@ function Articles() {
           </A.DeleteButton>
         </BottomSheet>
       )}
-      <ChatToOfferedUserContainer offers={offers} />
+      <ChatToOfferedUserContainer
+        offers={offers}
+        isOpen={isChatToOfferedUserModalOpen}
+        modalClose={chatToOfferedUserModalClose}
+      />
       <ConfirmModal
         isOpen={isDeleteModalOpen}
         title="게시물 삭제"

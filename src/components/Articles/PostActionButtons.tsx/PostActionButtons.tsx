@@ -7,9 +7,14 @@ import ActionButton from '@/components/common/Buttons/ActionButton';
 interface IPostActionsProps {
   isOfferPost: boolean;
   isOwner: boolean;
+  onChatButtonClick: () => void;
 }
 
-function PostActions({ isOfferPost, isOwner }: IPostActionsProps) {
+function PostActions({
+  isOfferPost,
+  isOwner,
+  onChatButtonClick,
+}: IPostActionsProps) {
   const navigate = useNavigate();
 
   const handleCommentButtonClick = () => {
@@ -28,6 +33,7 @@ function PostActions({ isOfferPost, isOwner }: IPostActionsProps) {
         <BlueButton
           className={!isOfferPost && 'only-chat'}
           disabled={(!isOfferPost && isOwner) || (isOfferPost && !isOwner)}
+          onClick={onChatButtonClick}
         >
           채팅하기
         </BlueButton>
