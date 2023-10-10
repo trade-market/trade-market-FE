@@ -120,7 +120,13 @@ function ConfirmModal({
               </button>
             </>
           ) : (
-            <button className="ok-btn final-ok-btn" onClick={onFinalOkClick}>
+            <button
+              className="ok-btn final-ok-btn"
+              onClick={() => {
+                onFinalOkClick();
+                setIsConfirmed(false);
+              }}
+            >
               확인
             </button>
           )}
