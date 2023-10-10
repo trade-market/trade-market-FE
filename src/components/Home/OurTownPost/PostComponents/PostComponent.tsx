@@ -10,9 +10,14 @@ const ColorBlackMenu = styled.div`
   color: ${({ theme }) => theme.color.black};
 `;
 
+const ColorBlueMenu = styled.div`
+  color: ${({ theme }) => theme.color.Mainblue};
+`;
+
 const DeletePost = styled.div`
   color: ${({ theme }) => theme.color.orange};
 `;
+
 interface IPostComponentProps {
   post: {
     id: string;
@@ -29,7 +34,16 @@ interface IPostComponentProps {
 }
 
 const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
-  const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isOptionOpen,
+    open: optionOpen,
+    close: optionClose,
+  } = useModal();
+  const {
+    isOpen: isPostStateOpen,
+    open: postStateOpen,
+    close: postStateClose,
+  } = useModal();
   const {
     isOpen: isDeleteModalOpen,
     open: deleteModalOpen,
@@ -40,9 +54,23 @@ const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
     console.log(post.id);
   };
   const handleChangeStatus = () => {
+    optionClose();
+    postStateOpen();
     console.log(post.id);
   };
   const handleDeletePost = () => {
+    console.log(post.id);
+    deleteModalClose();
+  };
+  const handleSale = () => {
+    console.log(post.id);
+    deleteModalClose();
+  };
+  const handleReservation = () => {
+    console.log(post.id);
+    deleteModalClose();
+  };
+  const handleSoldOut = () => {
     console.log(post.id);
     deleteModalClose();
   };
@@ -60,22 +88,29 @@ const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
         location={post.location}
         date={post.date}
         isOption={isOption}
-        onOptionClick={open}
+        onOptionClick={optionOpen}
       />
-      {isOpen && (
-        <BottomSheet height="250px" onClick={close}>
+      {isOptionOpen && (
+        <BottomSheet height="250px" onClick={optionClose}>
           <ColorBlackMenu onClick={handleEditPost}>게시물 수정</ColorBlackMenu>
           <ColorBlackMenu onClick={handleChangeStatus}>
             상태 변경
           </ColorBlackMenu>
           <DeletePost
             onClick={() => {
-              close();
+              optionClose();
               deleteModalOpen();
             }}
           >
             삭제
           </DeletePost>
+        </BottomSheet>
+      )}
+      {isPostStateOpen && (
+        <BottomSheet height="250px" onClick={postStateClose}>
+          <ColorBlackMenu onClick={handleSale}>판매중</ColorBlackMenu>
+          <ColorBlackMenu onClick={handleReservation}>예약중</ColorBlackMenu>
+          <ColorBlueMenu onClick={handleSoldOut}>판매완료</ColorBlueMenu>
         </BottomSheet>
       )}
       <ConfirmModal
