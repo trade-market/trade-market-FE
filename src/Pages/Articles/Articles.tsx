@@ -79,7 +79,7 @@ function Articles() {
   const { id } = useParams();
 
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
-  const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
+  const isOwner = false; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
 
   const handleDeletePost = () => {
     navigate('/', { replace: true });
@@ -122,7 +122,7 @@ function Articles() {
             description="2년 간 사용했고, 기스가 좀 있습니다."
           />
           <LikeAndComment likeCount="3" commentCount="3" />
-          {isOfferPost && <OfferItemLists offers={offers} />}
+          {isOfferPost && <OfferItemLists offers={offers} isOwner={isOwner} />}
         </A.ContentsContainer>
       </A.Container>
       <PostActionButtons
