@@ -1,35 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
 import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
 import { Data } from '@components/Home/OurTownPost/DumyData';
-import useModal from '@hooks/useModal';
-import BottomSheet from '@components/common/BottomSheet';
 import useQueryString from '@hooks/useQueryString';
-import ConfirmModal from '@components/common/ConfirmModal';
 
 const Container = styled.div`
   padding-top: 60px;
 `;
 
-const EditPost = styled.div``;
-
-const ChangeStatus = styled.div``;
-
-const DeletePost = styled.div`
-  color: ${({ theme }) => theme.color.orange};
-`;
-
 function ExchangeHistory() {
   const type = useQueryString('type');
-  const { isOpen, open, close } = useModal();
-  const {
-    isOpen: isDeleteModalOpen,
-    open: deleteModalOpen,
-    close: deleteModalClose,
-  } = useModal();
-  const [selectedPostId, setSelectedPostId] = useState('');
 
   let title = '';
   switch (type) {
@@ -71,22 +53,6 @@ function ExchangeHistory() {
     //Todo: 교환내역 api로 받아오기
   }, [type]);
 
-  const handleOpen = (id: string) => {
-    setSelectedPostId(id);
-    open();
-  };
-
-  const handleEditPost = () => {
-    console.log(selectedPostId);
-  };
-  const handleChangeStatus = () => {
-    console.log(selectedPostId);
-  };
-  const handleDeletePost = () => {
-    console.log(selectedPostId);
-    deleteModalClose();
-  };
-
   return (
     <>
       <CommonHeader>{title}</CommonHeader>
@@ -94,37 +60,11 @@ function ExchangeHistory() {
         {Data.map((post) => {
           return (
             <PostContainer key={post.id}>
-              <PostComponent
-                post={post}
-                isOption={true}
-                onOptionClick={() => handleOpen(post.id)}
-              />
+              <PostComponent post={post} isOption={true} />
             </PostContainer>
           );
         })}
       </Container>
-      {isOpen && (
-        <BottomSheet height="250px" onClick={close}>
-          <EditPost onClick={handleEditPost}>게시물 수정</EditPost>
-          <ChangeStatus onClick={handleChangeStatus}>상태 변경</ChangeStatus>
-          <DeletePost
-            onClick={() => {
-              close();
-              deleteModalOpen();
-            }}
-          >
-            삭제
-          </DeletePost>
-        </BottomSheet>
-      )}
-      <ConfirmModal
-        isOpen={isDeleteModalOpen}
-        title="게시물 삭제"
-        content="게시물을 삭제하시겠습니까?"
-        confirmedContent="게시물이 삭제되었습니다."
-        onFinalOkClick={handleDeletePost}
-        closeAction={deleteModalClose}
-      />
     </>
   );
 }

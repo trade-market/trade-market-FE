@@ -13,6 +13,7 @@ const Ul = styled.ul`
 interface IChatToOfferedUserListProps {
   offers: OfferPostTypes[];
 }
+
 function ChatToOfferedUserList({ offers }: IChatToOfferedUserListProps) {
   return (
     <Ul>
