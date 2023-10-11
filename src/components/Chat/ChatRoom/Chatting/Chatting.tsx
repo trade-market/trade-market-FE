@@ -12,7 +12,7 @@ const Chatting = () => {
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth' ,  block: "end", inline: "nearest"});
+      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: "start", inline: "nearest"});
     }
   }, [chatStorage]);
 
@@ -41,5 +41,5 @@ export default Chatting;
 const ChattingWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 7px;
+  padding: 7px 0;
 `;
