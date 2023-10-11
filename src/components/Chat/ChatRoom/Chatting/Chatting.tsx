@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import styled from 'styled-components';
@@ -6,10 +7,25 @@ import DateBar from './DateBar';
 
 const Chatting = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
-  const CheckDate = ((time: any) => time.getMonth() + time.getDate())
+  const CheckDate = ((time: any) => time.getMonth() + time.getDate());
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      console.log('scrollRef.current.scrollTop', scrollRef.current.scrollTop)
+      console.log('scrollRef.current.scrollHeight', scrollRef.current.scrollHeight)
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+    // scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatStorage]);
+
 
   return (
-    <>
+    <Wrapper ref={scrollRef}>
       {
         chatStorage.map((chat, i, arr) => {
           let standardTime = CheckDate(arr[0].time);
@@ -24,11 +40,19 @@ const Chatting = () => {
           )
         })
       }
-    </>
+    </Wrapper>
   );
 };
 
 export default Chatting;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: gray;
+  overflow-y: auto;
+`;
 
 const ChattingWrapper = styled.div`
   display: flex;
