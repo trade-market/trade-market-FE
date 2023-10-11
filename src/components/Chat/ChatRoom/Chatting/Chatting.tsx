@@ -12,7 +12,7 @@ const Chatting = () => {
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: "start", inline: "nearest"});
+      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: "center", inline: "nearest"});
     }
   }, [chatStorage]);
 
