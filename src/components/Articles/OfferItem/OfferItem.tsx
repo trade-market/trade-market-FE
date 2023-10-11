@@ -3,9 +3,28 @@ import RatingBadge from '@components/common/RatingBadge';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import linkIcon from '@Assets/offer/Detailed-page/link.svg';
 import useTimeDiff from '@hooks/useTimeDiff';
-import { OfferPostTypes } from '@/types/OfferTypes';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
+import { GradeType } from '@/types/UserTypes';
+
+interface IOfferItemProps {
+  id: string;
+  userId: string;
+  profileImg: string;
+  nickname: string;
+  location: string;
+  rating: GradeType;
+  title: string;
+  category: string;
+  createdAt: string | Date;
+  price: string;
+  text: string;
+  isOriginalPost: boolean;
+  isOwner: boolean;
+}
 
 function OfferItem({
+  id,
+  userId,
   profileImg,
   nickname,
   location,
@@ -16,14 +35,19 @@ function OfferItem({
   price,
   text,
   isOriginalPost,
-}: OfferPostTypes) {
+  isOwner,
+}: IOfferItemProps) {
   const timeDifference = useTimeDiff(createdAt);
 
   return (
     <O.Container>
       <O.ProfileContainer>
         <div className="left">
-          <img src={profileImg} alt="프로필 이미지" className="profile-img" />
+          <img
+            src={profileImg ? profileImg : defaultCharacterImg}
+            alt="프로필 이미지"
+            className="profile-img"
+          />
           <div className="info">
             <div className="name-wrap">
               <span>{nickname}</span> <RatingBadge rating={rating} />
@@ -35,13 +59,13 @@ function OfferItem({
         </div>
         <div className="right">
           {isOriginalPost && <img src={linkIcon} alt="링크아이콘" />}
-          <img src={optionDot} alt="옵션" />
+          {isOwner && <img src={optionDot} alt="옵션" />}
         </div>
       </O.ProfileContainer>
       <O.ProductInfoContainer>
         <img
           src="https://www.a-m.co.kr/news/photo/202202/603633_4408_253.jpg"
-          alt="프로필 이미지"
+          alt="제품 이미지"
           className="product-img"
         />
         <div className="product-contents">

@@ -11,8 +11,12 @@ const Wrapper = styled.div`
   backdrop-filter: blur(2px);
 `;
 
-function ModalBackground() {
-  return <Wrapper />;
+interface IModalBackgroundProps {
+  onClick?: () => void;
+}
+
+function ModalBackground({ onClick }: IModalBackgroundProps) {
+  return <Wrapper onClick={onClick} />;
 }
 
 export default ModalBackground;

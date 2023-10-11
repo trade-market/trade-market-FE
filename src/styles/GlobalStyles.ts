@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
         background: #cbcbcb;
         font-family: ${theme.font.family.Pretendard};
         font-size: ${theme.font.size.base};
+        color: ${theme.color.black};
       }
       a {
         text-decoration: none;
