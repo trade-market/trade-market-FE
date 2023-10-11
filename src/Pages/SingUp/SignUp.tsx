@@ -7,11 +7,14 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '@store/slices/userSlice';
 import UserService from '@/service/UserService';
 import CommonModal from '@components/common/CommonModal';
+import useModal from '@hooks/useModal';
+import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
 
 function SignUp() {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as NewUserInfo;
+  const { isOpen, open } = useModal();
 
   const handleModalOkClick = () => {
     navigate('/', { replace: true });
@@ -45,19 +48,25 @@ function SignUp() {
     try {
       const data = await AuthService.signUp(userInfo);
       const { user } = await UserService.getUserInfo();
-      dispatch(setUser({ ...user, isLogin: true }));
-      navigate('/', { replace: true });
+      open();
+      setTimeout(() => {
+        dispatch(setUser({ ...user, isLogin: true }));
+        navigate('/', { replace: true });
+      }, 3000);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <ProfileSetupForm
-      defaultProfileImgSrc={profileImg || defaultProfileImg}
-      defaultNickname={nickname}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      <ProfileSetupForm
+        defaultProfileImgSrc={profileImg || defaultProfileImg}
+        defaultNickname={nickname}
+        handleSubmit={handleSubmit}
+      />
+      <SignUpSuccessModal isOpen={isOpen} />
+    </>
   );
 }
 

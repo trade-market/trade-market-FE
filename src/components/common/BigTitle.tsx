@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Title = styled.div`
+const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size.large};
   font-weight: 600;
 `;
