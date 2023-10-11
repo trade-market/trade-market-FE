@@ -27,6 +27,7 @@ const ChatInput = ({ saleState, userId }: IChatInputProps) => {
   //* 메세지 송신
   const handlesendMessageMessage = async (e: React.SyntheticEvent) => {
     if (!sendMessage.message) {
+      e.preventDefault();
       return;
     } else {
       e.preventDefault();
@@ -60,9 +61,11 @@ const ChatInput = ({ saleState, userId }: IChatInputProps) => {
                 />
               </form>
           </InputContainer>
-        <SendMessageButton $active={sendMessage.message.length > 0}>
-          <img src={
-            (saleState !== '판매완료') || (sendMessage.message.length > 0) ? Chat_send_able : Chat_send_disable} />
+        <SendMessageButton $active={sendMessage.message}>
+          <img
+          src={(saleState === '판매완료') || (!sendMessage.message) ? Chat_send_disable : Chat_send_able}
+          onClick={handlesendMessageMessage}
+        />
         </SendMessageButton>
       </Wrapper>
   );

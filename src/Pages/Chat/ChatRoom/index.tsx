@@ -1,6 +1,6 @@
 // import { io } from "socket.io-client";
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -46,10 +46,9 @@ const ChatRoom = () => {
       
   //   })
   // }, [chatStorage]);
-
+  
   return (
     <>
-      <Wrapper>
         <CommonHeader>
           <HeaderSection>
             <span className='title'>상대방 닉네임</span>
@@ -61,7 +60,6 @@ const ChatRoom = () => {
           <Chatting />
           <ChatInput saleState={saleState} userId={id} />
         </ChatWrapper>
-      </Wrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
           <StateOption onClick={handleChangeState}>판매중</StateOption>
@@ -74,10 +72,6 @@ const ChatRoom = () => {
 };
 
 export default ChatRoom;
-
-const Wrapper = styled.div`
-  display: flex;
-`;
 
 const HeaderSection = styled.div`
   width: 100%;
@@ -108,10 +102,11 @@ const StateOptionComplete = styled(StateOption)`
 `;
 
 const ChatWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width : 100%;
+  position: relative;
   margin-top: 60px;
   padding-bottom: 70px;
+  width: 100%;
+  height: 100%;
 `;
+
 

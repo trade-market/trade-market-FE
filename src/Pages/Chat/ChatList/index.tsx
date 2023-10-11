@@ -9,7 +9,7 @@ import useModal from '@hooks/useModal';
 import ConfirmModal from '@components/common/ConfirmModal';
 
   const tempData = [
-    { nickname: '닉네임', time: '오전 10:01', text: '시간 언제가 괜찮으신가요? 전 이번주...', userImage: Character_circle },
+    { nickname: '동그란 당근', time: '오전 10:01', text: '시간 언제가 괜찮으신가요? 전 이번주...', userImage: Character_circle },
     { nickname: '세모난 수박', time: '오후 4:29', text: '안녕하세요~', userImage: Character_circle },
     { nickname: '네모난 감자', time: '오전 7:31', text: '아직 판매 하시나요?', userImage: Character_circle },
   ];

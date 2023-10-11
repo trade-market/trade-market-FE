@@ -57,23 +57,33 @@ const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
   }
 
   return (
-    <>
-      <Wrapper $closeCollapse={closeCollapse}>
+    <Wrapper>
+      <CollapseWrapper $closeCollapse={closeCollapse}>
         <UserInfo />
         <ButtonContainer>
           {renderButton()}
         </ButtonContainer>
-      </Wrapper>
+      </CollapseWrapper>
       <UpArrow $closeCollapse={closeCollapse} onClick={() => setCloseCollapse(prev => !prev)}>
         <img src={up_arrow}/>
       </UpArrow>
-    </>
+    </Wrapper>
   );
 };
 
 export default InfoCollapse;
 
-const Wrapper = styled.div<{$closeCollapse : boolean}>`
+const Wrapper = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  z-index: 80;
+  max-width: ${size.mobile};
+  width: 100%;
+  background-color: ${({ theme }) => theme.color.white};
+`;
+
+const CollapseWrapper = styled.div<{ $closeCollapse: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
@@ -83,13 +93,11 @@ const Wrapper = styled.div<{$closeCollapse : boolean}>`
 
 const ButtonContainer = styled.div`
   display: flex;
-  width: 100%;
-  max-width: ${size.mobile};
   align-items: center;
   gap: 8px;
 `;
 
-const UpArrow = styled.div<{$closeCollapse : boolean}>`
+const UpArrow = styled.div<{ $closeCollapse: boolean }>`
   display: flex;
   width: 100%;
   justify-content: center;
