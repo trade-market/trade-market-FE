@@ -49,17 +49,17 @@ const ChatRoom = () => {
   
   return (
     <>
-      <CommonHeader>
-        <HeaderSection>
-          <span className='title'>상대방 닉네임</span>
-          <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
-        </HeaderSection>
-      </CommonHeader>
-      <ChatWrapper>
-        <InfoCollapse saleState={saleState} />
-        <Chatting />
-        <ChatInput saleState={saleState} userId={id} />
-      </ChatWrapper>
+        <CommonHeader>
+          <HeaderSection>
+            <span className='title'>상대방 닉네임</span>
+            <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
+          </HeaderSection>
+        </CommonHeader>
+        <ChatWrapper>
+          <InfoCollapse saleState={saleState} />
+          <Chatting />
+          <ChatInput saleState={saleState} userId={id} />
+        </ChatWrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
           <StateOption onClick={handleChangeState}>판매중</StateOption>
@@ -102,11 +102,11 @@ const StateOptionComplete = styled(StateOption)`
 `;
 
 const ChatWrapper = styled.div`
-  display: flex;
   position: relative;
-  flex-direction: column;
   margin-top: 60px;
   padding-bottom: 70px;
-  background-color: yellow;
+  width: 100%;
+  height: 100%;
 `;
+
 

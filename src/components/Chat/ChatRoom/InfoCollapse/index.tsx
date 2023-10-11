@@ -74,10 +74,12 @@ const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
 export default InfoCollapse;
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  z-index: 80;
   max-width: ${size.mobile};
   width: 100%;
-  z-index: 80;
   background-color: ${({ theme }) => theme.color.white};
 `;
 
