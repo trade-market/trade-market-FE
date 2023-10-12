@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Memubar = styled.div`
+export const MenubarContainer = styled.div`
   width: 100%;
   display: flex;
   height: 46px;

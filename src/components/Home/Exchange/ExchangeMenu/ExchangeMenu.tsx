@@ -2,6 +2,8 @@ import { useState } from 'react';
 import * as E from './ExchageMenuStyles';
 import { ObjectIcons, TalentIcons } from './ExchageIcons';
 import MapIcons from './MapIcons';
+import Menubar from './Menubar';
+
 
 const Exchange = () => {
   const [activeNav, setActiveNav] = useState(1);
@@ -10,16 +12,10 @@ const Exchange = () => {
 
   return (
     <E.Wrapper>
-      {/* 메뉴 */}
-      <E.Memubar>
-        <div className={activeNav === 1 ? 'menu active' : 'menu'} onClick={() => setActiveNav(1)}>
-          물물교환
-        </div>
-        <div className={activeNav === 2 ? 'menu active' : 'menu'} onClick={() => setActiveNav(2)}>
-          재능교환
-        </div>
-      </E.Memubar>
-      {/* 아이콘 */}
+      <Menubar
+        activeNav={activeNav}
+        setActiveNav={setActiveNav}
+      />
       <E.ExchangeContainer>
         {activeNav === 1 ?
           <MapIcons

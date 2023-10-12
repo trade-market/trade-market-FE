@@ -14,7 +14,6 @@ const Search = () => {
     JSON.parse(localStorage.getItem('keywords') || '[]'),
   );
 
-
   //* 검색어 추가
   const handleAddKeyword = (text: string) => {
     const newKeyword = {

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const InputContainer = styled.div`
   width: 100%;
-  margin-top: 8px;
   display: flex;
   padding: 10px 20px;
   position: relative;

@@ -55,8 +55,7 @@ export default DefaultSearch;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100%;
-  height: 100vh;
+  padding-top: 10px;
   flex-direction: column;
 `;
 
