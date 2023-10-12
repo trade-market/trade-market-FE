@@ -12,14 +12,14 @@ const FilteringOptions = [
     ],
   },
   {
-    sort_type: 'exchangetype',
+    sort_type: 'exchangform',
     title: '거래 형식',
     contents: ['1:1', '오퍼'],
   },
   {
     sort_type: 'category',
     title: '카테고리',
-    contents: [...ExchangeOptions],
+    contents: [],
   },
     {
     sort_type: 'sort',

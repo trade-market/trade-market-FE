@@ -2,29 +2,6 @@ import styled from "styled-components";
 import optionDown from '@Assets/Icons/Search/optionDown.svg';
 import FilteringOptions from '@/Options/FilteringOptions';
 
-const FilterLists = [
-  {
-    parameter: 'distances',
-    name: '지역 범위',
-    imgSrc: '/all.png',
-  },
-  {
-    parameter: 'exchangetype',
-    name: '거래 형식',
-    imgSrc: '/product.png',
-  },
-  {
-    parameter: 'category',
-    name: '카테고리',
-    imgSrc: '/category.png',
-  },
-  {
-    parameter: 'sort',
-    name: '정렬',
-    imgSrc: '/exhibition.png',
-  },
-];
-
 interface IFilterTagProps {
   open: () => void;
 }

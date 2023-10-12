@@ -4,7 +4,6 @@ import GobackBtn from '@components/common/CommonHeader/GobackBtn';
 import SearchInput from "@components/Search/DefaultSearch/SearchInput/SearchInput";
 import useQueryString from '@hooks/useQueryString';
 
-
 interface ISearchHeaderProps {
   handleAddKeyword: (text: string) => void;
 }

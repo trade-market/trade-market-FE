@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useQueryString from '@hooks/useQueryString';
 import SearchHeader from "@components/Search/SearchFiltering/SearchHeader";
 import styled from "styled-components";
@@ -11,26 +11,57 @@ import useModal from '@hooks/useModal';
 import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/BottomUpModal";
 import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
 import FilteringOptions from '@/Options/FilteringOptions';
+import ExchangeOptions from "@/Options/ExchangeOptions";
+
+interface FilterOptionType {
+  sort_type: string;
+  title: string;
+  contents: string[];
+}[];
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
 }
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
+  const exchangeType = useQueryString('type');
   const [activeNav, setActiveNav] = useState(1);
-  const [isFilter, setIsFilter] = useState([]);
   const { isOpen, open, close } = useModal();
+  const [isFilter, setIsFilter] = useState({
+    exchangType: exchangeType,
+    distance: '',
+    exchangForm: '',
+    category: '',
+    sort: ''
+  });
 
-  // const handleCheckList = (e, content, idx, sort_type) => {
-  //   e.target.checked
-  //     ? setIsFilter([
-  //         ...isFilter,
-  //         { id: idx, content, sortType: sort_type },
-  //       ])
-  //     : setIsFilter(
-  //         isFilter.filter(list => list.content !== content)
-  //       );
-  // }
+  const renderModal = (title: string, list: string[], i: number) => (
+    <BottomUpModal key={i} close={close} titleText={title}>
+      <ModalSelect list={list} />
+    </BottomUpModal>
+  );
+
+  const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
+    switch (filter.sort_type) {
+      case 'distance': 
+        return (
+          <></>
+        );
+      case 'category': 
+        return (
+          <></>
+        );
+      default:
+        return (
+          renderModal(filter.title, filter.contents, i)
+        )
+    }
+  };
+  
+  useEffect(() => {
+    const option = exchangeType === 'object' ? 0 : 1;
+    FilteringOptions[2].contents.splice(0,  FilteringOptions[2].contents.length, ...ExchangeOptions[option].contents)
+  }, [exchangeType]);
 
   return (
     <>
@@ -39,7 +70,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         activeNav={activeNav}
         setActiveNav={setActiveNav}
       />
-      <FilterTag open={open}/>
+      <FilterTag open={open} />
       <Container>
         {Data.map((post) => {
           return (
@@ -50,9 +81,9 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         })}
       </Container>
       {isOpen && (
-        <BottomUpModal close={close} titleText={'거래 형식'}>
-          <ModalSelect />
-        </BottomUpModal>
+        FilteringOptions.map((filter, i) => (
+          renderFilteringComponent(filter, i)
+        ))
       )}
     </>
     

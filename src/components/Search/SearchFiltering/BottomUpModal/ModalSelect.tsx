@@ -3,27 +3,26 @@ import styled from "styled-components";
 import check_blue from '@Assets/Icons/Chat/check_blue.svg';
 
 interface IModalSelectProps {
-  
+  list: string[];
 }
 
-const ModalSelect = () => {
-  const arr = ['1:1', '오퍼'];
+const ModalSelect = ({list}: IModalSelectProps) => {
   const [select, setSelect] = useState('');
 
   //* 카테고리 select
   const Selecthandler = (index: number) => {
-    const newSelectList = Array(arr.length).fill(false);
+    const newSelectList = Array(list.length).fill(false);
     newSelectList[index] = true;
-    setSelect(arr[index]);
+    setSelect(list[index]);
   };
 
   return (
     <Container>
       {
-        arr.map((op, i) => (
+        list.map((op, i) => (
           <OptionList
             key={i}
-            className={select === arr[i] ? 'active ' : ''}
+            className={select === list[i] ? 'active ' : ''}
             onClick={() => Selecthandler(i)}
           >
             {op}
