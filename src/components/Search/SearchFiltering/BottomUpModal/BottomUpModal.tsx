@@ -37,7 +37,7 @@ const Wapper = styled.div<{ $height?: string;}>`
   z-index: 150;
   position: fixed;
   bottom: 0;
-  height: 250px;
+  height: 270px;
   animation: bottomUp 0.3s ease-out;
   background-color: ${({ theme }) => theme.color.bgColor};
   border-radius: 16px 16px 0 0;
