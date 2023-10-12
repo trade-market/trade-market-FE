@@ -22,8 +22,7 @@ const RecentSearsh = ({ keywords, onClearKeywords, onRemoveKeyword }: IRecentSea
         {keywords?.length ?
           keywords?.map((k) => {
             return (
-              //TODO 추후에 해당 게시물 검색 페이지 ('/')로 연결
-              <div className="keyword" key={k.id} onClick={() => navigate('/search')}>
+              <div className="keyword" key={k.id} onClick={() => navigate(`?searching=${k.text}&type=object`)}>
                 {k.text}
                 <S.DeleteBtn
                   className="deleteBtn"

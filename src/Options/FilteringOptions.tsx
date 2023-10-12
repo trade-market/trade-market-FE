@@ -1,7 +1,6 @@
 import ExchangeOptions from "./ExchangeOptions";
 
 const FilteringOptions = [
-  ...ExchangeOptions,
   {
     sort_type: 'distance',
     title: '거리',
@@ -16,6 +15,11 @@ const FilteringOptions = [
     sort_type: 'exchangetype',
     title: '거래 형식',
     contents: ['1:1', '오퍼'],
+  },
+  {
+    sort_type: 'category',
+    title: '카테고리',
+    contents: [...ExchangeOptions],
   },
     {
     sort_type: 'sort',
