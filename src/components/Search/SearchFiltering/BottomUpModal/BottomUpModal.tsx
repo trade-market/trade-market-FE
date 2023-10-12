@@ -5,26 +5,31 @@ import ModalButtons from "./ModalButtons";
 import { Background } from '@components/common/BottomSheet/index';
 
 interface IBottomUpModalProps {
+  titleText?: string;
   close: () => void;
   children?: React.ReactNode;
 }
 
-const BottomUpModal = ({ close, children }: IBottomUpModalProps) => {
+const BottomUpModal = ({ titleText, close, children }: IBottomUpModalProps) => {
   const [selectOption, setSelectOption] = useState('');
 
   return (
     <>
       <Background onClick={close}/>
-      <Container>
-        <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={close} />
-      </Container>
+        <Wapper>
+          <Container>
+            <Title>{titleText}</Title>
+            {children}  
+          </Container>
+          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={close} />
+        </Wapper>
     </>
   );
 };
 
 export default BottomUpModal;
 
-const Container = styled.div<{ $height?: string;}>`
+const Wapper = styled.div<{ $height?: string;}>`
   display: flex;
   flex-direction: column;
   max-width: ${size.mobile};
@@ -32,10 +37,10 @@ const Container = styled.div<{ $height?: string;}>`
   z-index: 150;
   position: fixed;
   bottom: 0;
-  height: 300px;
+  height: 250px;
   animation: bottomUp 0.3s ease-out;
   background-color: ${({ theme }) => theme.color.bgColor};
-  border-radius: 8px 8px 0 0;
+  border-radius: 16px 16px 0 0;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -49,5 +54,16 @@ const Container = styled.div<{ $height?: string;}>`
       transform: translateY(0%);
     }
   }
-  background-color: yellow;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding : 30px;
+`;
+
+const Title = styled.div`
+  font-weight: 600;
+  font-size: ${({ theme }) => theme.font.size.large};
+  padding-bottom : 35px;
 `;

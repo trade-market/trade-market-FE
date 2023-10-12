@@ -9,6 +9,7 @@ import { Data } from '@components/Home/OurTownPost/DumyData';
 import FilterTag from '@components/Search/SearchFiltering/FilterTag';
 import useModal from '@hooks/useModal';
 import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/BottomUpModal";
+import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
@@ -36,8 +37,8 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         })}
       </Container>
       {isOpen && (
-        <BottomUpModal close={close}>
-
+        <BottomUpModal close={close} titleText={'거래 형식'}>
+          <ModalSelect />
         </BottomUpModal>
       )}
     </>
