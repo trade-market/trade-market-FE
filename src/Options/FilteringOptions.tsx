@@ -19,7 +19,7 @@ const FilteringOptions = [
   },
     {
     sort_type: 'sort',
-    title: '거래 형식',
+    title: '최신순',
     contents: ['최신순', '스크랩순'],
   },
 ];

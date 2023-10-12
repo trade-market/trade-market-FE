@@ -1,22 +1,21 @@
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from "./SearchInputStyles";
 import searchIcon from "@Assets/Icons/Search/Search_active.svg";
 
-
 interface ISearchInputProps {
-  onAddKeyword: (string: string) => void
+  onAddKeyword: (string: string) => void;
+  defaultValue?: string;
 }
 
-const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
-
+const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState<string>('');
 
   //* 상세 검색 페이지로 이동
   const searchFiltering = () => {
-    navigate(`?searching=${search}`);
+    navigate(`?searching=${search}&type=object`);
     onAddKeyword(search);
     setSearch('');
   }
@@ -44,7 +43,9 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
   //* 첫 rending시 input에 fucusing
   useLayoutEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
-  });
+    if (defaultValue) setSearch(defaultValue);
+  }, []);
+
 
   return (
     <form>

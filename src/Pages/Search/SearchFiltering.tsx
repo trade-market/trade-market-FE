@@ -10,6 +10,7 @@ import FilterTag from '@components/Search/SearchFiltering/FilterTag';
 import useModal from '@hooks/useModal';
 import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/BottomUpModal";
 import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
+import FilteringOptions from '@/Options/FilteringOptions';
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
@@ -17,7 +18,19 @@ interface ISearchFilteringProps {
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   const [activeNav, setActiveNav] = useState(1);
+  const [isFilter, setIsFilter] = useState([]);
   const { isOpen, open, close } = useModal();
+
+  // const handleCheckList = (e, content, idx, sort_type) => {
+  //   e.target.checked
+  //     ? setIsFilter([
+  //         ...isFilter,
+  //         { id: idx, content, sortType: sort_type },
+  //       ])
+  //     : setIsFilter(
+  //         isFilter.filter(list => list.content !== content)
+  //       );
+  // }
 
   return (
     <>

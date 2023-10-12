@@ -3,7 +3,7 @@ import styled from "styled-components";
 import check_blue from '@Assets/Icons/Chat/check_blue.svg';
 
 interface IModalSelectProps {
-  handleAddKeyword: (text: string) => void;
+  
 }
 
 const ModalSelect = () => {
@@ -16,8 +16,6 @@ const ModalSelect = () => {
     newSelectList[index] = true;
     setSelect(arr[index]);
   };
-
-  console.log(select)
 
   return (
     <Container>
@@ -42,7 +40,7 @@ export default ModalSelect;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap : 30px;
+  gap : 32px;
 `;
 
 const OptionList = styled.label`

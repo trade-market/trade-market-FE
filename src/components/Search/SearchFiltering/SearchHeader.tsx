@@ -2,17 +2,21 @@ import styled from 'styled-components';
 import { size } from '../../../styles/theme';
 import GobackBtn from '@components/common/CommonHeader/GobackBtn';
 import SearchInput from "@components/Search/DefaultSearch/SearchInput/SearchInput";
+import useQueryString from '@hooks/useQueryString';
+
 
 interface ISearchHeaderProps {
   handleAddKeyword: (text: string) => void;
 }
 
-const SearchHeader = ({handleAddKeyword}: ISearchHeaderProps) => {
+const SearchHeader = ({ handleAddKeyword }: ISearchHeaderProps) => {
+  const searching = useQueryString('searching');
+
   return (
     <Container>
       <GobackBtn />
       <InputContainer>
-        <SearchInput onAddKeyword={handleAddKeyword} />
+        <SearchInput onAddKeyword={handleAddKeyword} defaultValue={searching} />
       </InputContainer>
     </Container>
   );
