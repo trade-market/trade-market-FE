@@ -1,14 +1,25 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from "./SearchInputStyles";
 import searchIcon from "@Assets/Icons/Search/Search_active.svg";
+
 
 interface ISearchInputProps {
   onAddKeyword: (string: string) => void
 }
 
 const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
+
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState<string>('');
+
+  //* 상세 검색 페이지로 이동
+  const searchFiltering = () => {
+    navigate(`?searching=${search}`);
+    onAddKeyword(search);
+    setSearch('');
+  }
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,8 +29,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
 
   //* Click 검색
   const handleClick = () => {
-    onAddKeyword(search);
-    setSearch('');
+    searchFiltering();
   }
 
   //* EnterKey로 검색
@@ -27,8 +37,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
     e.preventDefault();
     if (search && e.key === 'Enter') {
       // 엔터일때 부모의 onAddKeyword에 전달
-      onAddKeyword(search)
-      setSearch('')
+      searchFiltering();
     }
   }
 
@@ -48,7 +57,7 @@ const SearchInput = ({ onAddKeyword }: ISearchInputProps) => {
           onKeyPress={handleEnter}
           ref={inputRef}
           />
-        <img src={searchIcon} onClick={handleClick}/>
+        <img src={searchIcon} onClick={handleClick} />
       </S.InputContainer>
     </form>
   );

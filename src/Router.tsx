@@ -35,6 +35,7 @@ import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
 import NotFound from '@Pages/NotFound';
+import SearchFiltering from '@Pages/Search/SearchFiltering';
 
 function Router() {
   return (
