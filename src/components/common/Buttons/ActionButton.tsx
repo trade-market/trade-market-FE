@@ -11,6 +11,7 @@ type ThemeColor =
   | 'black'
   | 'activeBlue'
   | 'disableBtn'
+  | 'whiteLightGray'
   | 'inputGray';
 
 interface IActionButtonProps {
@@ -20,6 +21,7 @@ interface IActionButtonProps {
   color?: ThemeColor;
   $backgroundColor?: ThemeColor;
   disabled?: boolean;
+  $width?: string;
 }
 
 function ActionButton({
@@ -37,7 +39,7 @@ function ActionButton({
 export default ActionButton;
 
 const Button = styled.button<IActionButtonProps>`
-  width: 100%;
+  width: ${({ $width }) => $width ? $width : '100%'}; 
   max-width: 100%;
   padding: 15px 42px;
   border-radius: 8px;

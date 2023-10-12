@@ -59,7 +59,7 @@ const MakePlan = () => {
           <PostSection label={'약속 전 알림 보내기'}>
             <SelectBox
               placeholder={selectAlarm}
-              option={'AlertOptions'}
+              option={'alert'}
               isChange={true}
               onClick={handleOnChangeSelectValue}
               defaultActiveColor={true}

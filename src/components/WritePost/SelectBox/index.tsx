@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import selectOptions from './selectOptionsType';
+import WriteOptions from '@/Options/WriteOptions';
 
 interface IPostSectionProps {
   placeholder: string;
@@ -13,23 +13,24 @@ interface IPostSectionProps {
 
 const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down', defaultActiveColor }: IPostSectionProps) => {
   const [optionOpen, setOptionOpen] = useState(false);
+  const selectList = WriteOptions.filter(op => op.sort_type === option).map(op => op.contents).flat();
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
       <Label $change={isChange} $defaultActiveColor={defaultActiveColor}>
         {placeholder}
       </Label>
-      <SelectOptions
+      <SelectListBox
         $open={optionOpen}
         $direction={direction}
-        > {
-        selectOptions[option] && selectOptions[option].map((op, i) => (
+        >
+        {selectList.map((op, i) =>  (
           <Option
             key={i}
             onClick={onClick}>{op}</Option>
-        ))
-      }
-      </SelectOptions>
+          )) 
+        }
+      </SelectListBox>
     </BoxContainer>
   );
 };
@@ -67,7 +68,7 @@ const Label = styled.label<{ $change: boolean; $defaultActiveColor: boolean }>`
   color : ${({ $change, $defaultActiveColor, theme }) => $defaultActiveColor ? theme.color.black :  $change ? theme.color.activeBlue : theme.color.gray};
 `;
 
-const SelectOptions = styled.ul<{ $open: boolean; $direction: string }>`
+const SelectListBox = styled.ul<{ $open: boolean; $direction: string }>`
   display: flex;
   flex-direction: column;
   position: absolute;

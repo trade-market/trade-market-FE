@@ -51,7 +51,7 @@ const SelectElement = () => {
         <PostSection label={`${inintialValueP.slice(0, 6)} 카테고리`}>
           <SelectBox
             placeholder={selectProvide}
-            option={pageType === '재능' ? 'TalentOptions' : 'ObjectOptions'}
+            option={pageType === '재능' ? 'talent' : 'object'}
             isChange={inintialValueP !== selectProvide}
             onClick={handleOnChangeSelectValue(setProvidePost)}
             />
@@ -59,7 +59,7 @@ const SelectElement = () => {
         <PostSection label={`${inintialValueE.slice(0, 6)} 카테고리`}>
           <SelectBox
             placeholder={selectExchange}
-            option={pageType === '재능' ? 'TalentOptions' : 'ObjectOptions'}
+            option={pageType === '재능' ? 'talent' : 'object'}
             isChange={inintialValueE !== selectExchange}
             onClick={handleOnChangeSelectValue(setExchangePost)}
             />
@@ -73,7 +73,7 @@ const SelectElement = () => {
         <PostSection label={'거래 가능 시간'}>
           <SelectBox
             placeholder={selectAbleTime}
-            option={'TimeOptions'}
+            option={'abletime'}
             isChange={inintialValuT !== selectAbleTime}
             onClick={handleOnChangeSelectValue(setAbleTimePost)}
             direction='up'

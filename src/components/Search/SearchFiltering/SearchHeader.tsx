@@ -27,10 +27,10 @@ const Container = styled.div`
   max-width: ${size.mobile};
   min-height: 60px;
   z-index: 2;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   background-color: ${({ theme }) => theme.color.bgColor};
-  padding: 10px 15px 15px 15px;
+  padding: 10px 10px 0px 15px;
 `;
 
 const InputContainer = styled.div`

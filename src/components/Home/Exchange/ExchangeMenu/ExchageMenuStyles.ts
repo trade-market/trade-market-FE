@@ -4,29 +4,28 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 `;
 
 export const MenubarContainer = styled.div`
-  width: 100%;
   display: flex;
-  height: 46px;
-  align-items : center;
-  justify-content: space-around;
+  width: 100%;
 
   .menu {
     display: flex;
     width: 100%;
+    min-height: 46px;
     height: 100%;
     align-items : center;
     justify-content: center;
     color : ${({ theme }) => theme.color.lightGray}; 
     font-size: 14px;
     cursor: pointer;
-    border-bottom: 0.7px solid #afafaf;
+    border-bottom: 0.8px solid #afafaf;
 
     &.active {
       color : ${({ theme }) => theme.color.activeBlue}; 
-      border-bottom: 1.7px solid ${({ theme }) => theme.color.activeBlue}; 
+      border-bottom: 2px solid ${({ theme }) => theme.color.activeBlue}; 
     } 
   }
 `;

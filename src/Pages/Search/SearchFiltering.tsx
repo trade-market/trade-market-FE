@@ -3,6 +3,12 @@ import useQueryString from '@hooks/useQueryString';
 import SearchHeader from "@components/Search/SearchFiltering/SearchHeader";
 import styled from "styled-components";
 import Menubar from '@components/Home/Exchange/ExchangeMenu/Menubar';
+import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
+import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
+import { Data } from '@components/Home/OurTownPost/DumyData';
+import FilterTag from '@components/Search/SearchFiltering/FilterTag';
+import useModal from '@hooks/useModal';
+import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/BottomUpModal";
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
@@ -10,23 +16,37 @@ interface ISearchFilteringProps {
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   const [activeNav, setActiveNav] = useState(1);
-
+  const { isOpen, open, close } = useModal();
 
   return (
-    <Wrapper>
+    <>
       <SearchHeader handleAddKeyword={handleAddKeyword} />
-        <Menubar
+      <Menubar
         activeNav={activeNav}
         setActiveNav={setActiveNav}
-        />
-    </Wrapper>
+      />
+      <FilterTag open={open}/>
+      <Container>
+        {Data.map((post) => {
+          return (
+            <PostContainer>
+              <PostComponent post={post} />
+            </PostContainer>
+          );
+        })}
+      </Container>
+      {isOpen && (
+        <BottomUpModal close={close}>
+
+        </BottomUpModal>
+      )}
+    </>
+    
   );
 };
 
 export default SearchFiltering;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: gainsboro;
+const Container = styled.div`
+  padding : 10px 20px 0 20px;
 `;
