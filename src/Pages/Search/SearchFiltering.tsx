@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import useQueryString from '@hooks/useQueryString';
 import SearchHeader from "@components/Search/SearchFiltering/SearchHeader";
 import styled from "styled-components";
@@ -20,36 +20,23 @@ interface ISearchFilteringProps {
 }
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectFilter, setSelectFilter] = useState<string[]>([]);
   const exchangeType = useQueryString('type');
-  const searching = useQueryString('searching');
   const [activeNav, setActiveNav] = useState(1);
   const { isOpen, open, close } = useModal();
-  const [isFilter, setIsFilter] = useState([
-    { sortType: 'searching', filtering: searching },
-    { sortType: 'type', filtering: exchangeType },
-  ]);
-
-  const makeQueryString = () => {
-    const queryString = isFilter
-      .map(({ filtering, sortType }) => `${sortType}=${filtering}`)
-      .map((item, idx) => {
-        return idx === 0 ? item : '&' + item;
-      })
-      .join('');
     
-    navigate(`?${queryString}`);
+  const Filteringhandler = () => {
+    const [queryType, select] = selectFilter;
+    searchParams.set(queryType, select);
+    setSearchParams(searchParams);
+    setSelectFilter([]);
     close();
   };
-    
-  const handleCheckList = useCallback((select: string, sort_type: string) => {
-    let flag = !isFilter.map((x) => x.sortType).includes(sort_type);
-    if (flag)setIsFilter([...isFilter, { sortType: sort_type, filtering: select }])
-  },[]);
 
   const renderModal = (filter: FilterOptionType, i: number) => (
-    <BottomUpModal key={i} close={close} titleText={filter.title} makeQueryString={makeQueryString}>
-      <ModalSelect filter={filter} handleCheckList={handleCheckList} />
+    <BottomUpModal key={i} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
+      <ModalSelect filter={filter} setSelectFilter={setSelectFilter} />
     </BottomUpModal>
   );
 
@@ -75,8 +62,9 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     FilteringOptions[2].contents.splice(0,  FilteringOptions[2].contents.length, ...ExchangeOptions[option].contents)
   }, [exchangeType]);
 
-
-  // console.log('isFilter', isFilter)
+  useEffect(() => {
+    if (selectFilter[0] === 'type') Filteringhandler(); // 메뉴바 클릭시 쿼리스트링 동기화
+  }, [selectFilter])
 
   return (
     <>
@@ -84,6 +72,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
       <Menubar
         activeNav={activeNav}
         setActiveNav={setActiveNav}
+        setSelectFilter={setSelectFilter}
       />
       <FilterTag open={open} />
       <Container>

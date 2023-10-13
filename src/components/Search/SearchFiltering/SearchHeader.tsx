@@ -10,7 +10,6 @@ interface ISearchHeaderProps {
 
 const SearchHeader = ({ handleAddKeyword }: ISearchHeaderProps) => {
   const searching = useQueryString('searching');
-
   return (
     <Container>
       <GobackBtn />
@@ -33,9 +32,11 @@ const Container = styled.div`
   /* position: fixed; */
   top: 0;
   background-color: ${({ theme }) => theme.color.bgColor};
-  padding: 10px 10px 0px 15px;
+  padding: 10px 0px 0px 15px;
+  margin-right: 5px;
 `;
 
 const InputContainer = styled.div`
   width: 100%;
+  margin-right: 7cap;
 `;

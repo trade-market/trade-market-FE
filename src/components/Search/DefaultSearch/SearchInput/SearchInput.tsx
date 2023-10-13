@@ -15,7 +15,7 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
 
   //* 상세 검색 페이지로 이동
   const searchFiltering = () => {
-    navigate(`?searching=${search}&type=object`);
+    navigate(`?searching=${search}&type=물물`);
     onAddKeyword(search);
     setSearch('');
   }

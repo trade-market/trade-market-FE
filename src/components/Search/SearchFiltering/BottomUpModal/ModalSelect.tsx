@@ -5,10 +5,10 @@ import FilterOptionType from "@/types/FilterTypes";
 
 interface IModalSelectProps {
   filter: FilterOptionType;
-  handleCheckList: (select: string, sort_type: string) => void;
+  setSelectFilter: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ModalSelect = ({ filter, handleCheckList }: IModalSelectProps) => {
+const ModalSelect = ({ filter, setSelectFilter }: IModalSelectProps) => {
   const { sort_type, contents } = filter;
   const [select, setSelect] = useState('');
 
@@ -17,7 +17,7 @@ const ModalSelect = ({ filter, handleCheckList }: IModalSelectProps) => {
     const newSelectList = Array(contents.length).fill(false);
     newSelectList[index] = true;
     setSelect(contents[index]);
-    handleCheckList(contents[index], sort_type);
+    setSelectFilter([sort_type, contents[index]]);
   };
 
   return (

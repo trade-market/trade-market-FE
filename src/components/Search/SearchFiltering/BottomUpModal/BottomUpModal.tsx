@@ -6,11 +6,11 @@ import { Background } from '@components/common/BottomSheet/index';
 interface IBottomUpModalProps {
   titleText: string;
   close: () => void;
-  makeQueryString: () => void;
   children: React.ReactNode;
+  Filteringhandler: () => void;
 }
 
-const BottomUpModal = ({ titleText, close, makeQueryString, children }: IBottomUpModalProps) => {
+const BottomUpModal = ({ titleText, close, Filteringhandler, children }: IBottomUpModalProps) => {
   return (
     <>
       <Background onClick={close}/>
@@ -19,7 +19,7 @@ const BottomUpModal = ({ titleText, close, makeQueryString, children }: IBottomU
             <Title>{titleText}</Title>
             {children}  
           </Container>
-          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={makeQueryString} />
+          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={Filteringhandler} />
         </Wapper>
     </>
   );
