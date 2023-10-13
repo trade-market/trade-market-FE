@@ -14,6 +14,7 @@ import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalS
 import FilteringOptions from '@/Options/FilteringOptions';
 import ExchangeOptions from "@/Options/ExchangeOptions";
 import FilterOptionType from "@/types/FilterTypes";
+import ModalCheckbox from '@components/Search/SearchFiltering/BottomUpModal/ModalCheckbox';
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
@@ -34,9 +35,13 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     close();
   };
 
+  // console.log(selectFilter)
+
   const renderModal = (filter: FilterOptionType, i: number) => (
+    // todo: BottomUpModal => 카테고리라면 radius={false} 
     <BottomUpModal key={i} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
-      <ModalSelect filter={filter} setSelectFilter={setSelectFilter} />
+      {/* <ModalSelect filter={filter} setSelectFilter={setSelectFilter} /> */}
+      <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} />
     </BottomUpModal>
   );
 
@@ -44,16 +49,20 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     switch (i) {
       case 0: 
         return (
-          <></>
-        );
-      case 1: 
-        return (
           renderModal(FilteringOptions[i], i)
         );
-      case 2: 
-        return (
-          <></>
-        );
+      // case 1: 
+      //   return (
+      //     renderModal(FilteringOptions[i], i)
+      //   );
+      // case 2: 
+      //   return (
+      //     <div>이번</div>
+      //   );
+      // case 3: 
+      //   return (
+      //     renderModal(FilteringOptions[i], i)
+      //   );
       // default:
       //   return (
       //     renderModal(FilteringOptions[i], i)
@@ -100,3 +109,20 @@ export default SearchFiltering;
 const Container = styled.div`
   padding : 10px 20px 0 20px;
 `;
+
+
+  // const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
+  //   if (i === 0) {
+  //     return (
+  //       <></>
+  //     )
+  //   } else if (i === 2) {
+  //     return (
+  //       <></>
+  //     )
+  //   } else {
+  //     return (
+  //       renderModal(FilteringOptions[i], i)
+  //     )
+  //   }
+  // };

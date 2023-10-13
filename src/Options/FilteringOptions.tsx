@@ -5,10 +5,10 @@ const FilteringOptions = [
     sort_type: 'distance',
     title: '거리',
     contents: [
-      '1 km',
-      '3 km',
-      '5 km',
-      '10 km',
+      '1km',
+      '3km',
+      '5km',
+      '10km',
     ],
   },
   {

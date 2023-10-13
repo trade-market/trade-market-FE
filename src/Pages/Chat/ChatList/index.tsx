@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import socketio from 'socket.io-client';
+// import socketio from 'socket.io-client';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ChatListHeader from '@components/Chat/ChatList/ChatListHeader';

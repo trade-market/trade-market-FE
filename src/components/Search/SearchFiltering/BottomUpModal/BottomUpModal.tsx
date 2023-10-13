@@ -8,13 +8,14 @@ interface IBottomUpModalProps {
   close: () => void;
   children: React.ReactNode;
   Filteringhandler: () => void;
+  radius?: boolean;
 }
 
-const BottomUpModal = ({ titleText, close, Filteringhandler, children }: IBottomUpModalProps) => {
+const BottomUpModal = ({ titleText, close, Filteringhandler, children, radius = true }: IBottomUpModalProps) => {
   return (
     <>
       <Background onClick={close}/>
-        <Wapper>
+        <Wapper $radius={radius}>
           <Container>
             <Title>{titleText}</Title>
             {children}  
@@ -27,7 +28,7 @@ const BottomUpModal = ({ titleText, close, Filteringhandler, children }: IBottom
 
 export default BottomUpModal;
 
-const Wapper = styled.div<{ $height?: string;}>`
+const Wapper = styled.div<{ $height?: string; $radius: boolean; }>`
   display: flex;
   flex-direction: column;
   max-width: ${size.mobile};
@@ -35,14 +36,10 @@ const Wapper = styled.div<{ $height?: string;}>`
   z-index: 150;
   position: fixed;
   bottom: 0;
-  height: 270px;
+  height: ${({ $radius }) => $radius ? '270px' : '450px'}; 
   animation: bottomUp 0.3s ease-out;
   background-color: ${({ theme }) => theme.color.bgColor};
-  border-radius: 16px 16px 0 0;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  border-radius: ${({ $radius }) => $radius ? '16px 16px 0 0;' : '0'}; 
   
   @keyframes bottomUp {
     0% {
@@ -58,6 +55,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding : 30px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Title = styled.div`
