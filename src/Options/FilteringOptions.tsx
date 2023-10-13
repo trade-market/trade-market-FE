@@ -14,7 +14,7 @@ const FilteringOptions = [
   {
     sort_type: 'exchangform',
     title: '거래 형식',
-    contents: ['1:1', '오퍼'],
+    contents: ['1 : 1', '오퍼'],
   },
   {
     sort_type: 'category',

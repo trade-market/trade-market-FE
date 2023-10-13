@@ -34,10 +34,7 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
   //* EnterKey로 검색
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (search && e.key === 'Enter') {
-      // 엔터일때 부모의 onAddKeyword에 전달
-      searchFiltering();
-    }
+    if (search && e.key === 'Enter') searchFiltering(); // 엔터일때 부모의 onAddKeyword에 전달
   }
 
   //* 첫 rending시 input에 fucusing
@@ -45,7 +42,6 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
     if (inputRef.current !== null) inputRef.current.focus();
     if (defaultValue) setSearch(defaultValue);
   }, []);
-
 
   return (
     <form>

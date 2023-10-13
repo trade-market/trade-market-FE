@@ -54,10 +54,10 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         return (
           <></>
         );
-      default:
-        return (
-          renderModal(FilteringOptions[i], i)
-        )
+      // default:
+      //   return (
+      //     renderModal(FilteringOptions[i], i)
+      //   )
     }
   };
   

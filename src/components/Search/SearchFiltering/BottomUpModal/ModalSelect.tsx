@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components"; 
 import check_blue from '@Assets/Icons/Chat/check_blue.svg';
 import FilterOptionType from "@/types/FilterTypes";
+import useQueryString from '@hooks/useQueryString';
 
 interface IModalSelectProps {
   filter: FilterOptionType;
@@ -10,6 +11,7 @@ interface IModalSelectProps {
 
 const ModalSelect = ({ filter, setSelectFilter }: IModalSelectProps) => {
   const { sort_type, contents } = filter;
+  const selected = useQueryString(sort_type);
   const [select, setSelect] = useState('');
 
   //* 카테고리 select
@@ -19,6 +21,13 @@ const ModalSelect = ({ filter, setSelectFilter }: IModalSelectProps) => {
     setSelect(contents[index]);
     setSelectFilter([sort_type, contents[index]]);
   };
+
+  //* 선택한 필터가 있다면 필터 옵션 눌렀을 때 active 되겠금
+  useEffect(() => { 
+    if (selected) {
+      setSelect(selected)
+    };
+  }, []);
 
   return (
     <Container>
