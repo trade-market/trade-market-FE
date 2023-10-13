@@ -23,11 +23,11 @@ const FilterTag = ({ open }: IFilterTagProps) => {
       if (selected.includes('&')) { //여러개라면
         const len = selected.split('&').length;
         return `${option.title} ${len}` ;
-      } else { //거리라면
-        if (selected.includes('km')) {
+      } else if (selected.includes('km')) { //거리라면
           return `내 반경 ${selected}`
+      } else { // 단일 선택이라면
+        return selected;
         }
-      }
     } else { //필터건게 없다면
       return option.title;
     }

@@ -46,27 +46,28 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   );
 
   const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
+    // console.log('idx', i)
     switch (i) {
       case 0: 
         return (
-          renderModal(FilteringOptions[i], i)
+          renderModal(filter, i)
         );
-      // case 1: 
-      //   return (
-      //     renderModal(FilteringOptions[i], i)
-      //   );
-      // case 2: 
-      //   return (
-      //     <div>이번</div>
-      //   );
-      // case 3: 
-      //   return (
-      //     renderModal(FilteringOptions[i], i)
-      //   );
-      // default:
-      //   return (
-      //     renderModal(FilteringOptions[i], i)
-      //   )
+      case 1: 
+        return (
+          renderModal(filter, i)
+        );
+      case 2: 
+        return (
+          <div>이번</div>
+        );
+      case 3: 
+        return (
+          renderModal(filter, i)
+        );
+      default:
+        return (
+          renderModal(filter, i)
+        )
     }
   };
   
@@ -98,7 +99,14 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         })}
       </Container>
       {isOpen && (
-        FilteringOptions.map(renderFilteringComponent)
+        FilteringOptions.map((filter, idx) => {
+          return (
+            <BottomUpModal key={idx} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
+              <ModalSelect filter={filter} setSelectFilter={setSelectFilter} />
+              {/* <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} /> */}
+            </BottomUpModal>
+          )
+        })
       )}
     </>
   );
