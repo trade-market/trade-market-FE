@@ -17,11 +17,11 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
   const searchFiltering = () => {
     navigate(`?searching=${search}&type=물물`);
     onAddKeyword(search);
-    setSearch('');
   }
 
   //* input 입력
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch('');
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -55,7 +55,7 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
           placeholder="검색"
           value={search}
           onChange={handleSearch}
-          onKeyPress={handleEnter}
+          onKeyPress={handleEnter} 
           ref={inputRef}
           />
         <img src={searchIcon} onClick={handleClick} />

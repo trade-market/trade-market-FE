@@ -41,18 +41,22 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   );
 
   const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
-    switch (filter.sort_type) {
-      case 'distance': 
+    switch (i) {
+      case 0: 
         return (
           <></>
         );
-      case 'category': 
+      case 1: 
+        return (
+          renderModal(FilteringOptions[i], i)
+        );
+      case 2: 
         return (
           <></>
         );
       default:
         return (
-          renderModal(filter, i)
+          renderModal(FilteringOptions[i], i)
         )
     }
   };
