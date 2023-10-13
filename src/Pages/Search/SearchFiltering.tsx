@@ -37,47 +37,47 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
 
   // console.log(selectFilter)
 
-  const renderModal = (filter: FilterOptionType, i: number) => (
-    // todo: BottomUpModal => 카테고리라면 radius={false} 
-    <BottomUpModal key={i} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
-      {/* <ModalSelect filter={filter} setSelectFilter={setSelectFilter} /> */}
-      <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} />
-    </BottomUpModal>
-  );
+  // const renderModal = (filter: FilterOptionType, i: number) => (
+  //   // todo: BottomUpModal => 카테고리라면 radius={false} 
+  //   <BottomUpModal key={i} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
+  //     {/* <ModalSelect filter={filter} setSelectFilter={setSelectFilter} /> */}
+  //     <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} />
+  //   </BottomUpModal>
+  // );
 
-  const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
-    // console.log('idx', i)
-    switch (i) {
-      case 0: 
-        return (
-          renderModal(filter, i)
-        );
-      case 1: 
-        return (
-          renderModal(filter, i)
-        );
-      case 2: 
-        return (
-          <div>이번</div>
-        );
-      case 3: 
-        return (
-          renderModal(filter, i)
-        );
-      default:
-        return (
-          renderModal(filter, i)
-        )
-    }
-  };
+  // const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
+  //   // console.log('idx', i)
+  //   switch (i) {
+  //     case 0: 
+  //       return (
+  //         renderModal(filter, i)
+  //       );
+  //     case 1: 
+  //       return (
+  //         renderModal(filter, i)
+  //       );
+  //     case 2: 
+  //       return (
+  //         <div>이번</div>
+  //       );
+  //     case 3: 
+  //       return (
+  //         renderModal(filter, i)
+  //       );
+  //     default:
+  //       return (
+  //         renderModal(filter, i)
+  //       )
+  //   }
+  // };
   
-  useEffect(() => {
+  useEffect(() => { //* 물물/재능 바뀔 시 카테고리 contents 배열 변화
     const option = exchangeType === 'object' ? 0 : 1;
     FilteringOptions[2].contents.splice(0,  FilteringOptions[2].contents.length, ...ExchangeOptions[option].contents)
   }, [exchangeType]);
 
   useEffect(() => {
-    if (selectFilter[0] === 'type') Filteringhandler(); // 메뉴바 클릭시 쿼리스트링 동기화
+    if (selectFilter[0] === 'type') Filteringhandler(); //* 메뉴바 클릭시 쿼리스트링 동기화
   }, [selectFilter])
 
   return (

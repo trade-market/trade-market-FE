@@ -12,13 +12,13 @@ const FilterTag = ({ open }: IFilterTagProps) => {
 
   //* 선택 여부 반환
   const isSelected = (option: FilterOptionType) => {
-    let selected = useQueryString(option.sort_type);
-    return selected;
+    return useQueryString(option.sort_type);
   }
 
   //* 다중/거리/단일여부 반환
   const TagText = (option: FilterOptionType) => {
     let selected = useQueryString(option.sort_type);
+
     if (selected) {
       if (selected.includes('&')) { //여러개라면
         const len = selected.split('&').length;
