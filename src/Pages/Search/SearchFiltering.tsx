@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useQueryString from '@hooks/useQueryString';
 import SearchHeader from "@components/Search/SearchFiltering/SearchHeader";
 import styled from "styled-components";
@@ -12,32 +13,43 @@ import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/Bott
 import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
 import FilteringOptions from '@/Options/FilteringOptions';
 import ExchangeOptions from "@/Options/ExchangeOptions";
-
-interface FilterOptionType {
-  sort_type: string;
-  title: string;
-  contents: string[];
-}[];
+import FilterOptionType from "@/types/FilterTypes";
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
 }
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
+  const navigate = useNavigate();
   const exchangeType = useQueryString('type');
+  const searching = useQueryString('searching');
   const [activeNav, setActiveNav] = useState(1);
   const { isOpen, open, close } = useModal();
-  const [isFilter, setIsFilter] = useState({
-    exchangType: exchangeType,
-    distance: '',
-    exchangForm: '',
-    category: '',
-    sort: ''
-  });
+  const [isFilter, setIsFilter] = useState([
+    { sortType: 'searching', filtering: searching },
+    { sortType: 'type', filtering: exchangeType },
+  ]);
 
-  const renderModal = (title: string, list: string[], i: number) => (
-    <BottomUpModal key={i} close={close} titleText={title}>
-      <ModalSelect list={list} />
+  const makeQueryString = () => {
+    const queryString = isFilter
+      .map(({ filtering, sortType }) => `${sortType}=${filtering}`)
+      .map((item, idx) => {
+        return idx === 0 ? item : '&' + item;
+      })
+      .join('');
+    
+    navigate(`?${queryString}`);
+    close();
+  };
+    
+  const handleCheckList = useCallback((select: string, sort_type: string) => {
+    let flag = !isFilter.map((x) => x.sortType).includes(sort_type);
+    if (flag)setIsFilter([...isFilter, { sortType: sort_type, filtering: select }])
+  },[]);
+
+  const renderModal = (filter: FilterOptionType, i: number) => (
+    <BottomUpModal key={i} close={close} titleText={filter.title} makeQueryString={makeQueryString}>
+      <ModalSelect filter={filter} handleCheckList={handleCheckList} />
     </BottomUpModal>
   );
 
@@ -53,7 +65,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         );
       default:
         return (
-          renderModal(filter.title, filter.contents, i)
+          renderModal(filter, i)
         )
     }
   };
@@ -62,6 +74,9 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     const option = exchangeType === 'object' ? 0 : 1;
     FilteringOptions[2].contents.splice(0,  FilteringOptions[2].contents.length, ...ExchangeOptions[option].contents)
   }, [exchangeType]);
+
+
+  // console.log('isFilter', isFilter)
 
   return (
     <>
@@ -72,21 +87,18 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
       />
       <FilterTag open={open} />
       <Container>
-        {Data.map((post) => {
+        {Data.map((post, i) => {
           return (
-            <PostContainer>
+            <PostContainer key={i}>
               <PostComponent post={post} />
             </PostContainer>
           );
         })}
       </Container>
       {isOpen && (
-        FilteringOptions.map((filter, i) => (
-          renderFilteringComponent(filter, i)
-        ))
+        FilteringOptions.map(renderFilteringComponent)
       )}
     </>
-    
   );
 };
 

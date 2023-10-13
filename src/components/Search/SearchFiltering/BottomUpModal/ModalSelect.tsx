@@ -1,32 +1,36 @@
 import { useState } from "react";
 import styled from "styled-components"; 
 import check_blue from '@Assets/Icons/Chat/check_blue.svg';
+import FilterOptionType from "@/types/FilterTypes";
 
 interface IModalSelectProps {
-  list: string[];
+  filter: FilterOptionType;
+  handleCheckList: (select: string, sort_type: string) => void;
 }
 
-const ModalSelect = ({list}: IModalSelectProps) => {
+const ModalSelect = ({ filter, handleCheckList }: IModalSelectProps) => {
+  const { sort_type, contents } = filter;
   const [select, setSelect] = useState('');
 
   //* 카테고리 select
   const Selecthandler = (index: number) => {
-    const newSelectList = Array(list.length).fill(false);
+    const newSelectList = Array(contents.length).fill(false);
     newSelectList[index] = true;
-    setSelect(list[index]);
+    setSelect(contents[index]);
+    handleCheckList(contents[index], sort_type);
   };
 
   return (
     <Container>
       {
-        list.map((op, i) => (
-          <OptionList
-            key={i}
-            className={select === list[i] ? 'active ' : ''}
-            onClick={() => Selecthandler(i)}
+        contents.map((op, idx) => (
+          <OptionList 
+            key={idx}
+            className={select === contents[idx] ? 'active ' : ''}
+            onClick={() => Selecthandler(idx)}
           >
-            {op}
-            <img src={check_blue} />
+          {op}
+          <img src={check_blue} />
           </OptionList>
         ))
       }

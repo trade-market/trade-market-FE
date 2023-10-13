@@ -1,18 +1,16 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { size } from '@/styles/theme';
 import ModalButtons from "./ModalButtons";
 import { Background } from '@components/common/BottomSheet/index';
 
 interface IBottomUpModalProps {
-  titleText?: string;
+  titleText: string;
   close: () => void;
-  children?: React.ReactNode;
+  makeQueryString: () => void;
+  children: React.ReactNode;
 }
 
-const BottomUpModal = ({ titleText, close, children }: IBottomUpModalProps) => {
-  const [selectOption, setSelectOption] = useState('');
-
+const BottomUpModal = ({ titleText, close, makeQueryString, children }: IBottomUpModalProps) => {
   return (
     <>
       <Background onClick={close}/>
@@ -21,7 +19,7 @@ const BottomUpModal = ({ titleText, close, children }: IBottomUpModalProps) => {
             <Title>{titleText}</Title>
             {children}  
           </Container>
-          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={close} />
+          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={makeQueryString} />
         </Wapper>
     </>
   );
