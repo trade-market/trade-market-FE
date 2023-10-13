@@ -21,8 +21,8 @@ interface ISearchFilteringProps {
 
 const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectFilter, setSelectFilter] = useState<string[]>([]);
   const exchangeType = useQueryString('type');
+  const [selectFilter, setSelectFilter] = useState<string[]>([]);
   const [activeNav, setActiveNav] = useState(1);
   const { isOpen, open, close } = useModal();
     
