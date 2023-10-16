@@ -14,6 +14,7 @@ import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalS
 import FilteringOptions from '@/Options/FilteringOptions';
 import ExchangeOptions from "@/Options/ExchangeOptions";
 import ModalCheckbox from '@components/Search/SearchFiltering/BottomUpModal/ModalCheckbox';
+import DistanceRangeBar from '@components/Search/SearchFiltering/DistanceRangeBar';
 
 interface ISearchFilteringProps {
   handleAddKeyword: (text: string) => void;
@@ -37,7 +38,8 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
 
   const FilteringMadalRandering = () => { //* 모달 render
     const { sort_type, title, contents } = FilteringOptions[filterNumber];
-    const ModalType = filterNumber === 0 ? ModalCheckbox : filterNumber === 2 ? ModalCheckbox : ModalSelect;
+    const ModalType = filterNumber === 0 ? DistanceRangeBar : filterNumber === 2 ? ModalCheckbox : ModalSelect;
+    // const ModalType = filterNumber === 2 ? ModalCheckbox : ModalSelect;
     return(
       <BottomUpModal key={filterNumber} filterNumber={filterNumber} close={close} titleText={filterNumber === 0 ? '지역 범위' :title} AddQueryStringHandler={AddQueryStringHandler}>
         <ModalType sort_type={sort_type} contents={contents} setSelectFilter={setSelectFilter} />

@@ -54,7 +54,7 @@ const Wapper = styled.div<{ $height?: string; $filterNumber: number; }>`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding : 0 30px;
+  padding : 0 25px;
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;

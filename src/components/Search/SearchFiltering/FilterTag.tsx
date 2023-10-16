@@ -43,7 +43,7 @@ const FilterTag = ({ open, setFilterNumber }: IFilterTagProps) => {
     <Wrapper>
       {FilteringOptions.map(({ sort_type, title }, idx)  => (
         <>
-          <Tag key={idx} onClick={() => ClickHandler(idx)} className={isSelected(sort_type) ? 'selected': ''}>
+          <Tag key={title} onClick={() => ClickHandler(idx)} className={isSelected(sort_type) ? 'selected': ''}>
             {TagText(sort_type, title)}
             <img src={optionDown} />
           </Tag>

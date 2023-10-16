@@ -63,6 +63,8 @@ const OptionList = styled.label`
   cursor: pointer;
   > img {
     visibility: hidden;
+    height: 21px;
+    width: 21px;
   }
 
   &.active {
