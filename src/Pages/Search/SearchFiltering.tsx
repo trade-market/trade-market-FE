@@ -13,7 +13,6 @@ import BottomUpModal from "@components/Search/SearchFiltering/BottomUpModal/Bott
 import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
 import FilteringOptions from '@/Options/FilteringOptions';
 import ExchangeOptions from "@/Options/ExchangeOptions";
-import FilterOptionType from "@/types/FilterTypes";
 import ModalCheckbox from '@components/Search/SearchFiltering/BottomUpModal/ModalCheckbox';
 
 interface ISearchFilteringProps {
@@ -25,9 +24,10 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   const exchangeType = useQueryString('type');
   const [selectFilter, setSelectFilter] = useState<string[]>([]);
   const [activeNav, setActiveNav] = useState(1);
+  const [filterNumber, setFilterNumber] = useState(0);
   const { isOpen, open, close } = useModal();
     
-  const Filteringhandler = () => {
+  const AddQueryStringHandler = () => { //* 쿼리스트링 추가
     const [queryType, select] = selectFilter;
     searchParams.set(queryType, select);
     setSearchParams(searchParams);
@@ -35,41 +35,15 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     close();
   };
 
-  // console.log(selectFilter)
-
-  // const renderModal = (filter: FilterOptionType, i: number) => (
-  //   // todo: BottomUpModal => 카테고리라면 radius={false} 
-  //   <BottomUpModal key={i} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
-  //     {/* <ModalSelect filter={filter} setSelectFilter={setSelectFilter} /> */}
-  //     <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} />
-  //   </BottomUpModal>
-  // );
-
-  // const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
-  //   // console.log('idx', i)
-  //   switch (i) {
-  //     case 0: 
-  //       return (
-  //         renderModal(filter, i)
-  //       );
-  //     case 1: 
-  //       return (
-  //         renderModal(filter, i)
-  //       );
-  //     case 2: 
-  //       return (
-  //         <div>이번</div>
-  //       );
-  //     case 3: 
-  //       return (
-  //         renderModal(filter, i)
-  //       );
-  //     default:
-  //       return (
-  //         renderModal(filter, i)
-  //       )
-  //   }
-  // };
+  const FilteringMadalRandering = () => { //* 모달 render
+    const { sort_type, title, contents } = FilteringOptions[filterNumber];
+    const ModalType = filterNumber === 0 ? ModalCheckbox : filterNumber === 2 ? ModalCheckbox : ModalSelect;
+    return(
+      <BottomUpModal key={filterNumber} filterNumber={filterNumber} close={close} titleText={title} AddQueryStringHandler={AddQueryStringHandler}>
+        <ModalType sort_type={sort_type} contents={contents} setSelectFilter={setSelectFilter} />
+      </BottomUpModal>
+    )
+  }
   
   useEffect(() => { //* 물물/재능 바뀔 시 카테고리 contents 배열 변화
     const option = exchangeType === 'object' ? 0 : 1;
@@ -77,7 +51,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   }, [exchangeType]);
 
   useEffect(() => {
-    if (selectFilter[0] === 'type') Filteringhandler(); //* 메뉴바 클릭시 쿼리스트링 동기화
+    if (selectFilter[0] === 'type') AddQueryStringHandler(); //* 메뉴바 클릭시 쿼리스트링 동기화
   }, [selectFilter])
 
   return (
@@ -88,7 +62,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
         setActiveNav={setActiveNav}
         setSelectFilter={setSelectFilter}
       />
-      <FilterTag open={open} />
+      <FilterTag open={open} setFilterNumber={setFilterNumber} />
       <Container>
         {Data.map((post, i) => {
           return (
@@ -98,16 +72,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
           );
         })}
       </Container>
-      {isOpen && (
-        FilteringOptions.map((filter, idx) => {
-          return (
-            <BottomUpModal key={idx} close={close} titleText={filter.title} Filteringhandler={Filteringhandler}>
-              <ModalSelect filter={filter} setSelectFilter={setSelectFilter} />
-              {/* <ModalCheckbox filter={filter} setSelectFilter={setSelectFilter} /> */}
-            </BottomUpModal>
-          )
-        })
-      )}
+      {isOpen && FilteringMadalRandering()}
     </>
   );
 };
@@ -117,20 +82,3 @@ export default SearchFiltering;
 const Container = styled.div`
   padding : 10px 20px 0 20px;
 `;
-
-
-  // const renderFilteringComponent = (filter: FilterOptionType, i: number) => {
-  //   if (i === 0) {
-  //     return (
-  //       <></>
-  //     )
-  //   } else if (i === 2) {
-  //     return (
-  //       <></>
-  //     )
-  //   } else {
-  //     return (
-  //       renderModal(FilteringOptions[i], i)
-  //     )
-  //   }
-  // };

@@ -2,47 +2,53 @@ import styled from "styled-components";
 import optionDown from '@Assets/Icons/Search/optionDown.svg';
 import FilteringOptions from '@/Options/FilteringOptions';
 import useQueryString from '@hooks/useQueryString';
-import FilterOptionType from "@/types/FilterTypes";
 
 interface IFilterTagProps {
   open: () => void;
+  setFilterNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const FilterTag = ({ open }: IFilterTagProps) => {
+const FilterTag = ({ open, setFilterNumber }: IFilterTagProps) => {
+
+  //* 모달 오픈 & 필터 넘버 변경
+  const ClickHandler = (idx: number) => {
+    open();
+    setFilterNumber(idx);
+  }
 
   //* 선택 여부 반환
-  const isSelected = (option: FilterOptionType) => {
-    return useQueryString(option.sort_type);
+  const isSelected = (sort_type: string) => {
+    return useQueryString(sort_type);
   }
 
   //* 다중/거리/단일여부 반환
-  const TagText = (option: FilterOptionType) => {
-    let selected = useQueryString(option.sort_type);
+  const TagText = (sort_type: string, title: string) => {
+    let selected = useQueryString(sort_type);
 
     if (selected) {
       if (selected.includes('&')) { //여러개라면
         const len = selected.split('&').length;
-        return `${option.title} ${len}` ;
+        return `${title} ${len}` ;
       } else if (selected.includes('km')) { //거리라면
           return `내 반경 ${selected}`
       } else { // 단일 선택이라면
         return selected;
         }
     } else { //필터건게 없다면
-      return option.title;
+      return title;
     }
   }
 
   return (
     <Wrapper>
-      {FilteringOptions.map((option, idx) => {
-          return  (
-          <Tag key={idx} onClick={open} className={isSelected(option) ? 'selected': ''}>
-            {TagText(option)}
+      {FilteringOptions.map(({ sort_type, title }, idx)  => (
+        <>
+          <Tag key={idx} onClick={() => ClickHandler(idx)} className={isSelected(sort_type) ? 'selected': ''}>
+            {TagText(sort_type, title)}
             <img src={optionDown} />
           </Tag>
-        )
-      })}
+        </>
+      ))}
     </Wrapper>
   );
 };

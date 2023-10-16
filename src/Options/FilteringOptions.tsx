@@ -1,5 +1,3 @@
-import ExchangeOptions from "./ExchangeOptions";
-
 const FilteringOptions = [
   {
     sort_type: 'distance',
@@ -23,7 +21,7 @@ const FilteringOptions = [
   },
     {
     sort_type: 'sort',
-    title: '최신순',
+    title: '정렬',
     contents: ['최신순', '스크랩순'],
   },
 ];

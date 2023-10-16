@@ -4,23 +4,25 @@ import ModalButtons from "./ModalButtons";
 import { Background } from '@components/common/BottomSheet/index';
 
 interface IBottomUpModalProps {
+  key: number;
   titleText: string;
   close: () => void;
   children: React.ReactNode;
-  Filteringhandler: () => void;
-  radius?: boolean;
+  AddQueryStringHandler: () => void;
+  filterNumber: number;
 }
 
-const BottomUpModal = ({ titleText, close, Filteringhandler, children, radius = true }: IBottomUpModalProps) => {
+const BottomUpModal = ({ key, titleText, close, AddQueryStringHandler, children, filterNumber }: IBottomUpModalProps) => {
+  console.log(key)
   return (
     <>
       <Background onClick={close}/>
-        <Wapper $radius={radius}>
+        <Wapper $filterNumber={filterNumber}>
+          <Title>{titleText}</Title>
           <Container>
-            <Title>{titleText}</Title>
             {children}  
           </Container>
-          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={Filteringhandler} />
+          <ModalButtons CloseButtonClickHandler={close} AcceptButtonClickHandler={AddQueryStringHandler} />
         </Wapper>
     </>
   );
@@ -28,7 +30,7 @@ const BottomUpModal = ({ titleText, close, Filteringhandler, children, radius = 
 
 export default BottomUpModal;
 
-const Wapper = styled.div<{ $height?: string; $radius: boolean; }>`
+const Wapper = styled.div<{ $height?: string; $filterNumber: number; }>`
   display: flex;
   flex-direction: column;
   max-width: ${size.mobile};
@@ -36,10 +38,10 @@ const Wapper = styled.div<{ $height?: string; $radius: boolean; }>`
   z-index: 150;
   position: fixed;
   bottom: 0;
-  height: ${({ $radius }) => $radius ? '270px' : '450px'}; 
+  height: ${({ $filterNumber }) => $filterNumber !== 2 ? '270px' : '450px'}; 
   animation: bottomUp 0.3s ease-out;
   background-color: ${({ theme }) => theme.color.bgColor};
-  border-radius: ${({ $radius }) => $radius ? '16px 16px 0 0;' : '0'}; 
+  border-radius: ${({ $filterNumber }) => $filterNumber !== 2 ? '16px 16px 0 0;' : '0'}; 
   
   @keyframes bottomUp {
     0% {
@@ -54,7 +56,7 @@ const Wapper = styled.div<{ $height?: string; $radius: boolean; }>`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding : 30px;
+  padding : 0 30px;
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
@@ -62,7 +64,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
+  padding : 30px 30px 35px 30px;
   font-weight: 600;
   font-size: ${({ theme }) => theme.font.size.large};
-  padding-bottom : 35px;
 `;
