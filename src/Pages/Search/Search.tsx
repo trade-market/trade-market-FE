@@ -9,7 +9,7 @@ export interface keyInterface {
 }
 
 const Search = () => {
-  const searching = useQueryString('searching');
+  const filtering = useQueryString('type');
   const [keywords, setKeywords] = useState<keyInterface[]>(
     JSON.parse(localStorage.getItem('keywords') || '[]'),
   );
@@ -28,7 +28,7 @@ const Search = () => {
 
   return (
     <>
-      {!searching ?
+      {!filtering ?
         <DefaultSearch
           keywords={keywords}
           setKeywords={setKeywords}

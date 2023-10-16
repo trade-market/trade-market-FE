@@ -4,16 +4,14 @@ import ModalButtons from "./ModalButtons";
 import { Background } from '@components/common/BottomSheet/index';
 
 interface IBottomUpModalProps {
-  key: number;
+  filterNumber: number;
   titleText: string;
   close: () => void;
   children: React.ReactNode;
   AddQueryStringHandler: () => void;
-  filterNumber: number;
 }
 
-const BottomUpModal = ({ key, titleText, close, AddQueryStringHandler, children, filterNumber }: IBottomUpModalProps) => {
-  console.log(key)
+const BottomUpModal = ({ titleText, close, AddQueryStringHandler, children, filterNumber }: IBottomUpModalProps) => {
   return (
     <>
       <Background onClick={close}/>

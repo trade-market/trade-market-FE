@@ -7,7 +7,7 @@ import ExchangeOptions from '@/Options/ExchangeOptions';
 
 
 const Exchange = () => {
-  const [activeNav, setActiveNav] = useState(1);
+  const [activeNav, setActiveNav] = useState(0);
 
   return (
     <E.Wrapper>
@@ -16,17 +16,11 @@ const Exchange = () => {
         setActiveNav={setActiveNav}
       />
       <E.ExchangeContainer>
-        {activeNav === 1 ?
-          <MapIcons
-          icons={Object.values(ObjectIcons[0])}
-          munus={ExchangeOptions[0].contents}
-          />
-        :
-          <MapIcons
-          icons={Object.values(TalentIcons[0])}
-          munus={ExchangeOptions[1].contents}
-            />
-          }
+        <MapIcons
+        activeNav={activeNav}
+        icons={activeNav === 0 ? Object.values(ObjectIcons[0]) : Object.values(TalentIcons[0])}
+        munus={ExchangeOptions[activeNav].contents}
+        />
       </E.ExchangeContainer>
     </E.Wrapper>
   );

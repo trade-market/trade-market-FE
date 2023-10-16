@@ -39,14 +39,14 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     const { sort_type, title, contents } = FilteringOptions[filterNumber];
     const ModalType = filterNumber === 0 ? ModalCheckbox : filterNumber === 2 ? ModalCheckbox : ModalSelect;
     return(
-      <BottomUpModal key={filterNumber} filterNumber={filterNumber} close={close} titleText={title} AddQueryStringHandler={AddQueryStringHandler}>
+      <BottomUpModal key={filterNumber} filterNumber={filterNumber} close={close} titleText={filterNumber === 0 ? '지역 범위' :title} AddQueryStringHandler={AddQueryStringHandler}>
         <ModalType sort_type={sort_type} contents={contents} setSelectFilter={setSelectFilter} />
       </BottomUpModal>
     )
   }
   
   useEffect(() => { //* 물물/재능 바뀔 시 카테고리 contents 배열 변화
-    const option = exchangeType === 'object' ? 0 : 1;
+    const option = exchangeType === '물물' ? 0 : 1;
     FilteringOptions[2].contents.splice(0,  FilteringOptions[2].contents.length, ...ExchangeOptions[option].contents)
   }, [exchangeType]);
 
