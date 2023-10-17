@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from "./SearchInputStyles";
 import searchIcon from "@Assets/Icons/Search/Search_active.svg";
@@ -15,31 +15,30 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
 
   //* 상세 검색 페이지로 이동
   const searchFiltering = () => {
-    navigate(`?searching=${search}&type=물물`);
     onAddKeyword(search);
+    navigate(`?searching=${search}&type=물물`);
   }
 
   //* input 입력
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch('');
-    e.preventDefault();
+  const SearchHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault(); 
     setSearch(e.target.value);
-  };
+  },[]);
 
   //* Click 검색
-  const handleClick = () => {
+  const ClickHandler = () => {
     searchFiltering();
   }
 
   //* EnterKey로 검색
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const EnterkHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (search && e.key === 'Enter') searchFiltering(); // 엔터일때 부모의 onAddKeyword에 전달
   }
 
   //* 첫 rending시 input에 fucusing
   useLayoutEffect(() => {
-    if (inputRef.current !== null) inputRef.current.focus();
+    if (inputRef.current !== null) inputRef.current!.focus();
     if (defaultValue) setSearch(defaultValue);
   }, []);
 
@@ -50,11 +49,11 @@ const SearchInput = ({ onAddKeyword, defaultValue }: ISearchInputProps) => {
           type="text"
           placeholder="검색"
           value={search}
-          onChange={handleSearch}
-          onKeyPress={handleEnter} 
+          onChange={SearchHandler}
+          onKeyPress={EnterkHandler} 
           ref={inputRef}
           />
-        <img src={searchIcon} onClick={handleClick} />
+        <img src={searchIcon} onClick={ClickHandler} />
       </S.InputContainer>
     </form>
   );

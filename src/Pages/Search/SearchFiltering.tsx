@@ -31,8 +31,8 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     //Todo : 서버 주소 연결
     const BASE_URL = `http://localhost:5173/`; 
     const res = await fetch(`${BASE_URL}/search/${searchParams}`);
-    const data = await res.json();
-    setSearchPosts(data.result);
+    // const data = await res.json();
+    // setSearchPosts(data.result);
   }, [searchParams]);
 
   const AddQueryStringHandler = () => { //* 쿼리스트링 추가
@@ -52,7 +52,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
       </BottomUpModal>
     )
   }
-  
+
   useEffect(() => {
     getSearchPostData();
   }, [getSearchPostData]);

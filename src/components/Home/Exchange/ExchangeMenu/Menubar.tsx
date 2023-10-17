@@ -13,9 +13,9 @@ const Menubar = ({ activeNav, setActiveNav, setSelectFilter }: IMenubarProps) =>
   const Menues = ['물물교환', '재능교환'];
 
   const MenuClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    let newActiveNav = e.currentTarget.id === '물물' ? 0 : 1;
+    const newActiveNav = e.currentTarget.id === '물물' ? 0 : 1;
     setActiveNav(newActiveNav);
-    setSelectFilter(['type', e.currentTarget.id]);
+    (setSelectFilter && setSelectFilter(['type', e.currentTarget.id]));
   }
 
   //* 홈에서 카테고리 선택으로 넘어온 경우
