@@ -36,6 +36,8 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     close();
   };
 
+  console.log(selectFilter)
+
   const FilteringMadalRandering = () => { //* 모달 render
     const { sort_type, title, contents } = FilteringOptions[filterNumber];
     const ModalType = filterNumber === 0 ? DistanceRangeBar : filterNumber === 2 ? ModalCheckbox : ModalSelect;

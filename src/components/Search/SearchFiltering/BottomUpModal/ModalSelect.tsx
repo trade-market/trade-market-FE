@@ -2,14 +2,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components"; 
 import check_blue from '@Assets/Icons/Chat/check_blue.svg';
 import useQueryString from '@hooks/useQueryString';
+import FilterPropsTypes from '@/types/FilterPropsTypes';
 
-interface IModalSelectProps {
-  sort_type: string;
-  contents: string[];
-  setSelectFilter?: React.Dispatch<React.SetStateAction<string[]>>;
-}
-
-const ModalSelect = ({ sort_type, contents, setSelectFilter }: IModalSelectProps) => {
+const ModalSelect = ({ sort_type, contents, setSelectFilter }: FilterPropsTypes) => {
   const selected = useQueryString(sort_type);
   const [select, setSelect] = useState('');
 

@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import useQueryString from '@hooks/useQueryString';
 import styled from "styled-components"; 
+import FilterPropsTypes from '@/types/FilterPropsTypes';
 
-interface IModalCheckboxProps {
-  sort_type: string;
-  contents: string[];
-  setSelectFilter: React.Dispatch<React.SetStateAction<string[]>>;
-}
-
-const ModalCheckbox = ({ sort_type, contents, setSelectFilter }: IModalCheckboxProps) => {
+const ModalCheckbox = ({ sort_type, contents, setSelectFilter }: FilterPropsTypes) => {
   const selected = useQueryString(sort_type);
   const [checkItems, setCheckItems] = useState<Set<unknown>>(new Set());
 

@@ -1,85 +1,79 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import styled from 'styled-components';
+import FilterPropsTypes from '@/types/FilterPropsTypes';
+import useQueryString from '@hooks/useQueryString';
 
-interface IModalCheckboxProps {
-  sort_type: string;
-  contents: string[];
-  setSelectFilter: React.Dispatch<React.SetStateAction<string[]>>;
-}
-
-const DistanceRangeBar = ({sort_type, contents, setSelectFilter} : IModalCheckboxProps) => {
-  const [values, setValues] = useState([3]);
-  const scales = ['1km', '3km', '5km', '10km'];
-  const STEP = 1;
-  const MIN = 1;
-  const MAX = 4;
+const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsTypes) => {
+  const selected = useQueryString('distance');
+  const [values, setValues] = useState([2]);
 
   const createScale = () => {
-    let TagList = [];
-
-    // scales.forEach((scale, i) => {
-    //   TagList.push(
-    //     <Tag key={i}>
-    //       {scale}
-    //     </Tag>
-    //   );
-    // })
-
-    // return TagList;
-    
-
-    for (let i = 0; i < scales.length; i++) {
+    let TagList: JSX.Element[] = [];
+    contents.map((content, i) => (
       TagList.push(
         <Tag key={i}>
-          {scales[i]}
+          {content}
         </Tag>
-      );
-    }
-
+      )
+    ));
     return TagList;
   };
 
+  //* 카테고리 select
+  const Selecthandler = (values: number[]) => {
+    setValues(values);
+    let i = Number(values.join(''));
+    setSelectFilter([sort_type, contents[i]]);
+  };
 
-return (
-        <Wrapper>
-          <Range
-            values={values}
-            step={STEP}
-            min={MIN}
-            max={MAX}
-            onChange={values => setValues(values)}
-            renderTrack={({ props, children }) => {
-              return (
-                <RangeBarConatiner
-                  onMouseDown={props.onMouseDown}
-                  onTouchStart={props.onTouchStart}
-                >
-                  <RangeBar
-                    ref={props.ref}
-                    style={{
-                      background: getTrackBackground({
-                        values: values,
-                        colors: ["#2156F2", "#F2F2F2"],
-                        min: MIN,
-                        max: MAX
-                      }),
-                    }}
-                  >
-                    {children}
-                    <RangeTagContainer>{createScale()}</RangeTagContainer>
-                  </RangeBar>
-                </RangeBarConatiner>
-              );
-            }}
-            renderThumb={({ props }) => (
-              <RangeCircle
-                {...props}
-              />
-            )}
+  //* 초기값 지정
+  useEffect(() => {
+    setSelectFilter([sort_type, contents[2]]);
+    if (selected) {
+      setValues([contents.indexOf(selected)])
+    };
+  }, []);
+
+  return (
+    <Wrapper>
+      <Range
+        values={values}
+        step={1}
+        min={0}
+        max={3}
+        onChange={values => Selecthandler(values)}
+        renderTrack={({ props, children }) => {
+          return (
+            <RangeBarConatiner
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+            >
+              <RangeBar
+                ref={props.ref}
+                style={{
+                  background: getTrackBackground({
+                    values: values,
+                    colors: ["#2156F2", "#F2F2F2"],
+                    min: 0,
+                    max: 3
+                  }),
+                }}
+              >
+                {children}
+                <RangeTagContainer>{createScale()}</RangeTagContainer>
+              </RangeBar>
+            </RangeBarConatiner>
+          );
+        }}
+        renderThumb={({ props }) => (
+          <RangeThumb
+            {...props}
           />
-        </Wrapper>
-    );
+        )}
+      />
+    </Wrapper>
+  );
 };
 
 export default DistanceRangeBar;
@@ -125,7 +119,7 @@ const Tag = styled.div`
   font-size: ${({ theme }) => theme.font.size.base};
 `;
 
-const RangeCircle = styled.div`
+const RangeThumb = styled.div`
   display: flex;
   padding: 0 10px;
   justify-content: center;
