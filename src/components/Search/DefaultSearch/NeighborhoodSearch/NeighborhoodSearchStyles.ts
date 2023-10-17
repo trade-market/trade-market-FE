@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
     display: flex;
     padding: 8px 0;
     align-items: center;
+    cursor: pointer;
   }
 
   .no {
