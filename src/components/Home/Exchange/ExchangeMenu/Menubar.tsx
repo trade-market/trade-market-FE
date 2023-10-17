@@ -3,18 +3,19 @@ import { MenubarContainer } from './ExchageMenuStyles';
 import useQueryString from '@hooks/useQueryString';
 
 interface IMenubarProps {
-  activeNav?: number;
-  setActiveNav?: React.Dispatch<React.SetStateAction<number>>;
+  activeNav: number;
+  setActiveNav: React.Dispatch<React.SetStateAction<number>>;
   setSelectFilter?: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Menubar = ({ activeNav, setActiveNav, setSelectFilter }: IMenubarProps) => {
   const type = useQueryString('type');
-  const Querytype = 'type';
+  const Menues = ['물물교환', '재능교환'];
 
-  const MenuClickHandler = () => {
-    const selectFilter = activeNav === 0 ? '물물' : '재능';
-    setSelectFilter(() => [Querytype, selectFilter]);
+  const MenuClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    let newActiveNav = e.currentTarget.id === '물물' ? 0 : 1;
+    setActiveNav(newActiveNav);
+    setSelectFilter(['type', e.currentTarget.id]);
   }
 
   //* 홈에서 카테고리 선택으로 넘어온 경우
@@ -24,12 +25,15 @@ const Menubar = ({ activeNav, setActiveNav, setSelectFilter }: IMenubarProps) =>
 
   return (
     <MenubarContainer>
-      <div className={activeNav === 0 ? 'menu active' : 'menu'} onClick={() => { setActiveNav(0); MenuClickHandler();}}>
-        물물교환
-      </div>
-      <div className={activeNav === 1 ? 'menu active' : 'menu'} onClick={() => { setActiveNav(1); MenuClickHandler();}}>
-        재능교환
-      </div>
+      {Menues.map((menu, i) => (
+        <div
+          key={i}
+          id={menu.slice(0, 2)}
+          className={activeNav === i ? 'menu active' : 'menu'}
+          onClick={(e) => MenuClickHandler(e)}
+          >{menu}
+        </div>
+      ))}
     </MenubarContainer>
   );
 };

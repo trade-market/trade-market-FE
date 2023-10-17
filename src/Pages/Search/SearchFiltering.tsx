@@ -24,7 +24,7 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const exchangeType = useQueryString('type');
   const [selectFilter, setSelectFilter] = useState<string[]>([]);
-  const [activeNav, setActiveNav] = useState(1);
+  const [activeNav, setActiveNav] = useState(0);
   const [filterNumber, setFilterNumber] = useState(0);
   const { isOpen, open, close } = useModal();
     
@@ -35,8 +35,6 @@ const SearchFiltering = ({ handleAddKeyword }: ISearchFilteringProps) => {
     setSelectFilter([]);
     close();
   };
-
-  console.log(selectFilter)
 
   const FilteringMadalRandering = () => { //* 모달 render
     const { sort_type, title, contents } = FilteringOptions[filterNumber];
