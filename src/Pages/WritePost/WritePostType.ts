@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
-  padding-bottom: 70px;
+  padding-bottom: 80px;
 `;
 
 export const PriceSlideContainer = styled(ContainerTemplet)`

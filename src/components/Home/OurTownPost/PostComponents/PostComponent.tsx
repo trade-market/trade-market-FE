@@ -53,6 +53,7 @@ const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
   } = useModal();
 
   const handleEditPost = () => {
+    navigate(`/articles/${post.id}/edit/select-element`);
     console.log(post.id);
   };
   const handleChangeStatus = () => {

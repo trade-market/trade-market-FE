@@ -1,30 +1,30 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useOutletContext, useParams } from 'react-router-dom';
-import {  setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
+import { useParams } from 'react-router-dom';
+import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
 import PostSection from '@/components/WritePost/PostSection';
 import MultiImageUpload from '@components/WritePost/MultiImageUpload/MultiImageUpload';
 import SelectBox from '@components/WritePost/SelectBox';
-import useNavigateButton from '@hooks/useNavigateButton';
 import Calender from '@/components/WritePost/Calendar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import * as O from '../WritePostType';
+import * as O from '@Pages/WritePost/WritePostType';
 
-interface ISelectElementOutletProps {
-  open: () => void
+interface IAllSelectElementsProps {
+  open?: () => void;
+  handleNextButtonClick: () => void;
+  EditPostData?: any;
 }
 
-const SelectElement = () => {
+const AllSelectElements = ({ open, handleNextButtonClick, EditPostData }: IAllSelectElementsProps) => {
   const dispatch = useDispatch();
-  const { exchangeType, tradeType } = useParams();
-  const { open } = useOutletContext<ISelectElementOutletProps>();
+  let { exchangeType, tradeType } = useParams();
+  const pageType = EditPostData ? EditPostData['exChangeType'] : exchangeType === 'talent-trade' ? '재능' : '물물';
+  let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const selectProvide = useSelector((state: RootState) => state.WritePost.provide);
   const selectExchange = useSelector((state: RootState) => state.WritePost.exchange);
   const selectdeadline = useSelector((state: RootState) => state.WritePost.deadline);
   const selectAbleTime = useSelector((state: RootState) => state.WritePost.ableTime);
-  const pageType = exchangeType === 'talent-trade' ? '재능' : '물물';
-  let [inintialValueP, inintialValueE, inintialValuT] = [`제공할 ${pageType} 선택`, `교환할 ${pageType} 선택`, '거래 가능 시간 선택'];
   const enable = (inintialValueP !== selectProvide) && (inintialValueE !== selectExchange) && (inintialValuT !== selectAbleTime);
 
   const handleOnChangeSelectValue = ((dispatchType: any) => {
@@ -34,13 +34,19 @@ const SelectElement = () => {
     }
   });
 
-  const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
-
   useEffect(() => { //* type(주소)에 따라 초기값 변경
     dispatch(setProvidePost(inintialValueP));
     dispatch(setExchangePost(inintialValueE));
     dispatch(setAbleTimePost(inintialValuT));
   }, [exchangeType, tradeType]);
+
+  useEffect(() => { //* 수정 게시물일 경우, 전달 받은 데이터를 초기값으로 변경
+    if (EditPostData) {
+      dispatch(setProvidePost(EditPostData['category']));
+      dispatch(setExchangePost(EditPostData['desiredCategory']));
+      dispatch(setAbleTimePost(EditPostData['tradeTime']));
+    }
+  }, []);
 
   return (
     <>
@@ -89,4 +95,4 @@ const SelectElement = () => {
   );
 };
 
-export default SelectElement;
+export default AllSelectElements;

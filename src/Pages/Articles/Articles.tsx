@@ -96,6 +96,19 @@ function Articles() {
     }
   }, []);
 
+  //Todo : 게시글 정보 --> 수정게시물에 props로 전달
+  const ProductInfoData = {
+    exChangeType : '물물',
+    isOfferPost: isOfferPost, //오퍼 혹은 1:1;
+    title: "여성용 나비 선글라스",
+    category : "의류",
+    deadLine : "2023년 08월 17일",
+    desiredCategory : "의류",
+    tradeTime : "오전(09시~12시)",
+    price : [21000, 24000],
+    description : "2년 간 사용했고, 기스가 좀 있습니다."
+  }
+
   return (
     <>
       <CommonHeader visibleOption={isOwner} optionClick={open}>
@@ -115,7 +128,7 @@ function Articles() {
             title="여성용 나비 선글라스"
             category="의류"
             uploadTime={timeDifference}
-            deadLine="08월 17일"
+            deadLine="2023년 08월 17일"
             desiredCategory="의류"
             tradeTime="오전(09시~12시)"
             price="21,000~24,000"
@@ -136,7 +149,7 @@ function Articles() {
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton
-            onClick={() => navigate(`edit/select-element`)}
+            onClick={() => navigate(`edit/select-element`, { state: ProductInfoData } )}
           >게시물 수정</A.CorrectionButton>
           <A.DeleteButton
             onClick={() => {

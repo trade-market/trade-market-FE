@@ -1,18 +1,21 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '@store/types';
 import { setTitlePost, setContentPost, setMinPricePost, setMaxPricePost } from '@/store/slices/WritePostSlice';
 import BlueTextArea from '@/components/WriteComment/CreatePost/BlueTextArea';
 import PostSection from '@/components/WritePost/PostSection';
 import PriceSlideBar from '@/components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBar';
 import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import * as O from '../WritePostType';
+import * as O from '@Pages/WritePost/WritePostType';
 
-const WriteContent = () => {
+interface IWriteContentsProps {
+  handleNextButtonClick: () => void;
+  title?: string;
+  content?: string;
+}
+
+const WriteContents = ({ handleNextButtonClick, title, content }: IWriteContentsProps) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { exchangeType, tradeType } = useParams();
   const selectTitle = useSelector((state: RootState) => state.WritePost.title);
   const selectContent = useSelector((state: RootState) => state.WritePost.content);
   const selectMinPrice = useSelector((state: RootState) => state.WritePost.minPrice);
@@ -23,6 +26,11 @@ const WriteContent = () => {
     dispatch(setContentPost(''));
     dispatch(setMinPricePost(0));
     dispatch(setMaxPricePost(2_000_000));
+  }, []);
+
+  useEffect(() => { //* 수정 게시물이라면
+    title && dispatch(setTitlePost(title));
+    content && dispatch(setContentPost(content));
   }, []);
 
   return (
@@ -62,10 +70,10 @@ const WriteContent = () => {
       <PostBlueButtons
       option={2}
       disabled={selectTitle.length === 0 || selectContent.length === 0}
-      BlueButtonClickHandler={() => navigate(`/write-post/${exchangeType}/${tradeType}/final-check`)}
+      BlueButtonClickHandler={handleNextButtonClick}
       />
     </>  
   );
 };
 
-export default WriteContent;
+export default WriteContents;

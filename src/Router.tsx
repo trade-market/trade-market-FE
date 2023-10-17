@@ -19,10 +19,10 @@ import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
 import PrivateRoute from '@components/PrivateRoute';
 import PublicRoute from '@components/PublicRoute';
 import ChoicePostType from '@Pages/WritePost/ChoicePostType/ChoicePostType';
-import SelectElement from '@Pages/WritePost/WritePost/SelectElement';
-import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
-import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
-import WritePost from '@Pages/WritePost/WritePost/WritePost';
+import SelectElement from '@Pages/WritePost/ChoicePostType/SelectElement';
+import WriteContent from '@Pages/WritePost/WriteContent';
+import FinalCheckPost from '@Pages/WritePost/FinalCheckPost';
+import WritePost from '@Pages/WritePost/WritePost';
 import MyPage from '@Pages/MyPage';
 import EditProfile from '@Pages/MyPage/EditProfile';
 import LikePosts from '@Pages/MyPage/LikePosts';
@@ -35,6 +35,9 @@ import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
 import NotFound from '@Pages/NotFound';
+import EditSelectElement from '@Pages/Articles/ArticlesEdit/EditSelectElement';
+import EditArticlesOutlet from '@Pages/Articles/ArticlesEdit/EditArticlesOutlet';
+import EditWriteContent from '@Pages/Articles/ArticlesEdit/EditWriteContent';
 
 function Router() {
   return (
@@ -65,12 +68,7 @@ function Router() {
                 element={<OAuthRedirectHandler service="naver" />}
               />
             </Route>
-            <Route path="/articles/:id" element={<Articles />}>
-              <Route path="edit/select-element" element={<SelectElement />} />
-              <Route path="edit/write-content" element={<WriteContent />} />
-              <Route path="edit/final-check" element={<FinalCheckPost />} />
-            </Route>
-
+            <Route path="/articles/:id" element={<Articles />} />
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
@@ -98,8 +96,7 @@ function Router() {
             />
             <Route
               path="/write-post/:exchangeType/:tradeType"
-              element={<WritePost />}
-            >
+              element={<WritePost />}>
               <Route path="select-element" element={<SelectElement />} />
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
@@ -118,15 +115,23 @@ function Router() {
                 element={<SetNotificationKeywords />}
               />
             </Route>
-            <Route path="chat-list" element={<ChatList />} />
-            <Route path="chat-list/:id" element={<ChatRoom />} />
-            <Route path="chat-list/:id/make-plan" element={<MakePlan />} />
-            <Route
-              path="chat-list/:id/trade-evaluation"
-              element={<TradeEvaluation />}
-            />
-          </Route>
+            {/* 채팅 */}
+            <Route path="/chat-list">
+              <Route index element={<ChatList />} />
+                <Route path=":id">
+                  <Route index element={<ChatRoom />} />
+                  <Route path="make-plan" element={<MakePlan />} />
+                  <Route path="trade-evaluation" element={<TradeEvaluation />} />
+                </Route>
+              </Route>
+            {/* 게시물 수정 페이지 */}
+            <Route path="/articles/:id/edit" element={<EditArticlesOutlet />}>
+              <Route path="select-element" element={<EditSelectElement />} />
+              <Route path="write-content" element={<EditWriteContent />} />
+              <Route path="final-check" element={<FinalCheckPost />} />
+            </Route>
 
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

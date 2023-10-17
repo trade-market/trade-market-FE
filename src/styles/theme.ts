@@ -36,7 +36,6 @@ export const theme: DefaultTheme = {
   },
   font: {
     family: {
-      NotoSansKR: 'NotoSansKR',
       Pretendard: 'Pretendard',
     },
     size: {

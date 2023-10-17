@@ -16,15 +16,18 @@ const FinalCheckPost = () => {
   const deadline = format(new Date(completePost.deadline), `yyyy년 MM월 dd일`);
   const SetCreatePost = [completePost.image, [completePost.provide, completePost.exchange], deadline, completePost.ableTime, completePost.title, completePost.content, priceString([completePost.minPrice, '~', completePost.maxPrice])]
 
-  // todo : type(재능, 물물 교환)에 따라 POST 요청
-
   const renderImageSection = (arr: string[]) => (
     arr.map((img, i) => (
       <ImgSection key={i}>
           <img src={img} />
         </ImgSection>
-    ))
-  ); 
+      ))
+    ); 
+    
+  // todo : type(재능, 물물 교환)에 따라 POST/PETCH 요청
+  const CompleteHandler = () => {
+    navigate(`/`);
+  }
 
   return (
     <>
@@ -59,7 +62,7 @@ const FinalCheckPost = () => {
           option={2}
           disabled={false}
           BlueButtonName={'완료'}
-          BlueButtonClickHandler={() => console.log('data fetch')}
+          BlueButtonClickHandler={CompleteHandler}
         />
     </>
   );
