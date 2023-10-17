@@ -38,5 +38,4 @@ const Container = styled.div`
 const InputContainer = styled.div`
   width: 100%;
   margin-right: 7px;
-
 `;

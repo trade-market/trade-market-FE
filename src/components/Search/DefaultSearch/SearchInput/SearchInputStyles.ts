@@ -10,9 +10,12 @@ export const InputContainer = styled.div`
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 86.5%;
-    top: 35%;
+    left: 85%;
+    top: 34%;
     cursor: pointer;
+    @media screen and (max-width: 395px) {
+      left : 83%;
+    }
   }
 `;
 
