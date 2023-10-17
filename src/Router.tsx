@@ -35,7 +35,6 @@ import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
 import NotFound from '@Pages/NotFound';
-import SearchFiltering from '@Pages/Search/SearchFiltering';
 
 function Router() {
   return (
@@ -66,7 +65,12 @@ function Router() {
                 element={<OAuthRedirectHandler service="naver" />}
               />
             </Route>
-            <Route path="/articles/:id" element={<Articles />} />
+            <Route path="/articles/:id" element={<Articles />}>
+              <Route path="edit/select-element" element={<SelectElement />} />
+              <Route path="edit/write-content" element={<WriteContent />} />
+              <Route path="edit/final-check" element={<FinalCheckPost />} />
+            </Route>
+
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}

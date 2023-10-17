@@ -5,6 +5,7 @@ import SebSection from './SebSection';
 import useModal from '@hooks/useModal';
 import BottomSheet from '@components/common/BottomSheet';
 import ConfirmModal from '@components/common/ConfirmModal';
+import { useNavigate } from 'react-router-dom';
 
 const ColorBlackMenu = styled.div`
   color: ${({ theme }) => theme.color.black};
@@ -34,6 +35,7 @@ interface IPostComponentProps {
 }
 
 const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
+  const navigate = useNavigate();
   const {
     isOpen: isOptionOpen,
     open: optionOpen,

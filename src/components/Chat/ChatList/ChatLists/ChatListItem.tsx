@@ -18,7 +18,10 @@ const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHand
   const navigate = useNavigate();
   
   const handlerClick = () => {
-    if (!deleteMode) navigate(id);
+    if (!deleteMode) navigate(`${id}`, {
+      state: {
+        nickName: nickName
+    }});
   }
 
   return (

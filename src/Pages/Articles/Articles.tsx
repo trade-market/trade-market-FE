@@ -135,7 +135,9 @@ function Articles() {
       {isOpen && (
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
-          <A.CorrectionButton>게시물 수정</A.CorrectionButton>
+          <A.CorrectionButton
+            onClick={() => navigate(`edit/select-element`)}
+          >게시물 수정</A.CorrectionButton>
           <A.DeleteButton
             onClick={() => {
               close();

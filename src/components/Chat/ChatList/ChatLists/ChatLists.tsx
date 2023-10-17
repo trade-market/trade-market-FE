@@ -1,6 +1,7 @@
-import ChatListItem from '@components/Chat/ChatList/ChatListItem/ChatListItem';
+import ChatListItem from '@components/Chat/ChatList/ChatLists/ChatListItem';
 
 interface IChatDataProps {
+  id: string;
   nickname: string;
   time: string;
   text: string;
@@ -20,7 +21,7 @@ const ChatLists = ({ChatListData, deleteModeOn, checkHandler, checkItems}:IChatL
       {ChatListData.map((chat, i)=> (
         <ChatListItem
           key={i}
-          id={`user${i.toString()}`}
+          id={chat.id ? chat.id : `user${i.toString()}`}
           nickName={chat.nickname}
           time={chat.time}
           text={chat.text}
