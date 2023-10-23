@@ -11,7 +11,7 @@ import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
 import { logoutUser } from '@store/slices/userSlice';
-import TokenService from '@/service/TokenService';
+import tokenService from '@/service/tokenService';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -46,7 +46,7 @@ function MyPage() {
 
   const handleConfirm = () => {
     dispatch(logoutUser());
-    TokenService.clearTokens();
+    tokenService.clearTokens();
     navigate('/');
   };
 

@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '@styles/theme';
 import UserService from './service/UserService';
 import { setUser } from '@store/slices/userSlice';
-import TokenService from './service/TokenService';
+import tokenService from './service/tokenService';
 import Router from './Router';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const token = TokenService.getAccessToken();
+      const token = tokenService.getAccessToken();
       if (!token) {
         setIsLoading(false);
         return;

@@ -4,18 +4,14 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import TokenService from '@/service/TokenService';
-
-interface RefreshResponse {
-  accessToken: string;
-  code: number;
-  message: string;
-}
+import tokenService from '@/service/tokenService';
+import { logoutUser } from '@store/slices/userSlice';
+import { RefreshTokenResponse } from '@/types/AuthTypes';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: '/api',
   prepareHeaders: (headers) => {
-    const accessToken = TokenService.getAccessToken();
+    const accessToken = tokenService.getAccessToken();
     if (accessToken) {
       headers.set('Authorization', `Bearer ${accessToken}`);
     }
@@ -33,7 +29,7 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
-    const refreshToken = TokenService.getRefreshToken();
+    const refreshToken = tokenService.getRefreshToken();
     const refreshResult = await baseQuery(
       {
         url: '/oauth/token',
@@ -48,16 +44,17 @@ const baseQueryWithIntercept: BaseQueryFn<
 
     if (refreshResult.meta.response.ok) {
       if (refreshResult.meta.response.status !== 201) {
-        throw new Error('refresh token expired');
+        alert('다시 로그인해주세요. (토큰 만료)');
+        api.dispatch(logoutUser());
       }
-      const newAccessToken = (refreshResult.data as RefreshResponse)
+      const newAccessToken = (refreshResult.data as RefreshTokenResponse)
         .accessToken;
-      TokenService.setAccessToken(newAccessToken);
+      tokenService.setAccessToken(newAccessToken);
 
       result = await baseQuery(args, api, extraOptions);
     } else {
-      console.log('refresh token expired');
-      //   api.dispatch(loggedOut());
+      alert('다시 로그인해주세요. (토큰 만료)');
+      api.dispatch(logoutUser());
     }
   }
 

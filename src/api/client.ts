@@ -1,5 +1,5 @@
+import tokenService from '@/service/tokenService';
 import axios, { AxiosError } from 'axios';
-import TokenService from '@/service/TokenService';
 
 export const BASE_URL = 'http://localhost:5173'; // Todo: 서버 배포되면 환경변수로 설정
 
@@ -9,7 +9,7 @@ const client = axios.create({
 });
 
 client.interceptors.request.use((config) => {
-  const accessToken = TokenService.getAccessToken();
+  const accessToken = tokenService.getAccessToken();
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
@@ -23,17 +23,17 @@ client.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = TokenService.getRefreshToken();
+      const refreshToken = tokenService.getRefreshToken();
 
       try {
         const res = await client.post('/auth/token', { refreshToken });
         const newAccessToken = res.headers['authorization'].split(' ')[1];
-        TokenService.setAccessToken(newAccessToken);
+        tokenService.setAccessToken(newAccessToken);
         return client(originalRequest);
       } catch (err) {
         const axiosErr = err as AxiosError;
         if (axiosErr.response && axiosErr.response.status === 403) {
-          TokenService.clearTokens();
+          tokenService.clearTokens();
           alert('토큰이 만료되어 로그아웃 되었습니다.');
           window.location.reload();
         }

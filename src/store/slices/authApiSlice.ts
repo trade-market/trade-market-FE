@@ -5,17 +5,10 @@ import {
   RegisterRequest,
 } from '@/types/AuthTypes';
 import { apiSlice } from '@/api/apiSlice';
-import TokenService from '@/service/TokenService';
+import tokenService from '@/service/tokenService';
 
 const HTTP_STATUS_OK = 200;
 const HTTP_STATUS_MOVED_PERMANENTLY = 301;
-
-function saveTokens(data: LoginResponse) {
-  const { accessToken, refreshToken } = data;
-
-  TokenService.setAccessToken(accessToken);
-  TokenService.setRefreshToken(refreshToken);
-}
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -34,7 +27,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
         meta: { response: Response }
       ) => {
         if (meta.response.status === HTTP_STATUS_OK) {
-          saveTokens(response as LoginResponse);
+          const { accessToken, refreshToken } = response as LoginResponse;
+          tokenService.setTokens({ accessToken, refreshToken });
           return response;
         } else if (meta.response.status === HTTP_STATUS_MOVED_PERMANENTLY) {
           const data = response as NewUserResponse;
@@ -51,7 +45,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body,
       }),
       transformResponse: (response: LoginResponse) => {
-        saveTokens(response as LoginResponse);
+        const { accessToken, refreshToken } = response as LoginResponse;
+        tokenService.setTokens({ accessToken, refreshToken });
         return response;
       },
     }),

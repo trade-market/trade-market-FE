@@ -29,3 +29,9 @@ export interface RegisterRequest {
   latitude: string;
   longitude: string;
 }
+
+export interface RefreshTokenResponse {
+  accessToken: string;
+  code: number;
+  message: string;
+}
