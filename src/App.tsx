@@ -19,8 +19,8 @@ function App() {
         return;
       }
       try {
-        const data = await UserService.getUserInfo();
-        dispatch(setUser({ ...data.user, isLogin: true }));
+        const user = await UserService.getUserInfo();
+        dispatch(setUser({ ...user, isLogin: true }));
       } catch (error) {
         console.error(error);
       } finally {
