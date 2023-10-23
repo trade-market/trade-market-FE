@@ -23,44 +23,41 @@ const users: User[] = [
 ];
 
 export const handlers = [
-  rest.get('/oauth2/callback/google', (req, res, ctx) => {
+  rest.post('/api/login/google', (req, res, ctx) => {
     return res(
-      ctx.set('Authorization', 'Baerer abcdefg12345'),
-      ctx.set('refresh', 'testrefresh12345'),
+      ctx.status(200),
       ctx.json({
         code: 200,
         message: '로그인 성공',
-        isNew: false,
+        accessToken: 'abcdefg12345',
+        refreshToken: 'testrefresh12345',
       })
     );
   }),
 
-  rest.get('/oauth2/callback/kakao', (req, res, ctx) => {
+  rest.post('/api/login/kakao', (req, res, ctx) => {
     // 신규 유저일 경우
     return res(
+      ctx.status(301),
       ctx.json({
-        code: 200,
-        message: '신규 유저',
-        isNew: true,
-        user: {
-          auth_id: '123',
-          nickname: '거래왕',
-          profile_image:
-            'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
-        },
+        authId: '123',
+        authType: 'KAKAO',
+        nickname: '거래왕',
+        profileImage:
+          'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
       })
     );
   }),
 
-  rest.get('/oauth2/callback/naver', (req, res, ctx) => {
+  rest.post('/api/login/naver', (req, res, ctx) => {
     // 로그인 성공시
     return res(
-      ctx.set('Authorization', 'Baerer abcdefg12345'),
-      ctx.set('refresh', 'testrefresh12345'),
+      ctx.status(200),
       ctx.json({
         code: 200,
         message: '로그인 성공',
-        isNew: false,
+        accessToken: 'abcdefg12345',
+        refreshToken: 'testrefresh12345',
       })
     );
   }),
@@ -79,31 +76,31 @@ export const handlers = [
 
     return res(
       ctx.json({
-        code: 200,
-        message: '유저 정보 조회 성공',
-        user: users[index],
+        ...users[index],
       })
     );
   }),
 
-  rest.post('/auth/signup', async (req, res, ctx) => {
+  rest.post('/api/register', async (req, res, ctx) => {
     const body = await req.json();
-    const { nickname, coordinates, town, profileImg, profileImgFile } = body;
+    const { nickname, coordinates, profileImg, profileImgFile } = body;
     users.push({
       id: '9910',
       nickname,
       profile_image: profileImg,
       coordinates,
-      town,
+      town: '임시동',
       grade: 'one',
     });
 
     return res(
-      ctx.set('Authorization', 'Baerer geggeg2'),
-      ctx.set('refresh', 'testrefresh12345'),
+      ctx.delay(),
+      ctx.status(201),
       ctx.json({
-        code: 200,
+        code: 201,
         message: '회원가입 성공',
+        accessToken: 'geggeg2',
+        refreshToken: 'testrefresh12345',
       })
     );
   }),
@@ -120,13 +117,17 @@ export const handlers = [
     return res(ctx.json({ code: 200, message: '사용 가능한 닉네임입니다.' }));
   }),
 
-  rest.post('/auth/token', async (req, res, ctx) => {
+  rest.post('/oauth/token', async (req, res, ctx) => {
     const body = await req.json();
     const refreshToken = body.refreshToken;
 
     return res(
-      ctx.status(200),
-      ctx.set('Authorization', 'Baerer abcdefg12345')
+      ctx.status(201),
+      ctx.json({
+        code: 201,
+        message: '토큰 재발급 성공',
+        accessToken: 'abcdefg12345',
+      })
     );
   }),
 
