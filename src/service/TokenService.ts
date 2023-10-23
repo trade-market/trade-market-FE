@@ -7,7 +7,7 @@ class TokenService {
   setRefreshToken = (refreshToken: string) =>
     Cookies.set('refreshToken', refreshToken, {
       secure: import.meta.env.PROD,
-      sameSite: 'lax',
+      sameSite: 'strict',
     });
 
   getAccessToken = () => localStorage.getItem('accessToken');
