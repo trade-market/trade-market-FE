@@ -4,7 +4,7 @@ import WritePostSlice from './slices/WritePostSlice';
 import userSlice from './slices/userSlice';
 import ChatSlice from './slices/ChatSlice';
 import CheckboxSlice from './slices/checkboxSlice';
-import { apiSlice } from '@/api/apiSlice';
+import { apiSlice } from '@store/api/apiSlice';
 
 export const store = configureStore({
   reducer: {

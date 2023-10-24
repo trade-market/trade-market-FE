@@ -42,6 +42,7 @@ const baseQueryWithIntercept: BaseQueryFn<
       extraOptions
     );
 
+    // 검증 필요
     if (refreshResult.meta.response.ok) {
       if (refreshResult.meta.response.status !== 201) {
         alert('다시 로그인해주세요. (토큰 만료)');

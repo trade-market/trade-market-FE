@@ -4,7 +4,7 @@ import {
   OAuthServiceType,
   RegisterRequest,
 } from '@/types/AuthTypes';
-import { apiSlice } from '@/api/apiSlice';
+import { apiSlice } from '@store/api/apiSlice';
 import tokenService from '@/service/tokenService';
 
 const HTTP_STATUS_OK = 200;

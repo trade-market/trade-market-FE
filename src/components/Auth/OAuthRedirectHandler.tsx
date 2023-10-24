@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  LoginResponse,
-  NewUserResponse,
-  OAuthServiceType,
-} from '@/types/AuthTypes';
+import { useDispatch } from 'react-redux';
+import { NewUserResponse, OAuthServiceType } from '@/types/AuthTypes';
 import Spinner from './Spinner';
 import UserService from '@/service/UserService';
-import { useDispatch } from 'react-redux';
 import { setUser } from '@store/slices/userSlice';
 import useQueryString from '@hooks/useQueryString';
-import { useLoginMutation } from '@store/slices/authApiSlice';
+import { useLoginMutation } from '@store/api/authApiSlice';
 
 interface IOAuthRedirectHandlerProps {
   serviceName: OAuthServiceType;

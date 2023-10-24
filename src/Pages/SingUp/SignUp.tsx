@@ -9,7 +9,7 @@ import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
 import { NewUserResponse } from '@/types/AuthTypes';
-import { useSignUpMutation } from '@store/slices/authApiSlice';
+import { useSignUpMutation } from '@store/api/authApiSlice';
 import Spinner from '@components/Auth/Spinner';
 
 function SignUp() {
