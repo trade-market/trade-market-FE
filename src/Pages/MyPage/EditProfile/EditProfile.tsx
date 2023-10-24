@@ -1,18 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
-import { setUser } from '@store/slices/userSlice';
 import UserService from '@/service/UserService';
-import { RootState } from '@store/types';
 import ConfirmModal from '@components/common/ConfirmModal';
 import useModal from '@hooks/useModal';
+import { useUser } from '@hooks/useUser';
 
 function EditProfile() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const { data: user } = useUser();
   const { isOpen, open, close } = useModal();
 
   let userInfoToSubmit = {};
@@ -36,8 +33,6 @@ function EditProfile() {
   const handleFinalOkClick = async () => {
     try {
       await UserService.updateUserInfo(userInfoToSubmit);
-      const { user } = await UserService.getUserInfo();
-      dispatch(setUser({ ...user, isLogin: true }));
     } catch (err) {
       console.error(err);
     }

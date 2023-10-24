@@ -7,7 +7,7 @@ import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
 import UserService from '@/service/UserService';
-import useAuth from '@hooks/useAuth';
+import { useUser } from '@hooks/useUser';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
@@ -31,12 +31,13 @@ function ProfileSetupForm({
   defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
-  const auth = useAuth();
+  const { data: user } = useUser();
+  const isLogin = Boolean(user);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [nicknameState, setNicknameState] = useState({
     nickname: defaultNickname,
-    success: auth,
+    success: isLogin,
   });
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');

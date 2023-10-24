@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { NewUserResponse, OAuthServiceType } from '@/types/AuthTypes';
 import Spinner from './Spinner';
-import UserService from '@/service/UserService';
-import { setUser } from '@store/slices/userSlice';
 import useQueryString from '@hooks/useQueryString';
 import { useLoginMutation } from '@store/api/authApiSlice';
 
@@ -15,12 +12,9 @@ interface IOAuthRedirectHandlerProps {
 function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
   const code = useQueryString('code') as string; // 인가 코드
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [login] = useLoginMutation();
 
   const handleSuccessfulLogin = async () => {
-    const user = await UserService.getUserInfo();
-    dispatch(setUser({ ...user }));
     navigate('/', { replace: true });
   };
 

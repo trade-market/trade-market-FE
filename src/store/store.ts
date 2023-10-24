@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createCommentSlice from './slices/CreateCommentSlice';
 import WritePostSlice from './slices/WritePostSlice';
-import userSlice from './slices/userSlice';
 import ChatSlice from './slices/ChatSlice';
 import CheckboxSlice from './slices/checkboxSlice';
 import { apiSlice } from '@store/api/apiSlice';
@@ -11,7 +10,6 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     createComment: createCommentSlice,
     WritePost: WritePostSlice,
-    user: userSlice,
     chat: ChatSlice,
     checkbox: CheckboxSlice,
   },

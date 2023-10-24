@@ -2,9 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@store/slices/userSlice';
-import UserService from '@/service/UserService';
 import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
@@ -32,16 +29,12 @@ function SignUp() {
       />
     );
   }
-  const dispatch = useDispatch();
   const { authId, authType, nickname, profileImage } = state;
 
   const handleSuccessfulSignUp = async () => {
-    const user = await UserService.getUserInfo();
     open();
     setTimeout(() => {
-      dispatch(setUser({ ...user, isLogin: true }));
       navigate('/', { replace: true });
-      console.log('tt');
     }, 3000);
   };
 

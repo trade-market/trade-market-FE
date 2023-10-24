@@ -62,11 +62,17 @@ export const handlers = [
     );
   }),
 
-  rest.get('/user/info', (req, res, ctx) => {
+  rest.get('/api/user/info', (req, res, ctx) => {
     const user1 = 'abcdefg12345';
     const accessToken = req.headers.get('Authorization')?.split(' ')[1];
     const index = user1 === accessToken ? 0 : 1;
-    console.log(users[index]);
+
+    if (!accessToken) {
+      return res(
+        ctx.status(401),
+        ctx.json({ code: 401, message: '로그인이 필요합니다.' })
+      );
+    }
 
     if (accessToken === 'test')
       return res(
@@ -117,9 +123,9 @@ export const handlers = [
     return res(ctx.json({ code: 200, message: '사용 가능한 닉네임입니다.' }));
   }),
 
-  rest.post('/oauth/token', async (req, res, ctx) => {
-    const body = await req.json();
-    const refreshToken = body.refreshToken;
+  rest.post('/api/oauth/token', async (req, res, ctx) => {
+    const refreshToken = req.headers.get('Authorization')?.split(' ')[1];
+    console.log(refreshToken);
 
     return res(
       ctx.status(201),
