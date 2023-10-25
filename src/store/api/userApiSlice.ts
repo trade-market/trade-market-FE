@@ -8,7 +8,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     checkNicknameDuplication: builder.mutation({
       query: (nickname) => ({
-        url: '/user/nickname/',
+        url: '/user/nickname',
         method: 'POST',
         body: { nickname },
       }),

@@ -111,7 +111,7 @@ export const handlers = [
     );
   }),
 
-  rest.post('/user/nickname', async (req, res, ctx) => {
+  rest.post('/api/user/nickname', async (req, res, ctx) => {
     const body = await req.json();
     const nickname = body.nickname;
     if (nickname === '거래왕') {
@@ -137,7 +137,7 @@ export const handlers = [
     );
   }),
 
-  rest.put('/user/update', async (req, res, ctx) => {
+  rest.put('api/user/update', async (req, res, ctx) => {
     const body = await req.json();
 
     return res(ctx.json({ code: 200, message: '수정 성공' }));
