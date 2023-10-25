@@ -137,7 +137,7 @@ export const handlers = [
     );
   }),
 
-  rest.put('api/user/update', async (req, res, ctx) => {
+  rest.put('/api/user/update', async (req, res, ctx) => {
     const body = await req.json();
 
     return res(ctx.json({ code: 200, message: '수정 성공' }));

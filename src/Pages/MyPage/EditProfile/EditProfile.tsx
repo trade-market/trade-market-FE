@@ -2,15 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
-import UserService from '@/service/UserService';
 import ConfirmModal from '@components/common/ConfirmModal';
 import useModal from '@hooks/useModal';
 import { useUser } from '@hooks/useUser';
+import { useUpdateUserInfoMutation } from '@store/api/userApiSlice';
+import Spinner from '@components/Auth/Spinner';
 
 function EditProfile() {
   const navigate = useNavigate();
   const { data: user } = useUser();
   const { isOpen, open, close } = useModal();
+  const [updateUser, { isLoading: isUpdateUserLoading }] =
+    useUpdateUserInfoMutation();
 
   let userInfoToSubmit = {};
 
@@ -32,12 +35,12 @@ function EditProfile() {
 
   const handleFinalOkClick = async () => {
     try {
-      await UserService.updateUserInfo(userInfoToSubmit);
-    } catch (err) {
-      console.error(err);
+      await updateUser(userInfoToSubmit);
+      close();
+      navigate('/my-page');
+    } catch (error) {
+      console.error(error);
     }
-    close();
-    navigate('/my-page');
   };
 
   return (
@@ -58,6 +61,7 @@ function EditProfile() {
         onFinalOkClick={handleFinalOkClick}
         closeAction={close}
       />
+      {isUpdateUserLoading && <Spinner />}
     </>
   );
 }
