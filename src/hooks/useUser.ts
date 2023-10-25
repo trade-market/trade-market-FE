@@ -1,8 +1,8 @@
-import tokenService from '@/service/tokenService';
+import { tokenStorage } from '@utils/tokenStorage';
 import { useGetUserInfoQuery } from '@store/api/userApiSlice';
 
 export const useUser = () => {
-  const token = tokenService.getAccessToken();
+  const token = tokenStorage.getAccessToken();
   const result = useGetUserInfoQuery(undefined, { skip: !token });
 
   return result;

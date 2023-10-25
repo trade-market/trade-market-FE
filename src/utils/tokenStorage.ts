@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
-type Tokens = {
+interface TokensType {
   accessToken: string;
   refreshToken: string;
-};
+}
 
 const ACCESS_TOKEN = 'accessToken';
 const REFRESH_TOKEN = 'refreshToken';
@@ -26,12 +26,12 @@ const clearTokens = () => {
   Cookies.remove(REFRESH_TOKEN);
 };
 
-const setTokens = ({ accessToken, refreshToken }: Tokens) => {
+const setTokens = ({ accessToken, refreshToken }: TokensType) => {
   setAccessToken(accessToken);
   setRefreshToken(refreshToken);
 };
 
-const tokenService = {
+export const tokenStorage = {
   setAccessToken,
   setRefreshToken,
   setTokens,
@@ -39,5 +39,3 @@ const tokenService = {
   getRefreshToken,
   clearTokens,
 };
-
-export default tokenService;

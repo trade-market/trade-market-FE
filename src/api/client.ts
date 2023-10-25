@@ -1,4 +1,4 @@
-import tokenService from '@/service/tokenService';
+import tokenService from '@utils/tokenStorage';
 import axios, { AxiosError } from 'axios';
 
 export const BASE_URL = 'http://localhost:5173'; // Todo: 서버 배포되면 환경변수로 설정

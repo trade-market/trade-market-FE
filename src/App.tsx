@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@styles/theme';
-import tokenService from './service/tokenService';
+import { tokenStorage } from './utils/tokenStorage';
 import Router from './Router';
 import { useUser } from '@hooks/useUser';
 
@@ -9,7 +9,7 @@ function App() {
 
   if (isError) {
     console.error(error);
-    tokenService.clearTokens();
+    tokenStorage.clearTokens();
   }
 
   if (isLoading) return null;

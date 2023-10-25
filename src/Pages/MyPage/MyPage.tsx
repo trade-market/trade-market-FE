@@ -9,7 +9,7 @@ import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPosts
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
-import tokenService from '@/service/tokenService';
+import { tokenStorage } from '@utils/tokenStorage';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -42,7 +42,7 @@ function MyPage() {
   };
 
   const handleConfirm = () => {
-    tokenService.clearTokens();
+    tokenStorage.clearTokens();
     navigate('/');
   };
 
