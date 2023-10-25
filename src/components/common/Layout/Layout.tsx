@@ -21,7 +21,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
-    /^\/my-page\/.+$/,
+    /^\/my-page/,
     /^\/notifications/,
     /^\/chat-list\/.+$/,
   ];
@@ -30,7 +30,7 @@ function Layout({ children }: ILayoutProps) {
     shouldHideComponent(pathRegex)
   );
 
-  const NavNotHidden = [/^\/search/].some((pathRegex) =>
+  const NavNotHidden = [/^\/search/, /^\/my-page/].some((pathRegex) =>
     shouldHideComponent(pathRegex)
   );
 
