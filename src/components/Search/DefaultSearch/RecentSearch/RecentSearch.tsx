@@ -22,8 +22,10 @@ const RecentSearsh = ({ keywords, onClearKeywords, onRemoveKeyword }: IRecentSea
         {keywords?.length ?
           keywords?.map((k) => {
             return (
-              <div className="keyword" key={k.id} onClick={() => navigate(`?searching=${k.text}&type=물물`)}>
-                {k.text}
+              <div className="keyword" key={k.id}>
+                <span
+                  onClick={() => navigate(`?searching=${k.text}&type=물물`)}
+                >{k.text}</span>
                 <S.DeleteBtn
                   className="deleteBtn"
                   onClick={() => onRemoveKeyword(k.id)}

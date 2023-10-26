@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { size } from '../../../styles/theme';
 import GobackBtn from '@components/common/CommonHeader/GobackBtn';
 import SearchInput from "@components/Search/DefaultSearch/SearchInput/SearchInput";
@@ -9,10 +10,11 @@ interface ISearchHeaderProps {
 }
 
 const SearchHeader = ({ handleAddKeyword }: ISearchHeaderProps) => {
+  const navigate = useNavigate();
   const searching = useQueryString('searching');
   return (
     <Container>
-      <GobackBtn />
+      <GobackBtn onClick={() => navigate(`/search`)} />
       <InputContainer>
         <SearchInput onAddKeyword={handleAddKeyword} defaultValue={searching} />
       </InputContainer>
