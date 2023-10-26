@@ -20,6 +20,8 @@ export const InputContainer = styled.div`
 `;
 
 export const Input = styled.input`
+  ime-mode: auto;
+  -webkit-ime-mode: auto;
   padding: 16px;
   width: 100%;
   height: 48px;
