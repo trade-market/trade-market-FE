@@ -5,16 +5,15 @@ export const InputContainer = styled.div`
   display: flex;
   padding: 10px 20px;
   position: relative;
-
   img {
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 85%;
     top: 34%;
+    left: 86%;
     cursor: pointer;
     @media screen and (max-width: 395px) {
-      left : 83%;
+      left : 84%;
     }
   }
 `;
