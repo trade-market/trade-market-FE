@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { size } from '../../../styles/theme';
+import { size } from '@/styles/theme';
 import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@components/common/Buttons/BlueButton';
 

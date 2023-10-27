@@ -32,7 +32,6 @@ declare module 'styled-components' {
     };
     font: {
       family: {
-        NotoSansKR: string;
         Pretendard: string;
       };
       size: {

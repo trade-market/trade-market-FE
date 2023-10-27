@@ -11,6 +11,8 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   const { pathname } = useLocation();
+  const { search } = useLocation();
+  const { height } = useWindowSize();
 
   const shouldHideComponent = (regex: RegExp) => regex.test(pathname);
 
@@ -18,6 +20,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/auth/,
     /^\/signup/,
     /^\/search/,
+    /^\/search\/.+$/,
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
@@ -30,11 +33,7 @@ function Layout({ children }: ILayoutProps) {
     shouldHideComponent(pathRegex)
   );
 
-  const NavNotHidden = [/^\/search/, /^\/my-page/].some((pathRegex) =>
-    shouldHideComponent(pathRegex)
-  );
-
-  const { height } = useWindowSize();
+  const NavNotHidden = pathname === '/search' && search.length === 0; // 상세 검색페이지일 때는 네비바 hidden
 
   return (
     <Wrapper height={height}>

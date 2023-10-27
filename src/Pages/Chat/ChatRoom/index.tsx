@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
+import { useLocation } from "react-router";
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useModal from '@hooks/useModal';
@@ -17,6 +18,7 @@ const ChatRoom = () => {
   const chatStorage = useSelector((state: RootState) => state.chat.chatStorage);
   const { isOpen, open, close } = useModal();
   const { id } = useParams<{ id: string }>();
+  const { state } = useLocation();
 
   const handleChangeState = (e : React.MouseEvent<HTMLDivElement>) => {
     setSaleState(e.currentTarget.innerText);
@@ -51,7 +53,7 @@ const ChatRoom = () => {
     <>
         <CommonHeader>
           <HeaderSection>
-            <span className='title'>상대방 닉네임</span>
+            <span className='title'>{state['nickName']}</span>
             <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
           </HeaderSection>
         </CommonHeader>
