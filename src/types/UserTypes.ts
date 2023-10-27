@@ -5,8 +5,8 @@ export interface NewUserInfo {
 }
 
 export interface Coordinates {
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
 }
 export type GradeType = 'one' | 'two' | 'three' | 'four' | null;
 
@@ -14,7 +14,7 @@ export interface User {
   id: string;
   profile_image: string;
   nickname: string;
-  coordinates: { lat: string; lng: string };
+  coordinates: { latitude: string; longitude: string };
   grade: GradeType;
   town: string;
 }

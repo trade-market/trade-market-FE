@@ -1,32 +1,19 @@
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
-import cameraIcon from '@Assets/Icons/camera.svg';
 
 const Container = styled.div`
   margin: 28px 0;
   text-align: center;
 
-  .profile-img {
-    max-width: 110px;
-    margin: 0 auto;
-    position: relative;
+  .image-icon {
+    width: 110px;
+    height: 110px;
     cursor: pointer;
+  }
 
-    .image-icon {
-      border-radius: 50%;
-      width: 110px;
-      height: 110px;
-    }
-
-    .camera-icon {
-      width: 24px;
-      height: 24px;
-      padding: 6px;
-      margin-left: -30px;
-      border-radius: 24px;
-      background-color: ${({ theme }) => theme.color.gray};
-    }
+  .border-radius-50 {
+    border-radius: 50%;
   }
 `;
 
@@ -55,20 +42,24 @@ function ProfileImgSetting({
     <>
       <BigTitle>프로필 이미지 설정</BigTitle>
       <Container>
-        <div className="profile-img" onClick={handleImgClick}>
-          <img src={imgSrc} alt="profileImg" className="image-icon" />
-          <img src={cameraIcon} alt="camera-icon" className="camera-icon" />
-          <input
-            type="file"
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            accept="image/jpg,image/png,image/jpeg"
-            onChange={handleImageChange}
-          />
-        </div>
+        <img
+          src={imgSrc}
+          alt="profileImg"
+          className={`image-icon ${
+            imgSrc.includes('default_profile') ? '' : 'border-radius-50'
+          }`}
+          onClick={handleImgClick}
+        />
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          accept="image/jpg,image/png,image/jpeg"
+          onChange={handleImageChange}
+        />
       </Container>
     </>
   );
 }
 
-export default ProfileImgSetting;
+export default memo(ProfileImgSetting);

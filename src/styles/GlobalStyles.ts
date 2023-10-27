@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
         background: #cbcbcb;
         font-family: ${theme.font.family.Pretendard};
         font-size: ${theme.font.size.base};
+        color: ${theme.color.black};
       }
       a {
         text-decoration: none;
@@ -22,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
       button {
         font-family: ${theme.font.family.Pretendard};
         cursor: pointer;
+        border: none;
+        background: none;
+        color: ${theme.color.black};
       }
       input {
         font-family: ${theme.font.family.Pretendard};

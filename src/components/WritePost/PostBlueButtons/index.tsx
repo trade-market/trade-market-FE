@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { size } from '../../../styles/theme';
+import { useNavigate } from 'react-router-dom';
+import { size } from '@/styles/theme';
 import ActionButton from '@/components/common/Buttons/ActionButton';
 import BlueButton from '@components/common/Buttons/BlueButton';
 
@@ -36,7 +36,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: ${size.mobile};
   min-height: 70px;
-  padding: 0px 20px;
+  padding: 20px 20px;
   position: fixed;
   z-index: 10;
   bottom: 0;

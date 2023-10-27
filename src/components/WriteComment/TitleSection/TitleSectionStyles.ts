@@ -13,3 +13,8 @@ export const SubTitle = styled.div`
   font-size: 16px;
   text-align: center;
 `;
+
+export const H3Text = styled.div`
+  font-weight: 500;
+  font-size: ${({ theme }) => theme.font.size.medium};
+`;

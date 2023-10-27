@@ -1,29 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+import UnreadChatNav from './UnreadChatNav';
 
 interface INaviMenuProps {
-  able: string;
-  disable: string;
-  activeNav: number;
-  position: number;
-  setActiveNav: React.Dispatch<React.SetStateAction<number>>;
+  icon: string;
+  active: boolean;
   menu: string;
+  loacate?: string;
 }
 
-const NaviMenu = ({ able, disable, activeNav, position, setActiveNav, menu }: INaviMenuProps) => {
-  const navigate = useNavigate();
-
-  const handleNavigation = () => {
-    navigate('/');
-    setActiveNav(position);
-  };
-  
+const NaviMenu = ({ icon, active, menu }: INaviMenuProps) => {
   return (
-    <div
-      className="item"
-      onClick={handleNavigation}
-      >
-      <img className="icon" src={activeNav === position ? able : disable} />
-      <div className={activeNav === position ? "active" : ""}>{menu}</div>
+    <div className="item">
+      { menu === '채팅' && <UnreadChatNav /> }
+      <img className="icon" src={icon} />
+      <div className={active ? 'active' : ''}>{menu}</div>
     </div>
   );
 };

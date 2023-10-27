@@ -9,7 +9,6 @@ import { Container } from "./Progress4Styles";
 const Progress4 = () => {
   const selectMinPrice = useSelector((state: RootState) => state.createComment.minPrice);
   const selectMaxPrice = useSelector((state: RootState) => state.createComment.maxPrice);
-createComment
   return (
     <>
       <ProcessCompo

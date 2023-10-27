@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { size } from '@/styles/theme';
 
 interface IBottomSheetProps {
-  children?: React.ReactNode;
-  onClick?: () => void;
+  children: React.ReactNode;
+  onClick: () => void;
   height?: string;
   optionP?: string;
 }
@@ -12,14 +12,15 @@ function BottomSheet({
   children,
   onClick,
   height = '190px',
-  optionP = 'off'
 }: IBottomSheetProps) {
   return (
     <>
-      <Background $optionP={optionP} />
-      <Container $height={height} $optionP={optionP} >
+      <Background onClick={onClick}/>
+      <Container $height={height}>
         {children}
-        <div className="close" onClick={onClick}>닫기</div>
+        <div className="close" onClick={onClick}>
+          닫기
+        </div>
       </Container>
     </>
   );
@@ -27,23 +28,22 @@ function BottomSheet({
 
 export default BottomSheet;
 
-const Background = styled.div<{ $optionP?: string }>`
+export const Background = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 110%;
+  height: 100%;
   z-index: 140;
-  backdrop-filter: blur(3px);
+  background: var(--bg-blur, rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(150, 150, 150, 0.4);
   transition: transform 650ms ease-out;
-  margin-top:${({ $optionP }) => $optionP === 'on' ? '-60px' : '0'}; // 헤더 영역이 있을 경우
 `;
 
-const Container = styled.div<{ $height?: string; $optionP?: string }>`
-  display: flex;  
+const Container = styled.div<{ $height?: string;}>`
+  display: flex;
   width: 100%;
   max-width: ${size.mobile};
   z-index: 150;
@@ -53,8 +53,6 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
   overflow-y: scroll;
   height: ${({ $height }) => $height};
   animation: bottomUp 0.3s ease-out;
-  margin-left: ${({ $optionP }) => $optionP === 'on' ? '-20px;' : '0'}; // 헤더 영역이 있을 경우
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -68,9 +66,7 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
     }
   }
 
-  :nth-child(1),
-  :nth-child(2),
-  :nth-child(3) {
+  * {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +81,10 @@ const Container = styled.div<{ $height?: string; $optionP?: string }>`
   }
 
   :nth-child(1) {
-    border-radius: 8px 8px 0 0;
-  }
+      border-radius: 8px 8px 0 0;
+    }
 
-  :nth-child(2) {
+  :nth-last-child(2) {
     border-radius: 0 0 8px 8px;
   }
 

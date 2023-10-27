@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { size } from '../../../styles/theme';
 
-export const Container = styled.div`
+export const Container = styled.div<{$hidden : boolean}>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -15,27 +15,25 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.bgColor};
   justify-content: center;
   padding: 0 15px;
-
   .title {
     display: flex;
     justify-content: center;
-    flex-grow: 2;
-    /* padding-right: 20px; */
-
+    padding-left: 10px;
+    flex-grow: 1;
     &.Only {
       padding: 0px;
     }
   }
-
   .gobackBtn {
     display: flex;
+    visibility: ${({ $hidden }) => $hidden ? 'hidden' : 'visible'};
     border: none;
     cursor: pointer;
     background-color: transparent;
   }
 `;
 
-export const CloseButton = styled.div<{ $display: string }>`
+export const CloseButton = styled.div<{ $display: string; }>`
   display: ${({ $display }) => $display};
   justify-content: flex-end;
   padding-right: 5px;
@@ -44,4 +42,17 @@ export const CloseButton = styled.div<{ $display: string }>`
 
 export const OptionButton = styled.img`
   cursor: pointer;
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+`;
+
+export const DeleteButton = styled(Button)`
+  color: ${({ theme }) => theme.color.orange};
+`;
+
+export const CancelButton = styled(Button)`
+  color: ${({ theme }) => theme.color.lightGray};
 `;

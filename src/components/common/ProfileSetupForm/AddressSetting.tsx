@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
 import * as S from '@Pages/SingUp/SignUpStyles';
@@ -109,4 +109,4 @@ function AddressSetting({
   );
 }
 
-export default AddressSetting;
+export default memo(AddressSetting);

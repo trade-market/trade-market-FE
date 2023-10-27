@@ -19,10 +19,25 @@ import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
 import PrivateRoute from '@components/PrivateRoute';
 import PublicRoute from '@components/PublicRoute';
 import ChoicePostType from '@Pages/WritePost/ChoicePostType/ChoicePostType';
-import SelectElement from '@Pages/WritePost/WritePost/SelectElement';
-import WriteContent from '@Pages/WritePost/WritePost/WriteContent';
-import FinalCheckPost from '@Pages/WritePost/WritePost/FinalCheckPost';
-import WritePost from '@Pages/WritePost/WritePost/WritePost';
+import SelectElement from '@Pages/WritePost/ChoicePostType/SelectElement';
+import WriteContent from '@Pages/WritePost/WriteContent';
+import FinalCheckPost from '@Pages/WritePost/FinalCheckPost';
+import WritePost from '@Pages/WritePost/WritePost';
+import MyPage from '@Pages/MyPage';
+import EditProfile from '@Pages/MyPage/EditProfile';
+import LikePosts from '@Pages/MyPage/LikePosts';
+import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
+import MannersDetail from '@Pages/MyPage/MannersDetail';
+import Notifications from '@Pages/Notifications';
+import SetNotificationKeywords from '@Pages/SetNotificationKeywords';
+import ChatList from '@Pages/Chat/ChatList';
+import ChatRoom from '@Pages/Chat/ChatRoom';
+import MakePlan from '@Pages/Chat/MakePlan';
+import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
+import NotFound from '@Pages/NotFound';
+import EditSelectElement from '@Pages/Articles/ArticlesEdit/EditSelectElement';
+import EditArticlesOutlet from '@Pages/Articles/ArticlesEdit/EditArticlesOutlet';
+import EditWriteContent from '@Pages/Articles/ArticlesEdit/EditWriteContent';
 
 function Router() {
   return (
@@ -32,29 +47,28 @@ function Router() {
         {/* 모든 유저가 접근 가능한 페이지 */}
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* signup 페이지는 컴포넌트 내부에서 처리함 */}
-          <Route path="/signup" element={<SignUp />} />
-          {/* oauth2/callback 페이지는 처리 필요 없음 */}
-          <Route path="/oauth2/callback">
-            <Route
-              path="kakao"
-              element={<OAuthRedirectHandler service="kakao" />}
-            />
-            <Route
-              path="google"
-              element={<OAuthRedirectHandler service="google" />}
-            />
-            <Route
-              path="naver"
-              element={<OAuthRedirectHandler service="naver" />}
-            />
-          </Route>
-          <Route path="/articles/:id" element={<Articles />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/articles/:id" element={<Articles />} />
 
           {/* 비로그인 유저만 접근 가능한 페이지 */}
           <Route element={<PublicRoute />}>
             <Route path="/auth" element={<Auth />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/oauth2/callback">
+              <Route
+                path="kakao"
+                element={<OAuthRedirectHandler service="kakao" />}
+              />
+              <Route
+                path="google"
+                element={<OAuthRedirectHandler service="google" />}
+              />
+              <Route
+                path="naver"
+                element={<OAuthRedirectHandler service="naver" />}
+              />
+            </Route>
+            <Route path="/articles/:id" element={<Articles />} />
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
@@ -82,13 +96,43 @@ function Router() {
             />
             <Route
               path="/write-post/:exchangeType/:tradeType"
-              element={<WritePost />}
-            >
+              element={<WritePost />}>
               <Route path="select-element" element={<SelectElement />} />
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
             </Route>
+            <Route path="/my-page">
+              <Route index element={<MyPage />} />
+              <Route path="edit" element={<EditProfile />} />
+              <Route path="like-posts" element={<LikePosts />} />
+              <Route path="exchange-history" element={<ExchangeHistory />} />
+              <Route path="manners-detail" element={<MannersDetail />} />
+            </Route>
+            <Route path="/notifications">
+              <Route index element={<Notifications />} />
+              <Route
+                path="set-notification-keyword"
+                element={<SetNotificationKeywords />}
+              />
+            </Route>
+            {/* 채팅 */}
+            <Route path="/chat-list">
+              <Route index element={<ChatList />} />
+                <Route path=":id">
+                  <Route index element={<ChatRoom />} />
+                  <Route path="make-plan" element={<MakePlan />} />
+                  <Route path="trade-evaluation" element={<TradeEvaluation />} />
+                </Route>
+              </Route>
+            {/* 게시물 수정 페이지 */}
+            <Route path="/articles/:id/edit" element={<EditArticlesOutlet />}>
+              <Route path="select-element" element={<EditSelectElement />} />
+              <Route path="write-content" element={<EditWriteContent />} />
+              <Route path="final-check" element={<FinalCheckPost />} />
+            </Route>
+
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>
