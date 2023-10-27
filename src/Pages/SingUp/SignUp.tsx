@@ -9,7 +9,6 @@ import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
 import { NewUserResponse, RegisterRequest } from '@/types/AuthTypes';
 import { useSignUpMutation } from '@store/api/authApiSlice';
 import Spinner from '@components/Auth/Spinner';
-import ConfirmModal from '@components/common/ConfirmModal';
 
 function SignUp() {
   const [signUp, { isLoading: isSingUpLoading }] = useSignUpMutation();
@@ -27,11 +26,6 @@ function SignUp() {
     longitude: '',
   });
   const { isOpen: isSignUpModalOpen, open: signUpModalOpen } = useModal();
-  const {
-    isOpen: isConfirmOpen,
-    open: openConfirm,
-    close: closeConfirm,
-  } = useModal();
 
   const handleModalOkClick = () => {
     navigate('/', { replace: true });
@@ -74,11 +68,6 @@ function SignUp() {
       latitude: coordinates.latitude,
       longitude: coordinates.longitude,
     }));
-    openConfirm();
-  };
-
-  const handleFinalOkClick = async () => {
-    closeConfirm();
     try {
       const result = await signUp(userInfo).unwrap();
       if (result.code === 201) {
@@ -99,14 +88,6 @@ function SignUp() {
         handleSubmit={handleSubmit}
       />
       <SignUpSuccessModal isOpen={isSignUpModalOpen} />
-      <ConfirmModal
-        isOpen={isConfirmOpen}
-        title="회원가입"
-        content="회원 가입을 완료 하시겠습니까?"
-        confirmedContent=""
-        onFinalOkClick={handleFinalOkClick}
-        closeAction={closeConfirm}
-      />
       {isSingUpLoading && <Spinner />}
     </>
   );
