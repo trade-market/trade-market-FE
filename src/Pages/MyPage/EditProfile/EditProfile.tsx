@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
@@ -11,11 +12,11 @@ import Spinner from '@components/Auth/Spinner';
 function EditProfile() {
   const navigate = useNavigate();
   const { data: user } = useUser();
+  // todo: 타입 추가 정의
+  const [userInfo, setUserInfo] = useState({});
   const { isOpen, open, close } = useModal();
   const [updateUser, { isLoading: isUpdateUserLoading }] =
     useUpdateUserInfoMutation();
-
-  let userInfoToSubmit = {};
 
   const handleSubmit = async (
     nickname: string,
@@ -23,19 +24,19 @@ function EditProfile() {
     address: string,
     profileImg: File | null
   ) => {
-    userInfoToSubmit = {
+    setUserInfo({
       nickname,
       profileImg,
       coordinates,
       town: address,
-    };
+    });
 
     open();
   };
 
   const handleFinalOkClick = async () => {
     try {
-      await updateUser(userInfoToSubmit);
+      await updateUser(userInfo);
       close();
       navigate('/my-page');
     } catch (error) {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
@@ -5,16 +6,32 @@ import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
-import { NewUserResponse } from '@/types/AuthTypes';
+import { NewUserResponse, RegisterRequest } from '@/types/AuthTypes';
 import { useSignUpMutation } from '@store/api/authApiSlice';
 import Spinner from '@components/Auth/Spinner';
+import ConfirmModal from '@components/common/ConfirmModal';
 
 function SignUp() {
   const [signUp, { isLoading: isSingUpLoading }] = useSignUpMutation();
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as NewUserResponse;
-  const { isOpen, open } = useModal();
+  const { authId, authType, nickname, profileImage } = state;
+  const [userInfo, setUserInfo] = useState<RegisterRequest>({
+    authId,
+    authType,
+    nickname,
+    profileImage,
+    imageFile: null,
+    latitude: '',
+    longitude: '',
+  });
+  const { isOpen: isSignUpModalOpen, open: signUpModalOpen } = useModal();
+  const {
+    isOpen: isConfirmOpen,
+    open: openConfirm,
+    close: closeConfirm,
+  } = useModal();
 
   const handleModalOkClick = () => {
     navigate('/', { replace: true });
@@ -29,10 +46,9 @@ function SignUp() {
       />
     );
   }
-  const { authId, authType, nickname, profileImage } = state;
 
   const handleSuccessfulSignUp = async () => {
-    open();
+    signUpModalOpen();
     setTimeout(() => {
       navigate('/', { replace: true });
     }, 3000);
@@ -51,18 +67,20 @@ function SignUp() {
     town: string,
     profileImgFile: File | null
   ) => {
-    const userInfo = {
-      authId,
-      authType,
+    setUserInfo((prev) => ({
+      ...prev,
       nickname,
-      profileImage,
       imageFile: profileImgFile,
       latitude: coordinates.latitude,
       longitude: coordinates.longitude,
-    };
+    }));
+    openConfirm();
+  };
+
+  const handleFinalOkClick = async () => {
+    closeConfirm();
     try {
       const result = await signUp(userInfo).unwrap();
-      console.log(result);
       if (result.code === 201) {
         await handleSuccessfulSignUp();
       } else if (result.code === 400) {
@@ -80,7 +98,15 @@ function SignUp() {
         defaultNickname={nickname}
         handleSubmit={handleSubmit}
       />
-      <SignUpSuccessModal isOpen={isOpen} />
+      <SignUpSuccessModal isOpen={isSignUpModalOpen} />
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        title="회원가입"
+        content="회원 가입을 완료 하시겠습니까?"
+        confirmedContent=""
+        onFinalOkClick={handleFinalOkClick}
+        closeAction={closeConfirm}
+      />
       {isSingUpLoading && <Spinner />}
     </>
   );
