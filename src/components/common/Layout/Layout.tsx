@@ -24,7 +24,7 @@ function Layout({ children }: ILayoutProps) {
     /^\/oauth2\/callback/,
     /^\/articles/,
     /^\/write-post\/\w+/,
-    /^\/my-page/,
+    /^\/my-page\/.+$/,
     /^\/notifications/,
     /^\/chat-list\/.+$/,
   ];
