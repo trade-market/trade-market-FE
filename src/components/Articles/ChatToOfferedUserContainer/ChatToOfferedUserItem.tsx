@@ -3,6 +3,7 @@ import arrow_icon from '@Assets/Icons/arrow_right.svg';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 import RatingBadge from '@components/common/RatingBadge';
 import { GradeType } from '@/types/UserTypes';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.li`
   display: flex;
@@ -64,8 +65,19 @@ function ChatToOfferedUserItem({
   location,
   rating,
 }: IChatToOfferedUserItemProps) {
+  const navigate = useNavigate();
+
+  const ChatRoomClickHandler = () => {
+    navigate(`/chat-list/${userId}`, {
+      state: {
+        nickName: nickname
+    }});
+  }
+
   return (
-    <Container>
+    <Container
+      onClick={ChatRoomClickHandler}
+    >
       <Left>
         <img
           className="profile-img"
