@@ -45,7 +45,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body,
       }),
       transformResponse: (response: LoginResponse) => {
-        const { accessToken, refreshToken } = response as LoginResponse;
+        const { accessToken, refreshToken } = response;
         tokenStorage.setTokens({ accessToken, refreshToken });
         return response;
       },
