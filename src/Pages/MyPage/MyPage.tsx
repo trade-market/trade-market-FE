@@ -5,7 +5,7 @@ import Profile from '@components/MyPage/Profile';
 import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
 import OptionModal from '@components/MyPage/OptionModal';
 import useModal from '@hooks/useModal';
-import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
+import RecentlyViewedPosts from '@components/MyPage/RecentlyViewedPost';
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
@@ -61,7 +61,7 @@ function MyPage() {
           <Profile />
           <ExchangeInfoList />
         </TopSection>
-        <RecentlyViewedPostsContainer />
+        <RecentlyViewedPosts />
         <DividedLine />
         <MannersContainer mannerType="매너" />
         <DividedLine />
