@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -10,8 +9,7 @@ import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPosts
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
-import { logoutUser } from '@store/slices/userSlice';
-import TokenService from '@/service/TokenService';
+import { tokenStorage } from '@utils/tokenStorage';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -27,7 +25,6 @@ const TopSection = styled.div`
 `;
 
 function MyPage() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
 
@@ -45,8 +42,7 @@ function MyPage() {
   };
 
   const handleConfirm = () => {
-    dispatch(logoutUser());
-    TokenService.clearTokens();
+    tokenStorage.clearTokens();
     navigate('/');
   };
 

@@ -57,15 +57,15 @@ function Router() {
             <Route path="/oauth2/callback">
               <Route
                 path="kakao"
-                element={<OAuthRedirectHandler service="kakao" />}
+                element={<OAuthRedirectHandler serviceName="kakao" />}
               />
               <Route
                 path="google"
-                element={<OAuthRedirectHandler service="google" />}
+                element={<OAuthRedirectHandler serviceName="google" />}
               />
               <Route
                 path="naver"
-                element={<OAuthRedirectHandler service="naver" />}
+                element={<OAuthRedirectHandler serviceName="naver" />}
               />
             </Route>
             <Route path="/articles/:id" element={<Articles />} />

@@ -1,27 +1,27 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import useAuth from '@hooks/useAuth';
-import useModal from '@hooks/useModal';
 import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useUser } from '@hooks/useUser';
+import useModal from '@hooks/useModal';
 import CommonModal from './common/CommonModal';
 
-// 비로그인 유저만 접근 가능한 페이지를 위한 컴포넌트
-function PublicRoute() {
-  const auth = useAuth();
+function PrivateRoute() {
+  const { data: user } = useUser();
+  const isLogin = Boolean(user);
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
 
   useEffect(() => {
-    if (auth) {
+    if (isLogin) {
       open();
     }
-  }, [auth]);
+  }, [isLogin]);
 
   const handleOkClick = () => {
     close();
     navigate('/', { replace: true });
   };
 
-  if (auth) {
+  if (isLogin) {
     return (
       <CommonModal
         isOpen={isOpen}
@@ -34,4 +34,4 @@ function PublicRoute() {
   return <Outlet />;
 }
 
-export default PublicRoute;
+export default PrivateRoute;

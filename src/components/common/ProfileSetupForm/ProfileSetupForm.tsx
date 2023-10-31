@@ -6,8 +6,8 @@ import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
-import UserService from '@/service/UserService';
-import useAuth from '@hooks/useAuth';
+import { useUser } from '@hooks/useUser';
+import { useCheckNicknameDuplicationMutation } from '@store/api/userApiSlice';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
@@ -31,13 +31,15 @@ function ProfileSetupForm({
   defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
-  const auth = useAuth();
+  const { data: user } = useUser();
+  const isLogin = Boolean(user);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [nicknameState, setNicknameState] = useState({
     nickname: defaultNickname,
-    success: auth,
+    success: isLogin,
   });
+  const [checkNickname] = useCheckNicknameDuplicationMutation();
   const [nicknameError, setNicknameError] = useState<string | null>(null);
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
   const [coordinates, setCoordinates] = useState<Coordinates | null>(
@@ -79,13 +81,11 @@ function ProfileSetupForm({
       return;
     }
     try {
-      const data = await UserService.checkNicknameDuplication(
-        nicknameState.nickname
-      );
+      const data = await checkNickname(nicknameState.nickname).unwrap();
       setNicknameState((prev) => ({ ...prev, success: true }));
       setNicknameError(data.message);
-    } catch (err: any) {
-      setNicknameError(err.response.data.message);
+    } catch (error: any) {
+      setNicknameError(error.data.message);
     }
   }, [nicknameState.nickname]);
 

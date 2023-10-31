@@ -1,9 +1,3 @@
-export interface NewUserInfo {
-  auth_id: string;
-  nickname: string | '';
-  profile_image: string | '';
-}
-
 export interface Coordinates {
   latitude: string;
   longitude: string;
