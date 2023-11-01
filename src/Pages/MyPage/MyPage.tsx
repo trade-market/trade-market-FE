@@ -43,7 +43,7 @@ function MyPage() {
 
   const handleConfirm = () => {
     tokenStorage.clearTokens();
-    navigate('/');
+    navigate('/?action=logout');
   };
 
   return (
@@ -78,7 +78,7 @@ function MyPage() {
         content="로그아웃 하시겠습니까?"
         confirmedTitle="로그아웃"
         confirmedContent="로그아웃 되었습니다."
-        onFinalOkClick={handleConfirm}
+        onConfirmAction={handleConfirm}
         closeAction={logoutModalClose}
       />
     </>

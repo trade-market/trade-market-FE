@@ -72,7 +72,7 @@ function SignUp() {
       const result = await signUp(userInfo).unwrap();
       if (result.code === 201) {
         await handleSuccessfulSignUp();
-      } else if (result.code === 400) {
+      } else {
         throw new Error(result.message);
       }
     } catch (error) {

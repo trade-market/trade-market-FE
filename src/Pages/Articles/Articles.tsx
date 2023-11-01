@@ -83,7 +83,16 @@ function Articles() {
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
   const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
 
-  const handleDeletePost = () => {
+  const handleDeletePost = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(id, '삭제');
+        resolve(null);
+      }, 2000);
+    });
+  };
+
+  const handleDeleteComplete = () => {
     navigate('/', { replace: true });
   };
 
@@ -183,7 +192,8 @@ function Articles() {
         title="게시물 삭제"
         content="게시물을 삭제하시겠습니까?"
         confirmedContent="게시물이 삭제되었습니다."
-        onFinalOkClick={handleDeletePost}
+        onConfirmAction={handleDeletePost}
+        onCompletedAction={handleDeleteComplete}
         closeAction={deleteModalClose}
       />
     </>

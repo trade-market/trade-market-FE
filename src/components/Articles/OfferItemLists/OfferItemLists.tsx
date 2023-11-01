@@ -50,9 +50,13 @@ function OfferItemLists({ offers, isOwner }: IOfferItemListsProps) {
     openDeleteModal();
   };
 
-  const handleDeleteOffer = () => {
-    console.log(selectedOffer.id);
-    closeDeleteModal();
+  const handleDeleteOffer = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(selectedOffer.id);
+        resolve(null);
+      }, 2000);
+    });
   };
 
   return (
@@ -78,7 +82,7 @@ function OfferItemLists({ offers, isOwner }: IOfferItemListsProps) {
         title="오퍼 삭제"
         content={`${selectedOffer.nickname}님의 오퍼를 삭제하시겠습니까?`}
         confirmedContent="오퍼가 삭제되었습니다."
-        onFinalOkClick={handleDeleteOffer}
+        onConfirmAction={handleDeleteOffer}
         closeAction={closeDeleteModal}
       />
     </>

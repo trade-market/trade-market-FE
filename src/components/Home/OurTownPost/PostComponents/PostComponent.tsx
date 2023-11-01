@@ -63,19 +63,15 @@ const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
   };
   const handleDeletePost = () => {
     console.log(post.id);
-    deleteModalClose();
   };
   const handleSale = () => {
     console.log(post.id);
-    deleteModalClose();
   };
   const handleReservation = () => {
     console.log(post.id);
-    deleteModalClose();
   };
   const handleSoldOut = () => {
     console.log(post.id);
-    deleteModalClose();
   };
 
   return (
@@ -121,7 +117,7 @@ const PostComponent = ({ post, isOption = false }: IPostComponentProps) => {
         title="게시물 삭제"
         content="게시물을 삭제하시겠습니까?"
         confirmedContent="게시물이 삭제되었습니다."
-        onFinalOkClick={handleDeletePost}
+        onConfirmAction={handleDeletePost}
         closeAction={deleteModalClose}
       />
     </>

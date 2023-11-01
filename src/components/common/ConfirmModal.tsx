@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalBackground from './ModalBackground';
+import Spinner from '@components/Auth/Spinner';
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -81,7 +82,8 @@ interface IConfirmModalProps {
   content: string;
   confirmedContent?: string;
   closeAction: () => void;
-  onFinalOkClick: () => void;
+  onConfirmAction: () => void;
+  onCompletedAction?: () => void;
   confirmType?: string;
 }
 
@@ -91,13 +93,35 @@ function ConfirmModal({
   confirmedTitle,
   content,
   confirmedContent,
-  onFinalOkClick,
+  onConfirmAction,
   closeAction,
+  onCompletedAction,
   confirmType = '확인',
 }: IConfirmModalProps) {
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleInitialOkBtnClick = () => setIsConfirmed(true);
+  // onConfirmAction이 동기/비동기 모두를 처리할 수 있도록 처리
+  const onInitialOkBtnClick = async () => {
+    setIsLoading(true);
+    try {
+      await Promise.resolve(onConfirmAction());
+      setIsConfirmed(true);
+    } catch (error) {
+      console.error(error);
+      alert('오류가 발생했습니다. 잠시후 다시 시도해 주세요.' + error);
+      closeAction();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const onCompleteBtnClick = () => {
+    if (onCompletedAction) {
+      onCompletedAction();
+    }
+    setIsConfirmed(false);
+    closeAction();
+  };
 
   if (!isOpen) return null;
   return (
@@ -114,7 +138,7 @@ function ConfirmModal({
               </button>
               <button
                 className="ok-btn initial-ok-btn"
-                onClick={handleInitialOkBtnClick}
+                onClick={onInitialOkBtnClick}
               >
                 {confirmType}
               </button>
@@ -122,16 +146,14 @@ function ConfirmModal({
           ) : (
             <button
               className="ok-btn final-ok-btn"
-              onClick={() => {
-                onFinalOkClick();
-                setIsConfirmed(false);
-              }}
+              onClick={onCompleteBtnClick}
             >
               확인
             </button>
           )}
         </ButtonWrapper>
       </ModalWrapper>
+      {isLoading && <Spinner />}
     </>
   );
 }
