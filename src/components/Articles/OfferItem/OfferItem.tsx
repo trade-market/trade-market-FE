@@ -20,6 +20,7 @@ interface IOfferItemProps {
   text: string;
   isOriginalPost: boolean;
   isOwner: boolean;
+  onOptionBtnClick: (offerId: string, nickname: string) => void;
 }
 
 function OfferItem({
@@ -36,6 +37,7 @@ function OfferItem({
   text,
   isOriginalPost,
   isOwner,
+  onOptionBtnClick,
 }: IOfferItemProps) {
   const timeDifference = useTimeDiff(createdAt);
 
@@ -59,7 +61,13 @@ function OfferItem({
         </div>
         <div className="right">
           {isOriginalPost && <img src={linkIcon} alt="링크아이콘" />}
-          {isOwner && <img src={optionDot} alt="옵션" />}
+          {isOwner && (
+            <img
+              src={optionDot}
+              alt="옵션"
+              onClick={() => onOptionBtnClick(id, nickname)}
+            />
+          )}
         </div>
       </O.ProfileContainer>
       <O.ProductInfoContainer>

@@ -6,17 +6,19 @@ interface IBottomSheetProps {
   onClick: () => void;
   height?: string;
   optionP?: string;
+  className?: string;
 }
 
 function BottomSheet({
   children,
   onClick,
   height = '190px',
+  className,
 }: IBottomSheetProps) {
   return (
     <>
-      <Background onClick={onClick}/>
-      <Container $height={height}>
+      <Background onClick={onClick} />
+      <Container className={className} $height={height}>
         {children}
         <div className="close" onClick={onClick}>
           닫기
@@ -42,7 +44,7 @@ export const Background = styled.div`
   transition: transform 650ms ease-out;
 `;
 
-const Container = styled.div<{ $height?: string;}>`
+const Container = styled.div<{ $height?: string }>`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};
@@ -81,8 +83,8 @@ const Container = styled.div<{ $height?: string;}>`
   }
 
   :nth-child(1) {
-      border-radius: 8px 8px 0 0;
-    }
+    border-radius: 8px 8px 0 0;
+  }
 
   :nth-last-child(2) {
     border-radius: 0 0 8px 8px;
