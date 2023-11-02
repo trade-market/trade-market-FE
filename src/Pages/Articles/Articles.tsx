@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import * as A from './ArticlesStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import WriterProfile from '@/components/Articles/WriterProfile';
@@ -14,6 +15,7 @@ import { OfferPostTypes } from '@/types/OfferTypes';
 import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 import ConfirmModal from '@components/common/ConfirmModal';
 import ChatToOfferedUserContainer from '@components/Articles/ChatToOfferedUserContainer';
+import ProductImagesContainer from '@components/Articles/ProductImagesContainer';
 
 // 더미데이터
 const offers: OfferPostTypes[] = [
@@ -81,7 +83,16 @@ function Articles() {
   const [isOfferPost, setIsOfferPost] = useState(false); // Todo: API 명세서 나오면 수정 필요 (1:1, offerPost 구분)
   const isOwner = true; // Todo: API 명세서 나오면 수정 필요 (게시글 작성자 id와 로그인된 id로 구분)
 
-  const handleDeletePost = () => {
+  const handleDeletePost = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(id, '삭제');
+        resolve(null);
+      }, 2000);
+    });
+  };
+
+  const handleDeleteComplete = () => {
     navigate('/', { replace: true });
   };
 
@@ -98,16 +109,21 @@ function Articles() {
 
   //Todo : 게시글 정보 --> 수정게시물에 props로 전달
   const ProductInfoData = {
-    exChangeType : '물물',
+    exChangeType: '물물',
     isOfferPost: isOfferPost, //오퍼 혹은 1:1;
-    title: "여성용 나비 선글라스",
-    category : "의류",
-    deadLine : "2023년 08월 17일",
-    desiredCategory : "의류",
-    tradeTime : "오전(09시~12시)",
-    price : [21000, 24000],
-    description : "2년 간 사용했고, 기스가 좀 있습니다."
-  }
+    title: '여성용 나비 선글라스',
+    category: '의류',
+    deadLine: '2023년 08월 17일',
+    desiredCategory: '의류',
+    tradeTime: '오전(09시~12시)',
+    price: [21000, 24000],
+    description: '2년 간 사용했고, 기스가 좀 있습니다.',
+  };
+
+  const dumyImages = [
+    'https://health.chosun.com/site/data/img_dir/2021/06/08/2021060801363_0.jpg',
+    'https://health.chosun.com/site/data/img_dir/2021/06/08/2021060801363_0.jpg',
+  ];
 
   return (
     <>
@@ -115,8 +131,9 @@ function Articles() {
         상세 페이지
       </CommonHeader>
       <A.Container>
-        {/* Todo: Image slide 적용?  글쓰기시 사진 한장인지 여러장인지 확인 필요*/}
-        <A.ProductImage src="https://health.chosun.com/site/data/img_dir/2021/06/08/2021060801363_0.jpg" />
+        {dumyImages.length > 0 && (
+          <ProductImagesContainer images={dumyImages} />
+        )}
         <A.ContentsContainer>
           <WriterProfile
             profileImg={defaultCharacterImg} // Todo: ImgSrc가 있으면 해당 이미지 아니면 기본 이미지
@@ -149,8 +166,12 @@ function Articles() {
         <BottomSheet height={'200px'} onClick={close}>
           {/* Todo: 수정, 삭제 기능 추가 해야함 */}
           <A.CorrectionButton
-            onClick={() => navigate(`edit/select-element`, { state: ProductInfoData } )}
-          >게시물 수정</A.CorrectionButton>
+            onClick={() =>
+              navigate(`edit/select-element`, { state: ProductInfoData })
+            }
+          >
+            게시물 수정
+          </A.CorrectionButton>
           <A.DeleteButton
             onClick={() => {
               close();
@@ -171,7 +192,8 @@ function Articles() {
         title="게시물 삭제"
         content="게시물을 삭제하시겠습니까?"
         confirmedContent="게시물이 삭제되었습니다."
-        onFinalOkClick={handleDeletePost}
+        onConfirmAction={handleDeletePost}
+        onCompletedAction={handleDeleteComplete}
         closeAction={deleteModalClose}
       />
     </>

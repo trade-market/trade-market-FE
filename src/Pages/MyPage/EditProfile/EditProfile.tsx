@@ -34,14 +34,16 @@ function EditProfile() {
     open();
   };
 
-  const handleFinalOkClick = async () => {
+  const handleUpdateUser = async () => {
     try {
       await updateUser(userInfo);
-      close();
-      navigate('/my-page');
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const onModalCompleteButtonClick = () => {
+    navigate('/my-page');
   };
 
   return (
@@ -59,7 +61,8 @@ function EditProfile() {
         title="프로필 수정"
         content="프로필을 수정하시겠습니까?"
         confirmedContent="프로필이 수정되었습니다."
-        onFinalOkClick={handleFinalOkClick}
+        onConfirmAction={handleUpdateUser}
+        onCompletedAction={onModalCompleteButtonClick}
         closeAction={close}
       />
       {isUpdateUserLoading && <Spinner />}
