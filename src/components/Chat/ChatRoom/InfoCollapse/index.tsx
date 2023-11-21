@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPlanDate } from '@/store/slices/ChatSlice';
 import { RootState } from '@store/types';
-import { format } from "date-fns";
+import { format } from 'date-fns';
 import styled from 'styled-components';
 import CollapseButton from '../CollapseButton';
 import up_arrow from '@Assets/Icons/Chat/up_arrow.svg';
@@ -15,7 +15,9 @@ interface IInfoCollapseProps {
 }
 
 const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
-  const selectPlanTime = useSelector((state: RootState) => state.chat.planTime.date);
+  const selectPlanTime = useSelector(
+    (state: RootState) => state.chat.planTime.date
+  );
   const planTime = format(new Date(selectPlanTime), `yy년 MM월 dd일`);
   const [closeCollapse, setCloseCollapse] = useState(false);
   const navigate = useNavigate();
@@ -25,47 +27,59 @@ const InfoCollapse = ({ saleState }: IInfoCollapseProps) => {
   useEffect(() => {
     if (!selectPlanTime && saleState === '예약중') {
       const now = new Date();
-      now.setHours(0,0,0);
-      dispatch(setPlanDate(now))
+      now.setHours(0, 0, 0);
+      dispatch(setPlanDate(now));
     }
   }, [saleState]);
-  
+
   const renderButton = () => {
     switch (saleState) {
       case '판매중':
-        return <CollapseButton onClick={() => navigate('make-plan')}>약속 잡기</CollapseButton>;
+        return (
+          <CollapseButton onClick={() => navigate('make-plan')}>
+            약속 잡기
+          </CollapseButton>
+        );
       case '예약중':
         return (
           <>
-          <CollapseButton
-            $bgColor='whiteLightGray'
-            $color='activeBlue'
-            $isBlock={true}
-            >{planTime}</CollapseButton>
-            <CollapseButton onClick={() => navigate('make-plan')}>변경하기</CollapseButton> 
+            <CollapseButton
+              $bgColor="whiteLightGray"
+              $color="activeBlue"
+              $isBlock={true}
+            >
+              {planTime}
+            </CollapseButton>
+            <CollapseButton onClick={() => navigate('make-plan')}>
+              변경하기
+            </CollapseButton>
           </>
-        )
-      case '판매완료': 
+        );
+      case '판매완료':
         return (
           <CollapseButton
             $bgColor={'white'}
             $color={'activeBlue'}
             $borderColor={'activeBlue'}
-            onClick={() => navigate('trade-evaluation')}>평가하기</CollapseButton> 
-        )
+            onClick={() => navigate('trade-evaluation')}
+          >
+            평가하기
+          </CollapseButton>
+        );
     }
-  }
+  };
 
   return (
     <Wrapper>
       <CollapseWrapper $closeCollapse={closeCollapse}>
         <UserInfo />
-        <ButtonContainer>
-          {renderButton()}
-        </ButtonContainer>
+        <ButtonContainer>{renderButton()}</ButtonContainer>
       </CollapseWrapper>
-      <UpArrow $closeCollapse={closeCollapse} onClick={() => setCloseCollapse(prev => !prev)}>
-        <img src={up_arrow}/>
+      <UpArrow
+        $closeCollapse={closeCollapse}
+        onClick={() => setCloseCollapse((prev) => !prev)}
+      >
+        <img src={up_arrow} />
       </UpArrow>
     </Wrapper>
   );
@@ -87,7 +101,7 @@ const CollapseWrapper = styled.div<{ $closeCollapse: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
-  max-height: ${({ $closeCollapse }) => $closeCollapse ? "0" : "none"};
+  max-height: ${({ $closeCollapse }) => ($closeCollapse ? '0' : 'none')};
   overflow: hidden;
 `;
 
@@ -105,6 +119,6 @@ const UpArrow = styled.div<{ $closeCollapse: boolean }>`
   padding: 3px;
   > img {
     cursor: pointer;
-    transform: ${({ $closeCollapse }) => $closeCollapse ? `scaleY(-1)` : ``}; 
+    transform: ${({ $closeCollapse }) => ($closeCollapse ? `scaleY(-1)` : ``)};
   }
 `;

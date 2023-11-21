@@ -1,3 +1,4 @@
+import React from 'react';
 import * as C from './CurrentLocationStyles';
 import BigTitle from '@components/common/BigTitle';
 import BlueButton from '@/components/common/Buttons/BlueButton';

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Postcomment {
-  image : string;
+  image: string;
   product: string;
   category: string;
   minPrice: number;
@@ -10,13 +10,13 @@ interface Postcomment {
 }
 
 const initialState: Postcomment = {
-  image : '',
+  image: '',
   product: '',
-  category: '', 
+  category: '',
   minPrice: 0,
   maxPrice: 0,
-  info : ''
-}
+  info: '',
+};
 
 // 오퍼 - 직접 작성하기 게시물
 export const createCommentSlice = createSlice({
@@ -41,10 +41,16 @@ export const createCommentSlice = createSlice({
     setInfoPost: (state, action: PayloadAction<string>) => {
       state.info = action.payload;
     },
-  }
+  },
 });
 
-export const { setImagePost, setProductPost, setCategoryPost, setMinPricePost, setMaxPricePost, setInfoPost} =
-  createCommentSlice.actions;
+export const {
+  setImagePost,
+  setProductPost,
+  setCategoryPost,
+  setMinPricePost,
+  setMaxPricePost,
+  setInfoPost,
+} = createCommentSlice.actions;
 
 export default createCommentSlice.reducer;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container } from './HeaderStyles';
 import search from '@Assets/Icons/Home/Search.svg';

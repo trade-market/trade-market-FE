@@ -2,7 +2,7 @@ interface FilterOptionType {
   sort_type: string;
   title?: string;
   contents: string[];
-  idx ?: number;
-};
+  idx?: number;
+}
 
 export default FilterOptionType;

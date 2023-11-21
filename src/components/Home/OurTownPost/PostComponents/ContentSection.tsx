@@ -1,3 +1,4 @@
+import React from 'react';
 import Icon_exchang from '@Assets/Icons/Home/Post/Icon_exchang.svg';
 
 interface IContentSectionProps {

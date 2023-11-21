@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as P from './ProfileSetupFormStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';

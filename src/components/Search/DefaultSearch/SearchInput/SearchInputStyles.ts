@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InputContainer = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ export const InputContainer = styled.div`
     left: 86%;
     cursor: pointer;
     @media screen and (max-width: 395px) {
-      left : 84%;
+      left: 84%;
     }
   }
 `;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { size } from '@/styles/theme';
 import styled from 'styled-components';
 

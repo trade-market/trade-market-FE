@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progresss2Styles';
 
 export const Container = styled(ContainerTemplet)`
-padding: 15px 21px;
+  padding: 15px 21px;
 `;
 
 export const BlueContainer = styled.div`
   display: flex;
-  background-color: #2156F214;
+  background-color: #2156f214;
   max-width: 378px;
   width: 100%;
   height: 268px;
@@ -28,10 +28,10 @@ export const PostContainer = styled.div`
   .row {
     display: flex;
   }
-  
+
   .title {
     width: 30%;
-    color : ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.gray};
   }
   .content {
     width: 70%;

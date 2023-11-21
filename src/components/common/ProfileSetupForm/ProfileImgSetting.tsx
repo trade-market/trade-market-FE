@@ -1,4 +1,4 @@
-import { useRef, memo } from 'react';
+import React, { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
 

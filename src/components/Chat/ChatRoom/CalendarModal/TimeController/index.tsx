@@ -9,12 +9,14 @@ interface ITimeControllerProps {
     hour: number;
     minute: number;
   };
-  setPlans: React.Dispatch<React.SetStateAction<{
-    date: Date;
-    ap: string;
-    hour: number;
-    minute: number;
-  }>>;
+  setPlans: React.Dispatch<
+    React.SetStateAction<{
+      date: Date;
+      ap: string;
+      hour: number;
+      minute: number;
+    }>
+  >;
   isOpen: boolean;
   closeAction: () => void;
 }
@@ -29,24 +31,29 @@ const TimeController = ({
     ap: '',
     hour: 0,
     minute: 0,
-  })
+  });
   const TIME_AP = ['오전', '오후'];
   const TIME_HOURS = Array.from(Array(12).keys()).map((_, i) => i + 1);
-  const TIME_MINUTES = Array(12).fill(0).map((_, i) => i * 5).map(x => x < 10 ? '0' + x : x);
+  const TIME_MINUTES = Array(12)
+    .fill(0)
+    .map((_, i) => i * 5)
+    .map((x) => (x < 10 ? '0' + x : x));
 
-  const renderSwiper = (arr: string[] | (string | number)[], key : string) => (
+  const renderSwiper = (arr: string[] | (string | number)[], key: string) => (
     <VerticalSwiper
       TimeData={arr}
-      onSlideChange={(swiper) => setTime((prev) => {
-        return { ...prev, [key] : arr[swiper.realIndex]}
-      })}
+      onSlideChange={(swiper) =>
+        setTime((prev) => {
+          return { ...prev, [key]: arr[swiper.realIndex] };
+        })
+      }
     />
-  )
-  
+  );
+
   const handleSetUPTimeClick = () => {
-    setPlans({ ...plans, ap: time.ap , hour: time.hour, minute: time.minute });
+    setPlans({ ...plans, ap: time.ap, hour: time.hour, minute: time.minute });
     closeAction();
-  }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -66,20 +73,16 @@ const TimeController = ({
           {renderSwiper(TIME_HOURS, 'hour')}
           {renderSwiper(TIME_MINUTES, 'minute')}
           <div className="vizor"></div>
-          </SwiperWrapper>
+        </SwiperWrapper>
         <ButtonWrapper>
-          <button
-            className="close-btn"
-            onClick={closeAction}>
+          <button className="close-btn" onClick={closeAction}>
             취소
           </button>
-          <button
-            className="ok-btn"
-            onClick={handleSetUPTimeClick}
-          >확인
+          <button className="ok-btn" onClick={handleSetUPTimeClick}>
+            확인
           </button>
         </ButtonWrapper>
-    </ModalWrapper>
+      </ModalWrapper>
     </>
   );
 };

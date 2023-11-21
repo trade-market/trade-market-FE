@@ -9,19 +9,34 @@ interface IChatListHeaderProps {
   deleteHandler: () => void;
 }
 
-const ChatListHeader = ({ deleteModeOn, setDeleteModeOn, checkItems, deleteHandler }: IChatListHeaderProps) => {
+const ChatListHeader = ({
+  deleteModeOn,
+  setDeleteModeOn,
+  checkItems,
+  deleteHandler,
+}: IChatListHeaderProps) => {
   return (
     <HeaderButtons>
-      {!deleteModeOn ?
-        <CheckButton 
-        src={Check_icon}
-        onClick={() => {setDeleteModeOn(prev => !prev); checkItems.clear()}} />
-        :
+      {!deleteModeOn ? (
+        <CheckButton
+          src={Check_icon}
+          onClick={() => {
+            setDeleteModeOn((prev) => !prev);
+            checkItems.clear();
+          }}
+        />
+      ) : (
         <DeleteButton
-        $active={checkItems.size > 0}
-        onClick={() => checkItems.size > 0 ? deleteHandler() : setDeleteModeOn(prev => !prev)}
-        >삭제</DeleteButton>
-      }
+          $active={checkItems.size > 0}
+          onClick={() =>
+            checkItems.size > 0
+              ? deleteHandler()
+              : setDeleteModeOn((prev) => !prev)
+          }
+        >
+          삭제
+        </DeleteButton>
+      )}
     </HeaderButtons>
   );
 };
@@ -36,6 +51,6 @@ const CheckButton = styled.img`
 const DeleteButton = styled.button<{ $active: boolean }>`
   border: none;
   background-color: transparent;
-  color : ${({ theme, $active }) => $active ? '#FF5B22' : theme.color.gray}; 
+  color: ${({ theme, $active }) => ($active ? '#FF5B22' : theme.color.gray)};
   font-size: ${({ theme }) => theme.font.size.base};
 `;

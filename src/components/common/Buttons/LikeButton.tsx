@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import Icon_like from '@Assets/Icons/Home/Post/Icon_like.svg';
 import Icon_unlike from '@Assets/Icons/Home/Post/Icon_unlike.svg';

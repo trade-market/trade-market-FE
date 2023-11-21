@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { size } from '@styles/theme';
@@ -8,43 +8,53 @@ import Active_WriteBtn from '@Assets/Icons/WritePost/Active_WriteBtn.svg';
 import objectExchange_icon from '@Assets/Icons/WritePost/objectExchange_icon.svg';
 import talentExchange_icon from '@Assets/Icons/WritePost/talentExchange_icon.svg';
 
-
 const WriteButton = () => {
   const navigate = useNavigate();
   const [clickWriteButton, setClickWriteButton] = useState(false);
 
-  const renderWriteButton = (
-    label: string,
-    icon: string,
-    location: string,
-    ) => (
-      <div className='post-menu' onClick={() => {
-      navigate(location)
-      setClickWriteButton(prev => !prev)
-    }}>
+  const renderWriteButton = (label: string, icon: string, location: string) => (
+    <div
+      className="post-menu"
+      onClick={() => {
+        navigate(location);
+        setClickWriteButton((prev) => !prev);
+      }}
+    >
       <div>{label}</div>
-        <img className='menu-icon' src={icon} />
-      </div>
-  ); 
+      <img className="menu-icon" src={icon} />
+    </div>
+  );
 
   return (
-  <>
-    {clickWriteButton ? 
+    <>
+      {clickWriteButton ? (
         <WriteButtonModal>
-          {renderWriteButton('물물 교환하기', objectExchange_icon, `/write-post/object-trade`)}
-          {renderWriteButton('재능 교환하기', talentExchange_icon, `/write-post/talent-trade`)}
-        </WriteButtonModal> 
-        : null}
+          {renderWriteButton(
+            '물물 교환하기',
+            objectExchange_icon,
+            `/write-post/object-trade`
+          )}
+          {renderWriteButton(
+            '재능 교환하기',
+            talentExchange_icon,
+            `/write-post/talent-trade`
+          )}
+        </WriteButtonModal>
+      ) : null}
       <BtnContainer>
-          <img className="btn" src={clickWriteButton ? Active_WriteBtn : WriteBtn} onClick={() => setClickWriteButton((prev) => !prev)} />
+        <img
+          className="btn"
+          src={clickWriteButton ? Active_WriteBtn : WriteBtn}
+          onClick={() => setClickWriteButton((prev) => !prev)}
+        />
       </BtnContainer>
-      </>
+    </>
   );
 };
 
 export default WriteButton;
 
-  const BtnContainer = styled.div`
+const BtnContainer = styled.div`
   display: flex;
   width: 100%;
   max-width: ${size.mobile};

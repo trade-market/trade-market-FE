@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 type ThemeColor =
@@ -14,7 +15,7 @@ type ThemeColor =
   | 'inputGray';
 
 interface IMakePlanButtonsProps {
-  children: React.ReactNode,
+  children: React.ReactNode;
   onClick?: () => void;
   $bgColor?: ThemeColor;
   $color?: ThemeColor;
@@ -22,11 +23,7 @@ interface IMakePlanButtonsProps {
   $isBlock?: boolean;
 }
 
-function CollapseButton({
-  children,
-  onClick,
-  ...rest
-}: IMakePlanButtonsProps) {
+function CollapseButton({ children, onClick, ...rest }: IMakePlanButtonsProps) {
   return (
     <Button onClick={onClick} {...rest}>
       {children}
@@ -46,11 +43,13 @@ const Button = styled.button<IMakePlanButtonsProps>`
   border: none;
   font-size: ${({ theme }) => theme.font.size.base};
   font-weight: 400;
-  background-color: ${({ theme, $bgColor }) => $bgColor ? theme.color[$bgColor] : theme.color.activeBlue};
-  color: ${({ theme, $color }) => $color ? theme.color[$color] : theme.color.white};
+  background-color: ${({ theme, $bgColor }) =>
+    $bgColor ? theme.color[$bgColor] : theme.color.activeBlue};
+  color: ${({ theme, $color }) =>
+    $color ? theme.color[$color] : theme.color.white};
   border: ${({ theme, $borderColor }) =>
     $borderColor ? `1px solid ${theme.color[$borderColor]}` : 'none'};
-  cursor: ${({ $isBlock }) => $isBlock ? 'not-allowed' : 'pointer'};
+  cursor: ${({ $isBlock }) => ($isBlock ? 'not-allowed' : 'pointer')};
   transition:
     background-color 0.25s ease,
     color 0.25s ease;

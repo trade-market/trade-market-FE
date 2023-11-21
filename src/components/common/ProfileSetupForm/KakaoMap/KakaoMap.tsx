@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as K from './KakaoMapStyles';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
 import CurrentLocation from '@components/common/ProfileSetupForm/CurrentLocation';

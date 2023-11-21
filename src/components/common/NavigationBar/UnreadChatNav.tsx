@@ -1,13 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
 
-interface IUnreadChatActiveProps {
-
-}
+interface IUnreadChatActiveProps {}
 
 const UnreadChatNav = ({}: IUnreadChatActiveProps) => {
   return (
     <Wrapper>
-      <UnreadChatActiveButton className='UnreadChatActiveButton'/>
+      <UnreadChatActiveButton className="UnreadChatActiveButton" />
     </Wrapper>
   );
 };
@@ -22,7 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const UnreadChatActiveButton = styled.div`
-  position: absolute; 
+  position: absolute;
   width: 4px;
   height: 4px;
   border-radius: 50%;

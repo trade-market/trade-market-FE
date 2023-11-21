@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
-import { Range, getTrackBackground } from "react-range";
+import React, { useEffect, useState } from 'react';
+import { Range, getTrackBackground } from 'react-range';
 import styled from 'styled-components';
 import FilterPropsTypes from '@/types/FilterPropsTypes';
 import useQueryString from '@hooks/useQueryString';
 
-const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsTypes) => {
+const DistanceRangeBar = ({
+  sort_type,
+  contents,
+  setSelectFilter,
+}: FilterPropsTypes) => {
   const selected = useQueryString('distance');
   const [values, setValues] = useState([2]);
 
   const createScale = () => {
-    let TagList: JSX.Element[] = [];
-    contents.map((content, i) => (
-      TagList.push(
-        <Tag key={i}>
-          {content}
-        </Tag>
-      )
-    ));
+    const TagList: JSX.Element[] = [];
+    contents.map((content, i) => TagList.push(<Tag key={i}>{content}</Tag>));
     return TagList;
   };
 
   //* 카테고리 select
   const Selecthandler = (values: number[]) => {
     setValues(values);
-    let i = Number(values.join(''));
+    const i = Number(values.join(''));
     setSelectFilter([sort_type, contents[i]]);
   };
 
@@ -31,8 +29,8 @@ const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsT
   useEffect(() => {
     setSelectFilter([sort_type, contents[2]]);
     if (selected) {
-      setValues([contents.indexOf(selected)])
-    };
+      setValues([contents.indexOf(selected)]);
+    }
   }, []);
 
   return (
@@ -42,7 +40,7 @@ const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsT
         step={1}
         min={0}
         max={3}
-        onChange={values => Selecthandler(values)}
+        onChange={(values) => Selecthandler(values)}
         renderTrack={({ props, children }) => {
           return (
             <RangeBarConatiner
@@ -54,9 +52,9 @@ const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsT
                 style={{
                   background: getTrackBackground({
                     values: values,
-                    colors: ["#2156F2", "#F2F2F2"],
+                    colors: ['#2156F2', '#F2F2F2'],
                     min: 0,
-                    max: 3
+                    max: 3,
                   }),
                 }}
               >
@@ -66,11 +64,7 @@ const DistanceRangeBar = ({ sort_type, contents, setSelectFilter }: FilterPropsT
             </RangeBarConatiner>
           );
         }}
-        renderThumb={({ props }) => (
-          <RangeThumb
-            {...props}
-          />
-        )}
+        renderThumb={({ props }) => <RangeThumb {...props} />}
       />
     </Wrapper>
   );
@@ -115,7 +109,7 @@ const RangeTagContainer = styled.div`
 `;
 
 const Tag = styled.div`
-  color : ${({ theme }) => theme.color.activeBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.base};
 `;
 
@@ -127,7 +121,7 @@ const RangeThumb = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 15px;
-  background-color:  ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0.5px 0.5px 3px 0.5px ${({ theme }) => theme.color.gray};
   -webkit-box-shadow: 0.5px 0.5px 3px 0.5px ${({ theme }) => theme.color.gray};
 `;

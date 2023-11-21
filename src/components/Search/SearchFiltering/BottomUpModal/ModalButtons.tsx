@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import ActionButton from '@/components/common/Buttons/ActionButton';
@@ -8,7 +9,10 @@ interface IModalButtonsProps {
   AcceptButtonClickHandler: () => void;
 }
 
-const ModalButtons = ({ CloseButtonClickHandler, AcceptButtonClickHandler } : IModalButtonsProps) => {
+const ModalButtons = ({
+  CloseButtonClickHandler,
+  AcceptButtonClickHandler,
+}: IModalButtonsProps) => {
   return (
     <Container>
       <ActionButton
@@ -17,13 +21,17 @@ const ModalButtons = ({ CloseButtonClickHandler, AcceptButtonClickHandler } : IM
         color={'black'}
         $width={'40%'}
         $customHeight={true}
-        >닫기</ActionButton>
+      >
+        닫기
+      </ActionButton>
       <BlueButton
         maxWidth={'100%'}
         disabled={false}
         onClick={AcceptButtonClickHandler}
         customHeight={true}
-        >적용하기</BlueButton>
+      >
+        적용하기
+      </BlueButton>
     </Container>
   );
 };

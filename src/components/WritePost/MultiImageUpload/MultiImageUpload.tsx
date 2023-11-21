@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '@store/types';
@@ -30,15 +30,15 @@ const MultiImageUpload = ({ open }: IMultiImageUploadProps) => {
       <ImageContainer>
         {selectImages.map((image, id) => (
           <div key={id}>
-            <img className='image' src={image} alt={`${image}-${id}`} />
-              <DeleteButton onClick={() => handleDeleteImage(id)}>
-                  <img src={button_x} />
-              </DeleteButton>
+            <img className="image" src={image} alt={`${image}-${id}`} />
+            <DeleteButton onClick={() => handleDeleteImage(id)}>
+              <img src={button_x} />
+            </DeleteButton>
           </div>
-        ))} 
-        {selectImages.length < 5 ?
-          <img className='image' src={postImage} onClick={open} />
-          : null}
+        ))}
+        {selectImages.length < 5 ? (
+          <img className="image" src={postImage} onClick={open} />
+        ) : null}
       </ImageContainer>
     </>
   );
@@ -50,9 +50,9 @@ const ImageContainer = styled.div`
   display: flex;
   padding-top: 15px;
   flex-wrap: wrap;
-  gap : 12px;
+  gap: 12px;
   @media screen and (max-width: 390px) {
-    gap : 8px;
+    gap: 8px;
   }
   .image {
     width: 60px;
@@ -68,8 +68,8 @@ const DeleteButton = styled.button`
   background-color: transparent;
   position: relative;
   > img {
-  position: absolute;
-  bottom : 50px;
-  left: 45px;
+    position: absolute;
+    bottom: 50px;
+    left: 45px;
   }
 `;

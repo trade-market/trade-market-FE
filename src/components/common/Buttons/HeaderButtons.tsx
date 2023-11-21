@@ -1,15 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
 
 interface IHeaderButtonsProps {
   children?: React.ReactNode;
 }
 
-const HeaderButtons = ({children} : IHeaderButtonsProps) => {
-  return (
-    <Buttons>
-      {children}
-    </Buttons>
-  );
+const HeaderButtons = ({ children }: IHeaderButtonsProps) => {
+  return <Buttons>{children}</Buttons>;
 };
 
 export default HeaderButtons;

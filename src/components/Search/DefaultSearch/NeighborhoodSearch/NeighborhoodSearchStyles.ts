@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
     font-weight: 600;
     margin-right: 12px;
   }
-  
+
   .content {
     color: ${({ theme }) => theme.color.lightGray};
     font-size: ${({ theme }) => theme.font.size.base};

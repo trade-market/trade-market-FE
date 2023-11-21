@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect } from 'react';
-import styled from "styled-components";
-import RecentSearsh from "@components/Search/DefaultSearch/RecentSearch/RecentSearch";
-import NeighborhoodSearch from "@components/Search/DefaultSearch/NeighborhoodSearch/NeighborhoodSearch";
-import SearchInput from "@components/Search/DefaultSearch/SearchInput/SearchInput";
+import styled from 'styled-components';
+import RecentSearsh from '@components/Search/DefaultSearch/RecentSearch/RecentSearch';
+import NeighborhoodSearch from '@components/Search/DefaultSearch/NeighborhoodSearch/NeighborhoodSearch';
+import SearchInput from '@components/Search/DefaultSearch/SearchInput/SearchInput';
 import WriteButton from '@components/Home/WriteButton';
-import { keyInterface } from '@Pages/Search/Search'
+import { keyInterface } from '@Pages/Search/Search';
 
 interface IDefaultSearchProps {
   keywords: keyInterface[];
@@ -12,10 +12,14 @@ interface IDefaultSearchProps {
   handleAddKeyword: (text: string) => void;
 }
 
-const DefaultSearch = ({keywords, setKeywords, handleAddKeyword}: IDefaultSearchProps) => {
+const DefaultSearch = ({
+  keywords,
+  setKeywords,
+  handleAddKeyword,
+}: IDefaultSearchProps) => {
   //* 1. keywords가 변경될 경우 새롭게 localStroage의 아이템 'keywords'를 세팅한다.
   useEffect(() => {
-    localStorage.setItem('keywords', JSON.stringify(keywords))
+    localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
 
   //* 단일 검색어 삭제
@@ -27,13 +31,13 @@ const DefaultSearch = ({keywords, setKeywords, handleAddKeyword}: IDefaultSearch
   //* 검색어 전체 삭제
   const handleClearKeywords = () => {
     setKeywords([]);
-  }
+  };
 
   //* 2. 최근 검색어는 최대 5개씩만 노출 되도록 한다.
   useLayoutEffect(() => {
     if (keywords.length > 5) {
-      setKeywords(keywords.slice(0, 5))
-    };
+      setKeywords(keywords.slice(0, 5));
+    }
   }, [keywords]);
 
   return (
@@ -43,7 +47,7 @@ const DefaultSearch = ({keywords, setKeywords, handleAddKeyword}: IDefaultSearch
         keywords={keywords}
         onClearKeywords={handleClearKeywords}
         onRemoveKeyword={handleRemoveKeyword}
-        />
+      />
       <Line />
       <NeighborhoodSearch />
       <WriteButton />
@@ -63,4 +67,4 @@ const Wrapper = styled.div`
 
 const Line = styled.div`
   border-bottom: 1.5px solid ${({ theme }) => theme.color.whiteGray};
-`
+`;
