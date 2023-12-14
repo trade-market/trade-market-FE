@@ -17,8 +17,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
       { serviceName: OAuthServiceType; code: string }
     >({
       query: ({ serviceName, code }) => ({
-        url: `/login/${serviceName}?authorizationCode=${code}${
-          serviceName === 'naver' && '&state=true'
+        url: `users/login/${serviceName}?authorizationCode=${code}${
+          serviceName === 'naver' ? 'naver' : ''
         }`,
         method: 'POST',
       }),
@@ -40,7 +40,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     signUp: builder.mutation<LoginResponse, RegisterRequest>({
       query: (body) => ({
-        url: '/register',
+        url: 'users/register',
         method: 'POST',
         body,
       }),

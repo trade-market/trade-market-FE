@@ -111,11 +111,11 @@ function ProfileSetupForm({
           />
         </P.Section>
         <BlueButton
-          disabled={
-            !nicknameState.success ||
-            selectedAddress.length < 0 ||
-            coordinates === null
-          }
+          // disabled={
+          //   !nicknameState.success ||
+          //   selectedAddress.length < 0 ||
+          //   coordinates === null
+          // }
           maxWidth="100%"
           onClick={() =>
             handleSubmit(

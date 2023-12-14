@@ -15,7 +15,7 @@ function SignUp() {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as NewUserResponse;
-  const { authId, authType, nickname, profileImage } = state;
+  const { authId, authType, nickname, profileImage } = state.data;
   const [userInfo, setUserInfo] = useState<RegisterRequest>({
     authId,
     authType,
@@ -64,7 +64,7 @@ function SignUp() {
     setUserInfo((prev) => ({
       ...prev,
       nickname,
-      imageFile: profileImgFile,
+      // imageFile: profileImgFile,
       latitude: coordinates.latitude,
       longitude: coordinates.longitude,
     }));

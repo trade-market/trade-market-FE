@@ -7,14 +7,18 @@ import type {
 import { tokenStorage } from '@utils/tokenStorage';
 import { RefreshTokenResponse } from '@/types/AuthTypes';
 
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
 const handleError = (statusCode: number) => {
   alert('다시 로그인해주세요. (토큰 만료) status:' + statusCode);
   // Todo: api.dispatch(logoutUser());
 };
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api',
-  prepareHeaders: (headers) => {
+  baseUrl: SERVER_URL + '/api',
+  prepareHeaders: (headers, { endpoint }) => {
+    if (endpoint === 'login') return;
+
     const accessToken = tokenStorage.getAccessToken();
     // Access Token이 있으면 API 호출 시 Header에 추가
     if (accessToken) {
@@ -34,6 +38,7 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
+  console.log(result);
   if (result.error && result.error.status === 401) {
     const refreshToken = tokenStorage.getRefreshToken();
     // Refresh Token으로 새로운 Access Token을 발급받음
@@ -48,6 +53,7 @@ const baseQueryWithIntercept: BaseQueryFn<
       api,
       extraOptions
     );
+
     // 정상적으로 새로운 Access Token을 발급받았을 경우
     if (refreshResult.meta.response.ok) {
       if (refreshResult.meta.response.status !== 201) {

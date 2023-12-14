@@ -14,10 +14,13 @@ export interface LoginResponse {
 
 export interface NewUserResponse {
   code?: number;
-  authId: string;
-  authType: OAuthServiceType;
-  nickname: string;
-  profileImage: string;
+  message: string;
+  data: {
+    authId: string;
+    authType: OAuthServiceType;
+    nickname: string;
+    profileImage: string;
+  };
 }
 
 export interface RegisterRequest {

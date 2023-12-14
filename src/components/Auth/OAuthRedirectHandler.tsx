@@ -23,7 +23,6 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
   };
 
   const handleError = (error: any) => {
-    console.error(error);
     alert('로그인에 실패했습니다. error: ' + error);
     navigate('/auth', { replace: true });
   };
@@ -32,12 +31,14 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
     const handleOAuthLogin = async () => {
       try {
         const result = await login({ serviceName, code }).unwrap();
-        if (result.code === 200) {
-          await handleSuccessfulLogin();
-        } else if (result.code === 301) {
+        if (result.code !== 200) {
+          throw new Error('알 수 없는 응답 코드' + result.code);
+        }
+
+        if (result.message.includes('신규 회원')) {
           handleNewUser(result as NewUserResponse);
         } else {
-          throw new Error('알 수 없는 응답 코드' + result.code);
+          await handleSuccessfulLogin();
         }
       } catch (error) {
         handleError(error);

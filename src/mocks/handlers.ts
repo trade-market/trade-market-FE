@@ -35,19 +35,19 @@ export const handlers = [
     );
   }),
 
-  rest.post('/api/login/kakao', (req, res, ctx) => {
-    // 신규 유저일 경우
-    return res(
-      ctx.status(301),
-      ctx.json({
-        authId: '123',
-        authType: 'KAKAO',
-        nickname: '거래왕',
-        profileImage:
-          'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
-      })
-    );
-  }),
+  // rest.post('/api/login/kakao', (req, res, ctx) => {
+  //   // 신규 유저일 경우
+  //   return res(
+  //     ctx.status(301),
+  //     ctx.json({
+  //       authId: '123',
+  //       authType: 'KAKAO',
+  //       nickname: '거래왕',
+  //       profileImage:
+  //         'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
+  //     })
+  //   );
+  // }),
 
   rest.post('/api/login/naver', (req, res, ctx) => {
     // 로그인 성공시
