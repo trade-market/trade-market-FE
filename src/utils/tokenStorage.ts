@@ -15,6 +15,7 @@ const setRefreshToken = (refreshToken: string) =>
   Cookies.set(REFRESH_TOKEN, refreshToken, {
     secure: import.meta.env.PROD,
     sameSite: 'strict',
+    expires: 10080 / 1440,
   });
 
 const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN);
