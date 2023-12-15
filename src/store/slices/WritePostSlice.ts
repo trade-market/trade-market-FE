@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Post {
-  image : string[];
+  image: string[];
   provide: string;
-  exchange : string;
+  exchange: string;
   deadline: Date | null;
   ableTime: string;
   title: string;
@@ -13,16 +13,16 @@ interface Post {
 }
 
 const initialState: Post = {
-  image : [],
+  image: [],
   provide: '',
-  exchange : '',
+  exchange: '',
   deadline: new Date(),
   ableTime: '',
   title: '',
   content: '',
   minPrice: 0,
   maxPrice: 0,
-}
+};
 
 // 게시물 작성하기(재능/물물 && 1:1/offer)
 export const createCommentPostSlice = createSlice({
@@ -56,10 +56,19 @@ export const createCommentPostSlice = createSlice({
     setMaxPricePost: (state, action: PayloadAction<number>) => {
       state.maxPrice = action.payload;
     },
-  }
+  },
 });
 
-export const { setImagePost, setProvidePost, setExchangePost, setDeadlinePost, setAbleTimePost, setTitlePost, setContentPost, setMinPricePost, setMaxPricePost} =
-  createCommentPostSlice.actions;
+export const {
+  setImagePost,
+  setProvidePost,
+  setExchangePost,
+  setDeadlinePost,
+  setAbleTimePost,
+  setTitlePost,
+  setContentPost,
+  setMinPricePost,
+  setMaxPricePost,
+} = createCommentPostSlice.actions;
 
 export default createCommentPostSlice.reducer;

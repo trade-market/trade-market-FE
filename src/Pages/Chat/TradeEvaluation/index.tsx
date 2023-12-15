@@ -16,7 +16,7 @@ const TradeEvaluation = () => {
   const renderWriteTypeButton = (
     buttonId: string,
     text: string,
-    imageSrc: string,
+    imageSrc: string
   ) => (
     <EvaluationTypeButton
       onClick={() => setMannerType(buttonId)}
@@ -24,7 +24,7 @@ const TradeEvaluation = () => {
       text={text}
       imageSrc={imageSrc}
     />
-  ); 
+  );
 
   const renderEvaluationComponent = () => {
     switch (MannerType) {
@@ -33,33 +33,39 @@ const TradeEvaluation = () => {
           <ContentsSection>
             <TitleSection
               h3Text={`${tradeUserNickName} 님과의 거래가 어떠셨나요?`}
-              />
+            />
             <ButtonsContainer>
-              {renderWriteTypeButton('good', '매너 점수 주기', GoodManner_Large)}
-              {renderWriteTypeButton('bad', '비매너 점수 주기', BadManner_Large)}
+              {renderWriteTypeButton(
+                'good',
+                '매너 점수 주기',
+                GoodManner_Large
+              )}
+              {renderWriteTypeButton(
+                'bad',
+                '비매너 점수 주기',
+                BadManner_Large
+              )}
             </ButtonsContainer>
           </ContentsSection>
-        )
-      default : // 내가 남긴 평가
+        );
+      default: // 내가 남긴 평가
         return (
           <ListContainer>
             <EvaluationList
-            mannerType={MannerType}
-            tradeUserNickName={tradeUserNickName}
-            isComplete={isComplete}
-            setIsComplete={setIsComplete}
+              mannerType={MannerType}
+              tradeUserNickName={tradeUserNickName}
+              isComplete={isComplete}
+              setIsComplete={setIsComplete}
             />
           </ListContainer>
-        )
+        );
     }
-  }
+  };
 
   return (
     <>
       <CommonHeader>{!isComplete ? '평가하기' : '내가 남긴 평가'}</CommonHeader>
-      <Container>
-        {renderEvaluationComponent()}
-      </Container>
+      <Container>{renderEvaluationComponent()}</Container>
     </>
   );
 };
@@ -87,5 +93,3 @@ const ButtonsContainer = styled.div`
   margin-top: 24px;
   color: ${({ theme }) => theme.color.gray};
 `;
-
-

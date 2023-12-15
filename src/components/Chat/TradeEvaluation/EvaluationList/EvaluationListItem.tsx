@@ -1,3 +1,4 @@
+import React from 'react';
 import EvaluationOption from './EvaluationOption';
 import * as E from './EvaluationListStyles';
 
@@ -7,19 +8,24 @@ interface IEvaluationListItemProps {
   select: Set<string>;
 }
 
-const EvaluationListItem = ({mannerType, selectMannerHandler, select}: IEvaluationListItemProps) => {
+const EvaluationListItem = ({
+  mannerType,
+  selectMannerHandler,
+  select,
+}: IEvaluationListItemProps) => {
   return (
     <E.ListConTainer>
-      {
-        [...EvaluationOption[mannerType][2]].map((list, idx) => (
-          <E.ListBox key={idx} onClick={selectMannerHandler}
-            className={select.has(list) ? 'active' : ''}
-            >{list}</E.ListBox>
-        ))
-      }
+      {[...EvaluationOption[mannerType][2]].map((list, idx) => (
+        <E.ListBox
+          key={idx}
+          onClick={selectMannerHandler}
+          className={select.has(list) ? 'active' : ''}
+        >
+          {list}
+        </E.ListBox>
+      ))}
     </E.ListConTainer>
   );
 };
 
 export default EvaluationListItem;
-

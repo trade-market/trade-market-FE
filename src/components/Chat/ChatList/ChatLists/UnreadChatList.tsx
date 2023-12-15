@@ -5,14 +5,15 @@ interface IUnReadChatlistActiveProps {
   deleteMode: boolean;
 }
 
-const UnReadChatList = ({ unreadNumber, deleteMode }: IUnReadChatlistActiveProps) => {
+const UnReadChatList = ({
+  unreadNumber,
+  deleteMode,
+}: IUnReadChatlistActiveProps) => {
   return (
     <>
-      {!deleteMode &&
-      <UnreadChatActiveButton>
-        {unreadNumber}
-      </UnreadChatActiveButton>
-      }
+      {!deleteMode && (
+        <UnreadChatActiveButton>{unreadNumber}</UnreadChatActiveButton>
+      )}
     </>
   );
 };
@@ -25,7 +26,7 @@ const UnreadChatActiveButton = styled.div`
   height: 20px;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.color.orange};
-  color : ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.white};
   align-items: center;
   justify-content: center;
   font-weight: 500;

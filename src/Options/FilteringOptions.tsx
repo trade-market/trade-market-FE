@@ -2,12 +2,7 @@ const FilteringOptions = [
   {
     sort_type: 'distance',
     title: '거리',
-    contents: [
-      '1km',
-      '3km',
-      '5km',
-      '10km',
-    ],
+    contents: ['1km', '3km', '5km', '10km'],
   },
   {
     sort_type: 'exchangform',
@@ -19,7 +14,7 @@ const FilteringOptions = [
     title: '카테고리',
     contents: [],
   },
-    {
+  {
     sort_type: 'sort',
     title: '정렬',
     contents: ['최신순', '스크랩순'],

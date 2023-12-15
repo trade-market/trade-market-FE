@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
 import ModalBackground from './ModalBackground';
-import { useEffect } from 'react';
 
 const ModalWrapper = styled.div`
   display: flex;

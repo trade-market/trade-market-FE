@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as P from './ProcessCompoStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -15,7 +16,12 @@ interface IInfoComponentProps {
 }
 
 const ProcessCompo = ({
-  children, n, ProgessIcon, text,  disabled }: IInfoComponentProps) => {
+  children,
+  n,
+  ProgessIcon,
+  text,
+  disabled,
+}: IInfoComponentProps) => {
   const onButton = n === 2 || n === 6;
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -24,7 +30,7 @@ const ProcessCompo = ({
   const handleBackButton = () => {
     navigate(-1);
   };
-  
+
   //* 다음 버튼
   const handleNextButton = () => {
     let next = n + 1;
@@ -35,14 +41,11 @@ const ProcessCompo = ({
   //* close 버튼
   const handleCloseButton = () => {
     navigate(`/articles/${id}`);
-  }
+  };
 
   return (
     <>
-      <CommonHeader
-        display={'flex'}
-        closeClick={handleCloseButton}
-      />
+      <CommonHeader display={'flex'} closeClick={handleCloseButton} />
       <Progressbar number={n} total={6} icon={ProgessIcon} />
       {/*  */}
       <P.Container>
@@ -58,15 +61,16 @@ const ProcessCompo = ({
       {children}
       {/*  */}
       <BottomBtnSection>
-        {!onButton ?
+        {!onButton ? (
           <ActionButton onClick={handleBackButton}>이전</ActionButton>
-            : null
-          }
-          <BlueButton
-            maxWidth={'100%'}
-            disabled={disabled}
-            onClick={handleNextButton}
-            >다음</BlueButton>
+        ) : null}
+        <BlueButton
+          maxWidth={'100%'}
+          disabled={disabled}
+          onClick={handleNextButton}
+        >
+          다음
+        </BlueButton>
       </BottomBtnSection>
     </>
   );

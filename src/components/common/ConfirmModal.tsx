@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ModalBackground from './ModalBackground';
 import Spinner from '@components/Auth/Spinner';

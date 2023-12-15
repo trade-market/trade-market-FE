@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import Category from '@components/WritePost/Category';
 import sample_sale_image from '@Assets/Icons/Chat/sample_sale_image.svg';
@@ -9,10 +10,7 @@ const UserInfo = () => {
       <InfoContainer>
         <div>선글라스</div>
         <div>21,000~24,000원</div>
-        <Category
-          provide={'의류'}
-          exchange={'의류'}
-        />
+        <Category provide={'의류'} exchange={'의류'} />
       </InfoContainer>
     </Container>
   );

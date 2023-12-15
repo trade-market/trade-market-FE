@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import React, { useState, memo } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
 import * as S from '@Pages/SingUp/SignUpStyles';

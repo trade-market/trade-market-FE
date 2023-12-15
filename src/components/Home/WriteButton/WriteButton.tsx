@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from './WriteButtonStyles';
 import WriteBtn from '@Assets/Icons/Home/WriteBtn.svg';
 

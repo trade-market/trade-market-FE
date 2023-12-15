@@ -10,19 +10,30 @@ interface IChatListItemProps {
   time: string;
   text: string;
   deleteMode: boolean;
-  checkHandler: ((id: string, isChecked: boolean) => void);
+  checkHandler: (id: string, isChecked: boolean) => void;
   checkItems: Set<unknown>;
 }
 
-const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHandler, checkItems }: IChatListItemProps) => {
+const ChatListItem = ({
+  id,
+  userImg,
+  nickName,
+  time,
+  text,
+  deleteMode,
+  checkHandler,
+  checkItems,
+}: IChatListItemProps) => {
   const navigate = useNavigate();
-  
+
   const handlerClick = () => {
-    if (!deleteMode) navigate(`${id}`, {
-      state: {
-        nickName: nickName
-    }});
-  }
+    if (!deleteMode)
+      navigate(`${id}`, {
+        state: {
+          nickName: nickName,
+        },
+      });
+  };
 
   return (
     <Wrapper onClick={handlerClick}>
@@ -32,12 +43,12 @@ const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHand
         </ImageContainer>
         <ContentContainer>
           <div>
-            <span className='nickname'>{nickName}</span>
-            <span className='time'>{time}</span>
+            <span className="nickname">{nickName}</span>
+            <span className="time">{time}</span>
           </div>
-          <div className='text'>{text}</div>
+          <div className="text">{text}</div>
         </ContentContainer>
-        <CheckboxContainer $deleteMode={deleteMode} >
+        <CheckboxContainer $deleteMode={deleteMode}>
           <CheckBox
             id={id}
             checkHandler={checkHandler}
@@ -45,10 +56,7 @@ const ChatListItem = ({ id, userImg, nickName, time, text, deleteMode, checkHand
           />
         </CheckboxContainer>
       </ChatListWrapper>
-      <UnReadChatList
-        unreadNumber={1}
-        deleteMode={deleteMode}
-      />
+      <UnReadChatList unreadNumber={1} deleteMode={deleteMode} />
     </Wrapper>
   );
 };
@@ -60,7 +68,7 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 12px 20px;
   align-items: center;
-  border-bottom: 0.5px solid ${({ theme }) => theme.color.whiteGray}; 
+  border-bottom: 0.5px solid ${({ theme }) => theme.color.whiteGray};
   cursor: pointer;
 `;
 
@@ -84,7 +92,7 @@ const ContentContainer = styled.div`
   }
   .time {
     font-weight: 500;
-    color : ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.gray};
     font-size: ${({ theme }) => theme.font.size.xSmall};
   }
   .text {
@@ -93,19 +101,19 @@ const ContentContainer = styled.div`
   }
 `;
 
-const CheckboxContainer = styled.div<{ $deleteMode : boolean }>`
+const CheckboxContainer = styled.div<{ $deleteMode: boolean }>`
   > input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 2px;
-  cursor: pointer;
-  height: 12px;
-  width: 12px;
-  background-color: ${({ theme }) => theme.color.gray}; 
-  display: ${({ $deleteMode }) => $deleteMode ? 'block' : 'none'};
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    background-color: ${({ theme }) => theme.color.gray};
+    display: ${({ $deleteMode }) => ($deleteMode ? 'block' : 'none')};
     &:checked {
-      background-color: ${({ theme }) => theme.color.activeBlue}; 
+      background-color: ${({ theme }) => theme.color.activeBlue};
       background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5714 4L6.85714 11.1429L4 9' stroke='%23FDFDFD' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
       background-position: 50%;
     }

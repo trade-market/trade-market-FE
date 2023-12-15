@@ -1,3 +1,4 @@
+import React from 'react';
 import GlobalStyle from '@/styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 import Header from '@components/common/Header/Header';

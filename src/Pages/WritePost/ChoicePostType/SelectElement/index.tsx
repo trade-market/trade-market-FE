@@ -9,10 +9,15 @@ interface ISelectElementOutletProps {
 const SelectElement = () => {
   const { exchangeType, tradeType } = useParams();
   const { open } = useOutletContext<ISelectElementOutletProps>();
-  const handleNextButtonClick = useNavigateButton(`/write-post/${exchangeType}/${tradeType}/write-content`);
+  const handleNextButtonClick = useNavigateButton(
+    `/write-post/${exchangeType}/${tradeType}/write-content`
+  );
 
   return (
-    <AllSelectElements handleNextButtonClick={handleNextButtonClick} open={open}/>
+    <AllSelectElements
+      handleNextButtonClick={handleNextButtonClick}
+      open={open}
+    />
   );
 };
 

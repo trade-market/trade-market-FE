@@ -1,3 +1,4 @@
+import React from 'react';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -11,22 +12,22 @@ interface IPostOutletProps {
   tradeType?: string;
 }
 
-const PostOutlet = ({title, tradeType}: IPostOutletProps) => {
+const PostOutlet = ({ title, tradeType }: IPostOutletProps) => {
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
-  
+
   return (
     <>
       <Wrapper>
-        <CommonHeader
-          display={'flex'}
-          closeClick={() => navigate(`/`)}
-          >{title}</CommonHeader>
-          {!window.location.pathname.includes('final-check') ?
-            <O.PostType>{tradeType}</O.PostType> : null}  
+        <CommonHeader display={'flex'} closeClick={() => navigate(`/`)}>
+          {title}
+        </CommonHeader>
+        {!window.location.pathname.includes('final-check') ? (
+          <O.PostType>{tradeType}</O.PostType>
+        ) : null}
       </Wrapper>
       <Outlet context={{ open }} />
-      {isOpen && <ImageBottomSheet close={close}/> } 
+      {isOpen && <ImageBottomSheet close={close} />}
     </>
   );
 };
