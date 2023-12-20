@@ -25,7 +25,7 @@ function KakaoMap({
     region_2depth_name: '',
     region_3depth_name: '',
   });
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(null); // [경도, 위도
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 
   const handleCompleteBtn = () => {
     handleAddressSelect(
@@ -57,10 +57,13 @@ function KakaoMap({
     const geocoder = new kakao.maps.services.Geocoder();
     const longitude = coord.getLng();
     const latitude = coord.getLat();
-    geocoder.coord2Address(longitude, latitude, (result, status) => {
+    geocoder.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
+        //result[0] == 법정동, result[1] == 행정동
+        console.log(result);
+
         const { region_1depth_name, region_2depth_name, region_3depth_name } =
-          result[0].address;
+          result[1];
 
         setAddressInfo({
           region_1depth_name,
@@ -68,8 +71,8 @@ function KakaoMap({
           region_3depth_name,
         });
         setCoordinates({
-          longitude: String(longitude),
-          latitude: String(latitude),
+          longitude,
+          latitude,
         });
       }
     });
@@ -96,12 +99,14 @@ function KakaoMap({
       const geocoder = new kakao.maps.services.Geocoder();
       geocoder.addressSearch(address, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
+          console.log(result);
+
           const {
             x,
             y,
             region_1depth_name,
             region_2depth_name,
-            region_3depth_name,
+            region_3depth_h_name,
           } = result[0].address;
           const latitude = Number(y);
           const longitude = Number(x);
@@ -110,11 +115,11 @@ function KakaoMap({
           setAddressInfo({
             region_1depth_name,
             region_2depth_name,
-            region_3depth_name,
+            region_3depth_name: region_3depth_h_name,
           });
           setCoordinates({
-            longitude: String(longitude),
-            latitude: String(latitude),
+            longitude,
+            latitude,
           });
           resolve(coords);
         } else {
