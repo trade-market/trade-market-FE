@@ -24,9 +24,6 @@ const baseQuery = fetchBaseQuery({
     }
     return headers;
   },
-  validateStatus: (response) =>
-    (response.status >= 200 && response.status <= 301) ||
-    response.status === 301,
 });
 
 const baseQueryWithIntercept: BaseQueryFn<
@@ -52,10 +49,7 @@ const baseQueryWithIntercept: BaseQueryFn<
     );
 
     // 정상적으로 새로운 Access Token을 발급받았을 경우
-    if (refreshResult.meta.response.ok) {
-      if (refreshResult.meta.response.status !== 201) {
-        handleError(refreshResult.meta.response.status);
-      }
+    if (refreshResult.meta.response.status === 201) {
       const newAccessToken = (refreshResult.data as RefreshTokenResponse)
         .accessToken;
       tokenStorage.setAccessToken(newAccessToken);

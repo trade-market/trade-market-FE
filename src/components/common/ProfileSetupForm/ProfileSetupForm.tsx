@@ -7,7 +7,6 @@ import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
 import { useUser } from '@hooks/useUser';
-import { useCheckNicknameDuplicationMutation } from '@store/api/userApiSlice';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
