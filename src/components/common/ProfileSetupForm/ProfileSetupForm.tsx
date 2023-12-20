@@ -83,12 +83,9 @@ function ProfileSetupForm({
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log('first');
       handleNicknameCheck();
     }, 500);
     return () => {
-      console.log('clean up');
-
       clearTimeout(identifier);
     };
   }, [handleNicknameCheck, nicknameState.nickname]);
@@ -124,7 +121,7 @@ function ProfileSetupForm({
             handleSubmit(
               nicknameState.nickname,
               coordinates as Coordinates,
-              selectedAddress.split(' ').slice(-1).toString(),
+              selectedAddress,
               imgFile
             )
           }

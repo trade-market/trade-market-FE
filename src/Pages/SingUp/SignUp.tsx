@@ -47,7 +47,7 @@ function SignUp() {
   const handleSubmit = async (
     nickname: string,
     coordinates: Coordinates,
-    town: string,
+    address: string,
     profileImgFile: File | null
   ) => {
     const signUpData = {
@@ -57,7 +57,7 @@ function SignUp() {
       profileImage,
       // imageFile: profileImgFile,
       addressRequest: {
-        name: town,
+        name: address,
         longitude: coordinates.latitude,
         latitude: coordinates.longitude,
         type: 'main',
