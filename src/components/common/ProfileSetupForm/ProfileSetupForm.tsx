@@ -6,7 +6,6 @@ import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
-import { useUser } from '@hooks/useUser';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
@@ -30,14 +29,9 @@ function ProfileSetupForm({
   defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
-  const { data: user } = useUser();
-  const isLogin = Boolean(user);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [imgFile, setImgFile] = useState<File | null>(null);
-  const [nicknameState, setNicknameState] = useState({
-    nickname: defaultNickname,
-    success: isLogin,
-  });
+  const [nickname, setNickname] = useState(defaultNickname);
   const [nicknameError, setNicknameError] = useState<string>('');
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
   const [coordinates, setCoordinates] = useState<Coordinates | null>(
@@ -59,24 +53,20 @@ function ProfileSetupForm({
     []
   );
 
-  const handleNicknameCheck = () => {
+  const handleNicknameCheck = useCallback(() => {
     const regex = /^[A-Za-z0-9_가-힣]{2,10}$/; //영문, 한글, 숫자, _ (언더바)2~10자리
-    if (!regex.test(nicknameState.nickname)) {
+    if (!regex.test(nickname)) {
       setNicknameError(
         '닉네임은 2자 이상 최대 10자로\n영문, 한글, 숫자, 특수 문자는 "_" 언더바만 사용할 수 있습니다.'
       );
-      return;
+    } else {
+      setNicknameError('');
     }
-  };
+  }, [nickname]);
 
   const handleNickname = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNicknameState({
-        nickname: e.target.value,
-        success: false,
-      });
-
-      if (nicknameError) setNicknameError('');
+      setNickname(e.target.value);
     },
     [nicknameError]
   );
@@ -88,7 +78,7 @@ function ProfileSetupForm({
     return () => {
       clearTimeout(identifier);
     };
-  }, [handleNicknameCheck, nicknameState.nickname]);
+  }, [handleNicknameCheck, nickname]);
 
   return (
     <>
@@ -100,7 +90,7 @@ function ProfileSetupForm({
             handleProfileImgSetting={handleProfileImgSetting}
           />
           <NicknameSetting
-            nickname={nicknameState.nickname}
+            nickname={nickname}
             error={nicknameError}
             handleNickname={handleNickname}
           />
@@ -112,14 +102,12 @@ function ProfileSetupForm({
         </P.Section>
         <BlueButton
           disabled={
-            nicknameError.length > 1 ||
-            !nicknameState.nickname ||
-            coordinates === null
+            nicknameError.length > 1 || !nickname || coordinates === null
           }
           maxWidth="100%"
           onClick={() =>
             handleSubmit(
-              nicknameState.nickname,
+              nickname,
               coordinates as Coordinates,
               selectedAddress,
               imgFile
