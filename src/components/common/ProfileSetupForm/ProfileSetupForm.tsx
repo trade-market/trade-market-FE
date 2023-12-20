@@ -38,7 +38,6 @@ function ProfileSetupForm({
     nickname: defaultNickname,
     success: isLogin,
   });
-  const [checkNickname] = useCheckNicknameDuplicationMutation();
   const [nicknameError, setNicknameError] = useState<string>('');
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
   const [coordinates, setCoordinates] = useState<Coordinates | null>(
