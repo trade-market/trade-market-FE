@@ -31,6 +31,7 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
     const handleOAuthLogin = async () => {
       try {
         const result = await login({ serviceName, code }).unwrap();
+
         if (result.code !== 200) {
           throw new Error('알 수 없는 응답 코드' + result.code);
         }

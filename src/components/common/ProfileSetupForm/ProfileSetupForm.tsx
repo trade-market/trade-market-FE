@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import * as P from './ProfileSetupFormStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';
@@ -40,7 +40,7 @@ function ProfileSetupForm({
     success: isLogin,
   });
   const [checkNickname] = useCheckNicknameDuplicationMutation();
-  const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [nicknameError, setNicknameError] = useState<string>('');
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
   const [coordinates, setCoordinates] = useState<Coordinates | null>(
     defaultCoordinates || null
@@ -61,18 +61,7 @@ function ProfileSetupForm({
     []
   );
 
-  const handleNickname = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNicknameState({
-        nickname: e.target.value,
-        success: false,
-      });
-      if (nicknameError) setNicknameError(null);
-    },
-    [nicknameError]
-  );
-
-  const handleNicknameCheck = useCallback(async () => {
+  const handleNicknameCheck = () => {
     const regex = /^[A-Za-z0-9_가-힣]{2,10}$/; //영문, 한글, 숫자, _ (언더바)2~10자리
     if (!regex.test(nicknameState.nickname)) {
       setNicknameError(
@@ -80,14 +69,31 @@ function ProfileSetupForm({
       );
       return;
     }
-    try {
-      const data = await checkNickname(nicknameState.nickname).unwrap();
-      setNicknameState((prev) => ({ ...prev, success: true }));
-      setNicknameError(data.message);
-    } catch (error: any) {
-      setNicknameError(error.data.message);
-    }
-  }, [nicknameState.nickname]);
+  };
+
+  const handleNickname = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setNicknameState({
+        nickname: e.target.value,
+        success: false,
+      });
+      handleNicknameCheck();
+      if (nicknameError) setNicknameError('');
+    },
+    [nicknameError]
+  );
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('first');
+      handleNicknameCheck();
+    }, 500);
+    return () => {
+      console.log('clean up');
+
+      clearTimeout(identifier);
+    };
+  }, [handleNicknameCheck, nicknameState.nickname]);
 
   return (
     <>
@@ -102,7 +108,6 @@ function ProfileSetupForm({
             nickname={nicknameState.nickname}
             error={nicknameError}
             handleNickname={handleNickname}
-            handleNicknameCheck={handleNicknameCheck}
           />
           <AddressSetting
             selectedAddress={selectedAddress}
@@ -111,11 +116,11 @@ function ProfileSetupForm({
           />
         </P.Section>
         <BlueButton
-          // disabled={
-          //   !nicknameState.success ||
-          //   selectedAddress.length < 0 ||
-          //   coordinates === null
-          // }
+          disabled={
+            nicknameError.length > 1 ||
+            !nicknameState.nickname ||
+            coordinates === null
+          }
           maxWidth="100%"
           onClick={() =>
             handleSubmit(

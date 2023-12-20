@@ -16,9 +16,7 @@ const handleError = (statusCode: number) => {
 
 const baseQuery = fetchBaseQuery({
   baseUrl: SERVER_URL + '/api',
-  prepareHeaders: (headers, { endpoint }) => {
-    if (endpoint === 'login') return;
-
+  prepareHeaders: (headers) => {
     const accessToken = tokenStorage.getAccessToken();
     // Access Token이 있으면 API 호출 시 Header에 추가
     if (accessToken) {
@@ -38,7 +36,6 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
-  console.log(result);
   if (result.error && result.error.status === 401) {
     const refreshToken = tokenStorage.getRefreshToken();
     // Refresh Token으로 새로운 Access Token을 발급받음

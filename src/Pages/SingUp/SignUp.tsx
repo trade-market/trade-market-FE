@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
@@ -6,7 +5,7 @@ import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
-import { NewUserResponse, RegisterRequest } from '@/types/AuthTypes';
+import { NewUserResponse } from '@/types/AuthTypes';
 import { useSignUpMutation } from '@store/api/authApiSlice';
 import Spinner from '@components/Auth/Spinner';
 
@@ -16,15 +15,6 @@ function SignUp() {
   const location = useLocation();
   const state = location.state as NewUserResponse;
   const { authId, authType, nickname, profileImage } = state.data;
-  const [userInfo, setUserInfo] = useState<RegisterRequest>({
-    authId,
-    authType,
-    nickname,
-    profileImage,
-    imageFile: null,
-    latitude: '',
-    longitude: '',
-  });
   const { isOpen: isSignUpModalOpen, open: signUpModalOpen } = useModal();
 
   const handleModalOkClick = () => {
@@ -41,7 +31,7 @@ function SignUp() {
     );
   }
 
-  const handleSuccessfulSignUp = async () => {
+  const handleSuccessfulSignUp = () => {
     signUpModalOpen();
     setTimeout(() => {
       navigate('/', { replace: true });
@@ -54,29 +44,35 @@ function SignUp() {
     navigate('/auth', { replace: true });
   };
 
-  // Todo: API 명세서에는 town을 받지 않게 되어 있는데 어떻게 할 것인지?
   const handleSubmit = async (
     nickname: string,
     coordinates: Coordinates,
     town: string,
     profileImgFile: File | null
   ) => {
-    setUserInfo((prev) => ({
-      ...prev,
+    const signUpData = {
+      authId,
+      authType,
       nickname,
+      profileImage,
       // imageFile: profileImgFile,
-      latitude: coordinates.latitude,
-      longitude: coordinates.longitude,
-    }));
+      addressRequest: {
+        name: town,
+        longitude: coordinates.latitude,
+        latitude: coordinates.longitude,
+        type: 'main',
+      },
+    };
+
     try {
-      const result = await signUp(userInfo).unwrap();
-      if (result.code === 201) {
-        await handleSuccessfulSignUp();
+      await signUp(signUpData).unwrap();
+      handleSuccessfulSignUp();
+    } catch (error: any) {
+      if (error.status === 409) {
+        alert('중복된 닉네임입니다.');
       } else {
-        throw new Error(result.message);
+        handleError(error);
       }
-    } catch (error) {
-      handleError(error);
     }
   };
 

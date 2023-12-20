@@ -60,8 +60,6 @@ function KakaoMap({
     geocoder.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         //result[0] == 법정동, result[1] == 행정동
-        console.log(result);
-
         const { region_1depth_name, region_2depth_name, region_3depth_name } =
           result[1];
 

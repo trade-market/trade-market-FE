@@ -7,14 +7,12 @@ interface NicknameSettingProps {
   nickname: string;
   error: string | null;
   handleNickname: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleNicknameCheck: () => void;
 }
 
 function NicknameSetting({
   nickname,
   error,
   handleNickname,
-  handleNicknameCheck,
 }: NicknameSettingProps) {
   return (
     <S.Section>
@@ -26,12 +24,6 @@ function NicknameSetting({
           value={nickname}
           onChange={handleNickname}
         />
-        <BlueButton
-          disabled={nickname.length < 2}
-          onClick={handleNicknameCheck}
-        >
-          중복확인
-        </BlueButton>
       </S.InputContainer>
       {error &&
         error
