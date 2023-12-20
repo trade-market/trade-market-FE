@@ -11,6 +11,7 @@ export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const handleError = (statusCode: number) => {
   alert('다시 로그인해주세요. (토큰 만료) status:' + statusCode);
+  tokenStorage.clearTokens();
   // Todo: api.dispatch(logoutUser());
 };
 
@@ -34,6 +35,7 @@ const baseQueryWithIntercept: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
   if (result.error && result.error.status === 401) {
+    tokenStorage.removeAccessToken();
     const refreshToken = tokenStorage.getRefreshToken();
     // Refresh Token으로 새로운 Access Token을 발급받음
     const refreshResult = await baseQuery(

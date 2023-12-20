@@ -22,9 +22,13 @@ const getAccessToken = () => localStorage.getItem(ACCESS_TOKEN);
 
 const getRefreshToken = () => Cookies.get(REFRESH_TOKEN);
 
+const removeAccessToken = () => localStorage.removeItem(ACCESS_TOKEN);
+
+const removeRefreshToken = () => Cookies.remove(REFRESH_TOKEN);
+
 const clearTokens = () => {
-  localStorage.removeItem(ACCESS_TOKEN);
-  Cookies.remove(REFRESH_TOKEN);
+  removeAccessToken();
+  removeRefreshToken();
 };
 
 const setTokens = ({ accessToken, refreshToken }: TokensType) => {
@@ -38,5 +42,7 @@ export const tokenStorage = {
   setTokens,
   getAccessToken,
   getRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
   clearTokens,
 };
