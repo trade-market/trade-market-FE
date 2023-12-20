@@ -75,7 +75,7 @@ function ProfileSetupForm({
         nickname: e.target.value,
         success: false,
       });
-      handleNicknameCheck();
+
       if (nicknameError) setNicknameError('');
     },
     [nicknameError]
@@ -84,7 +84,7 @@ function ProfileSetupForm({
   useEffect(() => {
     const identifier = setTimeout(() => {
       handleNicknameCheck();
-    }, 500);
+    }, 300);
     return () => {
       clearTimeout(identifier);
     };
