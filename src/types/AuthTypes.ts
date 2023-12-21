@@ -38,8 +38,8 @@ export interface RegisterRequest {
   };
 }
 
-export interface RefreshTokenResponse {
-  accessToken: string;
+export interface AccessTokenToRefreshTokenResponse {
+  data: string;
   code: number;
   message: string;
 }
