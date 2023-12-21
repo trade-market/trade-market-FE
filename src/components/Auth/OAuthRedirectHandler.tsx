@@ -4,6 +4,8 @@ import { NewUserResponse, OAuthServiceType } from '@/types/AuthTypes';
 import Spinner from './Spinner';
 import useQueryString from '@hooks/useQueryString';
 import { useLoginMutation } from '@store/api/authApiSlice';
+import { useDispatch } from 'react-redux';
+import { login as loggedIn } from '@store/slices/authSlice';
 
 interface IOAuthRedirectHandlerProps {
   serviceName: OAuthServiceType;
@@ -13,6 +15,7 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
   const code = useQueryString('code') as string; // 인가 코드
   const navigate = useNavigate();
   const [login] = useLoginMutation();
+  const dispatch = useDispatch();
 
   const handleSuccessfulLogin = async () => {
     navigate('/', { replace: true });
@@ -31,15 +34,11 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
     const handleOAuthLogin = async () => {
       try {
         const result = await login({ serviceName, code }).unwrap();
-
-        if (result.code !== 200) {
-          throw new Error('알 수 없는 응답 코드' + result.code);
-        }
-
         if (result.message.includes('신규 회원')) {
           handleNewUser(result as NewUserResponse);
         } else {
           await handleSuccessfulLogin();
+          dispatch(loggedIn());
         }
       } catch (error) {
         handleError(error);

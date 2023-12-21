@@ -5,23 +5,22 @@ import useModal from '@hooks/useModal';
 import CommonModal from './common/CommonModal';
 
 function PrivateRoute() {
-  const { data: user } = useUser();
-  const isLogin = Boolean(user);
+  const isLoggedIn = useUser();
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
 
   useEffect(() => {
-    if (isLogin) {
+    if (isLoggedIn) {
       open();
     }
-  }, [isLogin]);
+  }, [isLoggedIn]);
 
   const handleOkClick = () => {
     close();
     navigate('/', { replace: true });
   };
 
-  if (isLogin) {
+  if (isLoggedIn) {
     return (
       <CommonModal
         isOpen={isOpen}
