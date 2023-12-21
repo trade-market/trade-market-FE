@@ -29,7 +29,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
           const { accessToken, refreshToken } =
             response.data as LoginResponse['data'];
           tokenStorage.setTokens({ accessToken, refreshToken });
-
           return response;
         }
 
@@ -43,7 +42,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body,
       }),
       transformResponse: (response: LoginResponse) => {
-        console.log(response);
         const { accessToken, refreshToken } = response.data;
         tokenStorage.setTokens({ accessToken, refreshToken });
         return response;

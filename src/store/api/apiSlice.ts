@@ -6,19 +6,15 @@ import type {
 } from '@reduxjs/toolkit/query';
 import { tokenStorage } from '@utils/tokenStorage';
 import { RefreshTokenResponse } from '@/types/AuthTypes';
+import { logOut } from '@store/slices/authSlice';
 
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-
-const handleError = (statusCode: number) => {
-  alert('다시 로그인해주세요. (토큰 만료) status:' + statusCode);
-  tokenStorage.clearTokens();
-  // Todo: api.dispatch(logoutUser());
-};
 
 const baseQuery = fetchBaseQuery({
   baseUrl: SERVER_URL + '/api',
   prepareHeaders: (headers) => {
     const accessToken = tokenStorage.getAccessToken();
+
     // Access Token이 있으면 API 호출 시 Header에 추가
     if (accessToken) {
       headers.set('Authorization', `Bearer ${accessToken}`);
@@ -34,6 +30,9 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
+  console.log(result);
+
+  // Todo: 토큰 만료 응답 코드 확인 필요
   if (result.error && result.error.status === 401) {
     tokenStorage.removeAccessToken();
     const refreshToken = tokenStorage.getRefreshToken();
@@ -51,14 +50,18 @@ const baseQueryWithIntercept: BaseQueryFn<
     );
 
     // 정상적으로 새로운 Access Token을 발급받았을 경우
-    if (refreshResult.meta.response.status === 201) {
+    if (refreshResult?.data) {
       const newAccessToken = (refreshResult.data as RefreshTokenResponse)
         .accessToken;
       tokenStorage.setAccessToken(newAccessToken);
       // 새로운 Access Token으로 다시 기존 API 호출
       result = await baseQuery(args, api, extraOptions);
     } else {
-      handleError(refreshResult.meta.response.status);
+      api.dispatch(logOut());
+      alert(
+        '다시 로그인해주세요. (토큰 만료) status:' +
+          refreshResult.meta.response.status
+      );
     }
   }
 
