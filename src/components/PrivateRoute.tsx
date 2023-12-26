@@ -6,22 +6,21 @@ import CommonModal from './common/CommonModal';
 
 // 로그인 한 유저만 접근 가능한 페이지를 위한 컴포넌트
 function PrivateRoute() {
-  const { data: user } = useUser();
-  const isLogin = Boolean(user);
+  const isLoggedIn = useUser();
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
   useEffect(() => {
-    if (!isLogin) {
+    if (!isLoggedIn) {
       open();
     }
-  }, [isLogin]);
+  }, [isLoggedIn]);
 
   const handleOkClick = () => {
     close();
     navigate('/auth', { replace: true });
   };
 
-  if (!isLogin) {
+  if (!isLoggedIn) {
     return (
       <CommonModal
         isOpen={isOpen}

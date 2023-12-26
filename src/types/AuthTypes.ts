@@ -8,16 +8,21 @@ export type OAuthServiceType =
 export interface LoginResponse {
   code: number;
   message: string;
-  accessToken: string;
-  refreshToken: string;
+  data: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
 
 export interface NewUserResponse {
   code?: number;
-  authId: string;
-  authType: OAuthServiceType;
-  nickname: string;
-  profileImage: string;
+  message: string;
+  data: {
+    authId: string;
+    authType: OAuthServiceType;
+    nickname: string;
+    profileImage: string;
+  };
 }
 
 export interface RegisterRequest {
@@ -25,13 +30,16 @@ export interface RegisterRequest {
   authType: OAuthServiceType;
   nickname: string;
   profileImage: string;
-  imageFile: File;
-  latitude: string;
-  longitude: string;
+  addressRequest: {
+    name: string;
+    latitude: number;
+    longitude: number;
+    type: string;
+  };
 }
 
-export interface RefreshTokenResponse {
-  accessToken: string;
+export interface AccessTokenToRefreshTokenResponse {
+  data: string;
   code: number;
   message: string;
 }

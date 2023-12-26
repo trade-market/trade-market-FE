@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import * as P from './ProfileSetupFormStyles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import BlueButton from '@components/common/Buttons/BlueButton';
@@ -6,8 +6,6 @@ import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
 import { Coordinates } from '@/types/UserTypes';
-import { useUser } from '@hooks/useUser';
-import { useCheckNicknameDuplicationMutation } from '@store/api/userApiSlice';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
@@ -31,16 +29,10 @@ function ProfileSetupForm({
   defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
-  const { data: user } = useUser();
-  const isLogin = Boolean(user);
   const [profileImgSrc, setProfileImgSrc] = useState(defaultProfileImgSrc);
   const [imgFile, setImgFile] = useState<File | null>(null);
-  const [nicknameState, setNicknameState] = useState({
-    nickname: defaultNickname,
-    success: isLogin,
-  });
-  const [checkNickname] = useCheckNicknameDuplicationMutation();
-  const [nicknameError, setNicknameError] = useState<string | null>(null);
+  const [nickname, setNickname] = useState(defaultNickname);
+  const [nicknameError, setNicknameError] = useState<string>('');
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
   const [coordinates, setCoordinates] = useState<Coordinates | null>(
     defaultCoordinates || null
@@ -61,33 +53,32 @@ function ProfileSetupForm({
     []
   );
 
+  const handleNicknameCheck = useCallback(() => {
+    const regex = /^[A-Za-z0-9_가-힣]{2,10}$/; //영문, 한글, 숫자, _ (언더바)2~10자리
+    if (!regex.test(nickname)) {
+      setNicknameError(
+        '닉네임은 2자 이상 최대 10자로\n영문, 한글, 숫자, 특수 문자는 "_" 언더바만 사용할 수 있습니다.'
+      );
+    } else {
+      setNicknameError('');
+    }
+  }, [nickname]);
+
   const handleNickname = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNicknameState({
-        nickname: e.target.value,
-        success: false,
-      });
-      if (nicknameError) setNicknameError(null);
+      setNickname(e.target.value);
     },
     [nicknameError]
   );
 
-  const handleNicknameCheck = useCallback(async () => {
-    const regex = /^[A-Za-z0-9_가-힣]{2,10}$/; //영문, 한글, 숫자, _ (언더바)2~10자리
-    if (!regex.test(nicknameState.nickname)) {
-      setNicknameError(
-        '닉네임은 2자 이상 최대 10자로\n영문, 한글, 숫자, 특수 문자는 "_" 언더바만 사용할 수 있습니다.'
-      );
-      return;
-    }
-    try {
-      const data = await checkNickname(nicknameState.nickname).unwrap();
-      setNicknameState((prev) => ({ ...prev, success: true }));
-      setNicknameError(data.message);
-    } catch (error: any) {
-      setNicknameError(error.data.message);
-    }
-  }, [nicknameState.nickname]);
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      handleNicknameCheck();
+    }, 300);
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [handleNicknameCheck, nickname]);
 
   return (
     <>
@@ -99,10 +90,9 @@ function ProfileSetupForm({
             handleProfileImgSetting={handleProfileImgSetting}
           />
           <NicknameSetting
-            nickname={nicknameState.nickname}
+            nickname={nickname}
             error={nicknameError}
             handleNickname={handleNickname}
-            handleNicknameCheck={handleNicknameCheck}
           />
           <AddressSetting
             selectedAddress={selectedAddress}
@@ -112,16 +102,14 @@ function ProfileSetupForm({
         </P.Section>
         <BlueButton
           disabled={
-            !nicknameState.success ||
-            selectedAddress.length < 0 ||
-            coordinates === null
+            nicknameError.length > 1 || !nickname || coordinates === null
           }
           maxWidth="100%"
           onClick={() =>
             handleSubmit(
-              nicknameState.nickname,
+              nickname,
               coordinates as Coordinates,
-              selectedAddress.split(' ').slice(-1).toString(),
+              selectedAddress,
               imgFile
             )
           }

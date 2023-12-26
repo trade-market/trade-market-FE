@@ -6,13 +6,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
     getUserInfo: builder.query<User, void>({
       query: () => '/user/info',
     }),
-    checkNicknameDuplication: builder.mutation({
-      query: (nickname) => ({
-        url: '/user/nickname',
-        method: 'POST',
-        body: { nickname },
-      }),
-    }),
     updateUserInfo: builder.mutation({
       query: (body) => ({
         url: '/user/update',
@@ -23,8 +16,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const {
-  useGetUserInfoQuery,
-  useCheckNicknameDuplicationMutation,
-  useUpdateUserInfoMutation,
-} = userApiSlice;
+export const { useGetUserInfoQuery, useUpdateUserInfoMutation } = userApiSlice;

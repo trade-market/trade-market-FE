@@ -11,7 +11,7 @@ import Spinner from '@components/Auth/Spinner';
 
 function EditProfile() {
   const navigate = useNavigate();
-  const { data: user } = useUser();
+  // const { data: user } = useUser();
   // todo: 타입 추가 정의
   const [userInfo, setUserInfo] = useState({});
   const { isOpen, open, close } = useModal();
@@ -50,10 +50,10 @@ function EditProfile() {
     <>
       <ProfileSetupForm
         isEdit={true}
-        defaultProfileImgSrc={user.profile_image || defaultProfileImg}
-        defaultNickname={user.nickname}
-        defaultAddress={user.town}
-        defaultCoordinates={user.coordinates}
+        defaultProfileImgSrc={'' || defaultProfileImg}
+        defaultNickname={'임시'}
+        defaultAddress={'임시'}
+        defaultCoordinates={null}
         handleSubmit={handleSubmit}
       />
       <ConfirmModal

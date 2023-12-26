@@ -8,7 +8,6 @@ import { apiSlice } from '@store/api/apiSlice';
 import { tokenStorage } from '@utils/tokenStorage';
 
 const HTTP_STATUS_OK = 200;
-const HTTP_STATUS_MOVED_PERMANENTLY = 301;
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,8 +16,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
       { serviceName: OAuthServiceType; code: string }
     >({
       query: ({ serviceName, code }) => ({
-        url: `/login/${serviceName}?authorizationCode=${code}${
-          serviceName === 'naver' && '&state=true'
+        url: `users/login/${serviceName}?authorizationCode=${code}${
+          serviceName === 'naver' ? 'naver' : ''
         }`,
         method: 'POST',
       }),
@@ -27,12 +26,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
         meta: { response: Response }
       ) => {
         if (meta.response.status === HTTP_STATUS_OK) {
-          const { accessToken, refreshToken } = response as LoginResponse;
+          const { accessToken, refreshToken } =
+            response.data as LoginResponse['data'];
           tokenStorage.setTokens({ accessToken, refreshToken });
           return response;
-        } else if (meta.response.status === HTTP_STATUS_MOVED_PERMANENTLY) {
-          const data = response as NewUserResponse;
-          return { ...data, code: HTTP_STATUS_MOVED_PERMANENTLY };
         }
 
         throw new Error(`Unexpected response status: ${meta.response.status}`);
@@ -40,12 +37,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     signUp: builder.mutation<LoginResponse, RegisterRequest>({
       query: (body) => ({
-        url: '/register',
+        url: 'users/register',
         method: 'POST',
         body,
       }),
       transformResponse: (response: LoginResponse) => {
-        const { accessToken, refreshToken } = response;
+        const { accessToken, refreshToken } = response.data;
         tokenStorage.setTokens({ accessToken, refreshToken });
         return response;
       },

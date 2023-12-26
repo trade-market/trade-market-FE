@@ -10,6 +10,8 @@ import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
 import { tokenStorage } from '@utils/tokenStorage';
+import { useDispatch } from 'react-redux';
+import { logOut } from '@store/slices/authSlice';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -27,6 +29,7 @@ const TopSection = styled.div`
 function MyPage() {
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
+  const dispatch = useDispatch();
 
   const {
     isOpen: isLogoutModalOpen,
@@ -42,7 +45,7 @@ function MyPage() {
   };
 
   const handleConfirm = () => {
-    tokenStorage.clearTokens();
+    dispatch(logOut());
     navigate('/?action=logout');
   };
 
