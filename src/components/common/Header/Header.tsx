@@ -7,14 +7,15 @@ import { useUser } from '@hooks/useUser';
 
 const Header = () => {
   const navigate = useNavigate();
-  // const { data: user } = useUser();
-  const user = '내 위치';
+  const { data } = useUser();
+  const user = data?.data;
+
   return (
     <Container>
       <div className="header">
         <div className="item" onClick={() => navigate('/')}>
           {user ? (
-            <div className="location">{user}</div>
+            <div className="location">{user.address.name}</div>
           ) : (
             <div className="location non-user">내 위치</div>
           )}

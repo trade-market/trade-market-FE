@@ -5,8 +5,7 @@ import Router from './Router';
 import { useUser } from '@hooks/useUser';
 
 function App() {
-  const { data: user, isLoading, isError, error } = useUser();
-  console.log(user);
+  const { isLoading, isError, error } = useUser();
 
   if (isError) {
     console.error(error);
