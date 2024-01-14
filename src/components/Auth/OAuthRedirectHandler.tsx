@@ -4,8 +4,6 @@ import { NewUserResponse, OAuthServiceType } from '@/types/AuthTypes';
 import Spinner from './Spinner';
 import useQueryString from '@hooks/useQueryString';
 import { useLoginMutation } from '@store/api/authApiSlice';
-import { useDispatch } from 'react-redux';
-import { login as loggedIn } from '@store/slices/authSlice';
 
 interface IOAuthRedirectHandlerProps {
   serviceName: OAuthServiceType;
@@ -15,7 +13,6 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
   const code = useQueryString('code') as string; // 인가 코드
   const navigate = useNavigate();
   const [login] = useLoginMutation();
-  const dispatch = useDispatch();
 
   const handleSuccessfulLogin = async () => {
     navigate('/', { replace: true });
@@ -38,7 +35,6 @@ function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
           handleNewUser(result as NewUserResponse);
         } else {
           await handleSuccessfulLogin();
-          dispatch(loggedIn());
         }
       } catch (error) {
         handleError(error);

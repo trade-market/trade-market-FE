@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useUser } from '@hooks/useUser';
 import useModal from '@hooks/useModal';
@@ -6,7 +6,8 @@ import CommonModal from './common/CommonModal';
 
 // 로그인 한 유저만 접근 가능한 페이지를 위한 컴포넌트
 function PrivateRoute() {
-  const isLoggedIn = useUser();
+  const { data: user } = useUser();
+  const isLoggedIn = Boolean(user);
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
   useEffect(() => {

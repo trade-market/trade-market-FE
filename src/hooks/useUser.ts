@@ -4,10 +4,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 
 export const useUser = () => {
-  // const token = tokenStorage.getAccessToken();
-  // const result = useGetUserInfoQuery(undefined, { skip: !token });
+  const token = tokenStorage.getAccessToken();
+  const result = useGetUserInfoQuery(undefined, { skip: !token });
 
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
-  return isLoggedIn;
+  return result;
 };
