@@ -29,9 +29,7 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
-  console.log(result);
 
-  // Todo: 토큰 만료 응답 코드 확인 필요
   if (result.error && result.error.status === 401) {
     tokenStorage.removeAccessToken();
     const refreshToken = tokenStorage.getRefreshToken();
