@@ -5,27 +5,26 @@ export type OAuthServiceType =
   | 'google'
   | 'naver'
   | 'kakao';
-export interface LoginResponse {
+
+export interface IResponse<T> {
   code: number;
   message: string;
-  data: {
-    accessToken: string;
-    refreshToken: string;
-  };
+  data: T;
 }
 
-export interface NewUserResponse {
-  code?: number;
-  message: string;
-  data: {
-    authId: string;
-    authType: OAuthServiceType;
-    nickname: string;
-    profileImage: string;
-  };
+export interface ITokens {
+  accessToken: string;
+  refreshToken: string;
 }
 
-export interface RegisterRequest {
+export interface INewUser {
+  authId: string;
+  authType: OAuthServiceType;
+  nickname: string;
+  profileImage: string;
+}
+
+export interface IRegisterRequest {
   authId: string;
   authType: OAuthServiceType;
   nickname: string;
@@ -38,8 +37,6 @@ export interface RegisterRequest {
   };
 }
 
-export interface AccessTokenToRefreshTokenResponse {
-  data: string;
-  code: number;
-  message: string;
-}
+export type LoginResponse = IResponse<ITokens>;
+export type TokensResponse = IResponse<string>;
+export type NewUserResponse = IResponse<INewUser>;

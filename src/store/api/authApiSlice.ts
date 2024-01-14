@@ -2,7 +2,7 @@ import {
   LoginResponse,
   NewUserResponse,
   OAuthServiceType,
-  RegisterRequest,
+  IRegisterRequest,
 } from '@/types/AuthTypes';
 import { apiSlice } from '@store/api/apiSlice';
 import { tokenStorage } from '@utils/tokenStorage';
@@ -35,7 +35,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         throw new Error(`Unexpected response status: ${meta.response.status}`);
       },
     }),
-    signUp: builder.mutation<LoginResponse, RegisterRequest>({
+    signUp: builder.mutation<LoginResponse, IRegisterRequest>({
       query: (body) => ({
         url: 'users/register',
         method: 'POST',
