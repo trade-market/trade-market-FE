@@ -7,7 +7,6 @@ import BlueButton from '@components/common/Buttons/BlueButton';
 import { size } from '@styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
-import { Coordinates } from '@/types/UserTypes';
 import KakaoMap from './KakaoMap';
 
 const MapContainer = styled.div`
@@ -34,13 +33,11 @@ const MapContainer = styled.div`
 interface IAddressSettingProps {
   selectedAddress: string;
   handleAddressSelect: (address: string) => void;
-  handleCoordinates: (coordinates: Coordinates) => void;
 }
 
 function AddressSetting({
   selectedAddress,
   handleAddressSelect,
-  handleCoordinates,
 }: IAddressSettingProps) {
   const open = useDaumPostcodePopup();
 
@@ -63,7 +60,7 @@ function AddressSetting({
   };
 
   const handleSearchBtnClick = () => {
-    open({ onComplete: handleComplete });
+    open({ onComplete: handleComplete, shorthand: false });
   };
 
   return (
@@ -100,7 +97,6 @@ function AddressSetting({
           <KakaoMap
             selectedAddress={selectedAddress}
             handleAddressSelect={handleAddressSelect}
-            handleCoordinates={handleCoordinates}
             closeAddressModal={closeAddressModal}
           />
         </MapContainer>

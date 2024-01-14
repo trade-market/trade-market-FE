@@ -30,9 +30,8 @@ export interface IRegisterRequest {
   nickname: string;
   profileImage: string;
   addressRequest: {
+    city: string;
     name: string;
-    latitude: number;
-    longitude: number;
     type: string;
   };
 }

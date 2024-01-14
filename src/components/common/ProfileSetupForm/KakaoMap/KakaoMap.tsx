@@ -3,35 +3,29 @@ import * as K from './KakaoMapStyles';
 import useCurrentPosition from '@/hooks/useCurrentPosition';
 import CurrentLocation from '@components/common/ProfileSetupForm/CurrentLocation';
 import SetCurrentLocationBtn from '@components/common/ProfileSetupForm/SetCurrentLocationBtn';
-import { Coordinates } from '@/types/UserTypes';
 
 interface IKakaoMapProps {
   selectedAddress: string;
   handleAddressSelect: (address: string) => void;
-  handleCoordinates: (coordinates: Coordinates) => void;
   closeAddressModal: () => void;
 }
 
 function KakaoMap({
   selectedAddress,
   handleAddressSelect,
-  handleCoordinates,
   closeAddressModal,
 }: IKakaoMapProps) {
   const container = useRef<HTMLDivElement>(null);
   const currentPosition = useCurrentPosition();
   const [addressInfo, setAddressInfo] = useState({
     region_1depth_name: '',
-    region_2depth_name: '',
     region_3depth_name: '',
   });
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 
   const handleCompleteBtn = () => {
     handleAddressSelect(
-      `${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`
+      `${addressInfo.region_1depth_name} ${addressInfo.region_3depth_name}`
     );
-    handleCoordinates(coordinates as Coordinates);
     closeAddressModal();
   };
 
@@ -60,17 +54,11 @@ function KakaoMap({
     geocoder.coord2RegionCode(longitude, latitude, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         //result[0] == 법정동, result[1] == 행정동
-        const { region_1depth_name, region_2depth_name, region_3depth_name } =
-          result[1];
+        const { region_1depth_name, region_3depth_name } = result[1];
 
         setAddressInfo({
           region_1depth_name,
-          region_2depth_name,
           region_3depth_name,
-        });
-        setCoordinates({
-          longitude,
-          latitude,
         });
       }
     });
@@ -97,27 +85,13 @@ function KakaoMap({
       const geocoder = new kakao.maps.services.Geocoder();
       geocoder.addressSearch(address, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
-          console.log(result);
-
-          const {
-            x,
-            y,
-            region_1depth_name,
-            region_2depth_name,
-            region_3depth_h_name,
-          } = result[0].address;
+          const { x, y, region_3depth_h_name } = result[0].address;
           const latitude = Number(y);
           const longitude = Number(x);
           const coords = new kakao.maps.LatLng(latitude, longitude);
-
           setAddressInfo({
-            region_1depth_name,
-            region_2depth_name,
+            region_1depth_name: address.split(' ')[0],
             region_3depth_name: region_3depth_h_name,
-          });
-          setCoordinates({
-            longitude,
-            latitude,
           });
           resolve(coords);
         } else {
@@ -153,7 +127,7 @@ function KakaoMap({
     <K.Container ref={container}>
       <SetCurrentLocationBtn onClick={displayMapBasedOnCurrentPosition} />
       <CurrentLocation
-        addressInfo={`${addressInfo.region_1depth_name} ${addressInfo.region_2depth_name} ${addressInfo.region_3depth_name}`}
+        addressInfo={`${addressInfo.region_1depth_name} ${addressInfo.region_3depth_name}`}
         handleCompleteBtn={handleCompleteBtn}
       />
     </K.Container>

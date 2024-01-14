@@ -5,17 +5,14 @@ import BlueButton from '@components/common/Buttons/BlueButton';
 import ProfileImgSetting from './ProfileImgSetting';
 import NicknameSetting from './NicknameSetting';
 import AddressSetting from './AddressSetting';
-import { Coordinates } from '@/types/UserTypes';
 
 interface IProfileSetupFormProps {
   isEdit?: boolean;
   defaultProfileImgSrc: string;
   defaultNickname: string;
-  defaultCoordinates?: Coordinates;
   defaultAddress?: string;
   handleSubmit: (
     nickname: string,
-    Coordinates: Coordinates,
     address: string,
     profileImg: File | null
   ) => Promise<void>;
@@ -25,7 +22,6 @@ function ProfileSetupForm({
   isEdit = false,
   defaultProfileImgSrc,
   defaultNickname,
-  defaultCoordinates,
   defaultAddress,
   handleSubmit,
 }: IProfileSetupFormProps) {
@@ -34,15 +30,9 @@ function ProfileSetupForm({
   const [nickname, setNickname] = useState(defaultNickname);
   const [nicknameError, setNicknameError] = useState<string>('');
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
-  const [coordinates, setCoordinates] = useState<Coordinates | null>(
-    defaultCoordinates || null
-  );
 
   const handleAddressSelect = useCallback((address: string) => {
     setSelectedAddress(address);
-  }, []);
-  const handleCoordinates = useCallback((coordinates: Coordinates) => {
-    setCoordinates(coordinates);
   }, []);
 
   const handleProfileImgSetting = useCallback(
@@ -97,22 +87,12 @@ function ProfileSetupForm({
           <AddressSetting
             selectedAddress={selectedAddress}
             handleAddressSelect={handleAddressSelect}
-            handleCoordinates={handleCoordinates}
           />
         </P.Section>
         <BlueButton
-          disabled={
-            nicknameError.length > 1 || !nickname || coordinates === null
-          }
+          disabled={nicknameError.length > 1 || !nickname}
           maxWidth="100%"
-          onClick={() =>
-            handleSubmit(
-              nickname,
-              coordinates as Coordinates,
-              selectedAddress,
-              imgFile
-            )
-          }
+          onClick={() => handleSubmit(nickname, selectedAddress, imgFile)}
         >
           완료
         </BlueButton>
