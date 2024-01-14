@@ -3,6 +3,7 @@ import { theme } from '@styles/theme';
 import { tokenStorage } from './utils/tokenStorage';
 import Router from './Router';
 import { useUser } from '@hooks/useUser';
+import Spinner from '@components/Auth/Spinner';
 
 function App() {
   const { isLoading, isError, error } = useUser();
@@ -12,11 +13,9 @@ function App() {
     tokenStorage.clearTokens();
   }
 
-  if (isLoading) return null;
-
   return (
     <ThemeProvider theme={theme}>
-      <Router />
+      {isLoading ? <Spinner /> : <Router />}
     </ThemeProvider>
   );
 }
