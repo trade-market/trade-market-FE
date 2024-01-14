@@ -26,6 +26,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
         meta: { response: Response }
       ) => {
         if (meta.response.status === HTTP_STATUS_OK) {
+          if (response.message.includes('신규 회원')) {
+            return response;
+          }
           const { accessToken, refreshToken } =
             response.data as LoginResponse['data'];
           tokenStorage.setTokens({ accessToken, refreshToken });
