@@ -19,10 +19,15 @@ const WritePost = () => {
 
   const handleNextButtonClick = () => navigate(`${selectedButton}/select-element`);
 
+<<<<<<< Updated upstream
  //* close 버튼
   const handleCloseButton = () => {
     navigate(`/`);
   }
+=======
+  //* close 버튼
+  const handleCloseButton = () => navigate(`/`);
+>>>>>>> Stashed changes
 
   const renderWriteTypeButton = (
     buttonId: string,

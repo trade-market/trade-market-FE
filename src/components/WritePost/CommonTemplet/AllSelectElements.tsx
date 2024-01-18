@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setProvidePost, setExchangePost, setAbleTimePost, setDeadlinePost } from '@/store/slices/WritePostSlice';
 import { RootState } from '@store/types';
-import PostSection from '@/components/WritePost/PostSection';
+import PostSection from '@components/WritePost/PostSection/PostSection';
 import MultiImageUpload from '@components/WritePost/MultiImageUpload/MultiImageUpload';
-import SelectBox from '@components/WritePost/SelectBox';
-import Calender from '@/components/WritePost/Calendar';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import SelectBox from '@components/WritePost/SelectBox/SelectBox';
+import Calender from '@components/WritePost/Calendar/Calender';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
 import * as O from '@Pages/WritePost/WritePostType';
 
 interface IAllSelectElementsProps {

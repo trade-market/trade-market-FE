@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
@@ -144,3 +145,8 @@ const ImgSection = styled.div`
       margin-right: 5px;
     }
 `;
+=======
+import FinalCheckPost from './FinalCheckPost';
+
+export default FinalCheckPost;
+>>>>>>> Stashed changes

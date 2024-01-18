@@ -6,9 +6,9 @@ import { format } from "date-fns";
 import styled from 'styled-components';
 import useModal from '@hooks/useModal';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import PostSection from '@/components/WritePost/PostSection';
-import SelectBox from '@components/WritePost/SelectBox';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import PostSection from '@components/WritePost/PostSection/PostSection';
+import SelectBox from '@components/WritePost/SelectBox/SelectBox';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
 import CalendarModal from '@components/Chat/ChatRoom/CalendarModal';
 
 const MakePlan = () => {

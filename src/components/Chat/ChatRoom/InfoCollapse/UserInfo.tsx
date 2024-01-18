@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Category from '@components/WritePost/Category';
+import Category from '@components/WritePost/Category/Category';
 import sample_sale_image from '@Assets/Icons/Chat/sample_sale_image.svg';
 
 const UserInfo = () => {

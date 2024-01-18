@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useState } from 'react';
 import styled from 'styled-components';
 import WriteOptions from '@/Options/WriteOptions';
@@ -101,3 +102,8 @@ const Option = styled.li`
     color : ${({ theme }) => theme.color.activeBlue};
   }
 `;
+=======
+import SelectBox from './SelectBox';
+
+export default SelectBox;
+>>>>>>> Stashed changes

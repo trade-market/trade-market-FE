@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@store/types';
 import { setTitlePost, setContentPost, setMinPricePost, setMaxPricePost } from '@/store/slices/WritePostSlice';
 import BlueTextArea from '@/components/WriteComment/CreatePost/BlueTextArea';
-import PostSection from '@/components/WritePost/PostSection';
+import PostSection from '@components/WritePost/PostSection/PostSection';
 import PriceSlideBar from '@/components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBar';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
 import * as O from '@Pages/WritePost/WritePostType';
 
 interface IWriteContentsProps {

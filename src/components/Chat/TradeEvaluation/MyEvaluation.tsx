@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import GoodManner_Large from '@Assets/Icons/Chat/GoodManner_Large_Active.svg';
 import BadManner_Large from '@Assets/Icons/Chat/BadManner_Large_Active.svg';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
 import * as M from './EvaluationList/EvaluationListStyles';
 
 interface IMyEvaluationProps {

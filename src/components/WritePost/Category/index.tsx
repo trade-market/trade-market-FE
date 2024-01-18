@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import styled from 'styled-components';
 import exchange_icon from '@Assets/Icons/WritePost/exchange_icon.svg'
 
@@ -39,3 +40,8 @@ const Container = styled.div`
     padding: 4px 12px;
   }
 `;
+=======
+import Category from './Category';
+
+export default Category;
+>>>>>>> Stashed changes

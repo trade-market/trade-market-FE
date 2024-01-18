@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useModal from '@hooks/useModal';
 import EvaluationTitle from './EvaluationTitle';
 import EvaluationListItem from './EvaluationListItem';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
 import ConfirmModal from '@components/common/ConfirmModal';
 import MyEvaluation from '../MyEvaluation';
 import { Wrapper } from './EvaluationListStyles';

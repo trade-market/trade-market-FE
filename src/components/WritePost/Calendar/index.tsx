@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import { ko } from "date-fns/esm/locale";
@@ -118,3 +119,8 @@ const CalendarHead = styled.div`
     }
   }
 `;
+=======
+import Calendar from './Calender';
+
+export default Calendar;
+>>>>>>> Stashed changes

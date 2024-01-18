@@ -4,8 +4,8 @@ import { RootState } from '@store/types';
 import styled from 'styled-components';
 import { size } from '@/styles/theme';
 import useModal from '@hooks/useModal';
-import PostBlueButtons from '@/components/WritePost/PostBlueButtons';
-import Calendar from '@components/WritePost/Calendar';
+import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
+import Calendar from '@components/WritePost/Calendar/Calender';
 import TimeController from './TimeController';
 import { useEffect, useState } from 'react';
 
