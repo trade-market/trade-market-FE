@@ -5,7 +5,7 @@ import type {
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
 import { tokenStorage } from '@utils/tokenStorage';
-import { AccessTokenToRefreshTokenResponse } from '@/types/AuthTypes';
+import { TokensResponse } from '@/types/AuthTypes';
 import { logOut } from '@store/slices/authSlice';
 
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -51,9 +51,9 @@ const baseQueryWithIntercept: BaseQueryFn<
 
     // 정상적으로 새로운 Access Token을 발급받았을 경우
     if (refreshResult?.data) {
-      const newAccessToken = (
-        refreshResult.data as AccessTokenToRefreshTokenResponse
-      ).data.split(' ')[1];
+      const newAccessToken = (refreshResult.data as TokensResponse).data.split(
+        ' '
+      )[1];
       tokenStorage.setAccessToken(newAccessToken);
       // 새로운 Access Token으로 다시 기존 API 호출
       result = await baseQuery(args, api, extraOptions);

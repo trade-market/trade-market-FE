@@ -40,16 +40,18 @@ function SignUp() {
 
   const handleError = (error: any) => {
     console.error(error);
-    alert('회원가입에 실패했습니다. error: ' + error);
+    alert(
+      '회원가입에 실패했습니다. 다시 시도 해주세요. error: ' + error.message
+    );
     navigate('/auth', { replace: true });
   };
 
   const handleSubmit = async (
     nickname: string,
-    coordinates: Coordinates,
     address: string,
     profileImgFile: File | null
   ) => {
+    const [city, name] = address.split(' ');
     const signUpData = {
       authId,
       authType,
@@ -57,9 +59,8 @@ function SignUp() {
       profileImage,
       // imageFile: profileImgFile,
       addressRequest: {
-        name: address,
-        longitude: coordinates.latitude,
-        latitude: coordinates.longitude,
+        city,
+        name,
         type: 'main',
       },
     };
