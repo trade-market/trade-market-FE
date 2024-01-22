@@ -6,7 +6,6 @@ import type {
 } from '@reduxjs/toolkit/query';
 import { tokenStorage } from '@utils/tokenStorage';
 import { TokensResponse } from '@/types/AuthTypes';
-import { logOut } from '@store/slices/authSlice';
 
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -30,9 +29,7 @@ const baseQueryWithIntercept: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   // Access Token이 만료되었을 경우
-  console.log(result);
 
-  // Todo: 토큰 만료 응답 코드 확인 필요
   if (result.error && result.error.status === 401) {
     tokenStorage.removeAccessToken();
     const refreshToken = tokenStorage.getRefreshToken();
@@ -58,7 +55,7 @@ const baseQueryWithIntercept: BaseQueryFn<
       // 새로운 Access Token으로 다시 기존 API 호출
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logOut());
+      tokenStorage.clearTokens();
       alert(
         '다시 로그인해주세요. (토큰 만료) status:' +
           refreshResult.meta.response.status

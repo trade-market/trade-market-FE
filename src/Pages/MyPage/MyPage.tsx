@@ -11,7 +11,6 @@ import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
 import { tokenStorage } from '@utils/tokenStorage';
 import { useDispatch } from 'react-redux';
-import { logOut } from '@store/slices/authSlice';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -45,7 +44,7 @@ function MyPage() {
   };
 
   const handleConfirm = () => {
-    dispatch(logOut());
+    tokenStorage.clearTokens();
     navigate('/?action=logout');
   };
 

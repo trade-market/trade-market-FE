@@ -1,14 +1,19 @@
-export interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
+import { IResponse } from './AuthTypes';
+
 export type GradeType = 'one' | 'two' | 'three' | 'four' | null;
 
-export interface User {
+interface IAddress {
   id: string;
-  profile_image: string;
-  nickname: string;
-  coordinates: { latitude: number; longitude: number };
-  grade: GradeType;
-  town: string;
+  city: string;
+  name: string;
 }
+
+export interface IUser {
+  id: string;
+  nickname: string;
+  grade: GradeType;
+  profileImage: string;
+  address: IAddress;
+}
+
+export type UserResponse = IResponse<IUser>;

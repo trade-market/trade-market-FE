@@ -1,13 +1,15 @@
 import { tokenStorage } from '@utils/tokenStorage';
 import { useGetUserInfoQuery } from '@store/api/userApiSlice';
-import { useSelector } from 'react-redux';
-import { RootState } from '@store/types';
 
 export const useUser = () => {
-  // const token = tokenStorage.getAccessToken();
-  // const result = useGetUserInfoQuery(undefined, { skip: !token });
+  const token = tokenStorage.getAccessToken();
+  const result = useGetUserInfoQuery(undefined, { skip: !token });
 
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
-  return isLoggedIn;
+  return {
+    data: result.data,
+    isLoading: result.isLoading,
+    error: result.error,
+    isError: result.isError,
+    isSuccess: result.isSuccess,
+  };
 };

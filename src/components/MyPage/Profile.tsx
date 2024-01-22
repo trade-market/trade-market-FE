@@ -59,15 +59,20 @@ const TextSection = styled.div`
 
 function Profile() {
   const navigate = useNavigate();
-  // const { data: user } = useUser();
+  const { data } = useUser();
   const handleEditBtnClick = () => navigate('edit');
+
+  const user = data?.data;
 
   return (
     <ProfileContainer>
       <div className="left">
-        <img className="profile-img" src={'' || defaultCharacterImg} />
+        <img
+          className="profile-img"
+          src={user.profileImage || defaultCharacterImg}
+        />
         <TextSection>
-          <div className="nickname">임시 닉네임</div>
+          <div className="nickname">{user.nickname}</div>
           <div className="grade">
             내 거래 등급 <RatingBadge rating="one" />
           </div>
