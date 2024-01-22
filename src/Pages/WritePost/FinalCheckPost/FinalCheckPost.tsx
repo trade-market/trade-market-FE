@@ -33,7 +33,7 @@ const FinalCheckPost = () => {
 
   // todo : type(재능, 물물 교환)에 따라 POST/PETCH 요청
   const CompleteHandler = () => {
-    console.log(completePost);
+    console.log(postObject);
     // navigate(`/`);
   };
 
@@ -46,7 +46,7 @@ const FinalCheckPost = () => {
             return (
               <div key={i} className="row">
                 <div className="title">{titles}</div>
-                {<PostContainer completePost={completePost} i={i} />}
+                {<PostContainer completePost={completePost} titles={titles} />}
               </div>
             );
           })}

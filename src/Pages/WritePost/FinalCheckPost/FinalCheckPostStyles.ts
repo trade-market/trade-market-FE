@@ -27,14 +27,11 @@ export const PostContainer = styled.div`
   .row {
     display: flex;
     width: 100%;
-    background-color: yellow;
-    /* flex-direction: column; */
   }
-  .temp {
-    background-color: tan;
+  .container-values {
     display: flex;
-    width: 100%;
-    flex-direction: column;
+    width: 116px;
+    flex-grow: 1;
   }
   .title {
     width: 44%;
@@ -45,7 +42,7 @@ export const PostContainer = styled.div`
   .price,
   .images {
     display: flex;
-    width: 56%;
+    /* width: 56%; */
   }
   .category {
     font-size: 10px;

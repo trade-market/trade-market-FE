@@ -3,13 +3,13 @@ import { ImgSection } from './FinalCheckPostStyles';
 import Category from '@components/WritePost/Category/Category';
 
 interface IPostContainerProps {
-  completePost: Post;
-  i: number;
+  completePost: any;
+  titles: string;
 }
 
-const PostContainer = ({ completePost, i }: IPostContainerProps) => {
+const PostContainer = ({ completePost, titles }: IPostContainerProps) => {
   const currentPrice = (p: number) =>
-    p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 화폐 단위 표시(,)
+    p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const priceString = ([...arr]) =>
     arr.map((v) => currentPrice(v)).reduce((a, b) => a + b) + '원';
@@ -26,26 +26,39 @@ const PostContainer = ({ completePost, i }: IPostContainerProps) => {
       </ImgSection>
     ));
 
-  const postKey = Object.keys(completePost);
+  const renderContainer = (titles: string) => {
+    switch (titles) {
+      case '이미지':
+        return (
+          <div className="images">{renderImageSection(completePost.image)}</div>
+        );
+      case '카테고리':
+        return (
+          <div className="category">
+            <Category
+              provide={completePost.provide}
+              exchange={completePost.exchange}
+            />
+          </div>
+        );
+      case '거래 마감일':
+        return <div className="content">{TradeDeadline}</div>;
+      case '거래 가능 시간':
+        return <div className="content">{completePost.ableTime}</div>;
+      case '내용':
+        return <div className="content">{completePost.content}</div>;
+      case '가격 제안':
+        return (
+          <div className="content">
+            {priceString([completePost.minPrice, '~', completePost.maxPrice])}
+          </div>
+        );
+      default:
+        return <div className="content">{completePost.title}</div>;
+    }
+  };
 
-  return (
-    <div className="temp">
-      <div className="images">{renderImageSection(completePost.image)}</div>
-      <div className="category">
-        <Category
-          provide={completePost.provide}
-          exchange={completePost.exchange}
-        />
-      </div>
-      <div className="content">{TradeDeadline}</div>
-      <div className="content">{completePost.ableTime}</div>
-      <div className="content">{completePost.title}</div>
-      <div className="content">{completePost.content}</div>
-      <div className="content">
-        {priceString([completePost.minPrice, '~', completePost.maxPrice])}
-      </div>
-    </div>
-  );
+  return <div className="container-values">{renderContainer(titles)}</div>;
 };
 
 export default PostContainer;
