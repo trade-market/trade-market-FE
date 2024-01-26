@@ -1,3 +1,4 @@
+import React from 'react';
 import { GradeType } from '@/types/UserTypes';
 import Rating1 from '@Assets/Icons/rating_1.svg';
 import Rating2 from '@Assets/Icons/rating_2.svg';

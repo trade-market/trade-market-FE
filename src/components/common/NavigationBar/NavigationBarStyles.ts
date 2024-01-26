@@ -24,7 +24,7 @@ export const Container = styled.div`
     flex-direction: column;
     cursor: pointer;
     .active {
-      color : ${({ theme }) => theme.color.Mainblue};
+      color: ${({ theme }) => theme.color.Mainblue};
     }
   }
   .icon {

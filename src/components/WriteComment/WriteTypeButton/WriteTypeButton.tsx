@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div<{ selected: boolean | null }>`
@@ -6,7 +7,7 @@ const Container = styled.div<{ selected: boolean | null }>`
   max-width: 168px;
   min-height: 168px;
   padding: 20px;
-  background-color:  ${({ selected, theme }) =>
+  background-color: ${({ selected, theme }) =>
     selected ? `#EBF0FC` : `${theme.color.whiteGray}`};
   opacity: ${({ selected }) => (selected || selected === null ? 1 : 0.4)};
   border-radius: 8px;
@@ -23,7 +24,7 @@ const Text = styled.div`
   line-height: 130%;
 `;
 
-const ImageContainer = styled.img<{ $size:string }>`
+const ImageContainer = styled.img<{ $size: string }>`
   max-width: ${({ $size }) => $size};
   width: 100%;
   height: ${({ $size }) => $size};
@@ -45,7 +46,7 @@ function WriteTypeButton({
   imageSrc,
   onClick,
   selected,
-  size='48px'
+  size = '48px',
 }: IWriteTypeButtonProps) {
   return (
     <Container onClick={onClick} selected={selected}>

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/types';
-import { useLocation } from "react-router";
+import { useLocation } from 'react-router';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useModal from '@hooks/useModal';
@@ -20,17 +20,17 @@ const ChatRoom = () => {
   const { id } = useParams<{ id: string }>();
   const { state } = useLocation();
 
-  const handleChangeState = (e : React.MouseEvent<HTMLDivElement>) => {
+  const handleChangeState = (e: React.MouseEvent<HTMLDivElement>) => {
     setSaleState(e.currentTarget.innerText);
     close();
-  }
+  };
 
   useEffect(() => {
     if (selectPlan.ap) {
-      setSaleState('예약중')
-    };
-    if ((selectPlan.date !== null) && (selectPlan.date < new Date())) {
-      setSaleState('판매완료')
+      setSaleState('예약중');
+    }
+    if (selectPlan.date !== null && selectPlan.date < new Date()) {
+      setSaleState('판매완료');
     }
   }, []);
 
@@ -45,28 +45,32 @@ const ChatRoom = () => {
   // useEffect(() => {
   //   socket.on('message-receive', (chatObj) => {
   //     const { send, userId, massege, time } = chatObj;
-      
+
   //   })
   // }, [chatStorage]);
-  
+
   return (
     <>
-        <CommonHeader>
-          <HeaderSection>
-            <span className='title'>{state['nickName']}</span>
-            <StateButton $saleState={saleState} onClick={open}>{saleState}</StateButton>
-          </HeaderSection>
-        </CommonHeader>
-        <ChatWrapper>
-          <InfoCollapse saleState={saleState} />
-          <Chatting />
-          <ChatInput saleState={saleState} userId={id} />
-        </ChatWrapper>
+      <CommonHeader>
+        <HeaderSection>
+          <span className="title">{state['nickName']}</span>
+          <StateButton $saleState={saleState} onClick={open}>
+            {saleState}
+          </StateButton>
+        </HeaderSection>
+      </CommonHeader>
+      <ChatWrapper>
+        <InfoCollapse saleState={saleState} />
+        <Chatting />
+        <ChatInput saleState={saleState} userId={id} />
+      </ChatWrapper>
       {isOpen && (
         <BottomSheet height="250px" onClick={close}>
           <StateOption onClick={handleChangeState}>판매중</StateOption>
           <StateOption onClick={handleChangeState}>예약중</StateOption>
-          <StateOptionComplete onClick={handleChangeState}>판매완료</StateOptionComplete>
+          <StateOptionComplete onClick={handleChangeState}>
+            판매완료
+          </StateOptionComplete>
         </BottomSheet>
       )}
     </>
@@ -84,13 +88,21 @@ const HeaderSection = styled.div`
   }
 `;
 
-const StateButton = styled.button<{ $saleState: string; }>`
+const StateButton = styled.button<{ $saleState: string }>`
   border: ${({ theme, $saleState }) =>
-  $saleState === '예약중' ? `1px solid ${theme.color.orange}` : `none`};
+    $saleState === '예약중' ? `1px solid ${theme.color.orange}` : `none`};
   background-color: ${({ theme, $saleState }) =>
-  $saleState === '판매중' ? theme.color.orange : $saleState === '판매완료' ? theme.color.whiteGray : 'transparent'};
+    $saleState === '판매중'
+      ? theme.color.orange
+      : $saleState === '판매완료'
+      ? theme.color.whiteGray
+      : 'transparent'};
   color: ${({ theme, $saleState }) =>
-    $saleState === '판매중' ? theme.color.bgColor : $saleState === '판매완료' ? theme.color.lightGray : theme.color.orange};
+    $saleState === '판매중'
+      ? theme.color.bgColor
+      : $saleState === '판매완료'
+      ? theme.color.lightGray
+      : theme.color.orange};
   padding: 4px 12px;
   border-radius: 20px;
   cursor: pointer;
@@ -100,7 +112,7 @@ const StateButton = styled.button<{ $saleState: string; }>`
 
 const StateOption = styled.div``;
 const StateOptionComplete = styled(StateOption)`
-  color : ${({ theme }) => theme.color.activeBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
 `;
 
 const ChatWrapper = styled.div`
@@ -110,5 +122,3 @@ const ChatWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
-
-

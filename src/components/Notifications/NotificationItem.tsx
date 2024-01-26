@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { checkItem, uncheckItem } from '@store/slices/CheckboxSlice';
+import { checkItem, uncheckItem } from '@store/slices/checkboxSlice';
 import useTimeDiff from '@hooks/useTimeDiff';
 import { NotificationType } from './NotificationList';
 import Checkbox from './Checkbox';

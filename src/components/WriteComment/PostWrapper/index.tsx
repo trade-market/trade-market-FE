@@ -1,5 +1,6 @@
-import { size } from '@/styles/theme';
+import React from 'react';
 import styled from 'styled-components';
+import { size } from '@/styles/theme';
 
 const Container = styled.div`
   display: flex;

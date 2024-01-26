@@ -6,7 +6,7 @@ import { size } from '@/styles/theme';
 export const Container = styled(ContainerTemplet)``;
 
 export const InputContainer = styled(InputContainerTemplet)`
-padding: 0 21px;
+  padding: 0 21px;
 `;
 
 export const Input = styled.input`
@@ -15,7 +15,7 @@ export const Input = styled.input`
   width: 100%;
   max-width: ${size.mobile};
   height: 48px;
-  margin-top: 15px; 
+  margin-top: 15px;
   margin-bottom: 15px;
   padding: 16px;
   border-radius: 8px;
@@ -23,7 +23,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.color.whiteGray};
   font-family: ${({ theme }) => theme.font.family.Pretendard};
   background-color: ${({ theme }) => theme.color.inputGray};
-  
+
   &::placeholder {
     color: ${({ theme }) => theme.color.gray};
   }
@@ -55,13 +55,13 @@ export const Categories = styled.div`
     background-color: transparent;
     border-radius: 20px;
     color: ${({ theme }) => theme.color.lightGray};
-    border: 1px solid #E5E7EB;
+    border: 1px solid #e5e7eb;
     cursor: pointer;
   }
 
   .active {
     color: ${({ theme }) => theme.color.activeBlue};
     border: 1px solid ${({ theme }) => theme.color.activeBlue};
-    background-color: #EBF0FC;
+    background-color: #ebf0fc;
   }
 `;

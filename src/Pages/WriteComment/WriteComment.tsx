@@ -32,7 +32,7 @@ function WriteComment() {
       text={text}
       imageSrc={imageSrc}
     />
-  ); 
+  );
 
   return (
     <>

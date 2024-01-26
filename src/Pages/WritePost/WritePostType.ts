@@ -14,8 +14,8 @@ export const PriceSlideContainer = styled(ContainerTemplet)`
 
 export const PostType = styled.div`
   margin-top: 60px;
-  padding : 10px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   font-size: ${({ theme }) => theme.font.size.small};
-  color : ${({ theme }) => theme.color.activeBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
   font-weight: 500;
 `;

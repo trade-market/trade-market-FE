@@ -1,5 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
-import RecentlyViewedPostList from '@components/MyPage/RecentlyViewedPostList';
+import RecentlyViewedPostList from './RecentlyViewedPostList';
 
 const Container = styled.div`
   margin-top: 32px;

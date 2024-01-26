@@ -70,14 +70,13 @@ function ChatToOfferedUserItem({
   const ChatRoomClickHandler = () => {
     navigate(`/chat-list/${userId}`, {
       state: {
-        nickName: nickname
-    }});
-  }
+        nickName: nickname,
+      },
+    });
+  };
 
   return (
-    <Container
-      onClick={ChatRoomClickHandler}
-    >
+    <Container onClick={ChatRoomClickHandler}>
       <Left>
         <img
           className="profile-img"

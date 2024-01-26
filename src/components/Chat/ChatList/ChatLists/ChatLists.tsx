@@ -15,10 +15,15 @@ interface IChatListsProps {
   checkItems: Set<unknown>;
 }
 
-const ChatLists = ({ChatListData, deleteModeOn, checkHandler, checkItems}:IChatListsProps) => {
+const ChatLists = ({
+  ChatListData,
+  deleteModeOn,
+  checkHandler,
+  checkItems,
+}: IChatListsProps) => {
   return (
     <>
-      {ChatListData.map((chat, i)=> (
+      {ChatListData.map((chat, i) => (
         <ChatListItem
           key={i}
           id={chat.id ? chat.id : `user${i.toString()}`}
@@ -29,7 +34,7 @@ const ChatLists = ({ChatListData, deleteModeOn, checkHandler, checkItems}:IChatL
           deleteMode={deleteModeOn}
           checkHandler={checkHandler}
           checkItems={checkItems}
-          />
+        />
       ))}
     </>
   );

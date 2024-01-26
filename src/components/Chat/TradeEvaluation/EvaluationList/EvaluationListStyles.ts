@@ -49,9 +49,10 @@ export const ListBox = styled.div`
   border-radius: 8px;
   cursor: pointer;
 
-  &.active, &.my {
+  &.active,
+  &.my {
     border: 1px solid ${({ theme }) => theme.color.Mainblue};
-    color : ${({ theme }) => theme.color.Mainblue};
+    color: ${({ theme }) => theme.color.Mainblue};
   }
 
   &.my {

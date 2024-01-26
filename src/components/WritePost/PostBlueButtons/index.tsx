@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { size } from '@/styles/theme';
@@ -12,17 +13,29 @@ interface IPostBlueButtonsProps {
   BlueButtonClickHandler: () => void;
 }
 
-const PostBlueButtons = ({ option, ActionButtonName = '이전', BlueButtonName = '다음', disabled, BlueButtonClickHandler } : IPostBlueButtonsProps) => {
+const PostBlueButtons = ({
+  option,
+  ActionButtonName = '이전',
+  BlueButtonName = '다음',
+  disabled,
+  BlueButtonClickHandler,
+}: IPostBlueButtonsProps) => {
   const navigate = useNavigate();
 
   return (
     <Container>
-      {option !== 1 ? <ActionButton onClick={() => navigate(-1)}>{ActionButtonName}</ActionButton> : null}
-        <BlueButton
-          maxWidth={'100%'}
-          disabled={disabled}
-          onClick={BlueButtonClickHandler}
-        >{BlueButtonName}</BlueButton>
+      {option !== 1 ? (
+        <ActionButton onClick={() => navigate(-1)}>
+          {ActionButtonName}
+        </ActionButton>
+      ) : null}
+      <BlueButton
+        maxWidth={'100%'}
+        disabled={disabled}
+        onClick={BlueButtonClickHandler}
+      >
+        {BlueButtonName}
+      </BlueButton>
     </Container>
   );
 };
@@ -50,7 +63,7 @@ export const Container = styled.div`
     flex-direction: column;
     cursor: pointer;
     .active {
-      color : ${({ theme }) => theme.color.Mainblue};
+      color: ${({ theme }) => theme.color.Mainblue};
     }
   }
   .icon {

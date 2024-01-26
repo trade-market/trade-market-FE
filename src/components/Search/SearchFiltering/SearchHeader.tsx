@@ -1,8 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { size } from '../../../styles/theme';
 import GobackBtn from '@components/common/CommonHeader/GobackBtn';
-import SearchInput from "@components/Search/DefaultSearch/SearchInput/SearchInput";
+import SearchInput from '@components/Search/DefaultSearch/SearchInput/SearchInput';
 import useQueryString from '@hooks/useQueryString';
 
 interface ISearchHeaderProps {

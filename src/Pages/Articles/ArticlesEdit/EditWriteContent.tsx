@@ -1,9 +1,12 @@
 import WriteContents from '@components/WritePost/CommonTemplet/WriteContents';
 import useNavigateButton from '@hooks/useNavigateButton';
-import { useLocation } from "react-router";
+import { useLocation } from 'react-router';
 
 const EditWriteContent = () => {
-  const NextLocation = window.location.pathname.replace('write-content', `final-check`);
+  const NextLocation = window.location.pathname.replace(
+    'write-content',
+    `final-check`
+  );
   const handleNextButtonClick = useNavigateButton(NextLocation);
   const { state } = useLocation();
 

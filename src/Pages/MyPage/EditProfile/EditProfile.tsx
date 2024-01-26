@@ -1,21 +1,22 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
-import { setUser } from '@store/slices/userSlice';
-import UserService from '@/service/UserService';
-import { RootState } from '@store/types';
 import ConfirmModal from '@components/common/ConfirmModal';
 import useModal from '@hooks/useModal';
+import { useUser } from '@hooks/useUser';
+import { useUpdateUserInfoMutation } from '@store/api/userApiSlice';
+import Spinner from '@components/Auth/Spinner';
 
 function EditProfile() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  // const { data: user } = useUser();
+  // todo: 타입 추가 정의
+  const [userInfo, setUserInfo] = useState({});
   const { isOpen, open, close } = useModal();
-
-  let userInfoToSubmit = {};
+  const [updateUser, { isLoading: isUpdateUserLoading }] =
+    useUpdateUserInfoMutation();
 
   const handleSubmit = async (
     nickname: string,
@@ -23,25 +24,25 @@ function EditProfile() {
     address: string,
     profileImg: File | null
   ) => {
-    userInfoToSubmit = {
+    setUserInfo({
       nickname,
       profileImg,
       coordinates,
       town: address,
-    };
+    });
 
     open();
   };
 
-  const handleFinalOkClick = async () => {
+  const handleUpdateUser = async () => {
     try {
-      await UserService.updateUserInfo(userInfoToSubmit);
-      const { user } = await UserService.getUserInfo();
-      dispatch(setUser({ ...user, isLogin: true }));
-    } catch (err) {
-      console.error(err);
+      await updateUser(userInfo);
+    } catch (error) {
+      console.error(error);
     }
-    close();
+  };
+
+  const onModalCompleteButtonClick = () => {
     navigate('/my-page');
   };
 
@@ -49,10 +50,10 @@ function EditProfile() {
     <>
       <ProfileSetupForm
         isEdit={true}
-        defaultProfileImgSrc={user.profile_image || defaultProfileImg}
-        defaultNickname={user.nickname}
-        defaultAddress={user.town}
-        defaultCoordinates={user.coordinates}
+        defaultProfileImgSrc={'' || defaultProfileImg}
+        defaultNickname={'임시'}
+        defaultAddress={'임시'}
+        defaultCoordinates={null}
         handleSubmit={handleSubmit}
       />
       <ConfirmModal
@@ -60,9 +61,11 @@ function EditProfile() {
         title="프로필 수정"
         content="프로필을 수정하시겠습니까?"
         confirmedContent="프로필이 수정되었습니다."
-        onFinalOkClick={handleFinalOkClick}
+        onConfirmAction={handleUpdateUser}
+        onCompletedAction={onModalCompleteButtonClick}
         closeAction={close}
       />
+      {isUpdateUserLoading && <Spinner />}
     </>
   );
 }

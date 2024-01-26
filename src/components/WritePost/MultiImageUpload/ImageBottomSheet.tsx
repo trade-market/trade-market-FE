@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/types';
 import { setImagePost } from '@/store/slices/WritePostSlice';
@@ -7,7 +8,7 @@ interface IImageBottomSheetProps {
   close: () => void;
 }
 
-const ImageBottomSheet = ({close}: IImageBottomSheetProps) => {
+const ImageBottomSheet = ({ close }: IImageBottomSheetProps) => {
   const selectImages = useSelector((state: RootState) => state.WritePost.image);
   const dispatch = useDispatch();
 
@@ -24,22 +25,22 @@ const ImageBottomSheet = ({close}: IImageBottomSheetProps) => {
     if (imageUrlLists.length > 5) {
       imageUrlLists = imageUrlLists.slice(0, 5);
     }
-    
+
     dispatch(setImagePost(imageUrlLists));
     close();
   };
 
   return (
     <BottomSheet height={'140px'} onClick={close}>
-      <label className='single'>
+      <label className="single">
         사진 앨범
-        <input 
-          type='file'
-          id='file'
-          accept='image/*'
+        <input
+          type="file"
+          id="file"
+          accept="image/*"
           multiple
           onChange={handleAddImages}
-          />
+        />
       </label>
     </BottomSheet>
   );

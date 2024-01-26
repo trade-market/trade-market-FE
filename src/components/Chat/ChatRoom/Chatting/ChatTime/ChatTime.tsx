@@ -8,24 +8,20 @@ interface IChatTimerops {
 }
 
 const ChatTime = ({ send, time }: IChatTimerops) => {
-  const chatTime = moment(time).format('HH:mm')
+  const chatTime = moment(time).format('HH:mm');
 
-  return (
-    <ChatTimeBlock $send={send}>
-      {chatTime}
-    </ChatTimeBlock>
-  );
+  return <ChatTimeBlock $send={send}>{chatTime}</ChatTimeBlock>;
 };
 
 export default ChatTime;
 
-const ChatTimeBlock = styled.div<{ $send: boolean; }>`
+const ChatTimeBlock = styled.div<{ $send: boolean }>`
   display: flex;
   position: relative;
   align-items: flex-end;
   padding: 2px 7px;
   font-weight: 500;
   font-size: ${({ theme }) => theme.font.size.xSmall};
-  color : ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.gray};
   letter-spacing: 0.5px;
 `;

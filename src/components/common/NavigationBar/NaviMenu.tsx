@@ -1,3 +1,4 @@
+import React from 'react';
 import UnreadChatNav from './UnreadChatNav';
 
 interface INaviMenuProps {
@@ -10,7 +11,7 @@ interface INaviMenuProps {
 const NaviMenu = ({ icon, active, menu }: INaviMenuProps) => {
   return (
     <div className="item">
-      { menu === '채팅' && <UnreadChatNav /> }
+      {menu === '채팅' && <UnreadChatNav />}
       <img className="icon" src={icon} />
       <div className={active ? 'active' : ''}>{menu}</div>
     </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import character_icon from '@Assets/Character_Icons/Character_Congratulations_160_160 ver.svg';
 

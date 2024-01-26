@@ -15,7 +15,7 @@ const useTimeDiff = (date: Date | string) => {
       const diffInMonths = now.diff(postDate, 'months');
       const diffInYears = now.diff(postDate, 'years');
 
-      let result;
+      let result = '';
 
       if (diffInSeconds < 60) {
         result = `${diffInSeconds}초 전`;

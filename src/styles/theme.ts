@@ -26,13 +26,13 @@ export const theme: DefaultTheme = {
     gray: '#AFAFAF',
     lightGray: '#797979',
     whiteGray: '#E5E7EB',
-    whiteLightGray : '#F2F2F2',
+    whiteLightGray: '#F2F2F2',
     black: '#0B0B0B',
     activeBlue: '#2156F2',
     disableBtn: '#E5E7EB',
     inputGray: '#f9f8fb',
     orange: '#FF5B22',
-    lightBlue : '#EBF0FC',
+    lightBlue: '#EBF0FC',
   },
   font: {
     family: {

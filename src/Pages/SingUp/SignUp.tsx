@@ -1,20 +1,21 @@
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import AuthService from '@/service/AuthService';
-import { Coordinates, NewUserInfo } from '@/types/UserTypes';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@store/slices/userSlice';
-import UserService from '@/service/UserService';
 import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
+import { NewUserResponse } from '@/types/AuthTypes';
+import { useSignUpMutation } from '@store/api/authApiSlice';
+import Spinner from '@components/Auth/Spinner';
 
 function SignUp() {
+  const [signUp, { isLoading: isSingUpLoading }] = useSignUpMutation();
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state as NewUserInfo;
-  const { isOpen, open } = useModal();
+  const state = location.state as NewUserResponse;
+  const { authId, authType, nickname, profileImage } = state.data;
+  const { isOpen: isSignUpModalOpen, open: signUpModalOpen } = useModal();
 
   const handleModalOkClick = () => {
     navigate('/', { replace: true });
@@ -29,43 +30,62 @@ function SignUp() {
       />
     );
   }
-  const dispatch = useDispatch();
-  const nickname = state.nickname; // Todo: SNS 로그인 시 닉네임 받아오기
-  const profileImg = state.profile_image; // Todo: SNS 로그인 시 프로필 이미지 받아오기
+
+  const handleSuccessfulSignUp = () => {
+    signUpModalOpen();
+    setTimeout(() => {
+      navigate('/', { replace: true });
+    }, 3000);
+  };
+
+  const handleError = (error: any) => {
+    console.error(error);
+    alert(
+      '회원가입에 실패했습니다. 다시 시도 해주세요. error: ' + error.message
+    );
+    navigate('/auth', { replace: true });
+  };
+
   const handleSubmit = async (
     nickname: string,
-    coordinates: Coordinates,
-    town: string,
+    address: string,
     profileImgFile: File | null
   ) => {
-    const userInfo = {
+    const [city, name] = address.split(' ');
+    const signUpData = {
+      authId,
+      authType,
       nickname,
-      profileImg,
-      profileImgFile,
-      coordinates,
-      town,
+      profileImage,
+      // imageFile: profileImgFile,
+      addressRequest: {
+        city,
+        name,
+        type: 'main',
+      },
     };
+
     try {
-      const data = await AuthService.signUp(userInfo);
-      const { user } = await UserService.getUserInfo();
-      open();
-      setTimeout(() => {
-        dispatch(setUser({ ...user, isLogin: true }));
-        navigate('/', { replace: true });
-      }, 3000);
-    } catch (err) {
-      console.error(err);
+      await signUp(signUpData).unwrap();
+      handleSuccessfulSignUp();
+    } catch (error: any) {
+      if (error.status === 409) {
+        alert('중복된 닉네임입니다.');
+      } else {
+        handleError(error);
+      }
     }
   };
 
   return (
     <>
       <ProfileSetupForm
-        defaultProfileImgSrc={profileImg || defaultProfileImg}
+        defaultProfileImgSrc={profileImage || defaultProfileImg}
         defaultNickname={nickname}
         handleSubmit={handleSubmit}
       />
-      <SignUpSuccessModal isOpen={isOpen} />
+      <SignUpSuccessModal isOpen={isSignUpModalOpen} />
+      {isSingUpLoading && <Spinner />}
     </>
   );
 }

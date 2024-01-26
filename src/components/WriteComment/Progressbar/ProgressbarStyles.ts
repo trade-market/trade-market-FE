@@ -94,7 +94,8 @@ export const DotEnd = styled.div<{ $number: number; $total: number }>`
   width: 9px;
   height: 9px;
   & > img {
-    display: ${({ $number, $total }) => ($number !== $total ? 'block' : 'none')};
+    display: ${({ $number, $total }) =>
+      $number !== $total ? 'block' : 'none'};
     width: 100%;
     height: 100%;
   }

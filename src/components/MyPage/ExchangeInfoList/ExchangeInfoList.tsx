@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import ExchangeInfoBox from '@components/MyPage/ExchangeInfoBox';
-import ViewAllIcon from '@Assets/Icons/view_all.svg';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import ExchangeInfoBox from '@components/MyPage/ExchangeInfoList/ExchangeInfoBox';
+import ViewAllIcon from '@Assets/Icons/view_all.svg';
 
 const ExchangeInfoListContainer = styled.div`
   display: flex;

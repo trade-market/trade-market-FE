@@ -1,40 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@styles/theme';
-import UserService from './service/UserService';
-import { setUser } from '@store/slices/userSlice';
-import TokenService from './service/TokenService';
+import { tokenStorage } from './utils/tokenStorage';
 import Router from './Router';
+import { useUser } from '@hooks/useUser';
+import Spinner from '@components/Auth/Spinner';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
+  const { isLoading, isError, error } = useUser();
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const token = TokenService.getAccessToken();
-      if (!token) {
-        setIsLoading(false);
-        return;
-      }
-      try {
-        const data = await UserService.getUserInfo();
-        dispatch(setUser({ ...data.user, isLogin: true }));
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getUserInfo();
-  }, []);
-
-  if (isLoading) return null;
+  if (isError) {
+    console.error(error);
+    tokenStorage.clearTokens();
+  }
 
   return (
     <ThemeProvider theme={theme}>
-      <Router />
+      {isLoading ? <Spinner /> : <Router />}
     </ThemeProvider>
   );
 }

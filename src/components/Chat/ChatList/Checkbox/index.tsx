@@ -2,23 +2,23 @@ import styled from 'styled-components';
 
 interface ICheckBoxProps {
   id: string;
-  checkHandler: ((id: string, isChecked: boolean) => void);
+  checkHandler: (id: string, isChecked: boolean) => void;
   checkItems: Set<unknown>;
 }
 
 const CheckBox = ({ id, checkHandler, checkItems }: ICheckBoxProps) => {
   const checkItemHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.target;
-    checkHandler(id, checked); 
+    checkHandler(id, checked);
   };
 
   return (
-      <Input
+    <Input
       id={id}
-      type='checkbox'
+      type="checkbox"
       checked={checkItems.has(id) ? true : false}
-      onChange={(e) =>checkItemHandler(e)}
-        />
+      onChange={(e) => checkItemHandler(e)}
+    />
   );
 };
 

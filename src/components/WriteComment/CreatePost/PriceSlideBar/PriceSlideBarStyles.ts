@@ -37,7 +37,7 @@ export const InputContainer = styled(InputContainerTemplet)`
 
 export const Input = styled(InputTemplet)`
   font-size: ${({ theme }) => theme.font.size.base};
-  color : ${({ theme }) => theme.color.activeBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
   font-weight: 600;
   margin-bottom: 25px;
 `;
@@ -56,13 +56,16 @@ export const PriceSlide = styled(Slide)`
   position: relative;
   max-width: 378px;
   width: 100%;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 `;
 
-export const PriceSlideBarInner = styled(Slide) <{ $left: number; $right: number }>`
+export const PriceSlideBarInner = styled(Slide)<{
+  $left: number;
+  $right: number;
+}>`
   position: absolute;
-  left: ${props => props.$left}%;
-  right: ${props => props.$right}%;
+  left: ${(props) => props.$left}%;
+  right: ${(props) => props.$right}%;
   background-color: ${({ theme }) => theme.color.activeBlue};
 `;
 
@@ -71,8 +74,8 @@ export const PriceRangeWrap = styled.div`
 `;
 
 export const PriceRangeMin = styled.input`
-  position: absolute;	
-	top: -2px;
+  position: absolute;
+  top: -2px;
   left: -6px;
   width: 102%;
   height: 8px;
@@ -98,7 +101,7 @@ export const PriceTag = styled.div`
   width: 100%;
   margin-top: 15px;
   justify-content: space-between;
-  color : ${({ theme }) => theme.color.activeBlue};
+  color: ${({ theme }) => theme.color.activeBlue};
   font-size: ${({ theme }) => theme.font.size.small};
-  position: relative; 
+  position: relative;
 `;

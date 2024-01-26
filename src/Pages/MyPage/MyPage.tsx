@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
@@ -6,12 +5,12 @@ import Profile from '@components/MyPage/Profile';
 import ExchangeInfoList from '@components/MyPage/ExchangeInfoList';
 import OptionModal from '@components/MyPage/OptionModal';
 import useModal from '@hooks/useModal';
-import RecentlyViewedPostsContainer from '@components/MyPage/RecentlyViewedPostsContainer';
+import RecentlyViewedPosts from '@components/MyPage/RecentlyViewedPost';
 import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
-import { logoutUser } from '@store/slices/userSlice';
-import TokenService from '@/service/TokenService';
+import { tokenStorage } from '@utils/tokenStorage';
+import { useDispatch } from 'react-redux';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -27,9 +26,9 @@ const TopSection = styled.div`
 `;
 
 function MyPage() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
+  const dispatch = useDispatch();
 
   const {
     isOpen: isLogoutModalOpen,
@@ -45,9 +44,8 @@ function MyPage() {
   };
 
   const handleConfirm = () => {
-    dispatch(logoutUser());
-    TokenService.clearTokens();
-    navigate('/');
+    tokenStorage.clearTokens();
+    navigate('/?action=logout');
   };
 
   return (
@@ -65,7 +63,7 @@ function MyPage() {
           <Profile />
           <ExchangeInfoList />
         </TopSection>
-        <RecentlyViewedPostsContainer />
+        <RecentlyViewedPosts />
         <DividedLine />
         <MannersContainer mannerType="매너" />
         <DividedLine />
@@ -82,7 +80,7 @@ function MyPage() {
         content="로그아웃 하시겠습니까?"
         confirmedTitle="로그아웃"
         confirmedContent="로그아웃 되었습니다."
-        onFinalOkClick={handleConfirm}
+        onConfirmAction={handleConfirm}
         closeAction={logoutModalClose}
       />
     </>
