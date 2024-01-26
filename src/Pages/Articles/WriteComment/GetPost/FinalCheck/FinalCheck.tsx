@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import Progressbar from '@/components/WriteComment/Progressbar';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import checkIcon from '@Assets/icons/WriteComment/Check.svg';
+import checkIcon from '@Assets/Icons/WriteComment/Check.svg';
 import TitleSection from '@/components/WriteComment/TitleSection';
 import ContentsSection from '@/components/WriteComment/ContentsSection';
 import styled from 'styled-components';
