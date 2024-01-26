@@ -5,7 +5,7 @@ import {
   checkAll,
   resetCheckedItems,
   toggleCheckboxVisible,
-} from '@store/slices/CheckboxSlice';
+} from '@store/slices/checkboxSlice';
 import ConfirmModal from '@components/common/ConfirmModal';
 import styled from 'styled-components';
 import BottomSheet from '@components/common/BottomSheet';
@@ -235,7 +235,7 @@ function Notifications() {
         confirmedTitle="삭제 완료"
         content="삭제한 알림은 복구하기 어렵습니다."
         confirmedContent="알림이 삭제되었습니다."
-        onFinalOkClick={handleNotificationDelete}
+        onConfirmAction={handleNotificationDelete}
       />
     </>
   );

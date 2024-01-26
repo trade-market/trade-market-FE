@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import CommonModal from '@components/common/CommonModal';

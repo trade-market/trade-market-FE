@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Coordinates } from '@/types/UserTypes';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
 import ConfirmModal from '@components/common/ConfirmModal';
@@ -20,14 +19,14 @@ function EditProfile() {
 
   const handleSubmit = async (
     nickname: string,
-    coordinates: Coordinates,
+    // coordinates: Coordinates,
     address: string,
     profileImg: File | null
   ) => {
     setUserInfo({
       nickname,
       profileImg,
-      coordinates,
+      // coordinates,
       town: address,
     });
 
@@ -53,7 +52,7 @@ function EditProfile() {
         defaultProfileImgSrc={'' || defaultProfileImg}
         defaultNickname={'임시'}
         defaultAddress={'임시'}
-        defaultCoordinates={null}
+        // defaultCoordinates={null}
         handleSubmit={handleSubmit}
       />
       <ConfirmModal

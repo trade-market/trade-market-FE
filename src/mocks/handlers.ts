@@ -1,26 +1,26 @@
-import { User } from '@/types/UserTypes';
+import { IUser } from '@/types/UserTypes';
 import { rest } from 'msw';
 
-const users: User[] = [
-  {
-    id: '123',
-    profile_image:
-      'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
-    nickname: '거래왕',
-    coordinates: { latitude: '37.123', longitude: '127.123' },
-    grade: 'one',
-    town: '서초동',
-  },
-  {
-    id: '1234',
-    profile_image:
-      'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
-    nickname: '거래왕',
-    coordinates: { latitude: '37.123', longitude: '127.123' },
-    grade: 'one',
-    town: '화서동',
-  },
-];
+// const users: IUser[] = [
+//   {
+//     id: '123',
+//     profile_image:
+//       'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
+//     nickname: '거래왕',
+//     coordinates: { latitude: '37.123', longitude: '127.123' },
+//     grade: 'one',
+//     town: '서초동',
+//   },
+//   {
+//     id: '1234',
+//     profile_image:
+//       'https://static.wanted.co.kr/images/events/1633/f85834e9.jpg',
+//     nickname: '거래왕',
+//     coordinates: { latitude: '37.123', longitude: '127.123' },
+//     grade: 'one',
+//     town: '화서동',
+//   },
+// ];
 
 export const handlers = [
   rest.post('/api/login/google', (req, res, ctx) => {
@@ -80,24 +80,24 @@ export const handlers = [
         ctx.json({ code: 401, message: '로그인이 필요합니다.' })
       );
 
-    return res(
-      ctx.json({
-        ...users[index],
-      })
-    );
+    // return res(
+    //   ctx.json({
+    //     ...users[index],
+    //   })
+    // );
   }),
 
   rest.post('/api/register', async (req, res, ctx) => {
     const body = await req.json();
     const { nickname, coordinates, profileImg, profileImgFile } = body;
-    users.push({
-      id: '9910',
-      nickname,
-      profile_image: profileImg,
-      coordinates,
-      town: '임시동',
-      grade: 'one',
-    });
+    // users.push({
+    //   id: '9910',
+    //   nickname,
+    //   profile_image: profileImg,
+    //   coordinates,
+    //   town: '임시동',
+    //   grade: 'one',
+    // });
 
     return res(
       ctx.delay(),
