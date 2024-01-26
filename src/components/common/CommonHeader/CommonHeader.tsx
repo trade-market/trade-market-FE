@@ -7,7 +7,7 @@ import {
   CancelButton,
 } from './CommonHeaderStyles';
 import GobackBtn from './GobackBtn';
-import Close from '@Assets/offer/Write-comment/close.svg';
+import Close from '@Assets/offer/Write-comment/Close.svg';
 import optionDot from '@Assets/offer/Detailed-page/option_dot.svg';
 import UnLikeIcon from '@Assets/Icons/Home/Post/Icon_unlike.svg';
 
