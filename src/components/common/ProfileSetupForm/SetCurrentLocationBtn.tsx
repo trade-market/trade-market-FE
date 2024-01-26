@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import currentLocationIcon from '@Assets/icons/current_location_icon.svg';
+import currentLocationIcon from '@Assets/Icons/current_location_icon.svg';
 
 const Button = styled.div`
   width: 40px;
