@@ -1,3 +1,4 @@
+import React from 'react';
 import CommonModal from '@components/common/CommonModal';
 import useModal from '@hooks/useModal';
 import { useState } from 'react';

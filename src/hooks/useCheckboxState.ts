@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   inVisibleCheckbox,
   resetCheckedItems,
-} from '@store/slices/CheckboxSlice';
+} from '@store/slices/checkboxSlice';
 import { RootState } from '@store/types';
 
 // 체크박스 "상태"를 관리하는 커스텀 훅

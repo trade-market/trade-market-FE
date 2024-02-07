@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { size } from '../../../styles/theme';
 
-export const Container = styled.div<{$hidden : boolean}>`
+export const Container = styled.div<{ $hidden: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -26,14 +26,14 @@ export const Container = styled.div<{$hidden : boolean}>`
   }
   .gobackBtn {
     display: flex;
-    visibility: ${({ $hidden }) => $hidden ? 'hidden' : 'visible'};
+    visibility: ${({ $hidden }) => ($hidden ? 'hidden' : 'visible')};
     border: none;
     cursor: pointer;
     background-color: transparent;
   }
 `;
 
-export const CloseButton = styled.div<{ $display: string; }>`
+export const CloseButton = styled.div<{ $display: string }>`
   display: ${({ $display }) => $display};
   justify-content: flex-end;
   padding-right: 5px;

@@ -1,36 +1,40 @@
-<<<<<<< Updated upstream
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import WriteOptions from '@/Options/WriteOptions';
 
 interface IPostSectionProps {
   placeholder: string;
   option: string;
-  isChange: boolean,
-  onClick: React.MouseEventHandler<HTMLLIElement>,
+  isChange: boolean;
+  onClick: React.MouseEventHandler<HTMLLIElement>;
   direction?: string;
   defaultActiveColor?: boolean;
 }
 
-const SelectBox = ({ placeholder, option, isChange, onClick, direction = 'down', defaultActiveColor }: IPostSectionProps) => {
+const SelectBox = ({
+  placeholder,
+  option,
+  isChange,
+  onClick,
+  direction = 'down',
+  defaultActiveColor,
+}: IPostSectionProps) => {
   const [optionOpen, setOptionOpen] = useState(false);
-  const selectList = WriteOptions.filter(op => op.sort_type === option).map(op => op.contents).flat();
+  const selectList = WriteOptions.filter((op) => op.sort_type === option)
+    .map((op) => op.contents)
+    .flat();
 
   return (
     <BoxContainer onClick={() => setOptionOpen((prev) => !prev)}>
       <Label $change={isChange} $defaultActiveColor={defaultActiveColor}>
         {placeholder}
       </Label>
-      <SelectListBox
-        $open={optionOpen}
-        $direction={direction}
-        >
-        {selectList.map((op, i) =>  (
-          <Option
-            key={i}
-            onClick={onClick}>{op}</Option>
-          )) 
-        }
+      <SelectListBox $open={optionOpen} $direction={direction}>
+        {selectList.map((op, i) => (
+          <Option key={i} onClick={onClick}>
+            {op}
+          </Option>
+        ))}
       </SelectListBox>
     </BoxContainer>
   );
@@ -50,7 +54,7 @@ const BoxContainer = styled.div`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
   border: 1px solid ${({ theme }) => theme.color.whiteGray};
-  color : ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.gray};
   font-size: ${({ theme }) => theme.font.size.base};
   cursor: pointer;
   background: url('/down.svg') right no-repeat;
@@ -66,7 +70,12 @@ const BoxContainer = styled.div`
 
 const Label = styled.label<{ $change: boolean; $defaultActiveColor: boolean }>`
   display: flex;
-  color : ${({ $change, $defaultActiveColor, theme }) => $defaultActiveColor ? theme.color.black :  $change ? theme.color.activeBlue : theme.color.gray};
+  color: ${({ $change, $defaultActiveColor, theme }) =>
+    $defaultActiveColor
+      ? theme.color.black
+      : $change
+      ? theme.color.activeBlue
+      : theme.color.gray};
 `;
 
 const SelectListBox = styled.ul<{ $open: boolean; $direction: string }>`
@@ -74,17 +83,23 @@ const SelectListBox = styled.ul<{ $open: boolean; $direction: string }>`
   flex-direction: column;
   position: absolute;
   left: 0;
-  top: ${({ $direction }) => $direction === 'down' ? '48px' : 'null'}; 
-  bottom: ${({ $direction }) => $direction === 'down' ? 'null' : '49px'};
+  top: ${({ $direction }) => ($direction === 'down' ? '48px' : 'null')};
+  bottom: ${({ $direction }) => ($direction === 'down' ? 'null' : '49px')};
   overflow: hidden;
-  overflow-y: ${({ $direction }) => $direction === 'down' ? 'scroll' : 'none'};
+  overflow-y: ${({ $direction }) =>
+    $direction === 'down' ? 'scroll' : 'none'};
   width: 100%;
   height: 223px;
-  max-height: ${({ $open }) => $open ? "none" : "0"};
+  max-height: ${({ $open }) => ($open ? 'none' : '0')};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.bgColor};
   color: ${({ theme }) => theme.color.lightGray};
-  box-shadow:${({ $open, $direction }) => $open && $direction === 'down' ? "1px 3px 8px 2px rgba(152, 152, 152, 0.25);" : $open && !($direction === 'down') ? "1px -3px 8px 2px rgba(152, 152, 152, 0.25);" : "none" }; 
+  box-shadow: ${({ $open, $direction }) =>
+    $open && $direction === 'down'
+      ? '1px 3px 8px 2px rgba(152, 152, 152, 0.25);'
+      : $open && !($direction === 'down')
+      ? '1px -3px 8px 2px rgba(152, 152, 152, 0.25);'
+      : 'none'};
   z-index: 99;
 `;
 
@@ -97,13 +112,8 @@ const Option = styled.li`
   border-radius: 4px;
   transition: background-color 0.1s ease-in-out;
   &:hover {
-    background-color: #EBF0FC;
+    background-color: #ebf0fc;
     border: 1px solid ${({ theme }) => theme.color.activeBlue};
-    color : ${({ theme }) => theme.color.activeBlue};
+    color: ${({ theme }) => theme.color.activeBlue};
   }
 `;
-=======
-import SelectBox from './SelectBox';
-
-export default SelectBox;
->>>>>>> Stashed changes

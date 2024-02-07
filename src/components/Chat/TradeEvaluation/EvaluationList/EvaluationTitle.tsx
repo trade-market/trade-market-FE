@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import EvaluationOption from './EvaluationOption';
 import GoodManner_Large from '@Assets/Icons/Chat/GoodManner_Large_Active.svg';
@@ -8,11 +9,17 @@ interface IEvaluationTitleProps {
   tradeUserNickName: string;
 }
 
-const EvaluationTitle = ({mannerType, tradeUserNickName}:IEvaluationTitleProps) => {
+const EvaluationTitle = ({
+  mannerType,
+  tradeUserNickName,
+}: IEvaluationTitleProps) => {
   return (
     <TitleContainer>
-      <div className='title'>
-        <img className='mannerIcon' src={mannerType === 'good' ? GoodManner_Large : BadManner_Large} />
+      <div className="title">
+        <img
+          className="mannerIcon"
+          src={mannerType === 'good' ? GoodManner_Large : BadManner_Large}
+        />
         <TitleText>{EvaluationOption[mannerType][0]}</TitleText>
       </div>
       <SubText>{`${tradeUserNickName} 님과의 거래에서 어떤 점이 ${EvaluationOption[mannerType][1]}`}</SubText>

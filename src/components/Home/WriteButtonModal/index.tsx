@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { size } from '@styles/theme';
 
@@ -7,15 +8,11 @@ interface IWriteButtonModaltProps {
   height?: string;
 }
 
-function WriteButtonModal({
-  children,
-}: IWriteButtonModaltProps) {
+function WriteButtonModal({ children }: IWriteButtonModaltProps) {
   return (
     <>
       <Background />
-      <Container>
-        {children}
-      </Container>
+      <Container>{children}</Container>
     </>
   );
 }
@@ -75,7 +72,7 @@ const Container = styled.div`
     font-weight: 500;
     cursor: pointer;
     border-top: 0.4px solid ${({ theme }) => theme.color.gray};
-    
+
     > div {
       display: flex;
       align-items: center;
@@ -92,5 +89,4 @@ const Container = styled.div`
   :nth-child(2) {
     border-radius: 0 0 8px 8px;
   }
-
 `;

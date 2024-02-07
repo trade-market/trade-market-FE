@@ -1,20 +1,24 @@
-export interface NewUserInfo {
-  auth_id: string;
-  nickname: string | '';
-  profile_image: string | '';
-}
+import { IResponse } from './AuthTypes';
 
-export interface Coordinates {
-  latitude: string;
-  longitude: string;
-}
 export type GradeType = 'one' | 'two' | 'three' | 'four' | null;
 
-export interface User {
-  id: string;
-  profile_image: string;
-  nickname: string;
-  coordinates: { latitude: string; longitude: string };
-  grade: GradeType;
-  town: string;
+interface IAddress {
+  bdongName: string;
+  eupMyeon: string | null;
+  guGunSi: string;
+  hdongCode: string;
+  hdongName: string;
+  id: number;
+  ri: string | null;
+  siDo: string;
 }
+
+export interface IUser {
+  id: string;
+  nickname: string;
+  grade: GradeType;
+  profileImage: string;
+  address: IAddress;
+}
+
+export type UserResponse = IResponse<IUser>;

@@ -1,43 +1,47 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthService from '@/service/AuthService';
-import { OAuthServiceType } from '@/types/AuthTypes';
-import { NewUserInfo } from '@/types/UserTypes';
+import { NewUserResponse, OAuthServiceType } from '@/types/AuthTypes';
 import Spinner from './Spinner';
-import UserService from '@/service/UserService';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@store/slices/userSlice';
 import useQueryString from '@hooks/useQueryString';
+import { useLoginMutation } from '@store/api/authApiSlice';
 
 interface IOAuthRedirectHandlerProps {
-  service: OAuthServiceType;
+  serviceName: OAuthServiceType;
 }
 
-function OAuthRedirectHandler({ service }: IOAuthRedirectHandlerProps) {
+function OAuthRedirectHandler({ serviceName }: IOAuthRedirectHandlerProps) {
   const code = useQueryString('code') as string; // 인가 코드
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [login] = useLoginMutation();
+
+  const handleSuccessfulLogin = async () => {
+    navigate('/', { replace: true });
+  };
+
+  const handleNewUser = (newUserResponse: NewUserResponse) => {
+    navigate('/signup', { replace: true, state: { ...newUserResponse } });
+  };
+
+  const handleError = (error: any) => {
+    alert('로그인에 실패했습니다. error: ' + error);
+    navigate('/auth', { replace: true });
+  };
 
   useEffect(() => {
     const handleOAuthLogin = async () => {
       try {
-        const res = await AuthService.loginWithOauth(service, code);
-        const { isNew } = res;
-
-        if (isNew) {
-          navigate('/signup', { state: { ...(res.user as NewUserInfo) } });
-          return;
+        const result = await login({ serviceName, code }).unwrap();
+        if (result.message.includes('신규 회원')) {
+          handleNewUser(result as NewUserResponse);
+        } else {
+          await handleSuccessfulLogin();
         }
-
-        const data = await UserService.getUserInfo();
-        dispatch(setUser({ ...data.user, isLogin: true }));
-        navigate('/', { replace: true });
       } catch (error) {
-        console.error(error);
+        handleError(error);
       }
     };
     handleOAuthLogin();
-  }, [service]);
+  }, [serviceName]);
 
   return <Spinner />;
 }

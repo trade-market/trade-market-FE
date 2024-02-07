@@ -57,15 +57,15 @@ function Router() {
             <Route path="/oauth2/callback">
               <Route
                 path="kakao"
-                element={<OAuthRedirectHandler service="kakao" />}
+                element={<OAuthRedirectHandler serviceName="kakao" />}
               />
               <Route
                 path="google"
-                element={<OAuthRedirectHandler service="google" />}
+                element={<OAuthRedirectHandler serviceName="google" />}
               />
               <Route
                 path="naver"
-                element={<OAuthRedirectHandler service="naver" />}
+                element={<OAuthRedirectHandler serviceName="naver" />}
               />
             </Route>
             <Route path="/articles/:id" element={<Articles />} />
@@ -96,7 +96,8 @@ function Router() {
             />
             <Route
               path="/write-post/:exchangeType/:tradeType"
-              element={<WritePost />}>
+              element={<WritePost />}
+            >
               <Route path="select-element" element={<SelectElement />} />
               <Route path="write-content" element={<WriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
@@ -118,19 +119,18 @@ function Router() {
             {/* 채팅 */}
             <Route path="/chat-list">
               <Route index element={<ChatList />} />
-                <Route path=":id">
-                  <Route index element={<ChatRoom />} />
-                  <Route path="make-plan" element={<MakePlan />} />
-                  <Route path="trade-evaluation" element={<TradeEvaluation />} />
-                </Route>
+              <Route path=":id">
+                <Route index element={<ChatRoom />} />
+                <Route path="make-plan" element={<MakePlan />} />
+                <Route path="trade-evaluation" element={<TradeEvaluation />} />
               </Route>
+            </Route>
             {/* 게시물 수정 페이지 */}
             <Route path="/articles/:id/edit" element={<EditArticlesOutlet />}>
               <Route path="select-element" element={<EditSelectElement />} />
               <Route path="write-content" element={<EditWriteContent />} />
               <Route path="final-check" element={<FinalCheckPost />} />
             </Route>
-
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

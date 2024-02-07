@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import React, { useState, memo } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
 import * as S from '@Pages/SingUp/SignUpStyles';
@@ -7,7 +7,6 @@ import BlueButton from '@components/common/Buttons/BlueButton';
 import { size } from '@styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
-import { Coordinates } from '@/types/UserTypes';
 import KakaoMap from './KakaoMap';
 
 const MapContainer = styled.div`
@@ -32,19 +31,22 @@ const MapContainer = styled.div`
 `;
 
 interface IAddressSettingProps {
-  selectedAddress: string;
-  handleAddressSelect: (address: string) => void;
-  handleCoordinates: (coordinates: Coordinates) => void;
+  defaultAddress: string;
+  handleRegionCode: (code: string) => void;
 }
 
 function AddressSetting({
-  selectedAddress,
-  handleAddressSelect,
-  handleCoordinates,
+  defaultAddress,
+  handleRegionCode,
 }: IAddressSettingProps) {
   const open = useDaumPostcodePopup();
 
   const [addressModalOpen, setAddressModalOpen] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
+
+  const handleAddressSelect = (address: string) => {
+    setSelectedAddress(address);
+  };
 
   const closeAddressModal = () => {
     setAddressModalOpen(false);
@@ -63,7 +65,7 @@ function AddressSetting({
   };
 
   const handleSearchBtnClick = () => {
-    open({ onComplete: handleComplete });
+    open({ onComplete: handleComplete, shorthand: false });
   };
 
   return (
@@ -100,7 +102,7 @@ function AddressSetting({
           <KakaoMap
             selectedAddress={selectedAddress}
             handleAddressSelect={handleAddressSelect}
-            handleCoordinates={handleCoordinates}
+            handleRegionCode={handleRegionCode}
             closeAddressModal={closeAddressModal}
           />
         </MapContainer>

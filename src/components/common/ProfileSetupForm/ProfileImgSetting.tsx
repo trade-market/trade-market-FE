@@ -1,6 +1,7 @@
-import { useRef, memo } from 'react';
+import React, { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   margin: 28px 0;
@@ -27,6 +28,7 @@ function ProfileImgSetting({
   handleProfileImgSetting,
 }: IProfileImgSettingProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { pathname } = useLocation();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -36,7 +38,12 @@ function ProfileImgSetting({
     }
   };
 
-  const handleImgClick = () => fileInputRef.current?.click();
+  const handleImgClick = () => {
+    if (pathname === '/signup') {
+      return;
+    }
+    fileInputRef.current?.click();
+  };
 
   return (
     <>

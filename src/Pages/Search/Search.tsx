@@ -11,7 +11,7 @@ export interface keyInterface {
 const Search = () => {
   const filtering = useQueryString('type');
   const [keywords, setKeywords] = useState<keyInterface[]>(
-    JSON.parse(localStorage.getItem('keywords') || '[]'),
+    JSON.parse(localStorage.getItem('keywords') || '[]')
   );
 
   //* 검색어 추가
@@ -19,22 +19,24 @@ const Search = () => {
     const newKeyword = {
       id: Date.now(),
       text: text,
-    }
+    };
     //* 빈 키워드는 추가 할 수 없게 제어
-    if (newKeyword.text !== "") {
+    if (newKeyword.text !== '') {
       setKeywords([newKeyword, ...keywords]);
     }
   };
 
   return (
     <>
-      {!filtering ?
+      {!filtering ? (
         <DefaultSearch
           keywords={keywords}
           setKeywords={setKeywords}
           handleAddKeyword={handleAddKeyword}
-        /> 
-        : <SearchFiltering handleAddKeyword={handleAddKeyword} />} 
+        />
+      ) : (
+        <SearchFiltering handleAddKeyword={handleAddKeyword} />
+      )}
     </>
   );
 };

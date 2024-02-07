@@ -1,3 +1,4 @@
+import React from 'react';
 import BigTitle from '@/components/common/BigTitle';
 import styled from 'styled-components';
 
@@ -6,11 +7,11 @@ interface IPostSectionProps {
   children?: React.ReactNode;
 }
 
-const PostSection = ({label, children}: IPostSectionProps) => {
+const PostSection = ({ label, children }: IPostSectionProps) => {
   return (
     <Container>
       <BigTitle>{label}</BigTitle>
-      { children }
+      {children}
     </Container>
   );
 };

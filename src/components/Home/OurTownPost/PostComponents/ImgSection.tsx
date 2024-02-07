@@ -1,8 +1,9 @@
+import React from 'react';
 import Icon_1vs1 from '@Assets/Icons/Home/Post/Icon_1vs1.svg';
 import Icon_offer from '@Assets/Icons/Home/Post/Icon_offer.svg';
 
 interface IimgSectionProps {
-  type: Number;
+  type: number;
   image: string;
 }
 

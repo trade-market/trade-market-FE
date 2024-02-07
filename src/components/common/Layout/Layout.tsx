@@ -1,3 +1,4 @@
+import React from 'react';
 import GlobalStyle from '@/styles/GlobalStyles';
 import { Wrapper } from './LayoutStyles';
 import Header from '@components/common/Header/Header';
@@ -34,7 +35,6 @@ function Layout({ children }: ILayoutProps) {
   );
 
   const NavNotHidden = pathname === '/search' && search.length === 0; // 상세 검색페이지일 때는 네비바 hidden
-  
 
   return (
     <Wrapper height={height}>

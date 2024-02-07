@@ -1,3 +1,4 @@
+import React from 'react';
 import NotificationItem from './NotificationItem';
 import NoContents from './NoContents';
 

@@ -15,7 +15,7 @@ export const Container = styled.div`
   z-index: 99;
 `;
 
-export const ButtonsContainer = styled.div<{ $isOfferPost: Boolean }>`
+export const ButtonsContainer = styled.div<{ $isOfferPost: boolean }>`
   display: flex;
   gap: 12px;
 

@@ -1,24 +1,25 @@
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
 import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
 import { Data } from '@components/Home/OurTownPost/DumyData';
 
-interface ISearchPostsProps {
-}
+interface ISearchPostsProps {}
 
 const SearchPosts = () => {
   return (
     <Container>
-      {Data ?
+      {Data ? (
         Data.map((post, i) => {
-        return (
-          <PostContainer key={i}>
-            <PostComponent post={post} />
-          </PostContainer>
-        );})
-        :
-      <Text>일치하는 게시물이 없습니다.</Text>
-    }
+          return (
+            <PostContainer key={i}>
+              <PostComponent post={post} />
+            </PostContainer>
+          );
+        })
+      ) : (
+        <Text>일치하는 게시물이 없습니다.</Text>
+      )}
     </Container>
   );
 };
@@ -26,7 +27,7 @@ const SearchPosts = () => {
 export default SearchPosts;
 
 const Container = styled.div`
-  padding : 10px 20px 0 20px;
+  padding: 10px 20px 0 20px;
 `;
 
 const Text = styled.span`

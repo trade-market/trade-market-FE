@@ -1,17 +1,16 @@
+import React from 'react';
 import styled from 'styled-components';
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 interface IDateBarProps {
   date: Date;
 }
 
-const DateBar = ({date} : IDateBarProps) => {
+const DateBar = ({ date }: IDateBarProps) => {
   const ChatDate = format(new Date(date), `yyyy년 MM월 dd일`);
   return (
     <Wrapper>
-      <div className='chat-date'>
-        {ChatDate}
-      </div>
+      <div className="chat-date">{ChatDate}</div>
     </Wrapper>
   );
 };
@@ -30,8 +29,7 @@ const Wrapper = styled.div`
     align-items: center;
     font-weight: 500;
     font-size: ${({ theme }) => theme.font.size.xSmall};
-    color : ${({ theme }) => theme.color.gray};
-
+    color: ${({ theme }) => theme.color.gray};
   }
   .chat-date::after {
     margin-left: 7px;

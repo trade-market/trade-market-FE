@@ -1,5 +1,5 @@
 import Obj_one from '@Assets/Icons/ExchangeObjects/1_Electronic_devices.svg';
-import Obj_two from '@Assets/Icons/ExchangeObjects/2_appliances.svg';
+import Obj_two from '@Assets/Icons/ExchangeObjects/2_Appliances.svg';
 import Obj_three from '@Assets/Icons/ExchangeObjects/3_Furniture.svg';
 import Obj_four from '@Assets/Icons/ExchangeObjects/4_Kitchen.svg';
 import Obj_five from '@Assets/Icons/ExchangeObjects/5_Book.svg';

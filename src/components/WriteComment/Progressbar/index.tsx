@@ -1,5 +1,6 @@
+import React from 'react';
 import * as P from './ProgressbarStyles';
-import icon_ellipse from '@Assets/icons/WriteComment/Ellipse.svg';
+import icon_ellipse from '@Assets/Icons/WriteComment/Ellipse.svg';
 
 interface IProgressbarProps {
   number: number;

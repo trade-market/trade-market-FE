@@ -16,7 +16,7 @@ export const Info = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
-  
+
   .title {
     font-weight: 600;
     text-align: center;
@@ -24,7 +24,7 @@ export const Info = styled.div`
   }
   .description {
     color: ${({ theme }) => theme.color.lightGray};
-    margin-top: 15px; 
+    margin-top: 15px;
     line-height: 18px;
     text-align: center;
     > span {

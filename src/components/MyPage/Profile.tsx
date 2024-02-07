@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '@store/types';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import RatingBadge from '@components/common/RatingBadge';
-import { useNavigate } from 'react-router-dom';
+import { useUser } from '@hooks/useUser';
+import defaultCharacterImg from '@Assets/Character_Icons/Character_circle.svg';
 
 const ProfileContainer = styled.div`
   width: 100%;
@@ -58,18 +59,22 @@ const TextSection = styled.div`
 
 function Profile() {
   const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.user);
-
+  const { data } = useUser();
   const handleEditBtnClick = () => navigate('edit');
+
+  const user = data?.data;
 
   return (
     <ProfileContainer>
       <div className="left">
-        <img className="profile-img" src={user.profile_image} />
+        <img
+          className="profile-img"
+          src={user.profileImage || defaultCharacterImg}
+        />
         <TextSection>
           <div className="nickname">{user.nickname}</div>
           <div className="grade">
-            내 거래 등급 <RatingBadge rating={user.grade} />
+            내 거래 등급 <RatingBadge rating="one" />
           </div>
         </TextSection>
       </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import BigTitle from '@/components/common/BigTitle';
 import * as T from './TitleSectionStyles';
 
