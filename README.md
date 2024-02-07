@@ -1,4 +1,4 @@
-# trade-market-FE
+# WINIW-FE
 
 물물교환마켓 프론트엔드
 
@@ -6,7 +6,7 @@
 
 ## 🔗 FE 배포 주소
 
-[👫 Trade-market](https://trade-market-fe.vercel.app/)
+[👫 WINIW](https://winiw.vercel.app/)
 
 <br />
 
