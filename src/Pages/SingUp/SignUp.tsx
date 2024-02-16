@@ -7,6 +7,8 @@ import SignUpSuccessModal from '@components/Signup/SignUpSuccessModal';
 import { IRegisterRequest, NewUserResponse } from '@/types/AuthTypes';
 import { useSignUpMutation } from '@store/api/authApiSlice';
 import Spinner from '@components/Auth/Spinner';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/types';
 
 function SignUp() {
   const [signUp, { isLoading: isSingUpLoading }] = useSignUpMutation();
@@ -15,6 +17,9 @@ function SignUp() {
   const state = location.state as NewUserResponse;
   const { authId, authType, nickname, profileImage } = state.data;
   const { isOpen: isSignUpModalOpen, open: signUpModalOpen } = useModal();
+  const { latitude, longitude, regionCode } = useSelector(
+    (state: RootState) => state.coordinateSetup
+  );
 
   const handleModalOkClick = () => {
     navigate('/', { replace: true });
@@ -45,18 +50,15 @@ function SignUp() {
     navigate('/auth', { replace: true });
   };
 
-  const handleSubmit = async (
-    nickname: string,
-    regionCode: string,
-    profileImgFile: File | null
-  ) => {
+  const handleSubmit = async (nickname: string) => {
     const signupData: IRegisterRequest = {
       authId,
       authType,
       nickname,
       profileImage,
-      // imageFile: profileImgFile,
       addressRequest: {
+        latitude,
+        longitude,
         regionCode,
         type: 'main',
       },
