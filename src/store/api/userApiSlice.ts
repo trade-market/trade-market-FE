@@ -1,17 +1,30 @@
-import { UserResponse } from '@/types/UserTypes';
+import { IUpdateUser, UserResponse } from '@/types/UserTypes';
 import { apiSlice } from './apiSlice';
+import { IResponse } from '@/types/AuthTypes';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUserInfo: builder.query<UserResponse, void>({
       query: () => '/users',
+      providesTags: ['User'],
     }),
-    updateUserInfo: builder.mutation({
-      query: (body) => ({
-        url: '/user/update',
-        method: 'PUT',
-        body,
-      }),
+    updateUserInfo: builder.mutation<IResponse<object>, IUpdateUser>({
+      query: (user) => {
+        const formData = new FormData();
+        formData.append(
+          'request',
+          new Blob([JSON.stringify(user.request)], { type: 'application/json' })
+        );
+        if (user.files) {
+          formData.append('files', user.files);
+        }
+        return {
+          url: '/users',
+          method: 'POST',
+          body: formData,
+        };
+      },
+      invalidatesTags: ['User'],
     }),
   }),
 });
