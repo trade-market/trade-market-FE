@@ -15,8 +15,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
           'request',
           new Blob([JSON.stringify(user.request)], { type: 'application/json' })
         );
-        if (user.files) {
-          formData.append('files', user.files);
+        if (user.file) {
+          formData.append('file', user.file);
         }
         return {
           url: '/users',

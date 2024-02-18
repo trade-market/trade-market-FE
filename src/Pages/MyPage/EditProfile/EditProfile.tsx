@@ -15,6 +15,7 @@ import {
   setRegionCode,
 } from '@store/slices/coordinateSlice';
 import { RootState } from '@store/types';
+import { IUpdateUser } from '@/types/UserTypes';
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -26,17 +27,19 @@ function EditProfile() {
     data: { data: user },
   } = useUser();
   const nickname = useRef(user?.nickname);
+  const imgFile = useRef<File | null>(null);
   const { isOpen, open, close } = useModal();
   const [updateUser, { isLoading: isUpdateUserLoading }] =
     useUpdateUserInfoMutation();
 
-  const handleSubmit = async (newNickname: string) => {
+  const handleSubmit = async (newNickname: string, newImgFile: File) => {
     nickname.current = newNickname;
+    imgFile.current = newImgFile;
     open();
   };
 
   const handleUpdateUser = async () => {
-    const formData = {
+    const formData: IUpdateUser = {
       request: {
         nickname: nickname.current,
         addressRequest: {
@@ -47,6 +50,9 @@ function EditProfile() {
         },
       },
     };
+    if (imgFile.current) {
+      formData['file'] = imgFile.current;
+    }
 
     try {
       await updateUser(formData).unwrap();

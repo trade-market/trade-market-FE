@@ -11,7 +11,7 @@ interface IProfileSetupFormProps {
   defaultProfileImgSrc: string;
   defaultNickname: string;
   defaultAddress?: string;
-  handleSubmit: (nickname: string, profileImg?: string) => Promise<void>;
+  handleSubmit: (nickname: string, profileImg?: File) => Promise<void>;
 }
 
 function ProfileSetupForm({
@@ -80,7 +80,7 @@ function ProfileSetupForm({
         <BlueButton
           disabled={nicknameError.length > 1 || !nickname}
           maxWidth="100%"
-          onClick={() => handleSubmit(nickname, profileImgSrc)}
+          onClick={() => handleSubmit(nickname, imgFile)}
         >
           완료
         </BlueButton>

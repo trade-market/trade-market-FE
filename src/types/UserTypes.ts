@@ -33,7 +33,7 @@ export interface IUpdateUser {
     nickname: string;
     addressRequest: IAddressRequest;
   };
-  files?: File | null;
+  file?: File | null;
 }
 
 export type UserResponse = IResponse<IUser>;
