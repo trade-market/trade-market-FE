@@ -16,6 +16,8 @@ interface IAddress {
   id: number;
   ri: string | null;
   siDo: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface IUser {
@@ -31,7 +33,7 @@ export interface IUpdateUser {
     nickname: string;
     addressRequest: IAddressRequest;
   };
-  files: File | null;
+  files?: File | null;
 }
 
 export type UserResponse = IResponse<IUser>;
