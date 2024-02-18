@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultProfileImg from '@Assets/Images/default_profile.svg';
 import ProfileSetupForm from '@components/common/ProfileSetupForm';
@@ -25,26 +25,20 @@ function EditProfile() {
   const {
     data: { data: user },
   } = useUser();
-  const [userInfo, setUserInfo] = useState({
-    nickname: user?.nickname,
-  });
+  const nickname = useRef(user?.nickname);
   const { isOpen, open, close } = useModal();
   const [updateUser, { isLoading: isUpdateUserLoading }] =
     useUpdateUserInfoMutation();
 
-  const handleSubmit = async (nickname: string) => {
-    setUserInfo({
-      nickname,
-    });
-    console.log(userInfo);
-
+  const handleSubmit = async (newNickname: string) => {
+    nickname.current = newNickname;
     open();
   };
 
   const handleUpdateUser = async () => {
     const formData = {
       request: {
-        nickname: userInfo.nickname,
+        nickname: nickname.current,
         addressRequest: {
           regionCode,
           latitude,
