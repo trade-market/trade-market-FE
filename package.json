@@ -29,6 +29,7 @@
     "swiper": "^10.1.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/js-cookie": "^3.0.3",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.15",

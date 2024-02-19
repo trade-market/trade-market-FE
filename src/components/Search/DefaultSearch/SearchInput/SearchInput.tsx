@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './SearchInputStyles';
+import * as S from './styles';
 import searchIcon from '@Assets/Icons/Search/Search_active.svg';
 
 interface ISearchInputProps {

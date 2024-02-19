@@ -1,6 +1,6 @@
 import React from 'react';
 import BigTitle from '@/components/common/BigTitle';
-import * as T from './TitleSectionStyles';
+import * as T from './styes';
 
 interface ITitleSectionProps {
   h1Text?: string;

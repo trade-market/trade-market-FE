@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import * as P from './PriceSlideBarStyles';
+import * as P from './styles';
 
 interface IPriceSlideBarProps {
   fixedMinValue: number;

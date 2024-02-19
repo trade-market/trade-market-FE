@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import useModal from '@hooks/useModal';
-import EvaluationTitle from './EvaluationTitle';
-import EvaluationListItem from './EvaluationListItem';
-import PostBlueButtons from '@components/WritePost/PostBlueButtons/PostBlueButtons';
+import PostBlueButtons from '@components/WritePost/_commons/PostBlueButtons/PostBlueButtons';
 import ConfirmModal from '@components/common/ConfirmModal';
-import MyEvaluation from '../MyEvaluation';
-import { Wrapper } from './EvaluationListStyles';
+import useModal from '@hooks/useModal';
+import React, { useState } from 'react';
+import MyEvaluation from '../MyEvaluation/MyEvaluation';
+import EvaluationListItem from './EvaluationListItem';
+import EvaluationTitle from './EvaluationTitle/EvaluationTitle';
+import { Wrapper } from './syles';
 
 interface IEvaluationListProps {
   mannerType: string;

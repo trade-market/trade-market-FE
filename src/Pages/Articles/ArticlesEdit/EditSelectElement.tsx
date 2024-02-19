@@ -1,7 +1,7 @@
-import AllSelectElements from '@components/WritePost/CommonTemplet/AllSelectElements';
-import { useOutletContext } from 'react-router-dom';
+import AllSelectElements from '@components/WritePost/03-SelectPostOptions/AllSelectElements/AllSelectElements';
 import useNavigateButton from '@hooks/useNavigateButton';
 import { useLocation } from 'react-router';
+import { useOutletContext } from 'react-router-dom';
 
 interface ISelectElementOutletProps {
   open: () => void;

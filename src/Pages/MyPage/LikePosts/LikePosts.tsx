@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
-import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
-import { Data } from '@components/Home/OurTownPost/DumyData';
+import { PostContainer } from '@components/Home/OurTownPosts/OurTownPost/styles';
+import PostComponent from '@components/Home/OurTownPosts/PostComponents/PosComponentn/PostComponent';
+import { Data } from '@components/Home/OurTownPosts/DumyData';
 
 const Container = styled.div`
   padding-top: 60px;

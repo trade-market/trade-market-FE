@@ -1,6 +1,5 @@
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import * as P from './ProcessCompoStyles';
+import * as P from './styles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import Progressbar from '@components/WriteComment/Progressbar';
 import BottomBtnSection from '@/components/WriteComment/BottomBtnSection';
