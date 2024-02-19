@@ -26,14 +26,15 @@ function EditProfile() {
   const {
     data: { data: user },
   } = useUser();
-  const nickname = useRef(user?.nickname);
+  const initialNickname = useRef(user?.nickname);
+  const newNickname = useRef(user?.nickname);
   const imgFile = useRef<File | null>(null);
   const { isOpen, open, close } = useModal();
   const [updateUser, { isLoading: isUpdateUserLoading }] =
     useUpdateUserInfoMutation();
 
-  const handleSubmit = async (newNickname: string, newImgFile: File) => {
-    nickname.current = newNickname;
+  const handleSubmit = async (nickname: string, newImgFile: File) => {
+    newNickname.current = nickname;
     imgFile.current = newImgFile;
     open();
   };
@@ -41,7 +42,6 @@ function EditProfile() {
   const handleUpdateUser = async () => {
     const formData: IUpdateUser = {
       request: {
-        nickname: nickname.current,
         addressRequest: {
           regionCode,
           latitude,
@@ -50,8 +50,11 @@ function EditProfile() {
         },
       },
     };
+    if (initialNickname.current !== newNickname.current) {
+      formData.request.nickname = newNickname.current;
+    }
     if (imgFile.current) {
-      formData['file'] = imgFile.current;
+      formData.file = imgFile.current;
     }
 
     try {

@@ -30,7 +30,7 @@ export interface IUser {
 
 export interface IUpdateUser {
   request: {
-    nickname: string;
+    nickname?: string;
     addressRequest: IAddressRequest;
   };
   file?: File | null;
