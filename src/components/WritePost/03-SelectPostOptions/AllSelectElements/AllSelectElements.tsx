@@ -26,19 +26,21 @@ const AllSelectElements = ({
 }: AllSelectElementsProps) => {
   const dispatch = useAppDispatch();
   const { exchangeType, tradeType } = useParams();
+
   const pageType = EditPostData
     ? EditPostData['exChangeType']
     : exchangeType === 'talent-trade'
     ? '재능'
     : '물물';
+
   const [inintialValueP, inintialValueE, inintialValuT] = [
     `제공할 ${pageType} 선택`,
     `교환할 ${pageType} 선택`,
     '거래 가능 시간 선택',
   ];
+
   const selectProvide = useAppSelector((state) => state.WritePost.provide);
   const selectExchange = useAppSelector((state) => state.WritePost.exchange);
-  const selectdeadline = useAppSelector((state) => state.WritePost.deadline);
   const selectAbleTime = useAppSelector((state) => state.WritePost.ableTime);
 
   const enable =
@@ -46,11 +48,9 @@ const AllSelectElements = ({
     inintialValueE !== selectExchange &&
     inintialValuT !== selectAbleTime;
 
-  const handleOnChangeSelectValue = (dispatchType) => {
-    return (e: React.MouseEvent<HTMLElement>) => {
-      const event = e.target as HTMLElement;
-      dispatch(dispatchType(event.innerText));
-    };
+  const handleReturnSelectValue = (e: React.MouseEvent<HTMLElement>) => {
+    const event = e.target as HTMLElement;
+    return event.innerText;
   };
 
   useEffect(() => {
@@ -77,18 +77,20 @@ const AllSelectElements = ({
         </PostSection>
         <PostSection label={`${inintialValueP.slice(0, 6)} 카테고리`}>
           <SelectBox
-            placeholder={selectProvide}
-            option={pageType === '재능' ? 'talent' : 'object'}
+            placeholder={`교환할 ${pageType} 선택`}
             isChange={inintialValueP !== selectProvide}
-            onClick={handleOnChangeSelectValue(setProvidePost)}
+            onClick={(e: React.MouseEvent<HTMLElement>) =>
+              dispatch(setProvidePost(handleReturnSelectValue(e)))
+            }
           />
         </PostSection>
         <PostSection label={`${inintialValueE.slice(0, 6)} 카테고리`}>
           <SelectBox
-            placeholder={selectExchange}
-            option={pageType === '재능' ? 'talent' : 'object'}
+            placeholder={`제공할 ${pageType} 선택`}
             isChange={inintialValueE !== selectExchange}
-            onClick={handleOnChangeSelectValue(setExchangePost)}
+            onClick={(e: React.MouseEvent<HTMLElement>) =>
+              dispatch(setExchangePost(handleReturnSelectValue(e)))
+            }
           />
         </PostSection>
         <PostSection label={'거래 마감일'}>
@@ -96,10 +98,12 @@ const AllSelectElements = ({
         </PostSection>
         <PostSection label={'거래 가능 시간'}>
           <SelectBox
-            placeholder={selectAbleTime}
+            placeholder={'거래 가능 시간 선택'}
             option={'abletime'}
             isChange={inintialValuT !== selectAbleTime}
-            onClick={handleOnChangeSelectValue(setAbleTimePost)}
+            onClick={(e: React.MouseEvent<HTMLElement>) =>
+              dispatch(setAbleTimePost(handleReturnSelectValue(e)))
+            }
             direction="up"
           />
         </PostSection>
