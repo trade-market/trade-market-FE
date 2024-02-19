@@ -34,6 +34,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+    deleteUser: builder.mutation<IResponse<object>, void>({
+      query: () => {
+        return {
+          url: '/users',
+          method: 'DELETE',
+        };
+      },
+    }),
   }),
 });
 
@@ -41,4 +49,5 @@ export const {
   useGetUserInfoQuery,
   useUpdateUserInfoMutation,
   useLogoutMutation,
+  useDeleteUserMutation,
 } = userApiSlice;
