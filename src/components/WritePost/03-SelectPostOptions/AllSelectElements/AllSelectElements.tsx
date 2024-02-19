@@ -1,6 +1,5 @@
 import {
   setAbleTimePost,
-  setDeadlinePost,
   setExchangePost,
   setProvidePost,
 } from '@/store/slices/WritePostSlice';
@@ -10,12 +9,11 @@ import MultiImageUpload from '@components/WritePost/03-SelectPostOptions/MultiIm
 import SelectBox from '@components/WritePost/03-SelectPostOptions/SelectBox/SelectBox';
 import PostBlueButtons from '@components/WritePost/_commons/PostBlueButtons/PostBlueButtons';
 import PostSection from '@components/WritePost/_commons/PostSection/PostSection';
-import { RootState } from '@store/types';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-interface IAllSelectElementsProps {
+interface AllSelectElementsProps {
   open?: () => void;
   handleNextButtonClick: () => void;
   EditPostData?: any;
@@ -25,8 +23,8 @@ const AllSelectElements = ({
   open,
   handleNextButtonClick,
   EditPostData,
-}: IAllSelectElementsProps) => {
-  const dispatch = useDispatch();
+}: AllSelectElementsProps) => {
+  const dispatch = useAppDispatch();
   const { exchangeType, tradeType } = useParams();
   const pageType = EditPostData
     ? EditPostData['exChangeType']
@@ -38,24 +36,17 @@ const AllSelectElements = ({
     `교환할 ${pageType} 선택`,
     '거래 가능 시간 선택',
   ];
-  const selectProvide = useSelector(
-    (state: RootState) => state.WritePost.provide
-  );
-  const selectExchange = useSelector(
-    (state: RootState) => state.WritePost.exchange
-  );
-  const selectdeadline = useSelector(
-    (state: RootState) => state.WritePost.deadline
-  );
-  const selectAbleTime = useSelector(
-    (state: RootState) => state.WritePost.ableTime
-  );
+  const selectProvide = useAppSelector((state) => state.WritePost.provide);
+  const selectExchange = useAppSelector((state) => state.WritePost.exchange);
+  const selectdeadline = useAppSelector((state) => state.WritePost.deadline);
+  const selectAbleTime = useAppSelector((state) => state.WritePost.ableTime);
+
   const enable =
     inintialValueP !== selectProvide &&
     inintialValueE !== selectExchange &&
     inintialValuT !== selectAbleTime;
 
-  const handleOnChangeSelectValue = (dispatchType: any) => {
+  const handleOnChangeSelectValue = (dispatchType) => {
     return (e: React.MouseEvent<HTMLElement>) => {
       const event = e.target as HTMLElement;
       dispatch(dispatchType(event.innerText));
@@ -101,10 +92,7 @@ const AllSelectElements = ({
           />
         </PostSection>
         <PostSection label={'거래 마감일'}>
-          <Calender
-            onChange={(date) => dispatch(setDeadlinePost(date))}
-            selectdeadline={selectdeadline}
-          />
+          <Calender />
         </PostSection>
         <PostSection label={'거래 가능 시간'}>
           <SelectBox

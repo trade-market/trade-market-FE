@@ -1,34 +1,19 @@
-import DatePicker from 'react-datepicker';
-import { ko } from 'date-fns/esm/locale';
-import { CalenderContainer, CalendarHead } from './styles';
-import { getYear, getMonth } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
-import arrpw_left from '@Assets/Icons/WritePost/arrpw_left.svg';
+import { setDeadlinePost } from '@/store/slices/WritePostSlice';
 import arrow_right from '@Assets/Icons/WritePost/arrow_right.svg';
+import arrpw_left from '@Assets/Icons/WritePost/arrpw_left.svg';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { getMonth, getYear } from 'date-fns';
+import { ko } from 'date-fns/esm/locale';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { CalendarHead, CalenderContainer } from './styles';
 
-interface ICalendarProps {
-  selectdeadline: Date | null;
-  onChange: (
-    date: Date | null,
-    event: React.SyntheticEvent<any, Event> | undefined
-  ) => void;
-}
-
-const Calendar = ({ onChange, selectdeadline }: ICalendarProps) => {
-  const months = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-  ];
+const Calendar = () => {
+  const dispatch = useAppDispatch();
+  const selectdeadline = useAppSelector((state) => state.WritePost.deadline);
+  const months = Array.from({ length: 12 }, (_, index) => index + 1).map(
+    String
+  );
 
   return (
     <CalenderContainer $innerWidth={innerWidth}>
@@ -44,7 +29,7 @@ const Calendar = ({ onChange, selectdeadline }: ICalendarProps) => {
         minDate={new Date()} // minDate 이전 날짜 선택 불가
         // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
         selected={selectdeadline}
-        onChange={onChange}
+        onChange={(date) => dispatch(setDeadlinePost(date))}
         inline
         renderCustomHeader={({
           date,
