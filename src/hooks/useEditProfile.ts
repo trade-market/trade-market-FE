@@ -62,10 +62,6 @@ export const useEditProfile = (user: IUser, open: () => void) => {
     dispatch(setRegionCode(user?.address.hdongCode));
     dispatch(setLatitude(user?.address.latitude));
     dispatch(setLongitude(user?.address.longitude));
-
-    return () => {
-      dispatch(resetState());
-    };
   }, []);
 
   return {
