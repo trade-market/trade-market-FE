@@ -9,9 +9,8 @@ import {
 import * as O from '@Pages/WritePost/01-PostOutlet/styles';
 import PostBlueButtons from '@components/WritePost/_commons/PostBlueButtons/PostBlueButtons';
 import PostSection from '@components/WritePost/_commons/PostSection/PostSection';
-import { RootState } from '@store/types';
+import { useAppDispatch, useAppSelector } from '@store/store';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 interface IWriteContentsProps {
   handleNextButtonClick: () => void;
@@ -24,17 +23,11 @@ const WriteContents = ({
   title,
   content,
 }: IWriteContentsProps) => {
-  const dispatch = useDispatch();
-  const selectTitle = useSelector((state: RootState) => state.WritePost.title);
-  const selectContent = useSelector(
-    (state: RootState) => state.WritePost.content
-  );
-  const selectMinPrice = useSelector(
-    (state: RootState) => state.WritePost.minPrice
-  );
-  const selectMaxPrice = useSelector(
-    (state: RootState) => state.WritePost.maxPrice
-  );
+  const dispatch = useAppDispatch();
+  const selectTitle = useAppSelector((state) => state.WritePost.title);
+  const selectContent = useAppSelector((state) => state.WritePost.content);
+  const selectMinPrice = useAppSelector((state) => state.WritePost.minPrice);
+  const selectMaxPrice = useAppSelector((state) => state.WritePost.maxPrice);
 
   useEffect(() => {
     //* type(주소)에 따라 초기값 변경
@@ -42,9 +35,7 @@ const WriteContents = ({
     dispatch(setContentPost(''));
     dispatch(setMinPricePost(0));
     dispatch(setMaxPricePost(2_000_000));
-  }, []);
 
-  useEffect(() => {
     //* 수정 게시물이라면
     title && dispatch(setTitlePost(title));
     content && dispatch(setContentPost(content));
@@ -74,8 +65,8 @@ const WriteContents = ({
           <O.PriceSlideContainer>
             <PriceSlideBar
               fixedMinValue={0}
-              fixedMaxValue={2_000_000}
-              priceGapValue={0}
+              fixedMaxValue={1_000_000}
+              priceGapValue={1000}
               selectMinPriceValue={selectMinPrice}
               selectMaxPriceValue={selectMaxPrice}
               setMinPriceValue={setMinPricePost}
