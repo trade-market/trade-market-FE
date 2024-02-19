@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { apiSlice } from '@store/api/apiSlice';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import ChatSlice from './slices/ChatSlice';
 import createCommentSlice from './slices/CreateCommentSlice';
 import WritePostSlice from './slices/WritePostSlice';
-import ChatSlice from './slices/ChatSlice';
 import CheckboxSlice from './slices/checkboxSlice';
-import { apiSlice } from '@store/api/apiSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,3 +20,9 @@ export const store = configureStore({
     ),
   devTools: import.meta.env.DEV,
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
