@@ -10,7 +10,8 @@ import DividedLine from '@components/common/DividedLine';
 import MannersContainer from '@components/MyPage/Manners/MannersContainer';
 import ConfirmModal from '@components/common/ConfirmModal';
 import { tokenStorage } from '@utils/tokenStorage';
-import { useDispatch } from 'react-redux';
+import { useLogoutMutation } from '@store/api/userApiSlice';
+import Spinner from '@components/Auth/Spinner';
 
 const MyPageContainer = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ const TopSection = styled.div`
 function MyPage() {
   const navigate = useNavigate();
   const { isOpen, open, close } = useModal();
-  const dispatch = useDispatch();
+  const [logout, { isLoading: isLogoutLoading }] = useLogoutMutation();
 
   const {
     isOpen: isLogoutModalOpen,
@@ -43,7 +44,8 @@ function MyPage() {
     logoutModalOpen();
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    await logout();
     tokenStorage.clearTokens();
     navigate('/?action=logout');
   };
@@ -83,6 +85,7 @@ function MyPage() {
         onConfirmAction={handleConfirm}
         closeAction={logoutModalClose}
       />
+      {isLogoutLoading && <Spinner />}
     </>
   );
 }
