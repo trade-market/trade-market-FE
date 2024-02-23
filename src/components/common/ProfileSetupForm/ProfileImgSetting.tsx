@@ -2,6 +2,7 @@ import React, { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
 import { useLocation } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
 
 const Container = styled.div`
   margin: 28px 0;
@@ -30,11 +31,39 @@ function ProfileImgSetting({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { pathname } = useLocation();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const imageCompress = async (file: File) => {
+    const options = {
+      maxSizeMB: 1, // 이미지 최대 용량
+      maxWidthOrHeight: 400, // 최대 넓이(혹은 높이)
+      useWebWorker: true,
+    };
+    try {
+      const compressedFile = await imageCompression(file, options);
+      const imageUrl = await imageCompression.getDataUrlFromFile(
+        compressedFile
+      );
+
+      return { compressedFile, imageUrl };
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const imageFile = e.target.files[0];
-      const imageUrl = URL.createObjectURL(imageFile);
-      handleProfileImgSetting(imageUrl, imageFile);
+      const validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+      if (!validTypes.includes(imageFile.type)) {
+        alert(
+          '잘못된 파일 형식입니다. jpg, jpeg, png 이미지 파일만 선택해주세요.'
+        );
+        return;
+      }
+      const { compressedFile, imageUrl } = await imageCompress(imageFile);
+      const blobToFile = new File([compressedFile], `${compressedFile.name}`, {
+        type: compressedFile.type,
+      });
+      handleProfileImgSetting(imageUrl, blobToFile);
     }
   };
 
