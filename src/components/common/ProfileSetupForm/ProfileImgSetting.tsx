@@ -40,9 +40,9 @@ function ProfileImgSetting({
   } = useModal();
   const { pathname } = useLocation();
 
-  const isValidatedImage = (imageFile: File) => {
+  const isValidatedImageType = (type: string) => {
     const validTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-    return validTypes.includes(imageFile.type);
+    return validTypes.includes(type);
   };
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +51,7 @@ function ProfileImgSetting({
     }
 
     const imageFile = e.target.files[0];
-    if (!isValidatedImage(imageFile)) {
+    if (!isValidatedImageType(imageFile.type)) {
       openErrorModal();
       return;
     }
