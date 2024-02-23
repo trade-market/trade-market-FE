@@ -2,7 +2,7 @@ import React, { useRef, memo } from 'react';
 import styled from 'styled-components';
 import BigTitle from '@components/common/BigTitle';
 import { useLocation } from 'react-router-dom';
-import { useImageCompress } from '@hooks/useImageCompress ';
+import { useImageCompress } from '@hooks/useImageCompress';
 import Spinner from '@components/Auth/Spinner';
 import useModal from '@hooks/useModal';
 import CommonModal from '../CommonModal';
