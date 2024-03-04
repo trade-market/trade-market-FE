@@ -7,11 +7,19 @@ export const POST_TYPE = {
 
 export const TRADE_TYPE = {
   SINGLE_TRADE: 'SINGLE_TRADE',
-  OFFER: 'OFFER ',
+  OFFER: 'OFFER',
 } as const;
+
+export const TRADE_TIME = {
+  EARLY_MORNING: 'EARLY_MORNING',
+  MORNING: 'MORNING',
+  AFTERNOON: 'AFTERNOON',
+  EVENING: 'EVENING',
+};
 
 type PostType = (typeof POST_TYPE)[keyof typeof POST_TYPE];
 type TradeType = (typeof TRADE_TYPE)[keyof typeof TRADE_TYPE];
+export type TradeTimeType = (typeof TRADE_TIME)[keyof typeof TRADE_TIME];
 
 export interface IImage {
   id: number;
@@ -43,4 +51,5 @@ export interface IPost {
   closeAt: string;
   createdAt: string;
   modifiedAt: string;
+  tradeTime: TradeTimeType;
 }
