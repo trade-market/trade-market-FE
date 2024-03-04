@@ -83,7 +83,6 @@ function Articles() {
 
   const [deletePost, { isLoading: isDeletePostLoading }] =
     useDeletePostMutation();
-  console.log(post);
 
   const { isOpen, open, close } = useModal();
   const {
