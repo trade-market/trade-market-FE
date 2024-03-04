@@ -157,6 +157,7 @@ function Articles() {
       <PostActionButtons
         isOfferPost={post.tradeType === TRADE_TYPE.OFFER}
         isOwner={isOwner}
+        isEnded={new Date(post?.closeAt).getTime() < Date.now()}
         onChatButtonClick={
           post.tradeType === TRADE_TYPE.OFFER
             ? chatToOfferedUserModalOpen
