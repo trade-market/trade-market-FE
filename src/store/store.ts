@@ -5,7 +5,6 @@ import ChatSlice from './slices/ChatSlice';
 import createCommentSlice from './slices/CreateCommentSlice';
 import WritePostSlice from './slices/WritePostSlice';
 import CheckboxSlice from './slices/checkboxSlice';
-import { AppDispatch, RootState } from './types';
 
 export const store = configureStore({
   reducer: {

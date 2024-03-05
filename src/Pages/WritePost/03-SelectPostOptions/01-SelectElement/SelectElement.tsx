@@ -1,15 +1,14 @@
-import AllSelectElements from '@components/WritePost/03-SelectPostOptions/AllSelectElements/AllSelectElements';
+import AllSelectElements from '@Pages/WritePost/WritePostcompo/CommonTemplet/AllSelectElements/AllSelectElements';
 import useNavigateButton from '@hooks/useNavigateButton';
 import { useOutletContext, useParams } from 'react-router-dom';
 
-interface SelectElementOutletProps {
+interface ISelectElementOutletProps {
   open: () => void;
 }
 
-//* first-step
 const SelectElement = () => {
   const { exchangeType, tradeType } = useParams();
-  const { open } = useOutletContext<SelectElementOutletProps>();
+  const { open } = useOutletContext<ISelectElementOutletProps>();
   const handleNextButtonClick = useNavigateButton(
     `/write-post/${exchangeType}/${tradeType}/write-content`
   );

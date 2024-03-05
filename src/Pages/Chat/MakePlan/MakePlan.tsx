@@ -1,6 +1,6 @@
 import { setAlarm } from '@/store/slices/ChatSlice';
+import SelectBox from '@Pages/WritePost/WritePostcompo/SelectBox/SelectBox';
 import CalendarModal from '@components/Chat/ChatRoom-Component/CalendarModal';
-import SelectBox from '@components/WritePost/03-SelectPostOptions/SelectBox/SelectBox';
 import PostBlueButtons from '@components/WritePost/_commons/PostBlueButtons/PostBlueButtons';
 import PostSection from '@components/WritePost/_commons/PostSection/PostSection';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';

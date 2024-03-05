@@ -5,8 +5,8 @@ import {
   setPlanMinute,
 } from '@/store/slices/ChatSlice';
 import { size } from '@/styles/theme';
+import PostBlueButtons from '@Pages/WritePost/CommonComponents/PostBlueButtons/PostBlueButtons';
 import Calendar from '@components/WritePost/03-SelectPostOptions/Calendar/Calender';
-import PostBlueButtons from '@components/WritePost/_commons/PostBlueButtons/PostBlueButtons';
 import useModal from '@hooks/useModal';
 import { RootState } from '@store/types';
 import { useEffect, useState } from 'react';

@@ -1,1 +1,1 @@
-export { default } from './SelectElement';
+export { default } from './SelectElementPage';
