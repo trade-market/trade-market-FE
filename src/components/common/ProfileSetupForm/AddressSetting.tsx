@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import styled from 'styled-components';
 import * as S from '@Pages/SingUp/SignUpStyles';
@@ -8,6 +8,9 @@ import { size } from '@styles/theme';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 import ActionButton from '@components/common/Buttons/ActionButton';
 import KakaoMap from './KakaoMap';
+import { useDispatch } from 'react-redux';
+import { resetState as resetCoordinate } from '@store/slices/coordinateSlice';
+import useModal from '@hooks/useModal';
 
 const MapContainer = styled.div`
   position: fixed;
@@ -32,41 +35,48 @@ const MapContainer = styled.div`
 
 interface IAddressSettingProps {
   defaultAddress: string;
-  handleRegionCode: (code: string) => void;
 }
 
-function AddressSetting({
-  defaultAddress,
-  handleRegionCode,
-}: IAddressSettingProps) {
+function AddressSetting({ defaultAddress }: IAddressSettingProps) {
   const open = useDaumPostcodePopup();
-
-  const [addressModalOpen, setAddressModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    isOpen: isOpenAddressModal,
+    open: openAddressModal,
+    close: closeAddressModal,
+  } = useModal();
   const [selectedAddress, setSelectedAddress] = useState(defaultAddress || '');
 
   const handleAddressSelect = (address: string) => {
     setSelectedAddress(address);
   };
 
-  const closeAddressModal = () => {
-    setAddressModalOpen(false);
+  const cancelAddressSetting = () => {
+    closeAddressModal();
+    dispatch(resetCoordinate());
   };
 
   const handelCurrentLocationBtnClick = () => {
     if (selectedAddress.length > 0) {
       handleAddressSelect('');
     }
-    setAddressModalOpen(true);
+    openAddressModal();
   };
 
   const handleComplete = (data: Address) => {
-    setAddressModalOpen(true);
+    openAddressModal();
     handleAddressSelect(data.address);
   };
 
   const handleSearchBtnClick = () => {
     open({ onComplete: handleComplete, shorthand: false });
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCoordinate());
+    };
+  }, []);
 
   return (
     <S.Section>
@@ -89,12 +99,12 @@ function AddressSetting({
       >
         현재 동네로 설정
       </ActionButton>
-      {addressModalOpen && (
+      {isOpenAddressModal && (
         <MapContainer>
           <CommonHeader
             onClick={() => {
               handleAddressSelect('');
-              closeAddressModal();
+              cancelAddressSetting();
             }}
           >
             현재 동네
@@ -102,7 +112,6 @@ function AddressSetting({
           <KakaoMap
             selectedAddress={selectedAddress}
             handleAddressSelect={handleAddressSelect}
-            handleRegionCode={handleRegionCode}
             closeAddressModal={closeAddressModal}
           />
         </MapContainer>
