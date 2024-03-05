@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useQueryString from '@hooks/useQueryString';
-import SearchHeader from '@components/Search/SearchFiltering/SearchHeader';
-import Menubar from '@components/Home/Exchange/ExchangeMenu/Menubar';
-import FilterTag from '@components/Search/SearchFiltering/FilterTag';
-import SearchPosts from '@components/Search/SearchFiltering/SearchPosts';
+import SearchHeader from '@components/Search/SearchFiltering/SearchHeader/SearchHeader';
+import Menubar from '@components/Home/Exchange/Menubar/Menubar';
+import FilterTag from '@components/Search/SearchFiltering/FilterTag/FilterTag';
+import SearchPosts from '@components/Search/SearchFiltering/SearchPosts/SearchPosts';
 import useModal from '@hooks/useModal';
-import BottomUpModal from '@components/Search/SearchFiltering/BottomUpModal/BottomUpModal';
-import ModalSelect from '@components/Search/SearchFiltering/BottomUpModal/ModalSelect';
-import ModalCheckbox from '@components/Search/SearchFiltering/BottomUpModal/ModalCheckbox';
-import DistanceRangeBar from '@components/Search/SearchFiltering/BottomUpModal/DistanceRangeBar';
+import BottomUpModal from '@components/Search/SearchFiltering/ModalComponent/BottomUpModal/BottomUpModal';
+import ModalSelect from '@components/Search/SearchFiltering/ModalComponent/ModalSelect/ModalSelect';
+import ModalCheckbox from '@components/Search/SearchFiltering/ModalComponent/ModalCheckbox/ModalCheckbox';
+import DistanceRangeBar from '@components/Search/SearchFiltering/ModalComponent/DistanceRangeBar/DistanceRangeBar';
 import ExchangeOptions from '@/Options/ExchangeOptions';
 import FilteringOptions from '@/Options/FilteringOptions';
 

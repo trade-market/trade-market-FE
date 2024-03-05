@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ContainerTemplet } from '@/Pages/Articles/WriteComment/CreatePost/Progress2/Progresss2Styles';
-import { InputContainerTemplet } from '@components/WriteComment/CreatePost/PriceSlideBar/PriceSlideBarStyles';
+import { InputContainerTemplet } from '@components/WriteComment/CreatePost/PriceSlideBar/styles';
 import { size } from '@/styles/theme';
 
 export const Container = styled(ContainerTemplet)``;

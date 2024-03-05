@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './NeighborhoodSearchStyles';
+import * as S from './styles';
 import BigTitle from '@components/common/BigTitle';
 import { useNavigate } from 'react-router-dom';
 

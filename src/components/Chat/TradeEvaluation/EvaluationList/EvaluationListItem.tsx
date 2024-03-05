@@ -1,6 +1,6 @@
 import React from 'react';
-import EvaluationOption from './EvaluationOption';
-import * as E from './EvaluationListStyles';
+import EvaluationOption from './EvaluationOption/EvaluationOption';
+import * as E from './syles';
 
 interface IEvaluationListItemProps {
   mannerType: string;

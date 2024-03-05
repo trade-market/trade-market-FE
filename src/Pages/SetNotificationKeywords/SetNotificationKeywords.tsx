@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
-import InputContainer from '@components/SetNotificationKeywords/InputContainer';
-import KeywordsContainer from '@components/SetNotificationKeywords/KeywordsContainer';
+import InputContainer from '@components/NotificationKeywords/InputContainer/InputContainer';
+import KeywordsContainer from '@components/NotificationKeywords/KeywordsContainer/KeywordsContainer';
 
 const Container = styled.div`
   padding: 0 21px;

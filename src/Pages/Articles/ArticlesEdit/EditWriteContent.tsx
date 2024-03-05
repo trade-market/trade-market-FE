@@ -1,4 +1,4 @@
-import WriteContents from '@components/WritePost/CommonTemplet/WriteContents';
+import WriteContents from '@components/WritePost/03-SelectPostOptions/WriteContents/WriteContents';
 import useNavigateButton from '@hooks/useNavigateButton';
 import { useLocation } from 'react-router';
 

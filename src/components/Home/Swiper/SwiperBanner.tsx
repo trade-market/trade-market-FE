@@ -1,8 +1,7 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import { Container, SwiperImg } from './SwiperBannerStyles';
+import { Container, SwiperImg } from './styles';
 import banner from '@Assets/Icons/Home/Banner.svg';
 
 const SwiperBanner = () => {

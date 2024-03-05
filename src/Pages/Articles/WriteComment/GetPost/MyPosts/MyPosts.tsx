@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Data } from '@/components/Home/OurTownPost/DumyData';
-import PostComponent from '@components/Home/OurTownPost/PostComponents/PostComponent';
-import { PostContainer } from '@components/Home/OurTownPost/OurTownPostStyles';
+import { Data } from '@components/Home/OurTownPosts/DumyData';
+import PostComponent from '@components/Home/OurTownPosts/PostComponents/PosComponentn/PostComponent';
+import { PostContainer } from '@components/Home/OurTownPosts/OurTownPost/styles';
 import CommonHeader from '@components/common/CommonHeader/CommonHeader';
 
 const Container = styled.div`

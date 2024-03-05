@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import * as E from './ExchageMenuStyles';
-import { ObjectIcons, TalentIcons } from './ExchageIcons';
-import MapIcons from './MapIcons';
-import Menubar from './Menubar';
 import ExchangeOptions from '@/Options/ExchangeOptions';
+import { useState } from 'react';
+import { ObjectIcons, TalentIcons } from '../ExchageIcons';
+import MapIcons from '../MapIcons';
+import Menubar from '../Menubar/Menubar';
+import * as E from './styles';
 
 const Exchange = () => {
   const [activeNav, setActiveNav] = useState(0);
 
   return (
     <E.Wrapper>
+      {/* <Icon /> */}
       <Menubar activeNav={activeNav} setActiveNav={setActiveNav} />
       <E.ExchangeContainer>
         <MapIcons

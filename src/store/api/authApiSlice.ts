@@ -1,8 +1,8 @@
 import {
+  IRegisterRequest,
   LoginResponse,
   NewUserResponse,
   OAuthServiceType,
-  IRegisterRequest,
 } from '@/types/AuthTypes';
 import { apiSlice } from '@store/api/apiSlice';
 import { tokenStorage } from '@utils/tokenStorage';

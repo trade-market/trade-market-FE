@@ -1,43 +1,43 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from '@components/common/Layout/Layout';
-import Home from '@Pages/Home/Home';
-import Auth from '@Pages/Auth';
-import SignUp from '@Pages/SingUp';
-import Search from '@Pages/Search/Search';
 import Articles from '@Pages/Articles';
-import WriteComment from '@Pages/WriteComment';
+import EditArticlesOutlet from '@Pages/Articles/ArticlesEdit/EditArticlesOutlet';
+import EditSelectElement from '@Pages/Articles/ArticlesEdit/EditSelectElement';
+import EditWriteContent from '@Pages/Articles/ArticlesEdit/EditWriteContent';
 import Progress2 from '@Pages/Articles/WriteComment/CreatePost/Progress2/Progress2';
 import Progress3 from '@Pages/Articles/WriteComment/CreatePost/Progress3/Progress3';
 import Progress4 from '@Pages/Articles/WriteComment/CreatePost/Progress4/Progress4';
 import Progress5 from '@Pages/Articles/WriteComment/CreatePost/Progress5/Progress5';
 import Progress6 from '@Pages/Articles/WriteComment/CreatePost/Progress6/Progress6';
+import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
 import InsertPostLink from '@Pages/Articles/WriteComment/GetPost/InsertPostLink';
 import MyPosts from '@Pages/Articles/WriteComment/GetPost/MyPosts';
-import FinalCheck from '@Pages/Articles/WriteComment/GetPost/FinalCheck';
-import ScrollToTop from '@utils/ScrollToTop';
-import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
-import PrivateRoute from '@components/PrivateRoute';
-import PublicRoute from '@components/PublicRoute';
-import ChoicePostType from '@Pages/WritePost/ChoicePostType/ChoicePostType';
-import SelectElement from '@Pages/WritePost/ChoicePostType/SelectElement';
-import WriteContent from '@Pages/WritePost/WriteContent';
-import FinalCheckPost from '@Pages/WritePost/FinalCheckPost';
-import WritePost from '@Pages/WritePost/WritePost';
-import MyPage from '@Pages/MyPage';
-import EditProfile from '@Pages/MyPage/EditProfile';
-import LikePosts from '@Pages/MyPage/LikePosts';
-import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
-import MannersDetail from '@Pages/MyPage/MannersDetail';
-import Notifications from '@Pages/Notifications';
-import SetNotificationKeywords from '@Pages/SetNotificationKeywords';
+import Auth from '@Pages/Auth';
 import ChatList from '@Pages/Chat/ChatList';
 import ChatRoom from '@Pages/Chat/ChatRoom';
 import MakePlan from '@Pages/Chat/MakePlan';
 import TradeEvaluation from '@Pages/Chat/TradeEvaluation';
+import Home from '@Pages/Home/Home';
+import MyPage from '@Pages/MyPage';
+import EditProfile from '@Pages/MyPage/EditProfile';
+import ExchangeHistory from '@Pages/MyPage/ExchangeHistory';
+import LikePosts from '@Pages/MyPage/LikePosts';
+import MannersDetail from '@Pages/MyPage/MannersDetail';
 import NotFound from '@Pages/NotFound';
-import EditSelectElement from '@Pages/Articles/ArticlesEdit/EditSelectElement';
-import EditArticlesOutlet from '@Pages/Articles/ArticlesEdit/EditArticlesOutlet';
-import EditWriteContent from '@Pages/Articles/ArticlesEdit/EditWriteContent';
+import Notifications from '@Pages/Notifications';
+import Search from '@Pages/Search/Search';
+import SetNotificationKeywords from '@Pages/SetNotificationKeywords';
+import SignUp from '@Pages/SingUp';
+import WriteComment from '@Pages/WriteComment';
+import WritePost from '@Pages/WritePost/01-PostOutlet/WritePost';
+import ChoicePostType from '@Pages/WritePost/02-ChoicePostType/ChoicePostTypePage';
+import SelectElement from '@Pages/WritePost/03-SelectPostOptions/SelectElement';
+import WriteContent from '@Pages/WritePost/WritePostcompo/Choice-Compo/WriteContent';
+import FinalCheckPost from '@Pages/WritePost/WritePostcompo/FinalCheck-Compo/FinalCheckPost';
+import OAuthRedirectHandler from '@components/Auth/OAuthRedirectHandler';
+import PrivateRoute from '@components/PrivateRoute';
+import PublicRoute from '@components/PublicRoute';
+import Layout from '@components/common/Layout/Layout';
+import ScrollToTop from '@utils/ScrollToTop';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function Router() {
   return (
@@ -69,6 +69,20 @@ function Router() {
               />
             </Route>
             <Route path="/articles/:id" element={<Articles />} />
+
+            {/* 게시물 생성 페이지 */}
+            <Route
+              path="/write-post/:exchangeType"
+              element={<ChoicePostType />}
+            />
+            <Route
+              path="/write-post/:exchangeType/:tradeType"
+              element={<WritePost />}
+            >
+              <Route path="select-element" element={<SelectElement />} />
+              <Route path="write-content" element={<WriteContent />} />
+              <Route path="final-check" element={<FinalCheckPost />} />
+            </Route>
           </Route>
 
           {/* 로그인한 유저만 접근 가능한 페이지 */}
@@ -90,18 +104,7 @@ function Router() {
                 <Route path="3" element={<FinalCheck />} />
               </Route>
             </Route>
-            <Route
-              path="/write-post/:exchangeType"
-              element={<ChoicePostType />}
-            />
-            <Route
-              path="/write-post/:exchangeType/:tradeType"
-              element={<WritePost />}
-            >
-              <Route path="select-element" element={<SelectElement />} />
-              <Route path="write-content" element={<WriteContent />} />
-              <Route path="final-check" element={<FinalCheckPost />} />
-            </Route>
+
             <Route path="/my-page">
               <Route index element={<MyPage />} />
               <Route path="edit" element={<EditProfile />} />

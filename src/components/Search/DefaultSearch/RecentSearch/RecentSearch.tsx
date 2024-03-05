@@ -1,5 +1,5 @@
-import React, { useNavigate } from 'react-router-dom';
-import * as S from './RecentSearchStyles';
+import { useNavigate } from 'react-router-dom';
+import * as S from './styles';
 import BigTitle from '@components/common/BigTitle';
 import { keyInterface } from '@Pages/Search/Search';
 

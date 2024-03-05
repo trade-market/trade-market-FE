@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import * as H from './HomeStyles';
 import SwiperBanner from '@components/Home/Swiper/SwiperBanner';
 import ExchangeMenu from '@components/Home/Exchange/ExchangeMenu/ExchangeMenu';
-import OurTownPost from '@components/Home/OurTownPost/OurTownPost';
+import OurTownPost from '@components/Home/OurTownPosts/OurTownPost/OurTownPost';
 import WriteButton from '@components/Home/WriteButton';
 import useQueryString from '@hooks/useQueryString';
 import CommonModal from '@components/common/CommonModal';
